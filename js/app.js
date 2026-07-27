@@ -13,7 +13,7 @@ const IS_HOME = !document.body.classList.contains('page-sub');
 function initHero() {
   if (!IS_HOME) return;
   const canvas = $('#heroCanvas');
-  const hero = $('#hero');
+  const hero = $('.hero--sticky');
   if (!canvas || !hero || typeof THREE === 'undefined') return;
 
   const scene = new THREE.Scene();
@@ -214,7 +214,7 @@ function initAnimations() {
       .from('.hero__pre', { opacity: 0, y: -20, duration: 0.8, ease: 'power3.out' }, '-=0.4')
       .from('.hero__line--top', { opacity: 0, x: -80, skewX: -8, duration: 0.9, ease: 'power4.out' }, '-=0.4')
       .from('.hero__char', { opacity: 0, y: 80, stagger: 0.06, duration: 0.9, ease: 'back.out(1.4)' }, '-=0.5')
-      .from('#hero .accent-line', { scaleX: 0, duration: 0.8, ease: 'power3.inOut' }, '-=0.4')
+      .from('.hero--sticky .accent-line', { scaleX: 0, duration: 0.8, ease: 'power3.inOut' }, '-=0.4')
       .from('.hero__tagline', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.3')
       .from('.nav__menu-btn', { opacity: 0, scale: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.4');
   } else {
@@ -529,7 +529,7 @@ function initHeroChars() {
   if (!FINE_POINTER || REDUCED || !IS_HOME) return;
   const chars = $$('.hero__char');
   if (!chars.length) return;
-  const hero = $('#hero');
+  const hero = $('.hero--sticky');
   hero.addEventListener('pointermove', (e) => {
     const mx = e.clientX, my = e.clientY;
     chars.forEach((ch) => {
@@ -717,6 +717,25 @@ function initTabs() {
   });
 }
 
+function initTrippy() {
+  const wrap = $('.hero-wrap');
+  const frames = $$('.trippy__frame');
+  if (!wrap || !frames.length || REDUCED) return;
+  const totalFrames = frames.length;
+  window.addEventListener('scroll', () => {
+    const rect = wrap.getBoundingClientRect();
+    const scrollHeight = wrap.offsetHeight - window.innerHeight;
+    const progress = Math.min(1, Math.max(0, -rect.top / scrollHeight));
+    frames.forEach((frame, i) => {
+      const start = i / totalFrames;
+      const end = (i + 1) / totalFrames;
+      const frameProgress = Math.min(1, Math.max(0, (progress - start) / (end - start)));
+      const scale = frameProgress;
+      frame.style.transform = 'scale(' + scale + ')';
+    });
+  }, { passive: true });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initHero();
   initCursor();
@@ -736,5 +755,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initTechChars();
   initLiveClock();
+  initTrippy();
 });
 
