@@ -684,8 +684,9 @@ function initTabs() {
 
 function initTrippy() {
   const wrap = $('.hero-wrap');
+  const container = $('#trippyFrames');
+  if (!wrap || !container || REDUCED) return;
   const frames = $$('.trippy__frame');
-  if (!wrap || !frames.length || REDUCED) return;
   const totalFrames = frames.length;
   function onScroll() {
     const rect = wrap.getBoundingClientRect();
@@ -695,7 +696,8 @@ function initTrippy() {
       const start = i / totalFrames;
       const end = (i + 1) / totalFrames;
       const fp = Math.min(1, Math.max(0, (progress - start) / (end - start)));
-      frame.style.transform = 'scale(' + fp + ')';
+      const scale = 1 + fp;
+      frame.style.transform = 'scale(' + scale + ')';
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
