@@ -212,8 +212,6 @@ function initAnimations() {
     const tl = gsap.timeline({ delay: 0.8 });
     tl.from('.hero__typewriter', { opacity: 0, y: -20, duration: 0.8, ease: 'power3.out' })
       .from('.hero__pre', { opacity: 0, y: -20, duration: 0.8, ease: 'power3.out' }, '-=0.4')
-      .from('.hero__line--top', { opacity: 0, x: -80, skewX: -8, duration: 0.9, ease: 'power4.out' }, '-=0.4')
-      .from('.hero__char', { opacity: 0, y: 80, stagger: 0.06, duration: 0.9, ease: 'back.out(1.4)' }, '-=0.5')
       .from('.hero--sticky .accent-line', { scaleX: 0, duration: 0.8, ease: 'power3.inOut' }, '-=0.4')
       .from('.hero__tagline', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.3')
       .from('.nav__menu-btn', { opacity: 0, scale: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.4');
