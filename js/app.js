@@ -683,23 +683,46 @@ function initTabs() {
 }
 
 function initTrippy() {
-  const wrap = $('.hero-wrap');
-  const container = $('#trippyFrames');
+  var wrap = document.querySelector('.hero-wrap');
+  var container = document.querySelector('#trippyFrames');
+  var heroContent = document.querySelector('.hero__content');
   if (!wrap || !container || REDUCED) return;
-  const frames = $$('.trippy__frame');
-  const totalFrames = frames.length;
-  function onScroll() {
-    const rect = wrap.getBoundingClientRect();
-    const maxScroll = wrap.scrollHeight - window.innerHeight;
-    const progress = Math.min(1, Math.max(0, -rect.top / maxScroll));
-    frames.forEach(function(frame, i) {
-      const start = i / totalFrames;
-      const end = (i + 1) / totalFrames;
-      const fp = Math.min(1, Math.max(0, (progress - start) / (end - start)));
-      const scale = 1 + fp;
-      frame.style.transform = 'scale(' + scale + ')';
-    });
-  }
+  var frames = container.querySelectorAll('.trippy__frame');
+
+  var tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: wrap,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: true,
+    }
+  });
+
+  tl.to(container, {
+    top: '0%',
+    duration: 0.25,
+    ease: 'none',
+  }, 0);
+
+  tl.to(heroContent, {
+    opacity: 0,
+    duration: 0.125,
+    ease: 'none',
+  }, 0);
+
+  tl.to(frames, {
+    scale: 1.25,
+    rotate: '60deg',
+    duration: 1,
+    ease: 'none',
+    keyframes: [
+      { scale: 1, rotate: '0deg', duration: 0 },
+      { scale: 1, rotate: '0deg', duration: 0.25 },
+      { scale: 0.9, rotate: '60deg', duration: 0.55 },
+      { scale: 1.25, rotate: '60deg', duration: 0.2 },
+    ],
+  }, 0);
+}
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 }
