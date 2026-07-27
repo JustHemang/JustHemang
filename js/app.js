@@ -698,30 +698,11 @@ function initTrippy() {
     }
   });
 
-  tl.to(container, {
-    top: '0%',
-    duration: 0.25,
-    ease: 'none',
-  }, 0);
-
-  tl.to(heroContent, {
-    opacity: 0,
-    duration: 0.125,
-    ease: 'none',
-  }, 0);
-
-  tl.to(frames, {
-    scale: 1.25,
-    rotate: '60deg',
-    duration: 1,
-    ease: 'none',
-    keyframes: [
-      { scale: 1, rotate: '0deg', duration: 0 },
-      { scale: 1, rotate: '0deg', duration: 0.25 },
-      { scale: 0.9, rotate: '60deg', duration: 0.55 },
-      { scale: 1.25, rotate: '60deg', duration: 0.2 },
-    ],
-  }, 0);
+  tl.to(container, { top: '0%', ease: 'none' }, 0);
+  tl.to(heroContent, { opacity: 0, ease: 'none' }, 0);
+  tl.to(frames, { scale: 1, rotate: '0deg', duration: 0.25, ease: 'none' }, 0);
+  tl.to(frames, { scale: 0.9, rotate: '30deg', duration: 0.55, ease: 'none' }, 0.25);
+  tl.to(frames, { scale: 1.25, rotate: '60deg', duration: 0.2, ease: 'none' }, 0.8);
 }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
