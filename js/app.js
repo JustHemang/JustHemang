@@ -704,9 +704,6 @@ function initTrippy() {
   tl.to(frames, { scale: 0.9, rotate: '30deg', duration: 0.55, ease: 'none' }, 0.25);
   tl.to(frames, { scale: 1.25, rotate: '60deg', duration: 0.2, ease: 'none' }, 0.8);
 }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   initHero();
