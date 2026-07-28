@@ -196,31 +196,160 @@ function initAnimations() {
     el.classList.add('tw-active');
   });
 
-  $$('.work__item, .service-item, .pricing__card, .process__step, .capability, .stat, .toolkit__card, .aero-window').forEach((el) => {
+  $$('.accent-line').forEach((el) => {
     gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 92%' },
-      opacity: 0, y: 30, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 90%' },
+      scaleX: 0, duration: 0.8, ease: 'power3.inOut',
     });
   });
 
-  $$('.section__eyebrow, .section__heading').forEach((el) => {
-    gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 90%' },
-      opacity: 0, y: 30, duration: 0.8, ease: 'power3.out',
+  $$('.anim-clip').forEach((el) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      clipPath: 'inset(0 0 0 0)', duration: 0.9, ease: 'power3.inOut',
+    });
+  });
+
+  $$('.anim-scale').forEach((el) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.4)',
+    });
+  });
+
+  $$('.anim-slide-left').forEach((el) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+    });
+  });
+
+  $$('.anim-slide-right').forEach((el) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+    });
+  });
+
+  $$('.anim-slide-up').forEach((el) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+    });
+  });
+
+  $$('.anim-rotate').forEach((el) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      rotation: 0, scale: 1, opacity: 1, duration: 0.9, ease: 'power3.out',
+    });
+  });
+
+  $$('.anim-blur').forEach((el) => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      filter: 'blur(0px)', opacity: 1, duration: 0.8, ease: 'power2.out',
+    });
+  });
+
+  $$('.work__item').forEach((item, i) => {
+    gsap.from(item, {
+      scrollTrigger: { trigger: item, start: 'top 88%' },
+      opacity: 0, y: 40, rotateX: 8,
+      duration: 0.8, delay: i * 0.1, ease: 'power3.out',
+    });
+  });
+
+  $$('.service-item').forEach((item, i) => {
+    gsap.from(item, {
+      scrollTrigger: { trigger: item, start: 'top 88%' },
+      opacity: 0, x: -50, rotateY: -5,
+      duration: 0.8, delay: i * 0.08, ease: 'power3.out',
+    });
+  });
+
+  $$('.pricing__card').forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: 'top 88%' },
+      opacity: 0, y: 40, scale: 0.95, rotateY: 5,
+      duration: 0.7, delay: i * 0.1, ease: 'back.out(1.3)',
+    });
+  });
+
+  $$('.process__step').forEach((step, i) => {
+    gsap.from(step, {
+      scrollTrigger: { trigger: step, start: 'top 88%' },
+      opacity: 0, x: -40, rotateY: -3,
+      duration: 0.7, delay: i * 0.1, ease: 'power3.out',
+    });
+  });
+
+  $$('.capability').forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: 'top 88%' },
+      opacity: 0, y: 30, scale: 0.95,
+      duration: 0.6, delay: i * 0.08, ease: 'back.out(1.3)',
+    });
+  });
+
+  $$('.stat').forEach((stat, i) => {
+    gsap.from(stat, {
+      scrollTrigger: { trigger: stat, start: 'top 88%' },
+      opacity: 0, y: 30, scale: 0.9,
+      duration: 0.6, delay: i * 0.1, ease: 'back.out(1.5)',
     });
   });
 
   $$('.contact-links__item').forEach((item) => {
     gsap.from(item, {
-      scrollTrigger: { trigger: item, start: 'top 92%' },
-      opacity: 0, x: 30, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: item, start: 'top 88%' },
+      opacity: 0, x: 40, rotateY: 3,
+      duration: 0.8, ease: 'power3.out',
+    });
+  });
+
+  $$('.team__group').forEach((group, i) => {
+    gsap.from(group, {
+      scrollTrigger: { trigger: group, start: 'top 85%' },
+      opacity: 0, y: 40, scale: 0.9,
+      duration: 0.8, delay: i * 0.12, ease: 'back.out(1.3)',
     });
   });
 
   $$('.cta__heading, .page-cta h2').forEach((el) => {
     gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 85%' },
+      opacity: 0, y: 80, scale: 0.85, skewY: 3,
+      duration: 1.2, ease: 'power4.out',
+    });
+  });
+
+  $$('.cta__btn').forEach((el) => {
+    gsap.from(el, {
       scrollTrigger: { trigger: el, start: 'top 90%' },
-      opacity: 0, y: 50, duration: 1, ease: 'power4.out',
+      opacity: 0, y: 30, scale: 0.8,
+      duration: 0.7, ease: 'back.out(2.5)',
+    });
+  });
+
+  $$('.section__eyebrow').forEach((el) => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 90%' },
+      opacity: 0, x: -30, duration: 0.6, ease: 'power3.out',
+    });
+  });
+
+  $$('.section__heading').forEach((el) => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      opacity: 0, y: 50, scale: 0.95, duration: 1, ease: 'power3.out',
+    });
+  });
+
+  $$('.statement__text').forEach((el) => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 85%' },
+      clipPath: 'inset(0 100% 0 0)', duration: 1.2, ease: 'power3.inOut',
     });
   });
 
@@ -228,7 +357,8 @@ function initAnimations() {
   if (footerLogo) {
     gsap.from(footerLogo, {
       scrollTrigger: { trigger: footerLogo, start: 'top 95%' },
-      opacity: 0, scale: 0.3, duration: 0.8, ease: 'back.out(1.5)',
+      opacity: 0, rotation: -180, scale: 0.3,
+      duration: 1, ease: 'back.out(1.5)',
     });
   }
 
@@ -240,13 +370,37 @@ function initAnimations() {
     });
   }
 
+  const marquee = $('.marquee');
+  if (marquee) {
+    gsap.from(marquee, {
+      scrollTrigger: { trigger: marquee, start: 'top 92%' },
+      opacity: 0, scaleX: 0.8, duration: 1, ease: 'power3.out',
+    });
+  }
+
+  $$('.work__num').forEach((el) => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      opacity: 0, scale: 2, duration: 0.6, ease: 'back.out(2)',
+    });
+  });
+
   const reel = $('.reel__wrap');
   if (reel) {
     gsap.from(reel, {
       scrollTrigger: { trigger: reel, start: 'top 88%' },
-      opacity: 0, y: 40, duration: 0.8, ease: 'power3.out',
+      opacity: 0, y: 40, scale: 0.98, rotateX: 5,
+      duration: 1, ease: 'power3.out',
     });
   }
+
+  $$('.aero-window').forEach((win, i) => {
+    gsap.from(win, {
+      scrollTrigger: { trigger: win, start: 'top 88%' },
+      opacity: 0, y: 50, scale: 0.96,
+      duration: 0.8, delay: i * 0.1, ease: 'power3.out',
+    });
+  });
 
   const progress = $('#scrollProgress');
   if (progress) {
