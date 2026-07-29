@@ -29,7 +29,15 @@
 
 ## 🧑‍💻 About Me
 
-<img align="right" width="260" src="https://user-images.githubusercontent.com/74038190/213760710-201a57d2-95f1-45c7-b910-44faf209d2f8.gif"/>
+<div align="center">
+
+<img src="https://user-images.githubusercontent.com/74038190/212751818-13da6fd2-27ca-45c4-9c64-3940ccfa6fd3.gif" width="220"/> <img src="https://user-images.githubusercontent.com/74038190/212749447-bfb7e725-6987-49d9-ae85-2015e3e7cc41.gif" width="220"/> <img src="https://user-images.githubusercontent.com/74038190/212750147-854a394f-fee9-4080-9770-78a4b7ece53f.gif" width="220"/>
+
+<sub>coding · vibe coding · video editing</sub>
+
+</div>
+
+<br/>
 
 ```yaml
 name: Hemang Luthra
@@ -79,7 +87,7 @@ reach_me: justhemang@gmail.com
 
 <div align="center">
 
-<img src="https://waveify.onrender.com/api/terminal?commands=npm+install%2Cnpm+run+dev%2Cecho+%22Hello+World%22&theme=modern&speed=50&cursor=true&prompt=%24+&width=800&height=400&fontSize=14&showHeader=true&title=Terminal&githubMode=false&commandType=auto" width="100%"/>
+<img src="https://waveify.onrender.com/api/terminal?commands=echo+%22name%3A+Hemang+Luthra%22%2Cecho+%22role%3A+Full-Stack+Developer+%26+Video+Editor%22%2Cecho+%22focus%3A+Web+Development+%2F+Automation+%2F+Cloud+Infrastructure+%2F+Video+Production%22%2Cecho+%22currently_learning%3A+whatever+breaks+in+production+next%22%2Cecho+%22fun_fact%3A+probably+deploying+something+or+exporting+a+timeline+right+now%22%2Cecho+%22reach_me%3A+justhemang%40gmail.com%22&theme=modern&speed=50&cursor=true&prompt=%24+&width=800&height=400&fontSize=14&showHeader=true&title=whoami&githubMode=false&commandType=auto" width="100%"/>
 
 </div>
 
