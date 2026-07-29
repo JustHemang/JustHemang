@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0077B5,100:00C7B7&height=220&section=header&text=Hemang%20Luthra%20%F0%9F%91%8B&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Building%20things%20for%20the%20web,%20one%20commit%20at%20a%20time&descAlignY=55&descSize=20" width="100%"/>
+<img src="https://waveify.onrender.com/api/wave?color=%23007CF0&height=150&speed=4&width=1200&amplitude=20&frequency=2&waveType=default" width="100%"/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=24&pause=1000&color=00C7B7&center=true&vCenter=true&width=650&lines=Full-Stack+Developer;Open+Source+Enthusiast;Video+Editor+%26+Motion+Designer;Always+Learning+Something+New;Welcome+to+my+profile!" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&pause=1000&color=00C7B7&center=true&vCenter=true&width=650&lines=Hi+there%2C+I'm+Hemang+%F0%9F%91%8B;Full-Stack+Developer;Open+Source+Enthusiast;Video+Editor+%26+Motion+Designer;Always+Learning+Something+New;Welcome+to+my+profile!" alt="Typing SVG" />
 
 <br/>
 
@@ -29,7 +29,7 @@
 
 ## 🧑‍💻 About Me
 
-<img align="right" width="260" src="https://raw.githubusercontent.com/mikechambers98/mikechambers98/master/coding.gif"/>
+<img align="right" width="260" src="https://user-images.githubusercontent.com/74038190/213910845-af37a709-8995-40d6-be59-724526e3c3d7.gif"/>
 
 ```yaml
 name: Hemang Luthra
@@ -75,6 +75,18 @@ reach_me: justhemang@gmail.com
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:00C7B7,100:0077B5&height=3&width=100%25"/>
 
+## 💻 What My Terminal Looks Like
+
+<div align="center">
+
+<img src="https://waveify.onrender.com/api/terminal?commands=npm+install%2Cnpm+run+dev%2Cecho+%22Hello+World%22&theme=modern&speed=50&cursor=true&prompt=%24+&width=800&height=400&fontSize=14&showHeader=true&title=Terminal&githubMode=false&commandType=auto" width="100%"/>
+
+</div>
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0077B5,100:00C7B7&height=3&width=100%25"/>
+
 ## 📊 GitHub Analytics
 
 <div align="center">
@@ -94,7 +106,7 @@ reach_me: justhemang@gmail.com
 
 <br/>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0077B5,100:00C7B7&height=3&width=100%25"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:00C7B7,100:0077B5&height=3&width=100%25"/>
 
 ## 🏆 Trophies
 
@@ -104,7 +116,7 @@ reach_me: justhemang@gmail.com
 
 <br/>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:00C7B7,100:0077B5&height=3&width=100%25"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0077B5,100:00C7B7&height=3&width=100%25"/>
 
 ## ✍️ Random Dev Quote
 
@@ -114,7 +126,7 @@ reach_me: justhemang@gmail.com
 
 <br/>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0077B5,100:00C7B7&height=3&width=100%25"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:00C7B7,100:0077B5&height=3&width=100%25"/>
 
 ## 🤝 Let's Connect
 
@@ -124,6 +136,6 @@ I'm always up for talking dev, design, or new ideas — drop me a message on any
 
 ![Profile Views](https://komarev.com/ghpvc/?username=justhemang&icon=2&color=00C7B7&style=for-the-badge&label=Profile+Views)
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C7B7,100:0077B5&height=120&section=footer" width="100%"/>
+<img src="https://waveify.onrender.com/api/wave?color=%23007CF0&height=150&speed=4&width=1200&amplitude=20&frequency=2&waveType=default" width="100%"/>
 
 </div>
