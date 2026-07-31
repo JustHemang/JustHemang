@@ -1,18 +1,21 @@
 
 
 :root {
-  --ink: #0e0d0c;
-  --ink-2: #242220;
-  --ink-3: #66605a;
-  --paper: #f9f7f4;
-  --paper-2: #ede8e1;
-  --paper-3: #dbd4c9;
-  --accent: #d96b27;
-  --accent-dim: rgba(217,107,39,0.12);
-  --teal: #2a7a7a;
-  --teal-light: #44afaf;
-  --teal-dim: rgba(42,122,122,0.1);
-  --teal-glow: rgba(68,175,175,0.3);
+  --ink: #080e1a;
+  --ink-2: #0f172a;
+  --ink-3: #475569;
+  --paper: #f8fafc;
+  --paper-2: #f1f5f9;
+  --paper-3: #e2e8f0;
+  --accent: #f97316;
+  --accent-dim: rgba(249, 115, 22, 0.15);
+  --teal: #0284c7;
+  --teal-light: #38bdf8;
+  --teal-dim: rgba(56, 189, 248, 0.12);
+  --teal-glow: rgba(56, 189, 248, 0.35);
+  --dark-blue: #080e1a;
+  --dark-blue-2: #0f172a;
+  --dark-blue-card: #162238;
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-hero: 'Bebas Neue', 'Impact', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
@@ -26,7 +29,7 @@
   --z-menu: 1100;
   --section-bg: var(--paper);
   --section-text: var(--ink);
-  --progress-glow: rgba(68,175,175,0.7);
+  --progress-glow: rgba(56, 189, 248, 0.8);
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
