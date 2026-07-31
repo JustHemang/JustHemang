@@ -47,27 +47,54 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 :focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 body.has-cursor,body.has-cursor *{cursor:none!important}
 
-.page-transition{position:fixed;inset:0;z-index:99999;pointer-events:none;perspective:1400px;transform-style:preserve-3d;display:flex;flex-direction:column;overflow:hidden}
-.pt-bar{position:relative;width:100%;height:20.5%;transform-origin:top center;transform-style:preserve-3d;transform:rotateX(0deg) translateZ(0px) scaleY(1);transition:transform .55s cubic-bezier(.7,0,.2,1),opacity .4s ease;will-change:transform,opacity}
-.pt-bar--1{background:#060b14;z-index:5}
-.pt-bar--2{background:#08101e;z-index:4}
-.pt-bar--3{background:#0d182d;z-index:3}
-.pt-bar--4{background:#0284c7;z-index:2}
-.pt-bar--5{background:#38bdf8;z-index:1}
+.page-transition{position:fixed;inset:0;z-index:99999;pointer-events:none;perspective:1600px;transform-style:preserve-3d;display:flex;flex-direction:column;overflow:hidden}
+.pt-bar{
+  position:relative;
+  width:100%;
+  height:20.5%;
+  transform-origin:50% 0%;
+  transform-style:preserve-3d;
+  transform:rotateX(0deg) rotateY(0deg) translateZ(0px) scaleY(1);
+  border-bottom:1.5px solid rgba(56,189,248,0.5);
+  box-shadow:0 15px 40px rgba(0,0,0,0.6);
+  transition:transform .6s cubic-bezier(.7,0,.15,1),opacity .45s ease,border-color .4s ease;
+  will-change:transform,opacity;
+}
+.pt-bar--1{background:linear-gradient(135deg,#050a12,#091122);z-index:5}
+.pt-bar--2{background:linear-gradient(135deg,#07101f,#0f1c36);z-index:4}
+.pt-bar--3{background:linear-gradient(135deg,#0c1932,#015280);z-index:3}
+.pt-bar--4{background:linear-gradient(135deg,#0278b3,#0284c7);z-index:2}
+.pt-bar--5{background:linear-gradient(135deg,#0284c7,#38bdf8);z-index:1}
 
-/* Page Enter — 3D Slat Flip Open */
+/* Page Enter — 3D Spatial Flip Open */
 .page-transition.is-loaded .pt-bar{
-  transform:rotateX(-95deg) translateZ(-180px) scaleY(0);
+  transform:rotateX(-105deg) rotateY(8deg) translateZ(-240px) scaleY(0);
   opacity:0;
-  transition-delay:calc(var(--i) * 0.06s);
+  border-color:transparent;
+  transition-delay:calc(var(--i) * 0.055s);
 }
 
-/* Page Exit — 3D Slat Flip Closed */
+/* Page Exit — 3D Spatial Flip Closed */
 .page-transition.is-leaving{pointer-events:auto}
 .page-transition.is-leaving .pt-bar{
-  transform:rotateX(0deg) translateZ(0px) scaleY(1)!important;
+  transform:rotateX(0deg) rotateY(0deg) translateZ(0px) scaleY(1)!important;
   opacity:1!important;
+  border-color:rgba(56,189,248,0.7)!important;
   transition-delay:calc(var(--i) * 0.04s)!important;
+}
+
+/* 3D Main Container Transition */
+main{
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.7,0,.15,1),opacity .5s ease;
+  will-change:transform,opacity;
+}
+body.is-page-entering main{
+  animation:main3dEnter .75s cubic-bezier(.2,0,.2,1) forwards;
+}
+@keyframes main3dEnter{
+  0%{transform:perspective(1200px) rotateX(6deg) scale(0.95) translateZ(-80px);opacity:0}
+  100%{transform:perspective(1200px) rotateX(0deg) scale(1) translateZ(0px);opacity:1}
 }
 
 .fx-scanlines{position:fixed;inset:0;z-index:var(--z-fx);pointer-events:none;opacity:.06;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(42,37,32,.03) 3px 4px)}

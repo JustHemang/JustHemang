@@ -1004,18 +1004,19 @@ function initSectionTransitions() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   3D PERSPECTIVE SLAT PAGE TRANSITION (SHYFT/TUTTI INSPIRED)
+   3D PERSPECTIVE SPATIAL PAGE TRANSITION (SHYFT/TUTTI)
    ═══════════════════════════════════════════════════════ */
 function initPageTransition() {
   var wrap = $('#pageTransition');
   if (!wrap) return;
 
-  // 1. Page Enter — 3D Slat Flip Open
+  // 1. Page Enter — 3D Spatial Flip Open & Main 3D tilt unfold
+  document.body.classList.add('is-page-entering');
   requestAnimationFrame(function() {
     wrap.classList.add('is-loaded');
   });
 
-  // 2. Page Exit — 3D Slat Flip Closed on link click
+  // 2. Page Exit — 3D Spatial Flip Closed on link click
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a');
     if (!link) return;
@@ -1038,10 +1039,11 @@ function initPageTransition() {
 
     wrap.classList.remove('is-loaded');
     wrap.classList.add('is-leaving');
+    document.body.classList.remove('is-page-entering');
 
     setTimeout(function() {
       window.location.href = link.href;
-    }, 450);
+    }, 480);
   });
 }
 
