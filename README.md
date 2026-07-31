@@ -18,6 +18,15 @@
 
 </div>
 
+<br/><br/>
+
+<!-- Contribution Grid Snake Animation -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/justhemang/justhemang/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/justhemang/justhemang/output/github-contribution-grid-snake.svg" />
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/justhemang/justhemang/output/github-contribution-grid-snake.svg" width="100%"/>
+</picture>
+
 <br/>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:080e1a,50:0284c7,100:38bdf8&height=3&width=100%25"/>
@@ -76,11 +85,28 @@ portfolio: https://justhemang.vercel.app
 
 <img src="https://streak-stats.demolab.com/?user=justhemang&theme=tokyonight&hide_border=true" width="100%"/>
 
+<br/><br/>
+
+<!-- 3D Contribution Graph -->
+<img src="https://raw.githubusercontent.com/justhemang/justhemang/output/profile-3d-contrib/profile-night-rainbow.svg" width="100%"/>
+
 </div>
 
 <br/>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:38bdf8,50:0284c7,100:080e1a&height=3&width=100%25"/>
+
+## 🏆 GitHub Trophies
+
+<div align="center">
+
+<img src="https://github-profile-trophy.vercel.app/?username=justhemang&theme=tokyonight&no-frame=true&row=1&column=7&margin-w=8" width="100%"/>
+
+</div>
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:080e1a,50:0284c7,100:38bdf8&height=3&width=100%25"/>
 
 ## ✍️ Dev Quote
 
@@ -92,7 +118,7 @@ portfolio: https://justhemang.vercel.app
 
 <br/>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:080e1a,50:0284c7,100:38bdf8&height=3&width=100%25"/>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:38bdf8,50:0284c7,100:080e1a&height=3&width=100%25"/>
 
 ## 🤝 Let's Connect
 
