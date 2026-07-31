@@ -6,27 +6,72 @@ const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE_POINTER = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const IS_HOME = !document.body.classList.contains('page-sub');
+const IS_MOBILE = window.matchMedia('(max-width: 768px)').matches;
 
 let mx = 0, my = 0, rx = 0, ry = 0;
 let cursorRing, marqueeTrack, marqueeX = 0, marqueeUnitW = 1000, lenis;
+let scrollVelocity = 0, scrollDirection = 1, lastScrollY = 0;
 
+/* ═══════════════════════════════════════════════════════
+   LENIS SMOOTH SCROLL — silky, intentional feel
+   ═══════════════════════════════════════════════════════ */
 function initLenis() {
-  if (REDUCED || typeof Lenis === 'undefined') { requestAnimationFrame(function loopt() { if (cursorRing) { rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15; cursorRing.style.transform = 'translate(' + rx + 'px,' + ry + 'px)'; } requestAnimationFrame(loopt); }); return; }
-  lenis = new Lenis({ duration: 1.2, wheelMultiplier: 1 });
-  lenis.on('scroll', function() { ScrollTrigger.update(); });
+  if (REDUCED || typeof Lenis === 'undefined') {
+    requestAnimationFrame(function loopt() {
+      if (cursorRing) {
+        rx += (mx - rx) * 0.15;
+        ry += (my - ry) * 0.15;
+        cursorRing.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+      }
+      requestAnimationFrame(loopt);
+    });
+    return;
+  }
+
+  lenis = new Lenis({
+    duration: 1.4,
+    wheelMultiplier: 0.9,
+    touchMultiplier: 1.5,
+    smoothWheel: true,
+  });
+
+  lenis.on('scroll', function(e) {
+    ScrollTrigger.update();
+    // Track velocity and direction for marquee + nav
+    scrollVelocity = Math.abs(e.velocity);
+    scrollDirection = e.direction;
+  });
+
   function loop(t) {
     lenis.raf(t);
-    if (cursorRing) { rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15; cursorRing.style.transform = 'translate(' + rx + 'px,' + ry + 'px)'; }
+
+    // Custom cursor
+    if (cursorRing) {
+      rx += (mx - rx) * 0.15;
+      ry += (my - ry) * 0.15;
+      cursorRing.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+    }
+
+    // Velocity-responsive marquee
     if (marqueeTrack) {
-      marqueeX -= 0.5;
+      var speed = 0.5 + Math.min(scrollVelocity * 0.3, 4);
+      var dir = scrollDirection >= 0 ? -1 : 1;
+      marqueeX += speed * dir;
       if (Math.abs(marqueeX) > marqueeUnitW) marqueeX = 0;
       marqueeTrack.style.transform = 'translateX(' + marqueeX + 'px)';
     }
+
+    // Decay velocity
+    scrollVelocity *= 0.95;
+
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
 }
 
+/* ═══════════════════════════════════════════════════════
+   THREE.JS HERO CANVAS
+   ═══════════════════════════════════════════════════════ */
 function initHero() {
   if (!IS_HOME) return;
   const canvas = $('#heroCanvas');
@@ -70,11 +115,15 @@ function initHero() {
     mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
   }, { passive: true });
 
+  let resizeTimer;
   function resize() {
-    const w = hero.clientWidth, h = hero.clientHeight;
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      const w = hero.clientWidth, h = hero.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }, 100);
   }
   addEventListener('resize', resize);
 
@@ -103,18 +152,41 @@ function initHero() {
   animate();
 }
 
+/* ═══════════════════════════════════════════════════════
+   CUSTOM CAMERA CURSOR
+   ═══════════════════════════════════════════════════════ */
 function initCursor() {
   if (!FINE_POINTER || REDUCED) return;
   document.body.classList.add('has-cursor');
   const dot = $('#cursorDot');
   cursorRing = $('#cursorRing');
-  if (!dot) return;
+  if (!dot || !cursorRing) return;
+
   addEventListener('mousemove', (e) => {
     mx = e.clientX; my = e.clientY;
     dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
   }, { passive: true });
+
+  addEventListener('mousedown', () => cursorRing.classList.add('is-down'));
+  addEventListener('mouseup', () => cursorRing.classList.remove('is-down'));
+
+  // Camera Focus Lock-on for interactive elements
+  const interactiveSel = 'a, button, input, textarea, .work__item, .service-item, .capability, .pricing__card, .menu-overlay__link, .cta__btn';
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest(interactiveSel)) {
+      cursorRing.classList.add('is-active');
+    }
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest(interactiveSel)) {
+      cursorRing.classList.remove('is-active');
+    }
+  });
 }
 
+/* ═══════════════════════════════════════════════════════
+   MENU OVERLAY
+   ═══════════════════════════════════════════════════════ */
 function initMenu() {
   const fab = $('#menuBtn') || $('#menuFab');
   const overlay = $('#menuOverlay');
@@ -139,50 +211,102 @@ function initMenu() {
   });
 }
 
-function initScrollProgress() {
-  const progress = $('#scrollProgress');
-  if (!progress) return;
-  window.addEventListener('scroll', () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
-  }, { passive: true });
+/* ═══════════════════════════════════════════════════════
+   SMART NAV — scroll-aware hide/show + glassmorphism
+   ═══════════════════════════════════════════════════════ */
+function initSmartNav() {
+  var nav = $('#nav');
+  if (!nav || REDUCED) return;
+
+  function onScroll() {
+    var y = window.scrollY;
+    if (y > 80) {
+      nav.classList.add('nav--scrolled');
+    } else {
+      nav.classList.remove('nav--scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
+/* ═══════════════════════════════════════════════════════
+   SCROLL PROGRESS — enhanced with glow
+   ═══════════════════════════════════════════════════════ */
+function initScrollProgress() {
+  var progress = $('#scrollProgress');
+
+  function update() {
+    var y = window.scrollY;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var ratio = max > 0 ? y / max : 0;
+    if (progress) progress.style.transform = 'scaleX(' + ratio + ')';
+
+    // Add glow when actively scrolling
+    if (progress) {
+      if (ratio > 0.01 && ratio < 0.99) {
+        progress.classList.add('has-glow');
+      } else {
+        progress.classList.remove('has-glow');
+      }
+    }
+
+    // Toggle bottom bars slide-up from below screen on scroll
+    if (y > 80) {
+      document.body.classList.add('is-scrolled');
+    } else {
+      document.body.classList.remove('is-scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+/* ═══════════════════════════════════════════════════════
+   STAT COUNTERS
+   ═══════════════════════════════════════════════════════ */
 function initCounters() {
   if (REDUCED || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  $$('.stat__num').forEach((el) => {
-    const raw = el.textContent.trim();
-    const match = raw.match(/^(\d+)(.*)/);
+  $$('.stat__num').forEach(function(el) {
+    var raw = el.textContent.trim();
+    var match = raw.match(/^(\d+)(.*)/);
     if (!match) return;
-    const target = parseInt(match[1], 10);
-    const suffix = match[2] || '';
-    const obj = { val: 0 };
+    var target = parseInt(match[1], 10);
+    var suffix = match[2] || '';
+    var obj = { val: 0 };
     gsap.to(obj, {
       val: target,
       duration: 1.5,
       ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 85%' },
-      onUpdate: () => { el.textContent = Math.round(obj.val) + suffix; },
+      onUpdate: function() { el.textContent = Math.round(obj.val) + suffix; },
     });
   });
 }
 
+/* ═══════════════════════════════════════════════════════
+   SCROLL-DRIVEN ANIMATIONS — the main event
+   ═══════════════════════════════════════════════════════ */
 function initAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
   if (REDUCED) {
-    $$('.anim-clip,.anim-scale,.anim-slide-left,.anim-slide-right,.anim-slide-up,.anim-rotate,.anim-blur').forEach((el) => {
+    $$('.anim-clip,.anim-scale,.anim-slide-left,.anim-slide-right,.anim-slide-up,.anim-rotate,.anim-blur,.section--reveal,.cascade-child,.char-reveal').forEach(function(el) {
       el.style.clipPath = 'none';
       el.style.transform = 'none';
       el.style.opacity = '1';
       el.style.filter = 'none';
     });
+    $$('.clap-divider').forEach(function(d) { d.classList.add('is-visible'); });
+    $$('.footer').forEach(function(f) { f.classList.add('is-visible'); });
     return;
   }
 
+  // ── Hero entrance timeline ──
   if (IS_HOME) {
-    const tl = gsap.timeline({ delay: 0.8 });
+    var tl = gsap.timeline({ delay: 0.8 });
     tl.from('.hero__typewriter', { opacity: 0, y: -20, duration: 0.8, ease: 'power3.out' })
       .from('.hero__pre', { opacity: 0, y: -20, duration: 0.8, ease: 'power3.out' }, '-=0.4')
       .from('.hero--sticky .accent-line', { scaleX: 0, duration: 0.8, ease: 'power3.inOut' }, '-=0.4')
@@ -192,245 +316,446 @@ function initAnimations() {
     gsap.from('.nav__menu-btn', { opacity: 0, scale: 0, duration: 0.5, ease: 'back.out(2)', delay: 0.3 });
   }
 
+  // ── Typewriter headings ──
   $$('.tw-type').forEach(function(el) {
     el.classList.add('tw-active');
   });
 
-  $$('.accent-line').forEach((el) => {
+  // ── SECTION REVEAL — scrub-driven clip reveal ──
+  $$('.section--reveal').forEach(function(section) {
+    gsap.to(section, {
+      clipPath: 'inset(0 0 0 0)',
+      opacity: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        end: 'top 40%',
+        scrub: 0.8,
+        onEnter: function() { section.classList.add('is-revealed'); },
+      }
+    });
+  });
+
+  // ── CLAP DIVIDERS — cinematic bar wipe ──
+  $$('.clap-divider').forEach(function(divider) {
+    ScrollTrigger.create({
+      trigger: divider,
+      start: 'top 88%',
+      onEnter: function() { divider.classList.add('is-visible'); },
+      once: true,
+    });
+  });
+
+  // ── ACCENT LINES — scroll-scrubbed grow ──
+  $$('.accent-line').forEach(function(el) {
+    gsap.fromTo(el,
+      { scaleX: 0 },
+      {
+        scaleX: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          end: 'top 65%',
+          scrub: 0.6,
+        }
+      }
+    );
+  });
+
+  // ── SECTION EYEBROWS — slide in with dash ──
+  $$('.section__eyebrow').forEach(function(el) {
     gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 90%' },
-      scaleX: 0, duration: 0.8, ease: 'power3.inOut',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 90%',
+        onEnter: function() { el.classList.add('is-visible'); },
+        once: true,
+      },
+      opacity: 0,
+      x: -30,
+      duration: 0.7,
+      ease: 'power3.out',
     });
   });
 
-  $$('.anim-clip').forEach((el) => {
+  // ── SECTION HEADINGS — character-by-character reveal ──
+  $$('.section__heading, .statement__heading, .cta__heading').forEach(function(el) {
+    // Split text into characters
+    var text = el.innerHTML;
+    var parts = text.split(/(<br\s*\/?>)/gi);
+    var html = '';
+    parts.forEach(function(part) {
+      if (part.match(/<br\s*\/?>/i)) {
+        html += part;
+      } else {
+        for (var i = 0; i < part.length; i++) {
+          var ch = part[i];
+          if (ch === ' ') {
+            html += ' ';
+          } else {
+            html += '<span class="char-reveal">' + ch + '</span>';
+          }
+        }
+      }
+    });
+    el.innerHTML = html;
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+
+    var charEls = $$('.char-reveal', el);
+    charEls.forEach(function(c, i) {
+      gsap.to(c, {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 0.5,
+        delay: i * 0.03,
+        ease: 'back.out(1.8)',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        }
+      });
+    });
+  });
+
+  // ── GENERIC ANIMATION CLASSES — upgraded with scrub ──
+  $$('.anim-clip').forEach(function(el) {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      clipPath: 'inset(0 0 0 0)', duration: 0.9, ease: 'power3.inOut',
+      clipPath: 'inset(0 0 0 0)',
+      ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 55%', scrub: 0.8 },
     });
   });
 
-  $$('.anim-scale').forEach((el) => {
+  $$('.anim-scale').forEach(function(el) {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.4)',
+      scale: 1, opacity: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 60%', scrub: 0.6 },
     });
   });
 
-  $$('.anim-slide-left').forEach((el) => {
+  $$('.anim-slide-left').forEach(function(el) {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+      x: 0, opacity: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 60%', scrub: 0.6 },
     });
   });
 
-  $$('.anim-slide-right').forEach((el) => {
+  $$('.anim-slide-right').forEach(function(el) {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+      x: 0, opacity: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 60%', scrub: 0.6 },
     });
   });
 
-  $$('.anim-slide-up').forEach((el) => {
+  $$('.anim-slide-up').forEach(function(el) {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+      y: 0, opacity: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 60%', scrub: 0.6 },
     });
   });
 
-  $$('.anim-rotate').forEach((el) => {
+  $$('.anim-rotate').forEach(function(el) {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      rotation: 0, scale: 1, opacity: 1, duration: 0.9, ease: 'power3.out',
+      rotation: 0, scale: 1, opacity: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 60%', scrub: 0.8 },
     });
   });
 
-  $$('.anim-blur').forEach((el) => {
+  $$('.anim-blur').forEach(function(el) {
     gsap.to(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      filter: 'blur(0px)', opacity: 1, duration: 0.8, ease: 'power2.out',
+      filter: 'blur(0px)', opacity: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 88%', end: 'top 60%', scrub: 0.6 },
     });
   });
 
-  $$('.work__item').forEach((item, i) => {
+  // ── WORK ITEMS — cascade with 3D rotation ──
+  $$('.work__item').forEach(function(item, i) {
     gsap.from(item, {
       scrollTrigger: { trigger: item, start: 'top 88%' },
-      opacity: 0, y: 40, rotateX: 8,
+      opacity: 0, y: 50, rotateX: 12, scale: 0.96,
+      duration: 0.9, delay: i * 0.12, ease: 'power3.out',
+    });
+  });
+
+  // ── SERVICE ITEMS ──
+  $$('.service-item').forEach(function(item, i) {
+    gsap.from(item, {
+      scrollTrigger: { trigger: item, start: 'top 88%' },
+      opacity: 0, x: -60, rotateY: -8,
+      duration: 0.9, delay: i * 0.08, ease: 'power3.out',
+    });
+  });
+
+  // ── PRICING CARDS ──
+  $$('.pricing__card').forEach(function(card, i) {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: 'top 88%' },
+      opacity: 0, y: 50, scale: 0.92, rotateY: 8,
+      duration: 0.8, delay: i * 0.1, ease: 'back.out(1.4)',
+    });
+  });
+
+  // ── PROCESS STEPS ──
+  $$('.process__step').forEach(function(step, i) {
+    gsap.from(step, {
+      scrollTrigger: { trigger: step, start: 'top 88%' },
+      opacity: 0, x: -50, rotateY: -5,
       duration: 0.8, delay: i * 0.1, ease: 'power3.out',
     });
   });
 
-  $$('.service-item').forEach((item, i) => {
-    gsap.from(item, {
-      scrollTrigger: { trigger: item, start: 'top 88%' },
-      opacity: 0, x: -50, rotateY: -5,
-      duration: 0.8, delay: i * 0.08, ease: 'power3.out',
-    });
-  });
-
-  $$('.pricing__card').forEach((card, i) => {
+  // ── CAPABILITY CARDS ──
+  $$('.capability').forEach(function(card, i) {
     gsap.from(card, {
       scrollTrigger: { trigger: card, start: 'top 88%' },
-      opacity: 0, y: 40, scale: 0.95, rotateY: 5,
-      duration: 0.7, delay: i * 0.1, ease: 'back.out(1.3)',
+      opacity: 0, y: 40, scale: 0.9,
+      duration: 0.7, delay: i * 0.08, ease: 'back.out(1.4)',
     });
   });
 
-  $$('.process__step').forEach((step, i) => {
-    gsap.from(step, {
-      scrollTrigger: { trigger: step, start: 'top 88%' },
-      opacity: 0, x: -40, rotateY: -3,
-      duration: 0.7, delay: i * 0.1, ease: 'power3.out',
-    });
-  });
-
-  $$('.capability').forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: { trigger: card, start: 'top 88%' },
-      opacity: 0, y: 30, scale: 0.95,
-      duration: 0.6, delay: i * 0.08, ease: 'back.out(1.3)',
-    });
-  });
-
-  $$('.stat').forEach((stat, i) => {
+  // ── STATS ──
+  $$('.stat').forEach(function(stat, i) {
     gsap.from(stat, {
       scrollTrigger: { trigger: stat, start: 'top 88%' },
-      opacity: 0, y: 30, scale: 0.9,
-      duration: 0.6, delay: i * 0.1, ease: 'back.out(1.5)',
+      opacity: 0, y: 40, scale: 0.85,
+      duration: 0.7, delay: i * 0.1, ease: 'back.out(1.6)',
     });
   });
 
-  $$('.contact-links__item').forEach((item) => {
+  // ── CONTACT LINKS ──
+  $$('.contact-links__item').forEach(function(item) {
     gsap.from(item, {
       scrollTrigger: { trigger: item, start: 'top 88%' },
-      opacity: 0, x: 40, rotateY: 3,
-      duration: 0.8, ease: 'power3.out',
+      opacity: 0, x: 50, rotateY: 5,
+      duration: 0.9, ease: 'power3.out',
     });
   });
 
-  $$('.team__group').forEach((group, i) => {
+  // ── TEAM GROUPS ──
+  $$('.team__group').forEach(function(group, i) {
     gsap.from(group, {
       scrollTrigger: { trigger: group, start: 'top 85%' },
-      opacity: 0, y: 40, scale: 0.9,
-      duration: 0.8, delay: i * 0.12, ease: 'back.out(1.3)',
+      opacity: 0, y: 50, scale: 0.85,
+      duration: 0.9, delay: i * 0.12, ease: 'back.out(1.4)',
     });
   });
 
-  $$('.cta__heading, .page-cta h2').forEach((el) => {
-    gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 85%' },
-      opacity: 0, y: 80, scale: 0.85, skewY: 3,
-      duration: 1.2, ease: 'power4.out',
-    });
-  });
-
-  $$('.cta__btn').forEach((el) => {
+  // ── CTA BUTTON ──
+  $$('.cta__btn').forEach(function(el) {
     gsap.from(el, {
       scrollTrigger: { trigger: el, start: 'top 90%' },
-      opacity: 0, y: 30, scale: 0.8,
-      duration: 0.7, ease: 'back.out(2.5)',
+      opacity: 0, y: 40, scale: 0.75,
+      duration: 0.8, ease: 'back.out(2.5)',
     });
   });
 
-  $$('.section__eyebrow').forEach((el) => {
-    gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 90%' },
-      opacity: 0, x: -30, duration: 0.6, ease: 'power3.out',
-    });
+  // ── STATEMENT TEXT — horizontal wipe reveal ──
+  $$('.statement__text').forEach(function(el) {
+    gsap.fromTo(el,
+      { clipPath: 'inset(0 100% 0 0)' },
+      {
+        clipPath: 'inset(0 0% 0 0)',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          end: 'top 45%',
+          scrub: 1,
+        }
+      }
+    );
   });
 
-  $$('.section__heading').forEach((el) => {
-    gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
-      opacity: 0, y: 50, scale: 0.95, duration: 1, ease: 'power3.out',
-    });
-  });
-
-  $$('.statement__text').forEach((el) => {
-    gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 85%' },
-      clipPath: 'inset(0 100% 0 0)', duration: 1.2, ease: 'power3.inOut',
-    });
-  });
-
-  const footerLogo = $('.footer__logo');
-  if (footerLogo) {
-    gsap.from(footerLogo, {
-      scrollTrigger: { trigger: footerLogo, start: 'top 95%' },
-      opacity: 0, rotation: -180, scale: 0.3,
-      duration: 1, ease: 'back.out(1.5)',
+  // ── FOOTER CURTAIN RAISE ──
+  var footer = $('.footer');
+  if (footer) {
+    ScrollTrigger.create({
+      trigger: footer,
+      start: 'top 95%',
+      onEnter: function() {
+        footer.classList.add('is-visible');
+        // Cascade children
+        var logo = $('.footer__logo', footer);
+        if (logo) {
+          gsap.from(logo, {
+            opacity: 0, rotation: -180, scale: 0.2,
+            duration: 1.2, ease: 'back.out(1.5)', delay: 0.2,
+          });
+        }
+        var links = $$('.footer__links a', footer);
+        if (links.length) {
+          gsap.from(links, {
+            opacity: 0, x: 30, stagger: 0.08, duration: 0.6, ease: 'power3.out', delay: 0.4,
+          });
+        }
+      },
+      once: true,
     });
   }
 
-  const footerLinks = $$('.footer__links a');
-  if (footerLinks.length) {
-    gsap.from(footerLinks, {
-      scrollTrigger: { trigger: '.footer__links', start: 'top 95%' },
-      opacity: 0, y: 20, stagger: 0.08, duration: 0.5, ease: 'power2.out',
-    });
-  }
-
-  const marquee = $('.marquee');
+  // ── MARQUEE ──
+  var marquee = $('.marquee');
   if (marquee) {
     gsap.from(marquee, {
       scrollTrigger: { trigger: marquee, start: 'top 92%' },
-      opacity: 0, scaleX: 0.8, duration: 1, ease: 'power3.out',
+      opacity: 0, scaleX: 0.7, duration: 1.2, ease: 'power3.out',
     });
   }
 
-  $$('.work__num').forEach((el) => {
+  // ── WORK NUMBERS ──
+  $$('.work__num').forEach(function(el) {
     gsap.from(el, {
       scrollTrigger: { trigger: el, start: 'top 88%' },
-      opacity: 0, scale: 2, duration: 0.6, ease: 'back.out(2)',
+      opacity: 0, scale: 2.5, rotation: -15,
+      duration: 0.7, ease: 'back.out(2)',
     });
   });
 
-  const reel = $('.reel__wrap');
+  // ── REEL ──
+  var reel = $('.reel__wrap');
   if (reel) {
     gsap.from(reel, {
       scrollTrigger: { trigger: reel, start: 'top 88%' },
-      opacity: 0, y: 40, scale: 0.98, rotateX: 5,
-      duration: 1, ease: 'power3.out',
+      opacity: 0, y: 50, scale: 0.96, rotateX: 8,
+      duration: 1.2, ease: 'power3.out',
     });
   }
 
-  $$('.aero-window').forEach((win, i) => {
+  // ── AERO WINDOWS ──
+  $$('.aero-window').forEach(function(win, i) {
     gsap.from(win, {
       scrollTrigger: { trigger: win, start: 'top 88%' },
-      opacity: 0, y: 50, scale: 0.96,
-      duration: 0.8, delay: i * 0.1, ease: 'power3.out',
+      opacity: 0, y: 60, scale: 0.94,
+      duration: 0.9, delay: i * 0.1, ease: 'power3.out',
     });
   });
 
-  const progress = $('#scrollProgress');
+  // ── SCROLL PROGRESS GLOW BOOST ──
+  var progress = $('#scrollProgress');
   if (progress) {
     ScrollTrigger.create({
       trigger: document.body, start: 'top top', end: 'bottom bottom',
-      onUpdate: (self) => {
+      onUpdate: function(self) {
         progress.style.boxShadow = self.progress > 0.95
-          ? '0 0 12px 2px rgba(42, 122, 122, 0.5)'
+          ? '0 0 16px 3px rgba(42, 122, 122, 0.6)'
           : 'none';
       }
     });
   }
 }
 
+/* ═══════════════════════════════════════════════════════
+   PARALLAX DEPTH SYSTEM
+   ═══════════════════════════════════════════════════════ */
+function initParallax() {
+  if (REDUCED || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  $$('[data-speed]').forEach(function(el) {
+    var speed = parseFloat(el.dataset.speed);
+    if (!speed || speed === 1) return;
+
+    gsap.to(el, {
+      yPercent: (1 - speed) * 50,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: el.closest('section') || el.parentElement,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      }
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   HORIZONTAL WORK SCROLL (desktop only)
+   ═══════════════════════════════════════════════════════ */
+function initHorizontalWork() {
+  if (REDUCED || IS_MOBILE || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  var section = $('.work--horizontal');
+  if (!section) return;
+  var grid = $('.work__grid', section);
+  if (!grid) return;
+
+  // Calculate scroll distance
+  function getScrollAmount() {
+    return -(grid.scrollWidth - window.innerWidth + 100);
+  }
+
+  var tween = gsap.to(grid, {
+    x: getScrollAmount,
+    ease: 'none',
+  });
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top top',
+    end: function() { return '+=' + Math.abs(getScrollAmount()); },
+    pin: true,
+    scrub: 1.2,
+    animation: tween,
+    invalidateOnRefresh: true,
+    anticipatePin: 1,
+  });
+
+  // Scale up items as they enter center
+  $$('.work__item', section).forEach(function(item) {
+    gsap.fromTo(item,
+      { scale: 0.92, opacity: 0.6 },
+      {
+        scale: 1, opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: item,
+          containerAnimation: tween,
+          start: 'left 80%',
+          end: 'left 40%',
+          scrub: true,
+        }
+      }
+    );
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   VELOCITY-RESPONSIVE MARQUEE
+   ═══════════════════════════════════════════════════════ */
 function initMarquee() {
   marqueeTrack = $('#marqueeTrack');
   if (!marqueeTrack || REDUCED) return;
-  const unitHTML = marqueeTrack.innerHTML;
-  let safety = 0;
-  while (marqueeTrack.scrollWidth < innerWidth * 2.5 && safety < 20) { marqueeTrack.innerHTML += unitHTML; safety++; }
-  marqueeUnitW = marqueeTrack.firstElementChild ? marqueeTrack.firstElementChild.offsetWidth * (marqueeTrack.children.length / 4) : 1000;
+  var unitHTML = marqueeTrack.innerHTML;
+  var safety = 0;
+  while (marqueeTrack.scrollWidth < innerWidth * 2.5 && safety < 20) {
+    marqueeTrack.innerHTML += unitHTML;
+    safety++;
+  }
+  marqueeUnitW = marqueeTrack.firstElementChild
+    ? marqueeTrack.firstElementChild.offsetWidth * (marqueeTrack.children.length / 4)
+    : 1000;
 }
 
+/* ═══════════════════════════════════════════════════════
+   PAGE TRANSITIONS
+   ═══════════════════════════════════════════════════════ */
 function initPageTransition() {
-  const overlay = $('#pageTransition');
+  var overlay = $('#pageTransition');
   if (!overlay) return;
   if (REDUCED) { overlay.style.display = 'none'; return; }
 
-  const bars = $$('.pt-bar', overlay);
-  const circle = $('.pt-circle', overlay);
+  var bars = $$('.pt-bar', overlay);
+  var circle = $('.pt-circle', overlay);
   gsap.set(bars, { xPercent: 0 });
   if (circle) gsap.set(circle, { scale: 0 });
 
@@ -464,20 +789,23 @@ function initPageTransition() {
   });
 }
 
+/* ═══════════════════════════════════════════════════════
+   TIMECODE COUNTER
+   ═══════════════════════════════════════════════════════ */
 function initTimecode() {
-  const el = $('#timecodeValue');
+  var el = $('#timecodeValue');
   if (!el) return;
-  const start = performance.now();
-  let prevFrame = -1;
+  var start = performance.now();
+  var prevFrame = -1;
   function loop() {
-    const elapsed = performance.now() - start;
-    const f = Math.floor(elapsed / (1000 / 24)) % 24;
+    var elapsed = performance.now() - start;
+    var f = Math.floor(elapsed / (1000 / 24)) % 24;
     if (f !== prevFrame) {
       prevFrame = f;
-      const totalSec = Math.floor(elapsed / 1000);
-      const s = totalSec % 60;
-      const m = Math.floor(totalSec / 60) % 60;
-      const h = Math.floor(totalSec / 3600);
+      var totalSec = Math.floor(elapsed / 1000);
+      var s = totalSec % 60;
+      var m = Math.floor(totalSec / 60) % 60;
+      var h = Math.floor(totalSec / 3600);
       el.textContent = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0') + ':' + String(f).padStart(2, '0');
     }
     requestAnimationFrame(loop);
@@ -485,18 +813,24 @@ function initTimecode() {
   requestAnimationFrame(loop);
 }
 
+/* ═══════════════════════════════════════════════════════
+   FILMSTRIP
+   ═══════════════════════════════════════════════════════ */
 function initFilmstrip() {
   if (REDUCED) return;
-  const track = $('#filmstripTrack');
+  var track = $('#filmstripTrack');
   if (!track) return;
-  const clone = track.innerHTML;
+  var clone = track.innerHTML;
   track.innerHTML += clone;
 }
 
+/* ═══════════════════════════════════════════════════════
+   TYPEWRITER
+   ═══════════════════════════════════════════════════════ */
 function initTypewriter() {
-  const el = $('#heroTypewriter');
+  var el = $('#heroTypewriter');
   if (!el || !IS_HOME) return;
-  const phrases = [
+  var phrases = [
     'Freelance Video Editor',
     'Frontend Developer',
     'President of OPCODE',
@@ -505,11 +839,11 @@ function initTypewriter() {
     'Motion Graphics Artist',
     'Color Grading Specialist',
   ];
-  let pi = 0, ci = 0, deleting = false, delay = 80;
+  var pi = 0, ci = 0, deleting = false, delay = 80;
   el.innerHTML = '<span class="tw-cursor"></span>';
-  const cursor = el.querySelector('.tw-cursor');
+  var cursor = el.querySelector('.tw-cursor');
   function tick() {
-    const current = phrases[pi];
+    var current = phrases[pi];
     if (!deleting) {
       ci++;
       if (ci > current.length) { deleting = true; delay = 1800; }
@@ -524,12 +858,15 @@ function initTypewriter() {
   setTimeout(tick, 1200);
 }
 
+/* ═══════════════════════════════════════════════════════
+   TECH CHARACTERS FLOATING
+   ═══════════════════════════════════════════════════════ */
 function initTechChars() {
-  const container = $('#techChars');
+  var container = $('#techChars');
   if (!container) return;
-  const chars = ['{0,1}', '</>', '0xFF', '>>>', '&&', '===', 'npm', 'git', '{}', '[]', '=>', '##', '@@', '**', '++', '--', '&&', '||', '!'];
-  for (let i = 0; i < 18; i++) {
-    const span = document.createElement('span');
+  var chars = ['{0,1}', '</>', '0xFF', '>>>', '&&', '===', 'npm', 'git', '{}', '[]', '=>', '##', '@@', '**', '++', '--', '&&', '||', '!'];
+  for (var i = 0; i < 18; i++) {
+    var span = document.createElement('span');
     span.className = 'tech-char';
     span.textContent = chars[Math.floor(Math.random() * chars.length)];
     span.style.left = Math.random() * 100 + '%';
@@ -540,30 +877,39 @@ function initTechChars() {
   }
 }
 
+/* ═══════════════════════════════════════════════════════
+   LIVE CLOCK
+   ═══════════════════════════════════════════════════════ */
 function initLiveClock() {
-  const el = $('#liveClock');
+  var el = $('#liveClock');
   if (!el) return;
   function update() {
-    const now = new Date();
+    var now = new Date();
     el.textContent = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0') + ':' + String(now.getSeconds()).padStart(2, '0');
   }
   update();
   setInterval(update, 1000);
 }
 
+/* ═══════════════════════════════════════════════════════
+   SERVICE TABS
+   ═══════════════════════════════════════════════════════ */
 function initTabs() {
-  $$('.services-tabs__btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const tab = btn.dataset.tab;
-      $$('.services-tabs__btn').forEach((b) => b.classList.remove('active'));
-      $$('.services-tabs__panel').forEach((p) => p.classList.remove('active'));
+  $$('.services-tabs__btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = btn.dataset.tab;
+      $$('.services-tabs__btn').forEach(function(b) { b.classList.remove('active'); });
+      $$('.services-tabs__panel').forEach(function(p) { p.classList.remove('active'); });
       btn.classList.add('active');
-      const panel = $('#tab-' + tab);
+      var panel = $('#tab-' + tab);
       if (panel) panel.classList.add('active');
     });
   });
 }
 
+/* ═══════════════════════════════════════════════════════
+   TRIPPY SCROLL-DRIVEN FRAMES
+   ═══════════════════════════════════════════════════════ */
 function initTrippy() {
   var wrap = document.querySelector('.hero-wrap');
   var container = document.querySelector('#trippyFrames');
@@ -576,7 +922,7 @@ function initTrippy() {
       trigger: wrap,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: true,
+      scrub: 0.5,
     }
   });
 
@@ -587,13 +933,90 @@ function initTrippy() {
   tl.to(frames, { scale: 1.25, rotate: '60deg', duration: 0.2, ease: 'none' }, 0.8);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+/* ═══════════════════════════════════════════════════════
+   TEXT RADIUS HOVER — color shift around cursor radius
+   ═══════════════════════════════════════════════════════ */
+function initTextRadiusHover() {
+  if (!FINE_POINTER || REDUCED) return;
+
+  const RADIUS = 85; // 85px radius around camera viewfinder cursor
+  let tickScheduled = false;
+
+  function updateRadiusHover() {
+    const elements = $$('.hero__char, .char-reveal, .work__client, .service-name, .menu-overlay__link, .section__eyebrow, .statement__heading, .page-hero__title, .contact-hero__title');
+
+    elements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const elX = rect.left + rect.width / 2;
+      const elY = rect.top + rect.height / 2;
+
+      const dist = Math.hypot(mx - elX, my - elY);
+
+      if (dist < RADIUS) {
+        el.classList.add('in-cursor-radius');
+      } else {
+        el.classList.remove('in-cursor-radius');
+      }
+    });
+
+    tickScheduled = false;
+  }
+
+  window.addEventListener('mousemove', () => {
+    if (!tickScheduled) {
+      tickScheduled = true;
+      requestAnimationFrame(updateRadiusHover);
+    }
+  }, { passive: true });
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION COLOR TRANSITIONS — background bleed effect
+   ═══════════════════════════════════════════════════════ */
+function initSectionTransitions() {
+  if (REDUCED || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  // Subtle background shift between sections
+  var sections = $$('.section');
+  sections.forEach(function(section, i) {
+    if (i % 2 === 0) return; // Only every other section shifts
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 70%',
+      end: 'bottom 30%',
+      onEnter: function() {
+        gsap.to(section, {
+          backgroundColor: 'rgba(42,37,32,0.02)',
+          duration: 0.6,
+          ease: 'power2.out',
+        });
+      },
+      onLeaveBack: function() {
+        gsap.to(section, {
+          backgroundColor: 'transparent',
+          duration: 0.6,
+          ease: 'power2.out',
+        });
+      },
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   INITIALIZATION
+   ═══════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function() {
   initHero();
   initCursor();
   initScrollProgress();
   initMenu();
+  initSmartNav();
   initAnimations();
   initCounters();
+  initParallax();
+  initHorizontalWork();
+  initSectionTransitions();
   initPageTransition();
   initTimecode();
   initFilmstrip();
@@ -604,4 +1027,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initMarquee();
   initLenis();
   initTrippy();
+  initTextRadiusHover();
+
+  // Batch ScrollTrigger refresh after all triggers are created
+  if (typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.refresh();
+  }
 });

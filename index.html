@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Just Hemang &mdash; Creative Studio</title>
+  <title>Just Hemang &mdash; Video Editor &amp; Fullstack Developer</title>
   <meta name="description"
-    content="Just Hemang is a creative studio specializing in video editing, graphic design, web development, and freelance creative services." />
+    content="Just Hemang — Video Editor, Fullstack Developer, and Freelance Creative." />
   <meta name="theme-color" content="#2a2520" />
   <link rel="icon" href="Logo Transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,13 +59,13 @@
 
   <main id="top">
 
-    <section class="hero-wrap" id="hero">
+    <section class="hero-wrap" id="hero" data-section-color="dark">
       <div class="hero hero--sticky">
         <div class="hero__letterbox hero__letterbox--top" aria-hidden="true"></div>
         <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
         <div class="hero__rec mono" aria-hidden="true">REC</div>
         <div class="hero__fps mono" aria-hidden="true">24fps / 4K</div>
-        <div class="hero__content">
+        <div class="hero__content" data-speed="0.85">
           <p class="hero__typewriter mono" id="heroTypewriter" aria-hidden="true"></p>
           <p class="hero__pre mono">Video Editor &middot; Fullstack Dev &middot; Photographer</p>
           <h1 class="hero__title" aria-label="Just Hemang">
@@ -120,8 +120,7 @@
                                           <div class="trippy__frame" style="background:var(--ink);padding:2vmin">
                                             <div class="trippy__frame" style="background:var(--paper);padding:2vmin">
                                               <div class="trippy__frame" style="background:var(--ink);padding:2vmin">
-                                                <div class="trippy__frame"
-                                                  style="background:var(--paper);padding:2vmin"></div>
+                                                <div class="trippy__frame" style="background:var(--paper);padding:2vmin"></div>
                                               </div>
                                             </div>
                                           </div>
@@ -142,11 +141,10 @@
             </div>
           </div>
         </div>
-        <div class="hero__letterbox hero__letterbox--bottom" aria-hidden="true"></div>
       </div>
     </section>
 
-    <div class="filmstrip" aria-hidden="true">
+    <div class="filmstrip" aria-hidden="true" data-speed="1.15">
       <div class="filmstrip__track" id="filmstripTrack">
         <div class="filmstrip__hole"></div>
         <div class="filmstrip__hole"></div>
@@ -175,7 +173,7 @@
       </div>
     </div>
 
-    <section class="section" id="statement">
+    <section class="section section--reveal" id="statement">
       <div class="clap-divider" aria-hidden="true">
         <div class="clap-divider__bar"></div>
         <span class="clap-divider__icon">SCENE 01 / TAKE 01</span>
@@ -192,7 +190,7 @@
       </div>
     </section>
 
-    <section class="section work" id="work">
+    <section class="section work work--horizontal" id="work">
       <div class="clap-divider" aria-hidden="true">
         <div class="clap-divider__bar"></div>
         <span class="clap-divider__icon">SELECTED CUTS</span>
@@ -265,7 +263,7 @@
       </div>
     </div>
 
-    <section class="section" id="studio">
+    <section class="section section--reveal" id="studio">
       <div class="clap-divider" aria-hidden="true">
         <div class="clap-divider__bar"></div>
         <span class="clap-divider__icon">DIRECTOR'S CUT</span>
@@ -291,7 +289,7 @@
       </div>
     </section>
 
-    <section class="section" id="team">
+    <section class="section section--reveal" id="team">
       <p class="section__eyebrow mono anim-slide-left">Team</p>
       <h2 class="section__heading tw-type">People</h2>
       <div class="anim-scale">
@@ -315,7 +313,7 @@
       </div>
     </div>
 
-    <section class="section" id="contact">
+    <section class="section section--reveal" id="contact">
       <div class="cta">
         <h2 class="cta__heading tw-type">Let's talk</h2>
         <a class="cta__btn" href="/contact">Book a call</a>
