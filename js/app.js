@@ -1004,6 +1004,77 @@ function initSectionTransitions() {
 }
 
 /* ═══════════════════════════════════════════════════════
+   PAGE PRELOADER & SEAMLESS TRANSITIONS
+   ═══════════════════════════════════════════════════════ */
+function initPageTransition() {
+  var loader = $('#ptLoader');
+  var fill = $('#ptFill');
+  var num = $('#ptNum');
+  var panels = $$('.pt-panel');
+
+  if (!loader && !panels.length) return;
+
+  // 1. Initial Loading Animation (0% to 100%)
+  var count = 0;
+  var interval = setInterval(function() {
+    count += Math.floor(Math.random() * 16) + 12;
+    if (count > 100) count = 100;
+    if (fill) fill.style.width = count + '%';
+    if (num) num.textContent = count + '%';
+
+    if (count === 100) {
+      clearInterval(interval);
+      setTimeout(function() {
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(function() { loader.remove(); }, 400);
+        }
+
+        // Slide out shutter panels in staggered cascade
+        if (typeof gsap !== 'undefined' && panels.length) {
+          gsap.to(panels, {
+            y: '-100%',
+            stagger: 0.08,
+            duration: 0.7,
+            ease: 'power4.inOut'
+          });
+        } else if (panels.length) {
+          panels.forEach(function(p) { p.style.transform = 'translateY(-100%)'; });
+        }
+      }, 150);
+    }
+  }, 30);
+
+  // 2. Intercept internal link clicks for smooth page exit transition
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href');
+
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') {
+      return;
+    }
+
+    e.preventDefault();
+
+    if (typeof gsap !== 'undefined' && panels.length) {
+      gsap.set(panels, { y: '100%' });
+      gsap.to(panels, {
+        y: '0%',
+        stagger: 0.06,
+        duration: 0.45,
+        ease: 'power3.inOut',
+        onComplete: function() {
+          window.location.href = href;
+        }
+      });
+    } else {
+      window.location.href = href;
+    }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
    INITIALIZATION
    ═══════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function() {
