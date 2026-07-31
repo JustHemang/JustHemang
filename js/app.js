@@ -1004,18 +1004,18 @@ function initSectionTransitions() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   PAGE ENTER & EXIT TRANSITIONS (FAIL-SAFE & ELEGANT)
+   3D PERSPECTIVE SLAT PAGE TRANSITION (SHYFT/TUTTI INSPIRED)
    ═══════════════════════════════════════════════════════ */
 function initPageTransition() {
   var wrap = $('#pageTransition');
   if (!wrap) return;
 
-  // 1. Page Enter — shrink curtain up instantly on load
+  // 1. Page Enter — 3D Slat Flip Open
   requestAnimationFrame(function() {
     wrap.classList.add('is-loaded');
   });
 
-  // 2. Intercept internal link clicks for smooth page exit transition
+  // 2. Page Exit — 3D Slat Flip Closed on link click
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a');
     if (!link) return;
@@ -1041,7 +1041,7 @@ function initPageTransition() {
 
     setTimeout(function() {
       window.location.href = link.href;
-    }, 380);
+    }, 450);
   });
 }
 
