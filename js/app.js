@@ -1004,30 +1004,18 @@ function initSectionTransitions() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   PAGE ENTER & EXIT TRANSITIONS (FAIL-SAFE CURTAIN WIPE)
+   PAGE ENTER & EXIT TRANSITIONS (FAIL-SAFE & ELEGANT)
    ═══════════════════════════════════════════════════════ */
 function initPageTransition() {
   var wrap = $('#pageTransition');
-  var panels = $$('.pt-panel');
-  if (!wrap || !panels.length) return;
+  if (!wrap) return;
 
-  // 1. Page Enter Animation — staggered curtain wipe up
-  if (typeof gsap !== 'undefined') {
-    gsap.to(panels, {
-      y: '-100%',
-      stagger: 0.05,
-      duration: 0.55,
-      ease: 'power3.inOut',
-      onComplete: function() {
-        wrap.classList.add('is-done');
-      }
-    });
-  } else {
-    panels.forEach(function(p) { p.style.transform = 'translateY(-100%)'; });
-    wrap.classList.add('is-done');
-  }
+  // 1. Page Enter — shrink curtain up instantly on load
+  requestAnimationFrame(function() {
+    wrap.classList.add('is-loaded');
+  });
 
-  // 2. Page Exit Transition — smooth navigation intercept
+  // 2. Intercept internal link clicks for smooth page exit transition
   document.addEventListener('click', function(e) {
     var link = e.target.closest('a');
     if (!link) return;
@@ -1038,7 +1026,7 @@ function initPageTransition() {
       return;
     }
 
-    // Skip if clicking current page anchor/URL
+    // Skip if clicking current URL with anchor
     try {
       var targetUrl = new URL(link.href, window.location.href);
       if (targetUrl.pathname === window.location.pathname && targetUrl.search === window.location.search && targetUrl.hash) {
@@ -1048,26 +1036,12 @@ function initPageTransition() {
 
     e.preventDefault();
 
-    wrap.classList.remove('is-done');
-    if (typeof gsap !== 'undefined') {
-      gsap.killTweensOf(panels);
-      gsap.set(panels, { y: '100%' });
-      gsap.to(panels, {
-        y: '0%',
-        stagger: 0.04,
-        duration: 0.38,
-        ease: 'power2.inOut',
-        onComplete: function() {
-          window.location.href = link.href;
-        }
-      });
-      // Safety net fallback navigation in 450ms
-      setTimeout(function() {
-        window.location.href = link.href;
-      }, 450);
-    } else {
+    wrap.classList.remove('is-loaded');
+    wrap.classList.add('is-leaving');
+
+    setTimeout(function() {
       window.location.href = link.href;
-    }
+    }, 380);
   });
 }
 

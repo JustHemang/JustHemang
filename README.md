@@ -1,14 +1,11 @@
 <div align="center">
 
-<!-- Waving Header Banner -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:080e1a,40:0f172a,75:0284c7,100:38bdf8&height=220&section=header&text=HEMANG%20LUTHRA&fontSize=52&fontColor=ffffff&fontAlignY=38&animation=fadeIn" width="100%"/>
 
-<!-- Typing Subtitle -->
 <img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=25&pause=1000&color=38BDF8&center=true&vCenter=true&width=700&lines=Video+Editor+%26+Motion+Graphics+Specialist+%F0%9F%8D%AC;Full-Stack+Web+Developer+%F0%9F%92%BB;President+%40+OPCODE+%F0%9F%9A%80;Founder+%40+Kaelor+Media+%E2%9A%A1;Welcome+to+my+profile!" alt="Typing SVG" />
 
 <br/><br/>
 
-<!-- Social Badges -->
 <a href="https://discord.gg/justhemang"><img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white"/></a>
 <a href="https://instagram.com/justhemang6"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white"/></a>
 <a href="https://linkedin.com/in/hemang-luthra-328a65303"><img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
@@ -20,7 +17,6 @@
 
 <br/><br/>
 
-<!-- Contribution Grid Snake Animation -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/justhemang/justhemang/output/github-contribution-grid-snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/justhemang/justhemang/output/github-contribution-grid-snake.svg" />
@@ -87,7 +83,6 @@ portfolio: https://justhemang.vercel.app
 
 <br/><br/>
 
-<!-- 3D Contribution Graph -->
 <img src="https://raw.githubusercontent.com/justhemang/justhemang/output/profile-3d-contrib/profile-night-rainbow.svg" width="100%"/>
 
 </div>
@@ -132,7 +127,6 @@ I'm always open to collaborating on video productions, web applications, or crea
 
 <br/><br/>
 
-<!-- Waving Footer Banner -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:38bdf8,40:0284c7,75:0f172a,100:080e1a&height=120&section=footer" width="100%"/>
 
 </div>
