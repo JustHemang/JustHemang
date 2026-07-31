@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://waveify.onrender.com/api/wave?color=%2300C7B7&height=140&speed=4&width=1200&amplitude=20&frequency=2&waveType=default" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0e0d0c,50:2A7A7A,100:00C7B7&height=200&section=header&text=HEMANG%20LUTHRA&fontSize=48&fontColor=ffffff&fontAlignY=35&animation=fadeIn" width="100%"/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&pause=1000&color=00C7B7&center=true&vCenter=true&width=650&lines=Hi+there%2C+I'm+Hemang+%F0%9F%91%8B;Video+Editor+%26+Full-Stack+Dev;President+of+OPCODE;Founder+of+Kaelor+Media;Welcome+to+my+profile!" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=600&size=24&pause=1000&color=00C7B7&center=true&vCenter=true&width=650&lines=Video+Editor+%26+Full-Stack+Developer;President+%40+OPCODE;Founder+%40+Kaelor+Media;Welcome+to+my+profile!" alt="Typing SVG" />
 
 <br/>
 
@@ -17,14 +17,6 @@
 
 <br/>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/justhemang/justhemang/output/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/justhemang/justhemang/output/github-contribution-grid-snake.svg" />
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/justhemang/justhemang/output/github-contribution-grid-snake.svg" width="100%"/>
-</picture>
-
-<br/>
-
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:2A7A7A,100:00C7B7&height=3&width=100%25"/>
 
 ## 🧑‍💻 About Me
@@ -36,30 +28,29 @@ roles:
   - Full-Stack Web Developer
   - President @ OPCODE
   - Founder @ Kaelor Media
-focus: [Video Production, Frontend/Backend Dev, Motion Graphics, Automation]
+focus: [Video Production, Web App Development, Motion Graphics, Automation]
 reach_me: justhemang@gmail.com
-portfolio: https://justhemang.vercel.app
 ```
 
-- 🎬 **Video Editing & Motion Graphics**: High-impact commercial cuts, color grading in DaVinci Resolve, Premiere Pro & After Effects.
-- 💻 **Full-Stack Development**: Modern web applications built with HTML, CSS, JavaScript, React, Node.js, and cloud deployments.
+- 🎬 **Video Editing & Motion Graphics**: Commercial cuts, color grading in DaVinci Resolve, Premiere Pro & After Effects.
+- 💻 **Full-Stack Development**: Modern web applications built with HTML, CSS, JavaScript, React, Node.js, and cloud infrastructure.
 - 🚀 **Leadership**: President of OPCODE & Founder of Kaelor Media.
-- ⚡ **Fun fact**: Turning tedious manual workflows into slick automated scripts.
+- ⚡ **Automation**: Turning tedious manual workflows into one-command scripts.
 
 <br/>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:00C7B7,100:2A7A7A&height=3&width=100%25"/>
 
-## 🛠️ Tech & Design Stack
+## 🛠️ Tech & Creative Stack
 
 <div align="center">
 
 ### Development Stack
 <img src="https://skillicons.dev/icons?i=html,css,js,react,nodejs,express,mongodb,py,powershell,git,github,vercel,netlify,aws,cloudflare&theme=dark&perline=8"/>
 
-<br/>
+<br/><br/>
 
-### Video & Creative Suite
+### Video & Design Suite
 <img src="https://skillicons.dev/icons?i=pr,ae,ps,ai,figma,blender&theme=dark&perline=6"/>
 
 </div>
@@ -72,10 +63,10 @@ portfolio: https://justhemang.vercel.app
 
 <div align="center">
 
-<img src="https://github-readme-stats.shion.dev/api?username=justhemang&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true" width="49%"/>
-<img src="https://github-readme-stats.shion.dev/api/top-langs/?username=justhemang&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact" width="42.5%"/>
+<img src="https://github-readme-stats.vercel.app/api?username=justhemang&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&show_icons=true" width="49%"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=justhemang&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact" width="42.5%"/>
 
-<br/>
+<br/><br/>
 
 <img src="https://streak-stats.demolab.com/?user=justhemang&theme=tokyonight&hide_border=true" width="100%"/>
 
@@ -89,14 +80,14 @@ portfolio: https://justhemang.vercel.app
 
 <div align="center">
 
-I'm always open to collaborating on video projects, web applications, or creative direction — feel free to drop me a line!
+I'm open to collaborating on video projects, web applications, or creative direction — feel free to reach out!
 
 <br/>
 
 ![Profile Views](https://komarev.com/ghpvc/?username=justhemang&icon=2&color=00C7B7&style=for-the-badge&label=Profile+Views)
 
-<br/>
+<br/><br/>
 
-<img src="https://waveify.onrender.com/api/wave?color=%2300C7B7&height=100&speed=4&width=1200&amplitude=15&frequency=2&waveType=default" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00C7B7,50:2A7A7A,100:0e0d0c&height=120&section=footer" width="100%"/>
 
 </div>
