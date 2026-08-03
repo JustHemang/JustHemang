@@ -1269,6 +1269,7 @@ function initClimber() {
   const yearEl = document.querySelector('#expYear');
   const altEl = document.querySelector('#expAlt');
   const cards = document.querySelectorAll('.exp-card');
+  const rungs = document.querySelectorAll('.ladder__rung');
   if (!grid || !climber) return;
 
   const FRAMES = 17;
@@ -1289,14 +1290,26 @@ function initClimber() {
     if (p < 0) p = 0;
     if (p > 1) p = 1;
 
-    climber.style.bottom = `${2 + p * 82}%`;
+    // Climber stays cleanly on the ladder and stops below the year header
+    const climbBottom = 2 + p * 68;
+    climber.style.bottom = `${climbBottom}%`;
     if (!REDUCED) {
       const frame = Math.floor(p * 64) % FRAMES;
       img.src = sprites[frame];
     }
     if (altEl) altEl.textContent = String(Math.round(p * 847)).padStart(3, '0');
 
-    // active card = nearest viewport center
+    // Light up rungs passed by climber
+    rungs.forEach(function(rung, i) {
+      const rungPos = (i / Math.max(rungs.length - 1, 1)) * 100;
+      if (climbBottom >= rungPos) {
+        rung.classList.add('active');
+      } else {
+        rung.classList.remove('active');
+      }
+    });
+
+    // Active card = nearest viewport center
     let best = null, bestD = Infinity;
     cards.forEach((card) => {
       const r = card.getBoundingClientRect();
@@ -1306,7 +1319,12 @@ function initClimber() {
     });
     if (best) {
       best.classList.add('active');
-      if (yearEl && yearEl.textContent !== best.dataset.year) yearEl.textContent = best.dataset.year;
+      if (yearEl && yearEl.textContent !== best.dataset.year) {
+        yearEl.textContent = best.dataset.year;
+        if (typeof scrambleText === 'function') {
+          scrambleText(yearEl, best.dataset.year, 0);
+        }
+      }
     }
   }
 
