@@ -48,6 +48,14 @@
   </header>
 
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <!-- Left rail: index numbers -->
+    <div class="menu-overlay__rail">
+      <span class="menu-overlay__rail-num">01</span>
+      <span class="menu-overlay__rail-num">02</span>
+      <span class="menu-overlay__rail-num">03</span>
+      <span class="menu-overlay__rail-num">04</span>
+    </div>
+    <!-- Right: large links -->
     <nav class="menu-overlay__links" aria-label="Menu">
       <a class="menu-overlay__link" href="/about" data-i="01">About</a>
       <a class="menu-overlay__link" href="/work" data-i="02">Work</a>
@@ -194,6 +202,77 @@
         </p>
       </div>
     </section>
+
+    <!-- ===================== 02 / EXPERIENCE ===================== -->
+    <section class="section exp" id="experience">
+      <div class="sec-head reveal">
+        <span class="sec-head__index mono">02</span>
+        <h2 class="sec-head__title glitch" data-scramble>EXPERIENCE</h2>
+        <span class="sec-head__line" aria-hidden="true"></span>
+        <span class="sec-head__tag mono">// one rung at a time</span>
+      </div>
+
+      <div class="exp__grid" id="expGrid">
+        <!-- sticky ladder rail -->
+        <div class="exp__rail">
+          <div class="exp__rail-inner" id="expRail">
+            <div class="exp__year mono" id="expYear">2021</div>
+            <div class="ladder" aria-hidden="true">
+              <i class="ladder__rail"></i><i class="ladder__rail ladder__rail--r"></i>
+              <span class="ladder__rung"></span><span class="ladder__rung"></span><span class="ladder__rung"></span>
+              <span class="ladder__rung"></span><span class="ladder__rung"></span><span class="ladder__rung"></span>
+              <span class="ladder__rung"></span><span class="ladder__rung"></span><span class="ladder__rung"></span>
+              <span class="ladder__rung"></span><span class="ladder__rung"></span><span class="ladder__rung"></span>
+              <div class="climber" id="climber">
+                <img src="https://hemang.vercel.app/assets/sprite/sprite-001.png" alt="" id="climberImg" draggable="false" />
+              </div>
+            </div>
+            <div class="exp__rail-foot mono">ALT: <span id="expAlt">000</span>M</div>
+          </div>
+        </div>
+
+        <!-- entries -->
+        <div class="exp__list">
+          <article class="exp-card reveal" data-year="2020">
+            <span class="exp-card__ghost" aria-hidden="true">01</span>
+            <div class="exp-card__date mono">2020 &mdash; PRESENT</div>
+            <h3 class="exp-card__company">FULLSTACK DEVELOPER</h3>
+            <p class="exp-card__role mono">WEB EXPERIENCES &amp; ARCHITECTURE</p>
+            <p class="exp-card__desc">Building immersive web experiences and fullstack applications with 6+ years of coding experience.</p>
+            <div class="exp-card__tags mono"><span>HTML/CSS/JS</span><span>REACT</span><span>NODE.JS</span></div>
+          </article>
+
+          <article class="exp-card reveal" data-year="2021">
+            <span class="exp-card__ghost" aria-hidden="true">02</span>
+            <div class="exp-card__date mono">2021 &mdash; PRESENT</div>
+            <h3 class="exp-card__company">FREELANCE VIDEO EDITOR</h3>
+            <p class="exp-card__role mono">CREATIVE DIRECTION &amp; POST-PRODUCTION</p>
+            <p class="exp-card__desc">Working across YouTube content, reels, short films, and client projects worldwide via Fiverr.</p>
+            <div class="exp-card__tags mono"><span>PREMIERE</span><span>AFTER&nbsp;EFFECTS</span><span>MOTION&nbsp;DESIGN</span></div>
+          </article>
+
+          <article class="exp-card reveal" data-year="2023">
+            <span class="exp-card__ghost" aria-hidden="true">03</span>
+            <div class="exp-card__date mono">2023 &mdash; PRESENT</div>
+            <h3 class="exp-card__company">OPCODE &amp; XENIUM</h3>
+            <p class="exp-card__role mono">PRESIDENT &amp; CO-HOST</p>
+            <p class="exp-card__desc">President of OPCODE, my school's tech club. Co-hosted and judged our annual tech fest XENIUM.</p>
+            <div class="exp-card__tags mono"><span>LEADERSHIP</span><span>EVENT&nbsp;MANAGEMENT</span></div>
+          </article>
+
+          <article class="exp-card exp-card--now reveal" data-year="NOW">
+            <span class="exp-card__ghost" aria-hidden="true">04</span>
+            <div class="exp-card__date mono">PRESENT DAY &middot; DELHI, INDIA</div>
+            <h3 class="exp-card__company">KAELOR MEDIA</h3>
+            <p class="exp-card__role mono">FOUNDER</p>
+            <p class="exp-card__desc">Bringing together video production and digital design under one roof. The craft keeps evolving.</p>
+            <div class="exp-card__tags mono"><span>CREATIVE&nbsp;STUDIO</span><span>STORYTELLING</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="checker checker--flip" aria-hidden="true"></div>
 
     <section class="section work work--horizontal" id="work">
       <div class="clap-divider" aria-hidden="true">
