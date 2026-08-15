@@ -151,6 +151,7 @@ body.has-cursor .cursor { display: block; }
 
 /* FULLSCREEN MENU OVERLAY — unique dark studio look */
 .menu-overlay{
+  --menu-link-fs: clamp(1.9rem, min(10vw, calc((100svh - 13rem) / 5)), 8rem);
   position:fixed;inset:0;z-index:var(--z-menu);
   background:#050a10;
   display:grid;
@@ -172,8 +173,9 @@ body.has-cursor .cursor { display: block; }
 
 /* Left rail — index numbers */
 .menu-overlay__rail{
+  grid-column:1;
   display:flex;flex-direction:column;
-  gap:clamp(1.2rem,3vh,2.5rem);
+  gap:0;
   align-items:flex-end;
   padding-right:clamp(1rem,2vw,2rem);
   border-right:1px solid rgba(56,189,248,.15);
@@ -182,11 +184,15 @@ body.has-cursor .cursor { display: block; }
 .menu-overlay__rail-num{
   font-family:var(--font-mono);font-size:.6rem;font-weight:700;
   letter-spacing:.18em;color:rgba(56,189,248,.4);
+  line-height:1;
+  height:calc(var(--menu-link-fs) * 1.02);
+  display:flex;align-items:center;
   transition:color .3s;
 }
 
 /* Links */
 .menu-overlay__links{
+  grid-column:2;
   display:flex;flex-direction:column;
   padding-left:clamp(1.5rem,4vw,4rem);
   gap:0;
@@ -194,7 +200,7 @@ body.has-cursor .cursor { display: block; }
 }
 .menu-overlay__link{
   font-family:var(--font-hero);
-  font-size:clamp(3.5rem,10vw,8rem);
+  font-size:var(--menu-link-fs);
   font-weight:400;
   line-height:1.02;
   color:rgba(248,250,252,.15);
@@ -261,12 +267,6 @@ body.has-cursor .cursor { display: block; }
   text-shadow: 0 0 20px rgba(110, 198, 198, 0.9), 0 0 35px rgba(196, 101, 42, 0.5) !important;
 }
 
-.stats{display:flex;justify-content:center;gap:clamp(1.5rem,5vw,4rem);padding:clamp(3rem,6vh,6rem) var(--pad);background:var(--ink);color:var(--paper);border-top:1px solid rgba(110,198,198,.1);border-bottom:1px solid rgba(110,198,198,.1);flex-wrap:wrap}
-.stat{text-align:center;min-width:90px}
-.stat__num{font-family:var(--font-hero);font-size:clamp(2rem,5vw,4rem);line-height:1;letter-spacing:.02em;color:var(--teal-light);transition:color .3s}
-.stat:hover .stat__num{color:var(--paper)}
-.stat__label{font-family:var(--font-mono);font-size:clamp(.55rem,.9vw,.68rem);font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-top:.4rem}
-
 .section{position:relative;padding:var(--section-gap) var(--pad);text-align:center;overflow:hidden;background:var(--section-bg);color:var(--section-text)}
 .section__eyebrow{font-family:var(--font-mono);font-size:.65rem;font-weight:700;letter-spacing:.18em;color:var(--teal);margin-bottom:1.5rem;text-align:center;text-transform:uppercase}
 .section__heading{font-family:var(--font-display);font-size:clamp(2rem,6vw,5rem);font-weight:700;line-height:1;letter-spacing:-.02em;margin-bottom:clamp(1.5rem,3vh,3rem);text-align:center}
@@ -288,7 +288,7 @@ body.has-cursor .cursor { display: block; }
 
 .statement{max-width:1200px;margin:0 auto;text-align:center;padding-left:var(--pad);padding-right:var(--pad)}
 .statement__heading{font-family:var(--font-display);font-size:clamp(1.8rem,4.5vw,3.5rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:2rem;text-align:center}
-.statement__text{font-family:var(--font-display);font-size:clamp(1.1rem,2.2vw,1.6rem);font-weight:600;line-height:1.7;color:var(--ink);text-align:justify;text-justify:inter-word;max-width:100%;margin:0 auto}
+.statement__text{font-family:var(--font-display);font-size:clamp(1.1rem,2.2vw,1.6rem);font-weight:600;line-height:1.7;color:var(--ink);text-align:left;max-width:72ch;margin:0 auto}
 .studio{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem);align-items:start;max-width:1000px;margin:0 auto}
 .studio__statement{font-family:var(--font-display);font-size:clamp(1rem,2.2vw,1.5rem);font-weight:400;line-height:1.65;text-align:left}
 .studio__services{list-style:none;text-align:left}
@@ -327,7 +327,7 @@ body.has-cursor .cursor { display: block; }
 .work{background:var(--ink);color:var(--paper)}
 .work .section__heading{color:#f8fafc}
 .work__grid{display:flex;flex-direction:column;max-width:960px;margin:0 auto}
-.work__item{display:grid;grid-template-columns:70px 1fr;gap:clamp(1rem,3vw,2.5rem);align-items:start;padding:clamp(2rem,4vh,3.5rem) 0;border-top:1px solid rgba(56,189,248,0.2);text-align:left;transition:border-color .3s ease}
+.work__item{display:grid;grid-template-columns:70px 1fr;gap:clamp(1rem,3vw,2.5rem);align-items:start;padding:clamp(2rem,4vh,3.5rem) clamp(3rem,6vw,5rem) clamp(2rem,4vh,3.5rem) 0;border-top:1px solid rgba(56,189,248,0.2);text-align:left;transition:border-color .3s ease}
 .work__item:hover{border-color:var(--teal-light)}
 .work__item:last-child{border-bottom:1px solid rgba(56,189,248,0.2)}
 .work__num{font-family:var(--font-mono);font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--teal-light);padding-top:.3rem;transition:color .3s}
@@ -543,8 +543,11 @@ body.is-scrolled .live-clock{transform:translateY(0%);opacity:.6}
    ═══════════════════════════════════════════════════════ */
 
 /* SMART NAV — scroll-aware hide/show + glassmorphism */
-.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1.5rem var(--pad);transition:all .4s cubic-bezier(.4,0,.2,1);background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:calc(var(--z-menu) + 2);display:flex;justify-content:space-between;align-items:center;padding:1.5rem var(--pad);transition:all .4s cubic-bezier(.4,0,.2,1);background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
 .nav--scrolled{background:rgba(8,14,26,0.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding-top:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(56,189,248,0.15)}
+/* When the fullscreen menu is open, keep the nav bar itself invisible so the
+   overlay shows cleanly — but the menu button stays visible/clickable above it */
+body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom-color:transparent;box-shadow:none}
 .nav__logo{display:flex;align-items:center;gap:0.8rem;z-index:1001}
 .nav__logo-img{width:32px;height:32px;object-fit:contain}
 .nav__logo-text{font-family:var(--font-mono);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;color:#f8fafc}
@@ -650,6 +653,8 @@ body.is-scrolled .live-clock{transform:translateY(0%);opacity:.6}
 .scroll-progress__marker{position:fixed;top:3px;z-index:calc(var(--z-fx)+2);width:2px;height:8px;background:var(--teal-light);opacity:0;transition:opacity .3s;pointer-events:none}
 
 @media(max-width:768px){
+  .exp__grid{grid-template-columns:1fr;gap:2rem}
+  .exp__rail{display:none}
   .studio{grid-template-columns:1fr;gap:2.5rem}
   .work__item{grid-template-columns:40px 1fr;gap:.8rem}
   .service-item{grid-template-columns:1fr;gap:.8rem}
@@ -713,7 +718,7 @@ body.is-scrolled .live-clock{transform:translateY(0%);opacity:.6}
   .stat__num{font-size:1.5rem}
   .stat__label{font-size:.5rem}
   .contact-form__input,.contact-form__textarea{font-size:.75rem;padding:.6rem .7rem}
-  .menu-overlay__link{font-size:clamp(2rem,10vw,4rem)}
+  .menu-overlay__link{font-size:var(--menu-link-fs)}
   .nav__menu-btn span{display:none}
   .nav__bars{width:16px}
   .nav__bars i{height:2px}

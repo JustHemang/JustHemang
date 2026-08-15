@@ -220,6 +220,23 @@ function initMenu() {
     link.dataset.idx = i;
   });
 
+  /* Build the index rail from the links so every page (4 or 5 links)
+     always renders the same fullscreen layout */
+  var rail = overlay.querySelector('.menu-overlay__rail');
+  if (!rail) {
+    rail = document.createElement('div');
+    rail.className = 'menu-overlay__rail';
+    overlay.insertBefore(rail, overlay.firstChild);
+  } else {
+    rail.innerHTML = '';
+  }
+  links.forEach(function(link, i) {
+    var num = document.createElement('span');
+    num.className = 'menu-overlay__rail-num';
+    num.textContent = String(i + 1).padStart(2, '0');
+    rail.appendChild(num);
+  });
+
   function openMenu() {
     isOpen = true;
     fab.classList.add('open');
@@ -227,6 +244,7 @@ function initMenu() {
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('menu-open');
 
     if (typeof gsap !== 'undefined') {
       /* Staggered link reveal — each slides up and scrambles in */
@@ -248,6 +266,7 @@ function initMenu() {
     fab.classList.remove('open');
     fab.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    document.body.classList.remove('menu-open');
 
     if (typeof gsap !== 'undefined') {
       gsap.to(links, { opacity: 0, y: -30, skewY: -4, stagger: 0.04, duration: 0.35, ease: 'power3.in',
@@ -927,6 +946,7 @@ function initPageTransition() {
         overlayEl.classList.remove('open');
         overlayEl.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
       }
       overlay.style.display = '';
       overlay.style.pointerEvents = 'all';
