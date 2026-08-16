@@ -1092,6 +1092,18 @@ function initTrippy() {
   var container = document.querySelector('#trippyFrames');
   var heroContent = document.querySelector('.hero__content');
   if (!wrap || !container || REDUCED) return;
+
+  var colors = ['var(--ink)', 'var(--paper)'];
+  var parent = container;
+  for (var i = 0; i < 20; i++) {
+    var div = document.createElement('div');
+    div.className = 'trippy__frame';
+    div.style.background = colors[i % 2];
+    div.style.padding = '2vmin';
+    parent.appendChild(div);
+    parent = div;
+  }
+
   var frames = container.querySelectorAll('.trippy__frame');
 
   var tl = gsap.timeline({

@@ -253,7 +253,7 @@ body.has-cursor .cursor { display: block; }
 .hero__tagline{font-family:var(--font-mono);font-size:clamp(.6rem,1.3vw,.78rem);font-weight:500;letter-spacing:.08em;color:var(--paper-2);margin-top:2rem;text-align:center}
 .hero__scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.2em;color:var(--teal-light);animation:float 2.5s ease-in-out infinite}
 
-.trippy{position:absolute;bottom:0;left:0;right:0;top:80%;overflow:hidden;z-index:3;background:var(--ink)}
+.trippy{position:absolute;bottom:0;left:0;right:0;top:100%;overflow:hidden;z-index:3;background:var(--ink)}
 .trippy__frame{position:relative;width:100%;height:100%;transform-origin:center center;will-change:transform}
 
 /* Text Radius Hover Effect — pure illumination without position displacement */
