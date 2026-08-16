@@ -925,12 +925,14 @@ function initPageTransition() {
 
   var bars = $$('.pt-bar', overlay);
   var circle = $('.pt-circle', overlay);
+  
+  // On load: reveal page by sliding right
   gsap.set(bars, { xPercent: 0 });
   if (circle) gsap.set(circle, { scale: 0 });
 
-  gsap.to(bars, { xPercent: 100, stagger: 0.05, duration: 0.5, ease: 'power3.inOut', delay: 0.1 });
+  gsap.to(bars, { xPercent: 100, stagger: 0.05, duration: 0.6, ease: 'power3.inOut', delay: 0.1 });
   if (circle) gsap.to(circle, { scale: 80, duration: 0.4, ease: 'power2.in', delay: 0.1 });
-  setTimeout(function() { overlay.style.display = 'none'; }, 800);
+  setTimeout(function() { overlay.style.display = 'none'; }, 900);
 
   $$('a[href]').forEach(function(link) {
     var href = link.getAttribute('href');
@@ -939,6 +941,7 @@ function initPageTransition() {
       e.preventDefault();
       var url = new URL(href, location.href).href;
       if (url === location.href) return;
+      
       var fab = $('#menuBtn');
       var overlayEl = $('#menuOverlay');
       if (fab && overlayEl && overlayEl.classList.contains('open')) {
@@ -948,13 +951,17 @@ function initPageTransition() {
         document.body.style.overflow = '';
         document.body.classList.remove('menu-open');
       }
-      overlay.style.display = '';
+      
+      // On exit: slide in from left to cover
+      overlay.style.display = 'flex';
       overlay.style.pointerEvents = 'all';
-      gsap.set(bars, { xPercent: 0 });
+      gsap.set(bars, { xPercent: -100 });
       if (circle) gsap.set(circle, { scale: 0 });
-      gsap.to(bars, { xPercent: 100, stagger: 0.04, duration: 0.4, ease: 'power3.inOut', delay: 0.15 });
-      if (circle) gsap.to(circle, { scale: 80, duration: 0.3, ease: 'power2.in', delay: 0.15 });
-      setTimeout(function() { location.href = url; }, 600);
+      
+      gsap.to(bars, { xPercent: 0, stagger: 0.04, duration: 0.45, ease: 'power3.inOut' });
+      if (circle) gsap.to(circle, { scale: 80, duration: 0.3, ease: 'power2.in' });
+      
+      setTimeout(function() { location.href = url; }, 700);
     });
   });
 }
