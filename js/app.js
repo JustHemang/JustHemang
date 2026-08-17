@@ -42,9 +42,12 @@ function initLenis() {
     scrollDirection = e.direction;
   });
 
-  function loop(t) {
-    lenis.raf(t);
+  gsap.ticker.add(function (time) {
+    lenis.raf(time * 1000);
+  });
+  gsap.ticker.lagSmoothing(0);
 
+  function loop() {
     // Custom cursor
     if (cursorRing) {
       rx += (mx - rx) * 0.15;
@@ -247,14 +250,12 @@ function initMenu() {
     document.body.classList.add('menu-open');
 
     if (typeof gsap !== 'undefined') {
-      /* Staggered link reveal — each slides up and scrambles in */
+      /* Staggered link reveal — each slides up */
       links.forEach(function(link, i) {
         gsap.fromTo(link,
           { opacity: 0, y: 80, skewY: 6 },
           { opacity: 1, y: 0, skewY: 0, duration: 0.7, delay: 0.12 + i * 0.07, ease: 'power4.out' }
         );
-        /* Scramble the link text */
-        scrambleText(link, link.dataset.originalText || link.textContent.trim(), 0.12 + i * 0.07);
       });
       /* Footer socials */
       gsap.from('.menu-overlay__foot a', { opacity: 0, y: 20, stagger: 0.06, duration: 0.5, delay: 0.5, ease: 'power3.out' });
@@ -788,6 +789,16 @@ function initAnimations() {
     });
   });
 
+  // ── SCROLL HIGHLIGHT / TYPEWRITER EFFECT ──
+  $$('.scroll-highlight').forEach(function(el) {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      onEnter: function() { el.classList.add('is-highlighted'); },
+      once: true
+    });
+  });
+
   // ── REEL ──
   var reel = $('.reel__wrap');
   if (reel) {
@@ -1151,10 +1162,14 @@ function initTextRadiusHover() {
     tickScheduled = false;
   }
 
+  let lastUpdate = 0;
   window.addEventListener('mousemove', () => {
-    if (!tickScheduled) {
-      tickScheduled = true;
-      requestAnimationFrame(updateRadiusHover);
+    if (Date.now() - lastUpdate > 50) {
+      if (!tickScheduled) {
+        tickScheduled = true;
+        requestAnimationFrame(updateRadiusHover);
+      }
+      lastUpdate = Date.now();
     }
   }, { passive: true });
 }
@@ -1360,9 +1375,6 @@ function initClimber() {
       best.classList.add('active');
       if (yearEl && yearEl.textContent !== best.dataset.year) {
         yearEl.textContent = best.dataset.year;
-        if (typeof scrambleText === 'function') {
-          scrambleText(yearEl, best.dataset.year, 0);
-        }
       }
     }
   }
