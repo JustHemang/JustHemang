@@ -471,9 +471,9 @@ function initAnimations() {
     var tl = gsap.timeline({ delay: 0.8 });
     tl.from('.hero__typewriter', { opacity: 0, y: -20, duration: 0.8, ease: 'power3.out' })
       .from('.hero__pre', { opacity: 0, y: -20, duration: 0.8, ease: 'power3.out' }, '-=0.4')
-      .from('.hero--sticky .accent-line', { scaleX: 0, duration: 0.8, ease: 'power3.inOut' }, '-=0.4')
-      .from('.hero__tagline', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-      ;
+      .from('.hero__char', { opacity: 0, y: 100, rotateX: -90, stagger: 0.04, duration: 1, ease: 'back.out(1.7)' }, '-=0.6')
+      .from('.hero--sticky .accent-line', { scaleX: 0, duration: 0.8, ease: 'power3.inOut' }, '-=0.6')
+      .from('.hero__tagline', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.3');
   } else {
     
   }
