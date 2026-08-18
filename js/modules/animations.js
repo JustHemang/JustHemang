@@ -412,8 +412,21 @@ function initHorizontalWork(gsap, ScrollTrigger, REDUCED, IS_MOBILE) {
     const scrollW = grid.scrollWidth;
     const winW = window.innerWidth;
     if (scrollW <= winW) return 0;
-    return -(scrollW - winW + 100);
+    return -(scrollW - winW + 100); // 100px padding at the end
   }
+  
+  function updateHeight() {
+    const amt = getScrollAmount();
+    if (amt === 0) {
+      section.style.height = 'auto';
+    } else {
+      // Set height equal to scroll distance + viewport height so it scrolls perfectly
+      section.style.height = `${Math.abs(amt) + window.innerHeight}px`;
+    }
+  }
+  
+  updateHeight();
+  window.addEventListener('resize', updateHeight);
   
   const tween = gsap.to(grid, { x: getScrollAmount, ease: 'none' });
   ScrollTrigger.create({
