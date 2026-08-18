@@ -88,19 +88,27 @@ export function initAnimations() {
   // SECTION HEADINGS — char reveal
   document.querySelectorAll('.section__heading, .statement__heading, .cta__heading').forEach(el => {
     if (!el.querySelector('.char-reveal')) {
-      const parts = el.innerHTML.split(/(<br\s*\/?>)/gi);
-      let html = '';
-      parts.forEach(part => {
-        if (part.match(/<br\s*\/?>/i)) {
-          html += part;
-        } else {
-          for (let i = 0; i < part.length; i++) {
-            const ch = part[i];
-            html += ch === ' ' ? ' ' : `<span class="char-reveal">${ch}</span>`;
+      function wrapTextNodes(node) {
+        if (node.nodeType === 3) { // TEXT_NODE
+          if (!node.nodeValue.trim()) return;
+          const fragment = document.createDocumentFragment();
+          for (let i = 0; i < node.nodeValue.length; i++) {
+            const ch = node.nodeValue[i];
+            if (ch === ' ') {
+              fragment.appendChild(document.createTextNode(' '));
+            } else {
+              const span = document.createElement('span');
+              span.className = 'char-reveal';
+              span.textContent = ch;
+              fragment.appendChild(span);
+            }
           }
+          node.parentNode.replaceChild(fragment, node);
+        } else if (node.nodeType === 1 && node.tagName !== 'BR') { // ELEMENT_NODE
+          Array.from(node.childNodes).forEach(wrapTextNodes);
         }
-      });
-      el.innerHTML = html;
+      }
+      Array.from(el.childNodes).forEach(wrapTextNodes);
     }
     el.style.opacity = '1';
     el.style.transform = 'none';

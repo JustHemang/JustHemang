@@ -1312,3 +1312,6 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+#climberImg {
+  filter: sepia(100%) hue-rotate(345deg) saturate(800%);
+}
