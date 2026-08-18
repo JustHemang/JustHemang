@@ -10,7 +10,7 @@ import {
   initLadderJourney, 
   initCounters, 
   initParallax 
-} from './modules/animations.js';
+} from './modules/animations.js?v=2';
 import { 
   initTimecode, 
   initFilmstrip, 
