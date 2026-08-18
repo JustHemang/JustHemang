@@ -68,28 +68,12 @@
 
     <section class="hero-wrap" id="hero" data-section-color="dark">
       <div class="hero hero--sticky">
-        <div class="hero__letterbox hero__letterbox--top" aria-hidden="true"></div>
-        <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
-        <div class="hero__rec mono" aria-hidden="true">REC</div>
-        <div class="hero__fps mono" aria-hidden="true">24fps / 4K</div>
-        <div class="hero__content" data-speed="0.85">
-          <p class="hero__typewriter mono" id="heroTypewriter" aria-hidden="true"></p>
-          <p class="hero__pre mono">Video Editor &middot; Fullstack Dev &middot; Photographer</p>
-          <h1 class="hero__title" aria-label="Just Hemang">
-            <span class="hero__line hero__line--big" data-text="JUST">
-              <span class="hero__char">J</span><span class="hero__char">U</span><span class="hero__char">S</span><span class="hero__char">T</span>
-            </span>
-            <span class="hero__line hero__line--big" data-text="HEMANG">
-              <span class="hero__char">H</span><span class="hero__char">E</span><span class="hero__char">M</span><span class="hero__char">A</span><span class="hero__char">N</span><span class="hero__char">G</span>
-            </span>
-          </h1>
-          <div class="accent-line" data-anim="accent-line"></div>
-          <p class="hero__tagline mono">I don't just push pixels &mdash; <span class="scroll-highlight">I slam them into place.</span></p>
-          <div style="margin-top: 2rem;">
-            <a href="https://www.youtube.com/watch?v=_9LGzL6rh2I" target="_blank" rel="noopener" class="cta__btn">View Showreel</a>
-          </div>
+        <canvas class="bg3d-canvas" id="bg3d" aria-hidden="true"></canvas>
+        <div class="hero-grid" id="heroGrid" aria-hidden="true"></div>
+        <div class="hero-inner container">
+          <h1 class="hero-big-text" id="heroText" aria-label="Just Hemang">JUST</h1>
+          <p class="hero-media-text" id="heroMediaText">HEMANG</p>
         </div>
-        <div class="trippy" id="trippyFrames" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -103,7 +87,7 @@
       </div>
       <div class="statement">
         <p class="section__eyebrow mono anim-slide-left">About</p>
-        <h2 class="statement__heading tw-type">FROM CONCEPT<br />TO SCREEN</h2>
+        <h2 class="statement__heading tw-type">FROM <span class="highlight">CONCEPT</span><br />TO SCREEN</h2>
         <div class="accent-line" data-anim="accent-line"></div>
         <p class="statement__text">
           Combining technical precision with creative vision. Every frame is intentional, every cut is deliberate. I
@@ -196,56 +180,58 @@
 
 
     <section class="section work work--horizontal" id="work">
-      <div class="clap-divider" aria-hidden="true">
-        <div class="clap-divider__bar"></div>
-        <span class="clap-divider__icon">SELECTED CUTS</span>
-        <div class="clap-divider__bar"></div>
-      </div>
-      <p class="section__eyebrow mono anim-slide-left">Selected work</p>
-      <h2 class="section__heading tw-type">Projects</h2>
-      <div class="work__grid">
-        <a href="https://www.youtube.com/watch?v=G9xF0Fgpao0" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
+      <div class="work__sticky">
+        <div class="clap-divider" aria-hidden="true">
+          <div class="clap-divider__bar"></div>
+          <span class="clap-divider__icon">SELECTED CUTS</span>
+          <div class="clap-divider__bar"></div>
+        </div>
+        <p class="section__eyebrow mono anim-slide-left">Selected work</p>
+        <h2 class="section__heading tw-type"><span class="highlight">Projects</span></h2>
+        <div class="work__grid">
+          <a href="https://www.youtube.com/watch?v=G9xF0Fgpao0" target="_blank" rel="noopener" style="text-decoration: none; color: inherit;">
+            <article class="work__item">
+              <span class="work__num mono">01</span>
+              <div>
+                <h3 class="work__client">Movie Safar</h3>
+                <p class="work__desc mono">Short Film &mdash; Shot & Directed by Just Hemang</p>
+              </div>
+              <div class="work__play" aria-hidden="true"></div>
+            </article>
+          </a>
           <article class="work__item">
-            <span class="work__num mono">01</span>
+            <span class="work__num mono">02</span>
             <div>
-              <h3 class="work__client">Movie Safar</h3>
-              <p class="work__desc mono">Short Film &mdash; Shot & Directed by Just Hemang</p>
+              <h3 class="work__client">CBSE is killing students!!</h3>
+              <p class="work__desc mono">Documentary &mdash; Tarshveer Singh</p>
             </div>
             <div class="work__play" aria-hidden="true"></div>
           </article>
-        </a>
-        <article class="work__item">
-          <span class="work__num mono">02</span>
-          <div>
-            <h3 class="work__client">CBSE is killing students!!</h3>
-            <p class="work__desc mono">Documentary &mdash; Tarshveer Singh</p>
-          </div>
-          <div class="work__play" aria-hidden="true"></div>
-        </article>
-        <article class="work__item">
-          <span class="work__num mono">03</span>
-          <div>
-            <h3 class="work__client">Dilli Dekho | Virtual Tour of Delhi</h3>
-            <p class="work__desc mono">Documentary &mdash; Just Hemang</p>
-          </div>
-          <div class="work__play" aria-hidden="true"></div>
-        </article>
-        <article class="work__item">
-          <span class="work__num mono">04</span>
-          <div>
-            <h3 class="work__client">P POP Culture</h3>
-            <p class="work__desc mono">Music Video &mdash; Just Hemang</p>
-          </div>
-          <div class="work__play" aria-hidden="true"></div>
-        </article>
-        <article class="work__item">
-          <span class="work__num mono">05</span>
-          <div>
-            <h3 class="work__client">For A Reason</h3>
-            <p class="work__desc mono">Music Video &mdash; Just Hemang</p>
-          </div>
-          <div class="work__play" aria-hidden="true"></div>
-        </article>
+          <article class="work__item">
+            <span class="work__num mono">03</span>
+            <div>
+              <h3 class="work__client">Dilli Dekho | Virtual Tour of Delhi</h3>
+              <p class="work__desc mono">Documentary &mdash; Just Hemang</p>
+            </div>
+            <div class="work__play" aria-hidden="true"></div>
+          </article>
+          <article class="work__item">
+            <span class="work__num mono">04</span>
+            <div>
+              <h3 class="work__client">P POP Culture</h3>
+              <p class="work__desc mono">Music Video &mdash; Just Hemang</p>
+            </div>
+            <div class="work__play" aria-hidden="true"></div>
+          </article>
+          <article class="work__item">
+            <span class="work__num mono">05</span>
+            <div>
+              <h3 class="work__client">For A Reason</h3>
+              <p class="work__desc mono">Music Video &mdash; Just Hemang</p>
+            </div>
+            <div class="work__play" aria-hidden="true"></div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -258,7 +244,7 @@
         <div class="clap-divider__bar"></div>
       </div>
       <p class="section__eyebrow mono anim-slide-left">Studio</p>
-      <h2 class="section__heading tw-type">Philosophy</h2>
+      <h2 class="section__heading tw-type"><span class="highlight">Philosophy</span></h2>
       <div class="studio">
         <div class="anim-slide-left">
           <p class="studio__statement">
@@ -279,7 +265,7 @@
 
     <section class="section section--reveal" id="team">
       <p class="section__eyebrow mono anim-slide-left">Team</p>
-      <h2 class="section__heading tw-type">People</h2>
+      <h2 class="section__heading tw-type"><span class="highlight">People</span></h2>
       <div class="anim-scale">
         <div class="team__group">
           <p class="team__role mono">Founder &amp; Creative Director</p>
@@ -303,7 +289,7 @@
 
     <section class="section section--reveal" id="contact">
       <div class="cta">
-        <h2 class="cta__heading tw-type">Let's talk</h2>
+        <h2 class="cta__heading tw-type">Let's <span class="highlight">talk</span></h2>
         <a class="cta__btn" href="/contact">Book a call</a>
       </div>
     </section>

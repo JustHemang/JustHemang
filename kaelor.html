@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kaelor â€” A creative agency building brands, websites, and video content that moves people.">
+  <title>Kaelor | Creative Agency</title>
+  <link rel="icon" type="image/png" href="Kaelor.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style id="loader-lock">body{overflow:hidden!important}</style>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-bars">
+      <span class="loader-bar"></span>
+      <span class="loader-bar"></span>
+      <span class="loader-bar loader-bar-turquoise"></span>
+      <span class="loader-bar"></span>
+      <span class="loader-bar"></span>
+    </div>
+    <div class="loader-content">
+      <div class="loader-type"><span class="loader-typed" id="loaderTyped"></span><span class="loader-cursor">|</span></div>
+      <span class="loader-subtext">Creative Agency</span>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo" aria-label="Kaelor Home">
+        <img src="Kaelor.png" alt="Kaelor" class="logo-img" onerror="this.style.display='none'">
+        <span class="logo-text">Kaelor</span>
+      </a>
+    </nav>
+  </header>
+
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span class="nav-toggle-inner">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </span>
+  </button>
+
+  <div class="overlay-menu" id="overlayMenu">
+    <div class="overlay-menu-inner">
+      <nav class="overlay-menu-nav">
+        <a href="index.html" class="overlay-link"><span class="overlay-link-num">01</span><span class="overlay-link-text">Home</span></a>
+        <a href="services.html" class="overlay-link"><span class="overlay-link-num">02</span><span class="overlay-link-text">Services</span></a>
+        <a href="work.html" class="overlay-link"><span class="overlay-link-num">03</span><span class="overlay-link-text">Work</span></a>
+        <a href="about.html" class="overlay-link"><span class="overlay-link-num">04</span><span class="overlay-link-text">About</span></a>
+        <a href="team.html" class="overlay-link"><span class="overlay-link-num">05</span><span class="overlay-link-text">Team</span></a>
+        <a href="contact.html" class="overlay-link overlay-link-accent"><span class="overlay-link-num">06</span><span class="overlay-link-text">Start a Project</span></a>
+      </nav>
+      <div class="overlay-menu-side">
+        <div class="overlay-side-info">
+          <div class="overlay-side-row">
+            <span class="overlay-side-label">Location</span>
+            <span class="overlay-side-value">New Delhi, India</span>
+          </div>
+          <div class="overlay-side-row">
+            <span class="overlay-side-label">Phone</span>
+            <a href="tel:+917703841259" class="overlay-side-value overlay-side-link">+91 7703841259</a>
+          </div>
+          <div class="overlay-side-row">
+            <span class="overlay-side-label">Phone</span>
+            <a href="tel:+917210119286" class="overlay-side-value overlay-side-link">+91 721 011 9286</a>
+          </div>
+          <div class="overlay-side-row">
+            <span class="overlay-side-label">Email</span>
+            <a href="mailto:kaelor.co@gmail.com" class="overlay-side-value overlay-side-link">kaelor.co@gmail.com</a>
+          </div>
+        </div>
+        <div class="overlay-side-socials">
+          <a href="https://www.instagram.com/kaelor.media/" target="_blank" class="overlay-social" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.linkedin.com/company/142943974/" target="_blank" class="overlay-social" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 0 100-4 2 2 0 000 4z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <section class="hero" id="hero">
+      <canvas id="bg3d" class="bg3d-canvas" aria-hidden="true"></canvas>
+      <div class="hero-grid" id="heroGrid" aria-hidden="true"></div>
+      <div class="hero-inner container">
+        <h1 class="hero-big-text" id="heroText" aria-label="Kaelor">KAELOR</h1>
+        <p class="hero-media-text" id="heroMediaText">MEDIA</p>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="bg-float-text" aria-hidden="true">WORK</div>
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag reveal">What We Do</span>
+          <h2 class="section-title reveal">Full-spectrum <span class="highlight">creative services</span></h2>
+          <p class="section-description reveal">One team, four disciplines. We handle everything under one roof so your brand stays consistent.</p>
+        </header>
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3>Web Development</h3>
+            <p>Fast, accessible websites and web apps. From marketing sites to complex SaaS platforms.</p>
+            <ul class="service-features">
+              <li>React / Next.js / Vue</li>
+              <li>Node.js / Python backends</li>
+              <li>E-commerce solutions</li>
+              <li>CMS &amp; headless architecture</li>
+            </ul>
+            <a href="services.html" class="service-cta">Learn More &rarr;</a>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            </div>
+            <h3>Video Editing</h3>
+            <p>Scroll-stopping content for social, brand films, and everything in between.</p>
+            <ul class="service-features">
+              <li>Reels, TikToks &amp; Shorts</li>
+              <li>Commercial &amp; brand films</li>
+              <li>Corporate &amp; training</li>
+              <li>Color grading &amp; sound</li>
+            </ul>
+            <a href="services.html" class="service-cta">Learn More &rarr;</a>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+            </div>
+            <h3>Motion Graphics</h3>
+            <p>Animation that explains, entertains, and elevates your brand across every screen.</p>
+            <ul class="service-features">
+              <li>Logo animations &amp; idents</li>
+              <li>Explainer videos</li>
+              <li>UI micro-interactions</li>
+              <li>Lottie &amp; web animations</li>
+            </ul>
+            <a href="services.html" class="service-cta">Learn More &rarr;</a>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>Graphic Design</h3>
+            <p>Strategic visual identities that communicate who you are before a word is read.</p>
+            <ul class="service-features">
+              <li>Brand identity &amp; logos</li>
+              <li>Design systems</li>
+              <li>Marketing collateral</li>
+              <li>Packaging &amp; print</li>
+            </ul>
+            <a href="services.html" class="service-cta">Learn More &rarr;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="horizontal-scroll-section" aria-label="Capabilities">
+      <div class="horizontal-track">
+        <div class="h-scroll-card">
+          <span class="h-scroll-num">01</span>
+          <h3>Web Development</h3>
+          <p>Pixel-perfect, blazing-fast websites built with modern stacks. From landing pages to full SaaS platforms.</p>
+        </div>
+        <div class="h-scroll-card">
+          <span class="h-scroll-num">02</span>
+          <h3>Video Editing</h3>
+          <p>Scroll-stopping reels, brand films, and commercial content that captivates and converts.</p>
+        </div>
+        <div class="h-scroll-card">
+          <span class="h-scroll-num">03</span>
+          <h3>Motion Graphics</h3>
+          <p>Animated stories, explainer videos, and micro-interactions that bring your brand to life.</p>
+        </div>
+        <div class="h-scroll-card">
+          <span class="h-scroll-num">04</span>
+          <h3>Graphic Design</h3>
+          <p>Bold visual identities, logos, and design systems that make your brand unforgettable.</p>
+        </div>
+        <div class="h-scroll-card">
+          <span class="h-scroll-num">05</span>
+          <h3>Brand Strategy</h3>
+          <p>Data-driven creative direction that aligns visuals with business goals for maximum impact.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Company statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item reveal"><div class="stat-number" data-count="50">0</div><div class="stat-label">Projects Delivered</div></div>
+          <div class="stat-item reveal"><div class="stat-number" data-count="30">0</div><div class="stat-label">Happy Clients</div></div>
+          <div class="stat-item reveal"><div class="stat-number" data-count="5">0</div><div class="stat-label">Years Experience</div></div>
+          <!-- Team Members stat removed
+          <div class="stat-item"><div class="stat-number" data-count="12">0</div><div class="stat-label">Team Members</div></div>
+          -->
+        </div>
+      </div>
+    </section>
+
+    <section class="work" id="work">
+      <div class="bg-float-text" aria-hidden="true">CREATE</div>
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag reveal">Selected Work</span>
+          <h2 class="section-title reveal">Projects we're <span class="highlight">proud of</span></h2>
+          <p class="section-description reveal">A snapshot of what we've built for clients across industries.</p>
+        </header>
+        <div class="work-grid">
+          <article class="work-item reveal">
+            <div class="work-media"><div class="work-placeholder">E-commerce Platform</div></div>
+            <div class="work-info">
+              <span class="work-category">Web Development</span>
+              <h3>Artisan Marketplace</h3>
+              <p>Custom Next.js marketplace with Stripe payments, vendor dashboards, and real-time inventory.</p>
+              <a href="work.html" class="work-link">View Project &rarr;</a>
+            </div>
+          </article>
+          <article class="work-item reveal">
+            <div class="work-media"><div class="work-placeholder">Brand Commercial</div></div>
+            <div class="work-info">
+              <span class="work-category">Video Editing</span>
+              <h3>TechStart Launch Film</h3>
+              <p>60-second brand film for Series A announcement. 2M+ views across platforms.</p>
+              <a href="work.html" class="work-link">View Project &rarr;</a>
+            </div>
+          </article>
+          <article class="work-item reveal">
+            <div class="work-media"><div class="work-placeholder">Brand Identity</div></div>
+            <div class="work-info">
+              <span class="work-category">Graphic Design</span>
+              <h3>GreenEarth Rebrand</h3>
+              <p>Complete visual identity for sustainability nonprofit. Logo, guidelines, and digital toolkit.</p>
+              <a href="work.html" class="work-link">View Project &rarr;</a>
+            </div>
+          </article>
+        </div>
+        <div style="text-align:center; margin-top:48px;">
+          <a href="work.html" class="btn btn-secondary reveal">View All Projects &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="process">
+      <div class="bg-float-text" aria-hidden="true">BUILD</div>
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag reveal">Our Process</span>
+          <h2 class="section-title reveal">How the <span class="highlight">magic happens</span></h2>
+          <p class="section-description reveal">A simple, transparent workflow that keeps you in the loop at every stage.</p>
+        </header>
+        <div class="process-steps">
+          <article class="process-step reveal">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <h3>Discover</h3>
+              <p>We listen. We dig into your goals, audience, and competition to find the real problem worth solving.</p>
+            </div>
+          </article>
+          <article class="process-step reveal">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <h3>Strategy</h3>
+              <p>Clear scope, timelines, and milestones â€” so there are never surprises down the road.</p>
+            </div>
+          </article>
+          <article class="process-step reveal">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <h3>Create</h3>
+              <p>Design and development happen in parallel with your feedback woven into every iteration.</p>
+            </div>
+          </article>
+          <article class="process-step reveal">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <h3>Launch</h3>
+              <p>Rigorous QA, seamless deployment, and 30 days of free post-launch support.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- â•â•â• TESTIMONIALS (uncomment to re-enable)
+    <section class="testimonials">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Client Love</span>
+          <h2 class="section-title">Don't take our word for it</h2>
+        </header>
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <div class="testimonial-rating" aria-label="5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-text">"Kaelor delivered our e-commerce platform 2 weeks ahead of schedule. The code quality is exceptional and their communication was transparent and proactive."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SC</div>
+              <div class="author-info">
+                <span class="author-name">Sarah Chen</span>
+                <span class="author-role">CTO, Artisan Collective</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <div class="testimonial-rating" aria-label="5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-text">"The motion design system they built for our app transformed the user experience. Engagement jumped 34% in the first month post-launch."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">MR</div>
+              <div class="author-info">
+                <span class="author-name">Marcus Rodriguez</span>
+                <span class="author-role">Product Lead, FinFlow</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <div class="testimonial-rating" aria-label="5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-text">"Best video editing team we've worked with. They understood our brand voice immediately and produced content that actually converts."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">JP</div>
+              <div class="author-info">
+                <span class="author-name">Jennifer Park</span>
+                <span class="author-role">Marketing Director, FitPulse</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    â•â•â• END TESTIMONIALS â•â•â• -->
+
+    <section class="cta-banner">
+      <div class="container">
+        <h2 class="reveal">Let's build something <span class="highlight">extraordinary</span></h2>
+        <p class="reveal">Whether you need a website, a brand film, or a full identity â€” we're ready.</p>
+        <div class="cta-actions reveal">
+          <a href="contact.html" class="btn btn-primary btn-lg">Start Your Project</a>
+          <a href="about.html" class="btn btn-ghost-light btn-lg">Learn About Us &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-text">Kaelor</span></a>
+        <p>Digital creative agency crafting brands, websites, videos, and motion that move people.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+          <a href="https://www.linkedin.com/company/142943974/" target="_blank" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg></a>
+          <a href="https://www.instagram.com/kaelor.media/" target="_blank" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        </div>
+      </div>
+      <nav class="footer-nav">
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html">Web Development</a></li>
+            <li><a href="services.html">Video Editing</a></li>
+            <li><a href="services.html">Motion Graphics</a></li>
+            <li><a href="services.html">Graphic Design</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="work.html">Our Work</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Kaelor. All rights reserved.</p>
+      <p>Crafted with care by the Kaelor team.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="three-scene.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+

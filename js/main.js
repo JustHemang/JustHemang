@@ -1,5 +1,6 @@
 import { initCursor, initMagneticButtons } from './modules/cursor.js';
 import { initWebGLHero } from './modules/webgl-hero.js';
+import { initHeroGrid } from './modules/hero.js';
 import { initMenu, initPageTransition } from './modules/navigation.js';
 import { 
   initAnimations, 
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hero is only relevant on Home page
   if (!document.body.classList.contains('page-sub')) {
     initWebGLHero();
+    initHeroGrid();
   }
 
   if (typeof window.ScrollTrigger !== 'undefined') {

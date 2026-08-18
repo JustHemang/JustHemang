@@ -4,146 +4,126 @@ export function initWebGLHero() {
   const IS_HOME = !document.body.classList.contains('page-sub');
   if (!IS_HOME) return null;
 
-  const canvas = document.querySelector('#heroCanvas');
-  const hero = document.querySelector('.hero--sticky');
+  const canvas = document.querySelector('#bg3d');
+  const hero = document.querySelector('.hero');
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
-  if (!canvas || !hero) return null;
+  if (!canvas || !hero || typeof THREE === 'undefined') return null;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, hero.clientWidth / hero.clientHeight, 0.1, 100);
-  camera.position.z = 4;
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.z = 15;
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.setSize(hero.clientWidth, hero.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-  // Logo Texture (Using optimized WebP if available)
-  const textureLoader = new THREE.TextureLoader();
-  const logoTexture = textureLoader.load('Logo Transparent.png');
-  const logoMat = new THREE.MeshBasicMaterial({
-    map: logoTexture, 
-    transparent: true, 
-    opacity: 0.4,
-    side: THREE.DoubleSide, 
-    depthWrite: false,
-  });
-  const logoGeo = new THREE.PlaneGeometry(2.2, 2.2);
-  const logoMesh = new THREE.Mesh(logoGeo, logoMat);
-  scene.add(logoMesh);
+  // Group to hold our shapes
+  const shapesGroup = new THREE.Group();
+  scene.add(shapesGroup);
 
-  // Holographic Rings
-  const ringGeo = new THREE.RingGeometry(1.6, 1.63, 64);
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.25, side: THREE.DoubleSide });
-  const ring = new THREE.Mesh(ringGeo, ringMat);
-  scene.add(ring);
-
-  const outerGeo = new THREE.RingGeometry(2.1, 2.13, 64);
-  const outerMat = new THREE.MeshBasicMaterial({ color: 0x0284c7, transparent: true, opacity: 0.15, side: THREE.DoubleSide });
-  const outer = new THREE.Mesh(outerGeo, outerMat);
-  scene.add(outer);
-
-  // Fluid-like Cyber Particles
-  const particleCount = 200;
-  const particleGeo = new THREE.BufferGeometry();
-  const particlePos = new Float32Array(particleCount * 3);
-  const particlePhases = new Float32Array(particleCount);
-  
-  for (let i = 0; i < particleCount; i++) {
-    const idx = i * 3;
-    particlePos[idx] = (Math.random() - 0.5) * 12;
-    particlePos[idx + 1] = (Math.random() - 0.5) * 8;
-    particlePos[idx + 2] = (Math.random() - 0.5) * 6;
-    particlePhases[i] = Math.random() * Math.PI * 2;
-  }
-  
-  particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-  particleGeo.setAttribute('phase', new THREE.BufferAttribute(particlePhases, 1));
-  
-  const particleMat = new THREE.PointsMaterial({
+  // Material: Wireframe with a slight cyan/teal tint
+  const material = new THREE.MeshBasicMaterial({
     color: 0x38bdf8,
-    size: 0.05,
+    wireframe: true,
     transparent: true,
-    opacity: 0.6,
+    opacity: 0.15,
   });
-  const particles = new THREE.Points(particleGeo, particleMat);
-  scene.add(particles);
 
-  let mouseX = 0, mouseY = 0;
-  let running = !REDUCED;
+  // Invent some epic geometric shapes
+  const geometries = [
+    new THREE.IcosahedronGeometry(2, 0),
+    new THREE.TorusGeometry(1.5, 0.5, 16, 32),
+    new THREE.OctahedronGeometry(1.8, 0),
+    new THREE.DodecahedronGeometry(2, 0),
+    new THREE.TetrahedronGeometry(1.5, 1)
+  ];
 
-  hero.addEventListener('pointermove', (e) => {
-    const rect = hero.getBoundingClientRect();
-    mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-    mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+  const shapes = [];
+
+  for (let i = 0; i < 15; i++) {
+    const geo = geometries[Math.floor(Math.random() * geometries.length)];
+    const mesh = new THREE.Mesh(geo, material);
+    
+    // Random positions
+    mesh.position.x = (Math.random() - 0.5) * 30;
+    mesh.position.y = (Math.random() - 0.5) * 20;
+    mesh.position.z = (Math.random() - 0.5) * 20 - 5;
+    
+    // Random rotations
+    mesh.rotation.x = Math.random() * Math.PI;
+    mesh.rotation.y = Math.random() * Math.PI;
+    
+    // Speed factors
+    mesh.userData = {
+      rx: (Math.random() - 0.5) * 0.01,
+      ry: (Math.random() - 0.5) * 0.01,
+      rz: (Math.random() - 0.5) * 0.01,
+      floatSpeed: Math.random() * 0.02 + 0.01,
+      baseY: mesh.position.y,
+      timeOffset: Math.random() * Math.PI * 2
+    };
+
+    shapesGroup.add(mesh);
+    shapes.push(mesh);
+  }
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let targetX = 0;
+  let targetY = 0;
+
+  if (!REDUCED) {
+    document.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX - window.innerWidth / 2) * 0.005;
+      mouseY = (e.clientY - window.innerHeight / 2) * 0.005;
+    }, { passive: true });
+  }
+
+  let scrollY = 0;
+  window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
   }, { passive: true });
+
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    const time = clock.getElapsedTime();
+
+    if (!REDUCED) {
+      targetX = mouseX * 2;
+      targetY = mouseY * 2;
+      
+      shapesGroup.rotation.y += 0.05 * (targetX - shapesGroup.rotation.y);
+      shapesGroup.rotation.x += 0.05 * (targetY - shapesGroup.rotation.x);
+    }
+    
+    // Scroll parallax effect
+    shapesGroup.position.y = scrollY * 0.01;
+
+    shapes.forEach(mesh => {
+      mesh.rotation.x += mesh.userData.rx;
+      mesh.rotation.y += mesh.userData.ry;
+      mesh.rotation.z += mesh.userData.rz;
+      mesh.position.y = mesh.userData.baseY + Math.sin(time * mesh.userData.floatSpeed + mesh.userData.timeOffset) * 1.5;
+    });
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
 
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      const w = hero.clientWidth, h = hero.clientHeight;
-      camera.aspect = w / h;
+      camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    }, 100);
-  });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }, 150);
+  }, { passive: true });
 
-  function animate() {
-    if (!running) return;
-    requestAnimationFrame(animate);
-    
-    const t = performance.now() * 0.0003;
-    
-    // Smooth magnetic easing for interactive rotation
-    logoMesh.rotation.y += ((t * 0.3 + mouseX * 0.2) - logoMesh.rotation.y) * 0.05;
-    logoMesh.rotation.x += ((Math.sin(t) * 0.08 + mouseY * 0.1) - logoMesh.rotation.x) * 0.05;
-    logoMesh.position.y = Math.sin(t * 1.5) * 0.06;
-    
-    ring.rotation.z = t * 0.15;
-    ring.position.y = Math.sin(t * 1.5) * 0.06;
-    
-    outer.rotation.z = -t * 0.1;
-    outer.position.y = Math.sin(t * 1.5) * 0.06;
-    
-    particles.rotation.y = t * 0.08 + mouseX * 0.05;
-    particles.rotation.x = Math.sin(t * 0.05) * 0.1 + mouseY * 0.05;
-
-    // Organic particle wave motion
-    const positions = particles.geometry.attributes.position.array;
-    const phases = particles.geometry.attributes.phase.array;
-    for(let i = 0; i < particleCount; i++) {
-      const idx = i * 3;
-      positions[idx + 1] += Math.sin(t * 2 + phases[i]) * 0.002;
-    }
-    particles.geometry.attributes.position.needsUpdate = true;
-
-    renderer.render(scene, camera);
-  }
-
-  if (REDUCED) { 
-    logoMesh.rotation.y = 0.2; 
-    renderer.render(scene, camera); 
-    return null; 
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    const visible = entries[0].isIntersecting;
-    if (visible && !running) { 
-      running = true; 
-      animate(); 
-    }
-    if (!visible) running = false;
-  }, { root: null });
-  
-  observer.observe(hero);
-  animate();
-
-  return {
-    destroy: () => {
-      running = false;
-      observer.disconnect();
-      renderer.dispose();
-    }
-  };
+  return renderer;
 }

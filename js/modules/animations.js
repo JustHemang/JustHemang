@@ -33,6 +33,16 @@ export function initAnimations() {
   // Typewriter headings
   document.querySelectorAll('.tw-type').forEach(el => el.classList.add('tw-active'));
 
+  // HIGHLIGHT BG SWEEP
+  gsap.utils.toArray('.highlight').forEach(el => {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 85%',
+      onEnter: () => el.classList.add('revealed'),
+      once: true
+    });
+  });
+
   // SECTION REVEAL
   document.querySelectorAll('.section--reveal').forEach(section => {
     gsap.to(section, {
@@ -389,16 +399,22 @@ function initHorizontalWork(gsap, ScrollTrigger, REDUCED, IS_MOBILE) {
   if (!section) return;
   const grid = section.querySelector('.work__grid');
   if (!grid) return;
+  
   function getScrollAmount() {
     const scrollW = grid.scrollWidth;
     const winW = window.innerWidth;
     if (scrollW <= winW) return 0;
     return -(scrollW - winW + 100);
   }
+  
   const tween = gsap.to(grid, { x: getScrollAmount, ease: 'none' });
   ScrollTrigger.create({
-    trigger: section, start: 'top top', end: () => '+=' + Math.abs(getScrollAmount()),
-    pin: true, scrub: 1.2, animation: tween, invalidateOnRefresh: true, anticipatePin: 1
+    trigger: section,
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: 1,
+    animation: tween,
+    invalidateOnRefresh: true
   });
 }
 
