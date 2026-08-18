@@ -265,8 +265,8 @@ body.has-cursor .cursor { display: block; }
 }
 .hero-big-text {
   font-family: var(--font-hero);
-  font-size: clamp(5.5rem, 17vw, 18rem);
-  font-weight: 700; line-height: 0.88; letter-spacing: -0.06em;
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 700; line-height: 1; letter-spacing: normal;
   margin: 0; user-select: none; position: relative;
   color: var(--paper);
   transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);

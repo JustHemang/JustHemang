@@ -48,19 +48,22 @@ export function initHeroGrid() {
     });
   }
 
-  // Hero Text Transition (JUST -> HEMANG)
+  // Hero Text Transition
   const heroText = document.getElementById('heroText');
-  const heroMedia = document.getElementById('heroMediaText');
   
-  if (heroText && heroMedia && typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+  if (heroText && typeof window.gsap !== 'undefined') {
     const gsap = window.gsap;
-    const ScrollTrigger = window.ScrollTrigger;
 
     const text = heroText.textContent.trim();
     heroText.innerHTML = '';
     text.split('').forEach(char => {
       const span = document.createElement('span');
-      span.textContent = char;
+      // Fix for spaces getting squished
+      if (char === ' ') {
+        span.innerHTML = '&nbsp;';
+      } else {
+        span.textContent = char;
+      }
       span.style.cssText = 'display:inline-block;opacity:0;transform:translateY(80px) rotateX(-60deg);transform-origin:bottom center;';
       heroText.appendChild(span);
     });
@@ -68,25 +71,7 @@ export function initHeroGrid() {
     gsap.to(heroText.querySelectorAll('span'), {
       opacity: 1, y: 0, rotateX: 0,
       duration: 0.8, ease: 'power3.out',
-      stagger: 0.07, delay: 0.3
-    });
-
-    ScrollTrigger.create({
-      trigger: '.hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 0.8,
-      pin: true,
-      anticipatePin: 1,
-      onUpdate: (self) => {
-        const p = self.progress;
-        heroText.style.filter = `blur(${p * 20}px)`;
-        heroText.style.opacity = 1 - p;
-        heroText.style.transform = `scale(${1 + p * 0.05})`;
-        heroMedia.style.opacity = p;
-        heroMedia.style.filter = `blur(${(1 - p) * 20}px)`;
-        heroMedia.style.transform = `scale(${0.95 + p * 0.05})`;
-      }
+      stagger: 0.05, delay: 0.3
     });
   }
 }
