@@ -400,12 +400,6 @@ function initHorizontalWork(gsap, ScrollTrigger, REDUCED, IS_MOBILE) {
     trigger: section, start: 'top top', end: () => '+=' + Math.abs(getScrollAmount()),
     pin: true, scrub: 1.2, animation: tween, invalidateOnRefresh: true, anticipatePin: 1
   });
-  section.querySelectorAll('.work__item').forEach(item => {
-    gsap.fromTo(item, { scale: 0.94, opacity: 0.95 }, {
-      scale: 1, opacity: 1, ease: 'none',
-      scrollTrigger: { trigger: item, containerAnimation: tween, start: 'left 92%', end: 'left 35%', scrub: true }
-    });
-  });
 }
 
 function initTrippy(gsap, REDUCED) {
