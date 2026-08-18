@@ -1314,3 +1314,6 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 #climberImg {
   filter: sepia(100%) hue-rotate(345deg) saturate(800%);
 }
+
+.work--horizontal { padding: 0 !important; overflow: visible !important; }
+.work--horizontal .work__sticky { height: 100vh; }
