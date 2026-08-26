@@ -475,6 +475,14 @@ body.has-cursor .cursor { display: block; }
 .footer__logo{display:block;width:42px;height:42px;margin:0 auto 1.2rem;object-fit:contain;opacity:.2;filter:invert(1);transition:opacity .3s}
 .footer__logo:hover{opacity:.7}
 
+/* Dark mode footer for subpages */
+body.page-sub .footer { background: transparent; border-top-color: rgba(255, 255, 255, 0.05); }
+body.page-sub .footer__links a { color: var(--paper-3); }
+body.page-sub .footer__links a:hover { color: var(--teal-light); }
+body.page-sub .footer__copy { color: var(--paper-3); opacity: 0.4; }
+body.page-sub .footer__logo { filter: invert(0); opacity: 0.3; }
+body.page-sub .footer__logo:hover { opacity: 0.8; }
+
 .services-hero{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:var(--pad);text-align:center;background:var(--ink);position:relative;overflow:hidden}
 .services-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--accent),var(--teal-light))}
 .services-hero .section__eyebrow,.services-hero .section__heading{color:var(--paper)}
