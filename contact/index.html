@@ -60,22 +60,63 @@
       <div class="contact-hero__status mono anim-slide-up">Available for work</div>
     </section>
 
-    <section class="contact-links">
-      <div class="contact-links__item"><span class="contact-links__label mono">Email</span><span class="contact-links__value"><a href="mailto:justhemang@gmail.com">justhemang@gmail.com</a></span><span class="contact-links__arrow">&#8599;</span></div>
-      <div class="contact-links__item"><span class="contact-links__label mono">GitHub</span><span class="contact-links__value"><a href="https://github.com/justhemang" target="_blank" rel="noopener">justhemang</a></span><span class="contact-links__arrow">&#8599;</span></div>
-      <div class="contact-links__item"><span class="contact-links__label mono">LinkedIn</span><span class="contact-links__value"><a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">Hemang Luthra</a></span><span class="contact-links__arrow">&#8599;</span></div>
-      <div class="contact-links__item"><span class="contact-links__label mono">Instagram</span><span class="contact-links__value"><a href="https://www.instagram.com/justhemang6/" target="_blank" rel="noopener">@justhemang6</a></span><span class="contact-links__arrow">&#8599;</span></div>
-      <div class="contact-links__item"><span class="contact-links__label mono">YouTube</span><span class="contact-links__value"><a href="https://youtube.com/@JustHemang" target="_blank" rel="noopener">@JustHemang</a></span><span class="contact-links__arrow">&#8599;</span></div>
+    <section class="contact-links contact-links--premium">
+      <div class="contact-links__grid">
+        <a class="contact-card anim-slide-up" href="mailto:justhemang@gmail.com" style="transition-delay: 0.1s">
+          <div class="contact-card__glow"></div>
+          <span class="contact-card__label mono">Email</span>
+          <h3 class="contact-card__value">justhemang@gmail.com</h3>
+          <span class="contact-card__arrow">&#8599;</span>
+        </a>
+        <a class="contact-card anim-slide-up" href="https://github.com/justhemang" target="_blank" rel="noopener" style="transition-delay: 0.2s">
+          <div class="contact-card__glow"></div>
+          <span class="contact-card__label mono">GitHub</span>
+          <h3 class="contact-card__value">justhemang</h3>
+          <span class="contact-card__arrow">&#8599;</span>
+        </a>
+        <a class="contact-card anim-slide-up" href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener" style="transition-delay: 0.3s">
+          <div class="contact-card__glow"></div>
+          <span class="contact-card__label mono">LinkedIn</span>
+          <h3 class="contact-card__value">Hemang Luthra</h3>
+          <span class="contact-card__arrow">&#8599;</span>
+        </a>
+        <a class="contact-card anim-slide-up" href="https://www.instagram.com/justhemang6/" target="_blank" rel="noopener" style="transition-delay: 0.4s">
+          <div class="contact-card__glow"></div>
+          <span class="contact-card__label mono">Instagram</span>
+          <h3 class="contact-card__value">@justhemang6</h3>
+          <span class="contact-card__arrow">&#8599;</span>
+        </a>
+        <a class="contact-card anim-slide-up" href="https://youtube.com/@JustHemang" target="_blank" rel="noopener" style="transition-delay: 0.5s">
+          <div class="contact-card__glow"></div>
+          <span class="contact-card__label mono">YouTube</span>
+          <h3 class="contact-card__value">@JustHemang</h3>
+          <span class="contact-card__arrow">&#8599;</span>
+        </a>
+      </div>
     </section>
 
     <section class="contact-form" id="contactForm">
-      <h2 class="section__heading tw-type">Send a Message</h2>
-      <form onsubmit="var n=document.getElementById('name').value;var e=document.getElementById('email').value;var p=document.getElementById('project').value;var body='Name: '+n+'%0D%0AEmail: '+e+'%0D%0A%0D%0A'+encodeURIComponent(p);window.location.href='mailto:justhemang@gmail.com?subject=Project Inquiry from '+encodeURIComponent(n)+'&body='+body;return false;">
-        <div class="contact-form__field"><label class="contact-form__label" for="name">Name</label><input class="contact-form__input" type="text" id="name" name="name" placeholder="Your name" autocomplete="name" /></div>
-        <div class="contact-form__field"><label class="contact-form__label" for="email">Email</label><input class="contact-form__input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" /></div>
-        <div class="contact-form__field"><label class="contact-form__label" for="project">Project Details</label><textarea class="contact-form__textarea" id="project" name="project" placeholder="Tell me about your project..."></textarea></div>
-        <button class="contact-form__submit" type="submit">Send Message</button>
-      </form>
+      <div class="contact-form__glass anim-scale">
+        <h2 class="section__heading tw-type" style="margin-bottom: 2.5rem;">Send a Message</h2>
+        <form onsubmit="var n=document.getElementById('name').value;var e=document.getElementById('email').value;var p=document.getElementById('project').value;var body='Name: '+n+'%0D%0AEmail: '+e+'%0D%0A%0D%0A'+encodeURIComponent(p);window.location.href='mailto:justhemang@gmail.com?subject=Project Inquiry from '+encodeURIComponent(n)+'&body='+body;return false;">
+          <div class="contact-form__field">
+            <input class="contact-form__input" type="text" id="name" name="name" placeholder=" " required />
+            <label class="contact-form__label" for="name">Your Name</label>
+          </div>
+          <div class="contact-form__field">
+            <input class="contact-form__input" type="email" id="email" name="email" placeholder=" " required />
+            <label class="contact-form__label" for="email">Email Address</label>
+          </div>
+          <div class="contact-form__field">
+            <textarea class="contact-form__textarea" id="project" name="project" placeholder=" " required></textarea>
+            <label class="contact-form__label" for="project">Project Details</label>
+          </div>
+          <button class="contact-form__submit" type="submit">
+            <span>Send Message</span>
+            <div class="submit-arrow">&#8594;</div>
+          </button>
+        </form>
+      </div>
     </section>
   </main>
 
