@@ -858,6 +858,7 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .dossier__card {
   border: var(--bw) solid var(--ink);
   background: var(--paper);
+  color: var(--ink);
   padding: 1.4rem;
   box-shadow: var(--shadow-hard);
   position: relative;
@@ -897,6 +898,7 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 }
 .stat {
   background: var(--paper);
+  color: var(--ink);
   padding: 1.2rem 1.1rem 1rem;
   outline: 1.5px solid var(--ink);
   transition: background 0.15s;
@@ -974,6 +976,7 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .ladder__rail {
   position: absolute; top: 0; bottom: 0; width: 6px;
   background: var(--paper);
+  color: var(--ink);
   left: 18px;
 }
 .ladder__rail--r { left: auto; right: 18px; }
@@ -1111,6 +1114,7 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 }
 .stat {
   background: var(--paper);
+  color: var(--ink);
   padding: 1.2rem 1.1rem 1rem;
   outline: 1.5px solid var(--ink);
   transition: background 0.15s;
@@ -1177,6 +1181,7 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .ladder__rail {
   position: absolute; top: 0; bottom: 0; width: 6px;
   background: var(--paper);
+  color: var(--ink);
   left: 18px;
 }
 .ladder__rail--r { left: auto; right: 18px; }
