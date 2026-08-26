@@ -219,8 +219,12 @@ export function initAnimations() {
     });
   });
 
-  // PARAGRAPH TYPEWRITERS
-  initParaTypewriters(gsap, ScrollTrigger);
+  // STATEMENT TEXT
+  document.querySelectorAll('.statement__text').forEach(el => {
+    gsap.fromTo(el, { clipPath: 'inset(0 100% 0 0)' }, {
+      clipPath: 'inset(0 0% 0 0)', ease: 'none', scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 45%', scrub: 1 }
+    });
+  });
 
   // FOOTER CURTAIN
   const footer = document.querySelector('.footer');
@@ -457,66 +461,4 @@ function initTrippy(gsap, REDUCED) {
   tl.to(frames, { scale: 1, rotate: '0deg', duration: 0.25, ease: 'none' }, 0);
   tl.to(frames, { scale: 0.9, rotate: '30deg', duration: 0.55, ease: 'none' }, 0.25);
   tl.to(frames, { scale: 1.25, rotate: '60deg', duration: 0.2, ease: 'none' }, 0.8);
-}
-
-function initParaTypewriters(gsap, ScrollTrigger) {
-  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (REDUCED) return;
-
-  document.querySelectorAll('.tw-para').forEach(el => {
-    function wrapTextNodes(node) {
-      if (node.nodeType === 3) {
-        const text = node.nodeValue;
-        if (!text.trim() && !text.includes(' ')) return; 
-        const fragment = document.createDocumentFragment();
-        for (let i = 0; i < text.length; i++) {
-          const span = document.createElement('span');
-          span.className = 'tw-char';
-          span.style.opacity = '0';
-          span.style.display = 'none';
-          if (text[i] === ' ') {
-            span.textContent = ' ';
-            span.style.whiteSpace = 'pre';
-          } else {
-            span.textContent = text[i];
-          }
-          fragment.appendChild(span);
-        }
-        node.parentNode.replaceChild(fragment, node);
-      } else if (node.nodeType === 1 && node.tagName !== 'BR') {
-        Array.from(node.childNodes).forEach(wrapTextNodes);
-      }
-    }
-
-    Array.from(el.childNodes).forEach(wrapTextNodes);
-    
-    const cursor = document.createElement('span');
-    cursor.className = 'tw-cursor';
-    cursor.innerHTML = '_';
-    cursor.style.animation = 'blink 1s step-end infinite';
-    cursor.style.color = 'var(--teal)';
-    cursor.style.fontWeight = '700';
-    cursor.style.marginLeft = '2px';
-    el.appendChild(cursor);
-
-    const chars = el.querySelectorAll('.tw-char');
-    
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        let i = 0;
-        function typeNext() {
-          if (i < chars.length) {
-            chars[i].style.display = 'inline';
-            chars[i].style.opacity = '1';
-            i++;
-            setTimeout(typeNext, Math.random() * 10 + 5);
-          }
-        }
-        typeNext();
-      }
-    });
-  });
 }
