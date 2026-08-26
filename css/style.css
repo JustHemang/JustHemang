@@ -1614,3 +1614,136 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 @keyframes blink {
   50% { opacity: 0; }
 }
+
+/* --- 404 PAGE GLITCH & GRID --- */
+.main-404 {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--ink);
+  padding: 0 var(--pad);
+}
+.grid-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(42, 122, 122, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 122, 122, 0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  pointer-events: none;
+  z-index: 0;
+  transform: perspective(600px) rotateX(60deg) translateY(-100px) scale(3);
+  animation: grid-move 15s linear infinite;
+}
+@keyframes grid-move {
+  0% { transform: perspective(600px) rotateX(60deg) translateY(0) scale(3); }
+  100% { transform: perspective(600px) rotateX(60deg) translateY(50px) scale(3); }
+}
+.error-hero {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+}
+.error-hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.glitch-wrapper {
+  margin: 1.5rem 0;
+}
+.glitch {
+  font-family: var(--font-hero);
+  font-size: clamp(8rem, 25vw, 20rem);
+  font-weight: 400;
+  line-height: 0.8;
+  color: var(--paper);
+  position: relative;
+  text-shadow: 0 0 50px rgba(42,122,122,0.6);
+  letter-spacing: 0.02em;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+.glitch::before {
+  left: 4px;
+  text-shadow: -3px 0 var(--hot);
+  clip-path: inset(44px 0 56px 0);
+  animation: glitch-anim 4s infinite linear alternate-reverse;
+}
+.glitch::after {
+  left: -4px;
+  text-shadow: -3px 0 var(--teal);
+  clip-path: inset(44px 0 56px 0);
+  animation: glitch-anim2 4s infinite linear alternate-reverse;
+}
+.error-hero__desc {
+  color: var(--teal-light);
+  font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+  line-height: 1.8;
+  margin-bottom: 3.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+}
+.error-hero__action {
+  position: relative;
+  z-index: 20;
+}
+@keyframes glitch-anim {
+  0% { clip-path: inset(57% 0 25% 0); }
+  5% { clip-path: inset(98% 0 10% 0); }
+  10% { clip-path: inset(23% 0 65% 0); }
+  15% { clip-path: inset(74% 0 15% 0); }
+  20% { clip-path: inset(10% 0 85% 0); }
+  25% { clip-path: inset(82% 0 5% 0); }
+  30% { clip-path: inset(47% 0 45% 0); }
+  35% { clip-path: inset(11% 0 80% 0); }
+  40% { clip-path: inset(94% 0 2% 0); }
+  45% { clip-path: inset(32% 0 60% 0); }
+  50% { clip-path: inset(51% 0 40% 0); }
+  55% { clip-path: inset(89% 0 8% 0); }
+  60% { clip-path: inset(18% 0 75% 0); }
+  65% { clip-path: inset(76% 0 12% 0); }
+  70% { clip-path: inset(33% 0 55% 0); }
+  75% { clip-path: inset(61% 0 30% 0); }
+  80% { clip-path: inset(27% 0 70% 0); }
+  85% { clip-path: inset(92% 0 4% 0); }
+  90% { clip-path: inset(43% 0 50% 0); }
+  95% { clip-path: inset(14% 0 82% 0); }
+  100% { clip-path: inset(85% 0 10% 0); }
+}
+@keyframes glitch-anim2 {
+  0% { clip-path: inset(41% 0 50% 0); }
+  5% { clip-path: inset(16% 0 75% 0); }
+  10% { clip-path: inset(88% 0 5% 0); }
+  15% { clip-path: inset(53% 0 40% 0); }
+  20% { clip-path: inset(38% 0 60% 0); }
+  25% { clip-path: inset(91% 0 2% 0); }
+  30% { clip-path: inset(22% 0 70% 0); }
+  35% { clip-path: inset(68% 0 25% 0); }
+  40% { clip-path: inset(13% 0 80% 0); }
+  45% { clip-path: inset(79% 0 15% 0); }
+  50% { clip-path: inset(46% 0 45% 0); }
+  55% { clip-path: inset(97% 0 1% 0); }
+  60% { clip-path: inset(29% 0 65% 0); }
+  65% { clip-path: inset(55% 0 35% 0); }
+  70% { clip-path: inset(82% 0 10% 0); }
+  75% { clip-path: inset(19% 0 75% 0); }
+  80% { clip-path: inset(64% 0 20% 0); }
+  85% { clip-path: inset(35% 0 60% 0); }
+  90% { clip-path: inset(93% 0 5% 0); }
+  95% { clip-path: inset(48% 0 45% 0); }
+  100% { clip-path: inset(71% 0 20% 0); }
+}
