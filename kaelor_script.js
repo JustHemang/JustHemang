@@ -1,33 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-  // ═══ PAGE LOADER & TRANSITIONS ═══
   const loader = document.getElementById('pageLoader');
   const loaderLock = document.getElementById('loader-lock');
   const loaderTyped = document.getElementById('loaderTyped');
   const isVisited = sessionStorage.getItem('kaelor_visited');
-
   if (loader) {
     if (isVisited) {
-      // Skip the 4.5s loader on subsequent visits
       loader.remove();
       document.body.classList.remove('loading');
       if (loaderLock) loaderLock.remove();
-
-      // Play the exit animation of the page transition
       const transition = document.createElement('div');
       transition.className = 'page-transition';
       const bar = document.createElement('div');
       bar.className = 'page-transition-bar active exit';
       transition.appendChild(bar);
       document.body.appendChild(transition);
-      
       setTimeout(() => {
         bar.classList.remove('active');
         setTimeout(() => transition.remove(), 650);
       }, 50);
-
     } else {
-      // First visit - play full loader
       sessionStorage.setItem('kaelor_visited', 'true');
       document.body.classList.add('loading');
       if (loaderTyped) {
@@ -35,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let seqIdx = 0;
         let charIdx = 0;
         let erasing = false;
-
         function tick() {
           const current = sequence[seqIdx];
           if (!erasing) {
@@ -76,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (loaderLock) {
     loaderLock.remove();
   }
-
   const hasGSAP = typeof gsap !== 'undefined';
   if (hasGSAP) {
     gsap.registerPlugin(ScrollTrigger);
@@ -87,14 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.transform = 'none';
     });
   }
-
-  // ═══ HEADER SCROLL ═══
   const header = document.querySelector('.header');
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 50);
   }, { passive: true });
-
-  // ═══ OVERLAY MENU ═══
   const navToggle = document.querySelector('.nav-toggle');
   const overlayMenu = document.querySelector('.overlay-menu');
   const overlayLinks = document.querySelectorAll('.overlay-link');
@@ -115,10 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') closeMenu();
   });
-
   if (!hasGSAP) return;
-
-  // ═══ HERO — BLUR TRANSITION KAELOR → MEDIA ═══
   const heroText = document.getElementById('heroText');
   const heroMedia = document.getElementById('heroMediaText');
   if (heroText && heroMedia) {
@@ -135,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
       duration: 0.8, ease: 'power3.out',
       stagger: 0.07, delay: 0.3
     });
-
     ScrollTrigger.create({
       trigger: '.hero',
       start: 'top top',
@@ -154,8 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  // ═══ CURSOR FOLLOWER ═══
   const cursor = document.createElement('div');
   cursor.className = 'custom-cursor';
   document.body.appendChild(cursor);
@@ -173,8 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('mouseenter', () => cursor.classList.add('cursor-grow'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-grow'));
   });
-
-  // ═══ FLOATING PARTICLES ═══
   const particleContainer = document.createElement('div');
   particleContainer.className = 'particle-container';
   document.body.appendChild(particleContainer);
@@ -185,18 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
     p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random() * 100}vw;top:${Math.random() * 100}vh;animation-duration:${Math.random() * 20 + 15}s;animation-delay:${Math.random() * 10}s;`;
     particleContainer.appendChild(p);
   }
-
-  // ═══ 3D FLOATING BACKGROUND TEXT PARALLAX ═══
   gsap.utils.toArray('.bg-float-text').forEach(el => {
     gsap.to(el, {
       y: -120, rotation: -5, scale: 1.1,
       scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 1.5 }
     });
   });
-
-  // ═══ SCROLL REVEALS — ONE CLEAN SYSTEM ═══
   const gridParents = '.services-grid, .work-grid, .work-grid-page, .stats-grid, .process-steps, .testimonials-grid, .pricing-grid, .team-grid, .about-values-grid, .services-detail, .contact-methods, .footer-nav, .social-links, .about-approach-grid, .services-hero-right, .about-story-grid, .services-hero-inner, .team-skills-grid, .collab-grid, .team-values-grid';
-
   gsap.utils.toArray('.reveal').forEach(el => {
     const parent = el.closest(gridParents);
     let delay = 0;
@@ -217,8 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     );
   });
-
-  // ═══ HIGHLIGHT BG SWEEP — SCROLLTRIGGER ═══
   gsap.utils.toArray('.highlight').forEach(el => {
     ScrollTrigger.create({
       trigger: el,
@@ -227,8 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
       once: true
     });
   });
-
-  // ═══ STAT COUNTERS ═══
   gsap.utils.toArray('.stat-number').forEach(el => {
     const target = parseInt(el.getAttribute('data-count'), 10);
     if (!target) return;
@@ -241,8 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
       onUpdate: () => { el.textContent = Math.round(obj.val); }
     });
   });
-
-  // ═══ GSAP HORIZONTAL SCROLL ═══
   const hSection = document.querySelector('.horizontal-scroll-section');
   if (hSection) {
     const hTrack = hSection.querySelector('.horizontal-track');
@@ -254,8 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
-
-  // ═══ 3D TILT WITH CHILD MOVEMENT ═══
   const tiltCards = document.querySelectorAll('.service-card, .work-item, .testimonial-card, .pricing-card, .h-scroll-card, .services-hero-card, .service-detail-card, .about-value-card, .team-member');
   tiltCards.forEach(card => {
     const children = card.querySelectorAll('h3, h4, p, .service-icon, .service-features, .work-media, .work-info, .pricing-price, .pricing-desc, .pricing-features, .btn, .service-cta, .author-avatar, .testimonial-rating, .shc-icon, .about-value-num, .member-photo, span');
@@ -274,8 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
       children.forEach(child => { gsap.to(child, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' }); });
     });
   });
-
-  // ═══ MAGNETIC BUTTONS ═══
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
@@ -285,8 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
     });
   });
-
-  // ═══ FILTER BUTTONS ═══
   const filterBtns = document.querySelectorAll('.filter-btn');
   document.querySelectorAll('.accordion-header').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -296,35 +256,26 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isOpen) item.classList.add('active');
     });
   });
-
-  // ═══ PAGE TRANSITION ON CLICK ═══
   document.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
-      // Only transition for internal links
       if (href && !href.startsWith('http') && !href.startsWith('tel:') && !href.startsWith('mailto:') && link.target !== '_blank' && href !== '#' && !href.startsWith('#')) {
         e.preventDefault();
-        
         const transition = document.createElement('div');
         transition.className = 'page-transition';
         const bar = document.createElement('div');
         bar.className = 'page-transition-bar';
         transition.appendChild(bar);
         document.body.appendChild(transition);
-        
-        // Trigger animation
         setTimeout(() => {
           bar.classList.add('active');
         }, 10);
-        
-        // Navigate after animation covers screen
         setTimeout(() => {
           window.location.href = href;
         }, 550);
       }
     });
   });
-
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -340,8 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
-  // ═══ CONTACT FORM ═══
   const form = document.getElementById('contact-form');
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -353,24 +302,19 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => { submitBtn.textContent = originalText; submitBtn.style.background = ''; form.reset(); }, 3000);
     });
   }
-
-  // ═══ HERO GRID HOVER ═══
   const heroGrid = document.getElementById('heroGrid');
   if (heroGrid) {
     const CELL_SIZE = 70;
     let activeCell = null;
     let fadeTimer = null;
-
     function buildHeroGrid() {
       heroGrid.innerHTML = '';
       const w = heroGrid.parentElement.clientWidth;
       const h = heroGrid.parentElement.clientHeight;
       const cols = Math.floor(w / CELL_SIZE);
       const rows = Math.floor(h / CELL_SIZE);
-
       heroGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
       heroGrid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-
       const chars = '01アイウエオカキクケコ∞∑∂√∫≈≠±×÷';
       for (let i = 0; i < cols * rows; i++) {
         const cell = document.createElement('div');
@@ -395,7 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
         heroGrid.appendChild(cell);
       }
     }
-
     buildHeroGrid();
     let gridResize;
     window.addEventListener('resize', () => {
@@ -403,5 +346,4 @@ document.addEventListener('DOMContentLoaded', () => {
       gridResize = setTimeout(buildHeroGrid, 200);
     });
   }
-
 });

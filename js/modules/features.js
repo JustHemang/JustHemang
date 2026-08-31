@@ -18,7 +18,6 @@ export function initTimecode() {
   }
   requestAnimationFrame(loop);
 }
-
 export function initFilmstrip() {
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (REDUCED) return;
@@ -27,7 +26,6 @@ export function initFilmstrip() {
   const clone = track.innerHTML;
   track.innerHTML += clone;
 }
-
 export function initTypewriter() {
   const el = document.querySelector('#heroTypewriter');
   const IS_HOME = !document.body.classList.contains('page-sub');
@@ -59,7 +57,6 @@ export function initTypewriter() {
   }
   setTimeout(tick, 1200);
 }
-
 export function initTechChars() {
   const container = document.querySelector('#techChars');
   if (!container) return;
@@ -75,7 +72,6 @@ export function initTechChars() {
     container.appendChild(span);
   }
 }
-
 export function initLiveClock() {
   const el = document.querySelector('#liveClock');
   if (!el) return;
@@ -86,7 +82,6 @@ export function initLiveClock() {
   update();
   setInterval(update, 1000);
 }
-
 export function initTabs() {
   document.querySelectorAll('.services-tabs__btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -99,7 +94,6 @@ export function initTabs() {
     });
   });
 }
-
 export function initClimber() {
   const grid = document.querySelector('#expGrid');
   const climber = document.querySelector('#climber');
@@ -109,7 +103,6 @@ export function initClimber() {
   const cards = document.querySelectorAll('.exp-card');
   const rungs = document.querySelectorAll('.ladder__rung');
   if (!grid || !climber) return;
-
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const FRAMES = 17;
   const sprites = [];
@@ -119,7 +112,6 @@ export function initClimber() {
     pre.src = src;
     sprites.push(src);
   }
-
   let ticking = false;
   function update() {
     ticking = false;
@@ -128,7 +120,6 @@ export function initClimber() {
     let p = (window.innerHeight * 0.55 - rect.top) / Math.max(total, 1);
     if (p < 0) p = 0;
     if (p > 1) p = 1;
-
     const climbBottom = 2 + p * 68;
     climber.style.bottom = `${climbBottom}%`;
     if (!REDUCED) {
@@ -136,7 +127,6 @@ export function initClimber() {
       img.src = sprites[frame];
     }
     if (altEl) altEl.textContent = String(Math.round(p * 847)).padStart(3, '0');
-
     rungs.forEach(function(rung, i) {
       const rungPos = (i / Math.max(rungs.length - 1, 1)) * 100;
       if (climbBottom >= rungPos) {
@@ -145,7 +135,6 @@ export function initClimber() {
         rung.classList.remove('active');
       }
     });
-
     let best = null, bestD = Infinity;
     cards.forEach((card) => {
       const r = card.getBoundingClientRect();
@@ -160,19 +149,16 @@ export function initClimber() {
       }
     }
   }
-
   window.addEventListener('scroll', () => {
     if (!ticking) { ticking = true; requestAnimationFrame(update); }
   }, { passive: true });
   update();
 }
-
 export function initWaveformAnim() {
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (REDUCED) return;
   const bars = document.querySelectorAll('.waveform__bar');
   if (!bars.length) return;
-
   function randomizeWaveform() {
     bars.forEach(function(bar) {
       const targetH = Math.floor(4 + Math.random() * 22);
