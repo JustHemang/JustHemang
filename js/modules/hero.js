@@ -49,29 +49,70 @@ export function initHeroGrid() {
   }
 
   // Hero Text Transition
-  const heroText = document.getElementById('heroText');
+  const heroText1 = document.getElementById('heroText1');
+  const heroText2 = document.getElementById('heroText2');
   
-  if (heroText && typeof window.gsap !== 'undefined') {
+  if (heroText1 && heroText2 && typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
     const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
 
-    const text = heroText.textContent.trim();
-    heroText.innerHTML = '';
-    text.split('').forEach(char => {
-      const span = document.createElement('span');
-      // Fix for spaces getting squished
-      if (char === ' ') {
-        span.innerHTML = '&nbsp;';
-      } else {
-        span.textContent = char;
-      }
-      span.style.cssText = 'display:inline-block;opacity:0;transform:translateY(80px) rotateX(-60deg);transform-origin:bottom center;';
-      heroText.appendChild(span);
-    });
-    
-    gsap.to(heroText.querySelectorAll('span'), {
+    const splitText = (element) => {
+      const text = element.textContent.trim();
+      element.innerHTML = '';
+      text.split('').forEach(char => {
+        const span = document.createElement('span');
+        if (char === ' ') {
+          span.innerHTML = '&nbsp;';
+        } else {
+          span.textContent = char;
+        }
+        span.style.cssText = 'display:inline-block;';
+        element.appendChild(span);
+      });
+      return element.querySelectorAll('span');
+    };
+
+    const spans1 = splitText(heroText1);
+    const spans2 = splitText(heroText2);
+
+    // Initial entrance animation for HERTX
+    gsap.set(spans1, { opacity: 0, y: 80, rotateX: -60, transformOrigin: 'bottom center' });
+    gsap.to(spans1, {
       opacity: 1, y: 0, rotateX: 0,
       duration: 0.8, ease: 'power3.out',
       stagger: 0.05, delay: 0.3
     });
+
+    // Scroll animation for transitioning from HERTX to JUST HEMANG
+    gsap.set(heroText2, { opacity: 1 }); // Container needs to be visible
+    gsap.set(spans2, { opacity: 0, y: 50, scale: 0.9, filter: 'blur(10px)' });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.hero-wrap',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1,
+      }
+    });
+
+    tl.to(spans1, {
+      opacity: 0,
+      y: -50,
+      scale: 1.1,
+      filter: 'blur(10px)',
+      stagger: 0.02,
+      ease: 'power2.inOut',
+      duration: 1
+    }, 0)
+    .to(spans2, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      stagger: 0.02,
+      ease: 'power2.inOut',
+      duration: 1
+    }, 0.2);
   }
 }
