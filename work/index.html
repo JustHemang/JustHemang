@@ -17,7 +17,7 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
-<body class="page-sub">
+<body class="page-work page-sub">
   <div class="page-transition" id="pageTransition" aria-hidden="true" style="display:flex;">
     <div class="pt-bar pt-bar--1" style="--i:0"></div>
     <div class="pt-bar pt-bar--2" style="--i:1"></div>
@@ -78,72 +78,64 @@
         </div>
       </div>
     </section>
-    <section class="section work" id="work">
-      <p class="section__eyebrow mono anim-slide-left">Selected work</p>
-      <h2 class="section__heading tw-type">Projects</h2>
-      <div class="work__grid">
-        <a href="https://www.youtube.com/watch?v=G9xF0Fgpao0" target="_blank" rel="noopener"
-          style="text-decoration: none; color: inherit;">
-          <article class="work__item">
-            <div class="work__item-bg">
-              <img src="https://img.youtube.com/vi/G9xF0Fgpao0/maxresdefault.jpg" alt="Movie Safar Preview">
-            </div>
-            <span class="work__num mono">01</span>
-            <div>
-              <h3 class="work__client">Movie Safar</h3>
-              <p class="work__desc mono">Short Film &mdash; Shot & Edited by Hemang Luthra</p>
-            </div>
-            <div class="work__play" aria-hidden="true"></div>
-          </article>
+    <section class="masonry-gallery" id="work">
+      <div class="masonry-container">
+        
+        <a href="https://www.youtube.com/watch?v=G9xF0Fgpao0" target="_blank" rel="noopener" class="masonry-item anim-slide-up" style="--m-w: 60%; --m-offset: 5%;">
+          <div class="masonry-item__bg">
+            <img src="https://img.youtube.com/vi/G9xF0Fgpao0/maxresdefault.jpg" alt="Movie Safar Preview">
+          </div>
+          <div class="masonry-item__content">
+            <span class="masonry-num mono">01</span>
+            <h3 class="masonry-title tw-type">Movie Safar</h3>
+            <p class="masonry-desc mono">Short Film &mdash; Shot & Edited by Hemang Luthra</p>
+          </div>
         </a>
-        <article class="work__item">
-          <div class="work__item-bg">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
-              alt="Documentary Preview">
+
+        <a href="#" class="masonry-item anim-slide-up" style="--m-w: 45%; --m-offset: 45%; margin-top: -10%;">
+          <div class="masonry-item__bg">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Documentary Preview">
           </div>
-          <span class="work__num mono">02</span>
-          <div>
-            <h3 class="work__client">CBSE is killing students!!</h3>
-            <p class="work__desc mono">Documentary &mdash; Tarshveer Singh</p>
+          <div class="masonry-item__content">
+            <span class="masonry-num mono">02</span>
+            <h3 class="masonry-title tw-type">CBSE is killing students!!</h3>
+            <p class="masonry-desc mono">Documentary &mdash; Tarshveer Singh</p>
           </div>
-          <div class="work__play" aria-hidden="true"></div>
-        </article>
-        <article class="work__item">
-          <div class="work__item-bg">
-            <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=800&auto=format&fit=crop"
-              alt="Delhi Preview">
+        </a>
+
+        <a href="#" class="masonry-item anim-slide-up" style="--m-w: 55%; --m-offset: 10%; margin-top: 5%;">
+          <div class="masonry-item__bg">
+            <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=800&auto=format&fit=crop" alt="Delhi Preview">
           </div>
-          <span class="work__num mono">03</span>
-          <div>
-            <h3 class="work__client">Dilli Dekho | Virtual Tour of Delhi</h3>
-            <p class="work__desc mono">Documentary &mdash; Hemang Luthra</p>
+          <div class="masonry-item__content">
+            <span class="masonry-num mono">03</span>
+            <h3 class="masonry-title tw-type">Dilli Dekho</h3>
+            <p class="masonry-desc mono">Documentary &mdash; Hemang Luthra</p>
           </div>
-          <div class="work__play" aria-hidden="true"></div>
-        </article>
-        <article class="work__item">
-          <div class="work__item-bg">
-            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop"
-              alt="Music Video Preview">
+        </a>
+
+        <a href="#" class="masonry-item anim-slide-up" style="--m-w: 40%; --m-offset: 55%; margin-top: -15%;">
+          <div class="masonry-item__bg">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop" alt="Music Video Preview">
           </div>
-          <span class="work__num mono">04</span>
-          <div>
-            <h3 class="work__client">P POP Culture</h3>
-            <p class="work__desc mono">Music Video &mdash; Hemang Luthra</p>
+          <div class="masonry-item__content">
+            <span class="masonry-num mono">04</span>
+            <h3 class="masonry-title tw-type">P POP Culture</h3>
+            <p class="masonry-desc mono">Music Video &mdash; Hemang Luthra</p>
           </div>
-          <div class="work__play" aria-hidden="true"></div>
-        </article>
-        <article class="work__item">
-          <div class="work__item-bg">
-            <img src="https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=800&auto=format&fit=crop"
-              alt="Music Video Preview">
+        </a>
+
+        <a href="#" class="masonry-item anim-slide-up" style="--m-w: 70%; --m-offset: 15%; margin-top: 10%;">
+          <div class="masonry-item__bg">
+            <img src="https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=800&auto=format&fit=crop" alt="Music Video Preview">
           </div>
-          <span class="work__num mono">05</span>
-          <div>
-            <h3 class="work__client">For A Reason</h3>
-            <p class="work__desc mono">Music Video &mdash; Hemang Luthra</p>
+          <div class="masonry-item__content">
+            <span class="masonry-num mono">05</span>
+            <h3 class="masonry-title tw-type">For A Reason</h3>
+            <p class="masonry-desc mono">Music Video &mdash; Hemang Luthra</p>
           </div>
-          <div class="work__play" aria-hidden="true"></div>
-        </article>
+        </a>
+
       </div>
     </section>
     <section class="page-cta">

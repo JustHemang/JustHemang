@@ -17,7 +17,7 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
-<body class="page-sub">
+<body class="page-about page-sub">
   <div class="page-transition" id="pageTransition" aria-hidden="true" style="display:flex;">
     <div class="pt-bar pt-bar--1" style="--i:0"></div>
     <div class="pt-bar pt-bar--2" style="--i:1"></div>
@@ -58,90 +58,83 @@
     </div>
   </div>
   <main>
-    <section class="page-hero">
-      <p class="section__eyebrow mono anim-slide-left">The person</p>
-      <h1 class="page-hero__title tw-type">About</h1>
-      <div class="accent-line"></div>
-    </section>
-
-    <section class="section" id="statement">
-      <div class="statement about-cinematic-grid">
-        <div class="about-cinematic-mask" id="aboutCinematicMask">
-          <img src="" alt="Hemang Luthra" />
+    <section class="glitch-archive" id="archive">
+      
+      <!-- Panel 1: The Identity -->
+      <div class="archive-panel panel--left">
+        <div class="archive-panel__header">
+          <span class="mono accent">FILE_ID: 0x01_IDENTITY</span>
         </div>
-        <div class="statement-content">
-          <p class="section__eyebrow mono anim-slide-left">About Me</p>
-          <h2 class="statement__heading tw-type">THE CRAFT<br />BEHIND<br />THE WORK</h2>
-          <div class="accent-line"></div>
-          <p class="statement__text anim-slide-up">I'm Hemang Luthra &mdash; a freelance video editor, fullstack
-            developer, photographer, and creative director from Delhi, India. I've been editing videos since 2021, working
-            across YouTube content, reels, short films, and client projects. I specialize in storytelling-driven cuts,
-            motion graphics, color grading, and kinetic typography. Beyond video, I build immersive web experiences with
-            6+ years of fullstack development under my belt. As President of <a href="https://www.opcode.co.in/"
-              target="_blank" rel="noopener" class="text-highlight">OPCODE</a>, my school's tech club, I co-hosted and
-            judged our annual tech fest <a href="https://www.opcode.co.in/" target="_blank" rel="noopener"
-              class="text-highlight">XENIUM</a>. I'm also the founder of <a href="https://kaelor-media.vercel.app/"
-              target="_blank" rel="noopener" class="text-highlight">Kaelor Media</a>, where I bring together video
-            production and digital design under one roof. Every frame I edit, every line of code I write &mdash; it's all
-            about making something that moves people.</p>
+        <div class="archive-panel__content">
+          <div class="archive-image-glitch" id="aboutCinematicMask">
+            <!-- Glitch overlays handled by CSS/JS -->
+            <img src="" alt="Hemang Luthra" />
+            <div class="glitch-layer glitch-layer-1"></div>
+            <div class="glitch-layer glitch-layer-2"></div>
+          </div>
+          <h2 class="archive-title tw-type glitch" data-text="HEMANG LUTHRA">HEMANG LUTHRA</h2>
+          <p class="archive-text">
+            Freelance video editor, fullstack developer, photographer, and creative director from Delhi, India. 
+            Editing since 2021 across YouTube content, short films, and commercial projects. Specializing in storytelling-driven cuts, motion graphics, and kinetic typography.
+          </p>
+          <p class="archive-text" style="margin-top: 1rem;">
+            Every frame I edit, every line of code I write &mdash; it's all about making something that moves people.
+          </p>
         </div>
       </div>
-    </section>
-    <section class="section" id="studio">
-      <p class="section__eyebrow mono anim-slide-left">Journey</p>
-      <h2 class="section__heading tw-type">Experience</h2>
-      <div class="studio">
-        <div class="anim-slide-left">
-          <p class="studio__statement">Started as a curious kid making edits for fun. Now I run <a
-              href="https://kaelor-media.vercel.app/" target="_blank" rel="noopener" class="text-highlight">Kaelor
-              Media</a>, lead <a href="https://www.opcode.co.in/" target="_blank" rel="noopener"
-              class="text-highlight">OPCODE</a> as President, and work with clients worldwide on Fiverr. From school
-            projects to professional productions &mdash; the craft keeps evolving.</p>
+
+      <!-- Panel 2: Experience / Journey -->
+      <div class="archive-panel panel--right" style="margin-top: 10%;">
+        <div class="archive-panel__header">
+          <span class="mono accent">FILE_ID: 0x02_EXECUTION</span>
         </div>
-        <div class="anim-slide-right">
-          <ul class="studio__services">
-            <li>Freelance Video Editor (2021 &mdash; Present)</li>
-            <li>Fullstack Developer (2020 &mdash; Present)</li>
-            <li>President &mdash; <a href="https://www.opcode.co.in/" target="_blank" rel="noopener"
-                class="text-highlight">OPCODE</a> (School Tech Club)</li>
-            <li>Founder &mdash; <a href="https://kaelor-media.vercel.app/" target="_blank" rel="noopener"
-                class="text-highlight">Kaelor Media</a></li>
-            <li>Co-Host &amp; Judge &mdash; <a href="https://www.opcode.co.in/" target="_blank" rel="noopener"
-                class="text-highlight">XENIUM</a> Tech Fest</li>
+        <div class="archive-panel__content">
+          <h2 class="archive-title tw-type">CURRENT STATUS</h2>
+          <ul class="archive-list mono">
+            <li>> Freelance Video Editor (2021 &mdash; Present)</li>
+            <li>> Fullstack Developer (2020 &mdash; Present)</li>
+            <li>> President, <a href="https://www.opcode.co.in/" target="_blank" rel="noopener" class="text-link">OPCODE</a></li>
+            <li>> Founder, <a href="https://kaelor-media.vercel.app/" target="_blank" rel="noopener" class="text-link">Kaelor Media</a></li>
+            <li>> Co-Host &amp; Judge, <a href="https://www.opcode.co.in/" target="_blank" rel="noopener" class="text-link">XENIUM</a></li>
           </ul>
         </div>
       </div>
-    </section>
-    <section class="capabilities" id="capabilities">
-      <p class="section__eyebrow mono anim-slide-left">Capabilities</p>
-      <h2 class="section__heading tw-type">Tools &amp; Skills</h2>
-      <div class="capabilities__grid">
-        <div class="capability"><span class="capability__icon mono">01</span>
-          <h3 class="capability__name">Video Editing</h3>
-          <p class="capability__tools mono">Premiere Pro, DaVinci Resolve, Final Cut Pro</p>
+
+      <!-- Panel 3: Toolkit -->
+      <div class="archive-panel panel--left" style="margin-top: 5%;">
+        <div class="archive-panel__header">
+          <span class="mono accent">FILE_ID: 0x03_ARSENAL</span>
         </div>
-        <div class="capability"><span class="capability__icon mono">02</span>
-          <h3 class="capability__name">Photography</h3>
-          <p class="capability__tools mono">Lightroom, Photoshop, Composition</p>
-        </div>
-        <div class="capability"><span class="capability__icon mono">03</span>
-          <h3 class="capability__name">Graphic Design</h3>
-          <p class="capability__tools mono">Photoshop, Illustrator, Figma</p>
-        </div>
-        <div class="capability"><span class="capability__icon mono">04</span>
-          <h3 class="capability__name">Fullstack Dev</h3>
-          <p class="capability__tools mono">HTML, CSS, JS, React, Node, Three.js</p>
-        </div>
-        <div class="capability"><span class="capability__icon mono">05</span>
-          <h3 class="capability__name">Motion Graphics</h3>
-          <p class="capability__tools mono">After Effects, Cinema 4D, Blender</p>
-        </div>
-        <div class="capability"><span class="capability__icon mono">06</span>
-          <h3 class="capability__name">3D Art</h3>
-          <p class="capability__tools mono">Blender, Maya, ZBrush, Modeling</p>
+        <div class="archive-panel__content">
+          <h2 class="archive-title tw-type">CAPABILITIES</h2>
+          <div class="archive-grid">
+            <div class="archive-stat">
+              <span class="mono accent">01</span>
+              <h4>VIDEO EDITING</h4>
+              <p class="mono">Premiere, Resolve, FCP</p>
+            </div>
+            <div class="archive-stat">
+              <span class="mono accent">02</span>
+              <h4>DEV</h4>
+              <p class="mono">React, Node, Three.js</p>
+            </div>
+            <div class="archive-stat">
+              <span class="mono accent">03</span>
+              <h4>MOTION</h4>
+              <p class="mono">After Effects, Blender</p>
+            </div>
+            <div class="archive-stat">
+              <span class="mono accent">04</span>
+              <h4>DESIGN</h4>
+              <p class="mono">Photoshop, Figma</p>
+            </div>
+          </div>
+          <div style="margin-top: 2rem; border-top: 1px solid rgba(56, 189, 248, 0.2); padding-top: 1rem;">
+             <span class="mono accent">> EXP: 5+ YEARS ACTIVE</span>
+          </div>
         </div>
       </div>
-      <div style="text-align:center"><span class="exp-badge mono anim-scale">5+ Years Experience</span></div>
+
     </section>
     <section class="page-cta">
       <h2 class="tw-type">Have a project in mind?</h2>
