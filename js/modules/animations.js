@@ -234,6 +234,7 @@ export function initAnimations() {
   initTrippy(gsap, REDUCED);
   initJourneyRoad(gsap, ScrollTrigger, REDUCED);
   initGalleryParallax(REDUCED);
+  initKineticAccordion();
 }
 export function initSmartNav() {
   const nav = document.querySelector('#nav');
@@ -513,5 +514,31 @@ function initGalleryParallax(REDUCED) {
         bg.style.transform = '';
       }, 400); // allow transition to finish
     });
+}
+
+function initKineticAccordion() {
+  const items = document.querySelectorAll('.k-item');
+  const bgs = document.querySelectorAll('.k-bg');
+  
+  if (!items.length || !bgs.length) return;
+
+  items.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const bgId = item.getAttribute('data-bg');
+      bgs.forEach(bg => {
+        if (bg.classList.contains('k-bg--' + bgId)) {
+          bg.classList.add('active');
+        } else {
+          bg.classList.remove('active');
+        }
+      });
+    });
   });
+
+  // Activate first one by default if not mobile
+  if (window.innerWidth > 768 && items[0]) {
+    const firstBgId = items[0].getAttribute('data-bg');
+    const firstBg = document.querySelector('.k-bg--' + firstBgId);
+    if (firstBg) firstBg.classList.add('active');
+  }
 }

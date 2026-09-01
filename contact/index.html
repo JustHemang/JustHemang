@@ -58,59 +58,40 @@
     </div>
   </div>
   <main>
-    <section class="page-hero">
-      <h1 class="page-hero__title tw-type">INQUIRIES</h1>
-      <a href="mailto:xhertxd@gmail.com" class="contact-hero__sub anim-slide-up" style="display:inline-flex; align-items:center; justify-content:center; gap:12px; padding:12px 32px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:100px; color:var(--paper); text-decoration:none; font-family:var(--font-mono); font-size:1.2rem; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); margin-top:24px; text-transform:uppercase; letter-spacing:1px; cursor:pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='var(--teal)'; this.style.transform='translateY(-4px) scale(1.02)';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.borderColor='rgba(255,255,255,0.1)'; this.style.transform='translateY(0) scale(1)';">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        xhertxd@gmail.com
-      </a>
-      <div class="contact-hero__status mono anim-slide-up">Available for work</div>
-    </section>
-    <section class="interrogation-room">
-      <div class="container">
-        <h2 class="interrogation-title tw-type anim-slide-up">READY TO BUILD?</h2>
-        
-        <form class="conversational-form anim-slide-up" style="transition-delay: 0.2s;" onsubmit="
-          const n = document.getElementById('c_name').value;
-          const e = document.getElementById('c_email').value;
-          const k = document.getElementById('c_kind').value;
-          const m = document.getElementById('c_msg').value;
-          const body = 'Name: ' + n + '%0D%0AEmail: ' + e + '%0D%0AType: ' + k + '%0D%0A%0D%0A' + encodeURIComponent(m);
-          window.location.href = 'mailto:xhertxd@gmail.com?subject=Project Inquiry from ' + encodeURIComponent(n) + '&body=' + body;
+    <section class="monolithic-glass" id="contact">
+      
+      <!-- Abstract Background Orb -->
+      <div class="glass-orb"></div>
+
+      <div class="glass-container anim-scale">
+        <h2 class="glass-title tw-type">Let's Talk</h2>
+        <p class="glass-subtitle mono">Ready to elevate your brand?</p>
+
+        <form class="glass-form" onsubmit="
+          const n = document.getElementById('g_name').value;
+          const e = document.getElementById('g_email').value;
+          const m = document.getElementById('g_msg').value;
+          const body = 'Name: ' + n + '%0D%0AEmail: ' + e + '%0D%0A%0D%0A' + encodeURIComponent(m);
+          window.location.href = 'mailto:xhertxd@gmail.com?subject=Inquiry from ' + encodeURIComponent(n) + '&body=' + body;
           return false;
         ">
-          <p class="conversational-text">
-            Hi Hemang, my name is <input type="text" id="c_name" class="conv-input" placeholder="Your Name" required autocomplete="off"> 
-            and I'm looking to build a <input type="text" id="c_kind" class="conv-input" placeholder="Video / Website / App" required autocomplete="off">.
-          </p>
-          <p class="conversational-text">
-            You can reach me at <input type="email" id="c_email" class="conv-input" placeholder="Email Address" required autocomplete="off">.
-          </p>
-          <p class="conversational-text" style="margin-top: 2rem;">
-            Here are some quick details about what I need:
-          </p>
-          <textarea id="c_msg" class="conv-textarea" placeholder="Tell me about your vision..." required></textarea>
+          <div class="glass-input-group">
+            <input type="text" id="g_name" class="glass-input" placeholder="Name" required autocomplete="off">
+          </div>
+          <div class="glass-input-group">
+            <input type="email" id="g_email" class="glass-input" placeholder="Email Address" required autocomplete="off">
+          </div>
+          <div class="glass-input-group">
+            <textarea id="g_msg" class="glass-textarea" placeholder="Tell me about your project..." required></textarea>
+          </div>
           
-          <button type="submit" class="conv-submit mono">Initiate Sequence <span class="arrow">→</span></button>
+          <button type="submit" class="glass-submit">Send Message <span class="arrow">→</span></button>
         </form>
 
-        <div class="contact-grid anim-slide-up" style="transition-delay: 0.4s;">
-          <a class="contact-card" href="mailto:xhertxd@gmail.com">
-            <span class="contact-card__label mono">Email</span>
-            <h3 class="contact-card__value">xhertxd@gmail.com</h3>
-          </a>
-          <a class="contact-card" href="https://github.com/xHertx" target="_blank" rel="noopener">
-            <span class="contact-card__label mono">GitHub</span>
-            <h3 class="contact-card__value">justhemang</h3>
-          </a>
-          <a class="contact-card" href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">
-            <span class="contact-card__label mono">LinkedIn</span>
-            <h3 class="contact-card__value">Hemang Luthra</h3>
-          </a>
-          <a class="contact-card" href="https://www.instagram.com/xhertxd" target="_blank" rel="noopener">
-            <span class="contact-card__label mono">Instagram</span>
-            <h3 class="contact-card__value">@justhemang6</h3>
-          </a>
+        <div class="glass-links">
+          <a href="mailto:xhertxd@gmail.com">xhertxd@gmail.com</a>
+          <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </section>

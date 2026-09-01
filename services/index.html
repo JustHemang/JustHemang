@@ -58,68 +58,65 @@
     </div>
   </div>
   <main>
-    <section class="blueprint-canvas">
+    <section class="kinetic-accordion" id="services">
       
-      <!-- Blueprint Grid Background -->
-      <div class="blueprint-grid-bg"></div>
-
-      <!-- Schematic Title -->
-      <div class="schematic-header">
-        <h1 class="tw-type blueprint-title">SYS.CAPABILITIES</h1>
-        <p class="mono blueprint-subtitle">ARCHITECTURAL SCHEMATIC // REV 2.0</p>
+      <!-- Background Image Container -->
+      <div class="k-bg-container">
+        <div class="k-bg k-bg--video" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2000&auto=format&fit=crop');"></div>
+        <div class="k-bg k-bg--web" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2000&auto=format&fit=crop');"></div>
+        <div class="k-bg k-bg--creative" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=2000&auto=format&fit=crop');"></div>
+        <div class="k-bg k-bg--motion" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop');"></div>
+        <div class="k-bg-overlay"></div>
       </div>
 
-      <!-- Schematic Nodes -->
-      <div class="schematic-nodes">
-        
-        <!-- Center Node -->
-        <div class="s-node s-node--center anim-scale">
-          <div class="s-node__inner">
-            <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            <h3 class="mono">CORE</h3>
+      <div class="k-items-container">
+        <!-- Item 1 -->
+        <div class="k-item" data-bg="video">
+          <div class="k-item__header">
+            <span class="mono k-item__num">01</span>
+            <h2 class="tw-type k-item__title">VIDEO<br>PROD.</h2>
+          </div>
+          <div class="k-item__content">
+            <p class="mono">High-impact commercial video editing, color grading, and post-production storytelling. Precision in every cut.</p>
+            <a href="mailto:xhertxd@gmail.com?subject=Video%20Production" class="k-item__link mono">INQUIRE &rarr;</a>
           </div>
         </div>
 
-        <!-- Node 1: Video -->
-        <div class="s-node s-node--1 anim-slide-up" style="transition-delay: 0.1s;">
-          <div class="s-node__connector"></div>
-          <div class="s-node__content">
-            <h3 class="tw-type">VIDEO PROD.</h3>
-            <p class="mono">High-impact commercial video editing and post-production.</p>
-            <span class="mono s-node__tag">[ PREMIERE / RESOLVE ]</span>
+        <!-- Item 2 -->
+        <div class="k-item" data-bg="web">
+          <div class="k-item__header">
+            <span class="mono k-item__num">02</span>
+            <h2 class="tw-type k-item__title">WEB<br>DEV.</h2>
+          </div>
+          <div class="k-item__content">
+            <p class="mono">Immersive, interactive web experiences built with modern frameworks and robust backend architectures.</p>
+            <a href="mailto:xhertxd@gmail.com?subject=Web%20Development" class="k-item__link mono">INQUIRE &rarr;</a>
           </div>
         </div>
 
-        <!-- Node 2: Dev -->
-        <div class="s-node s-node--2 anim-slide-up" style="transition-delay: 0.2s;">
-          <div class="s-node__connector"></div>
-          <div class="s-node__content">
-            <h3 class="tw-type">FULLSTACK DEV.</h3>
-            <p class="mono">Responsive, interactive UIs with modern frameworks.</p>
-            <span class="mono s-node__tag">[ REACT / NODE ]</span>
+        <!-- Item 3 -->
+        <div class="k-item" data-bg="creative">
+          <div class="k-item__header">
+            <span class="mono k-item__num">03</span>
+            <h2 class="tw-type k-item__title">CREATIVE<br>DIR.</h2>
+          </div>
+          <div class="k-item__content">
+            <p class="mono">End-to-end creative strategy, visual identity systems, and brand launches that leave a lasting mark.</p>
+            <a href="mailto:xhertxd@gmail.com?subject=Creative%20Direction" class="k-item__link mono">INQUIRE &rarr;</a>
           </div>
         </div>
 
-        <!-- Node 3: Design -->
-        <div class="s-node s-node--3 anim-slide-up" style="transition-delay: 0.3s;">
-          <div class="s-node__connector"></div>
-          <div class="s-node__content">
-            <h3 class="tw-type">CREATIVE DIR.</h3>
-            <p class="mono">End-to-end creative strategy and visual identity systems.</p>
-            <span class="mono s-node__tag">[ STRATEGY / DESIGN ]</span>
+        <!-- Item 4 -->
+        <div class="k-item" data-bg="motion">
+          <div class="k-item__header">
+            <span class="mono k-item__num">04</span>
+            <h2 class="tw-type k-item__title">MOTION<br>FX.</h2>
+          </div>
+          <div class="k-item__content">
+            <p class="mono">Kinetic typography, 3D modeling, and immersive motion graphics that breathe life into static concepts.</p>
+            <a href="mailto:xhertxd@gmail.com?subject=Motion%20FX" class="k-item__link mono">INQUIRE &rarr;</a>
           </div>
         </div>
-
-        <!-- Node 4: Motion -->
-        <div class="s-node s-node--4 anim-slide-up" style="transition-delay: 0.4s;">
-          <div class="s-node__connector"></div>
-          <div class="s-node__content">
-            <h3 class="tw-type">MOTION FX.</h3>
-            <p class="mono">Kinetic typography and immersive 3D/2D motion design.</p>
-            <span class="mono s-node__tag">[ AE / BLENDER ]</span>
-          </div>
-        </div>
-
       </div>
     </section>
     <section class="page-cta">
