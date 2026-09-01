@@ -2286,3 +2286,82 @@ body.page-services {
 .k-item__link:hover::after {
   width: 100%;
 }
+
+/* --- HORIZONTAL MUSEUM JOURNEY --- */
+.journey-museum {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+.museum-track {
+  display: flex;
+  height: 100%;
+  width: fit-content;
+  will-change: transform;
+}
+.museum-panel {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--pad);
+  position: relative;
+}
+.museum-panel--intro, .museum-panel--outro {
+  text-align: center;
+}
+.museum-panel--intro h2, .museum-panel--outro h2 {
+  font-size: clamp(4rem, 10vw, 10rem);
+  color: var(--paper);
+  line-height: 1;
+}
+.museum-panel--intro p {
+  font-size: 1.5rem;
+  color: var(--paper-2);
+  margin-top: 2rem;
+}
+.m-panel__img-wrap {
+  width: 60vw;
+  max-width: 800px;
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+.m-panel__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.1);
+  transition: transform 0.6s ease;
+}
+.museum-panel:hover .m-panel__img-wrap img {
+  transform: scale(1.05);
+}
+.m-panel__content {
+  width: 60vw;
+  max-width: 800px;
+  text-align: left;
+}
+.m-panel__date {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+.m-panel__content h3 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--paper);
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.m-panel__content p {
+  font-size: 1.2rem;
+  color: var(--paper-2);
+  line-height: 1.6;
+}

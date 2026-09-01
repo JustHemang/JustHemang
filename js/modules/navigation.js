@@ -76,11 +76,15 @@ export function initPageTransition() {
   }
   const bars = overlay.querySelectorAll('.pt-bar');
   const circle = overlay.querySelector('.pt-circle');
-  window.gsap.set(bars, { xPercent: 0 });
-  if (circle) window.gsap.set(circle, { scale: 0 });
-  window.gsap.to(bars, { xPercent: 100, stagger: 0.05, duration: 0.6, ease: 'power3.inOut', delay: 0.1 });
-  if (circle) window.gsap.to(circle, { scale: 80, duration: 0.4, ease: 'power2.in', delay: 0.1 });
-  setTimeout(() => { overlay.style.display = 'none'; }, 900);
+  if (typeof window.gsap === 'undefined') {
+    setTimeout(() => { overlay.style.display = 'none'; }, 500);
+  } else {
+    window.gsap.set(bars, { xPercent: 0 });
+    if (circle) window.gsap.set(circle, { scale: 0 });
+    window.gsap.to(bars, { xPercent: 100, stagger: 0.05, duration: 0.6, ease: 'power3.inOut', delay: 0.1 });
+    if (circle) window.gsap.to(circle, { scale: 80, duration: 0.4, ease: 'power2.in', delay: 0.1 });
+    setTimeout(() => { overlay.style.display = 'none'; }, 900);
+  }
   document.querySelectorAll('a[href]').forEach((link) => {
     const href = link.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http') || link.target === '_blank') return;
@@ -99,10 +103,12 @@ export function initPageTransition() {
       }
       overlay.style.display = 'flex';
       overlay.style.pointerEvents = 'all';
-      window.gsap.set(bars, { xPercent: -100 });
-      if (circle) window.gsap.set(circle, { scale: 0 });
-      window.gsap.to(bars, { xPercent: 0, stagger: 0.04, duration: 0.45, ease: 'power3.inOut' });
-      if (circle) window.gsap.to(circle, { scale: 80, duration: 0.3, ease: 'power2.in' });
+      if (typeof window.gsap !== 'undefined') {
+        window.gsap.set(bars, { xPercent: -100 });
+        if (circle) window.gsap.set(circle, { scale: 0 });
+        window.gsap.to(bars, { xPercent: 0, stagger: 0.04, duration: 0.45, ease: 'power3.inOut' });
+        if (circle) window.gsap.to(circle, { scale: 80, duration: 0.3, ease: 'power2.in' });
+      }
       setTimeout(() => { location.href = url; }, 700);
     });
   });

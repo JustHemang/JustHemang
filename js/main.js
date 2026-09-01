@@ -8,7 +8,7 @@ import {
   initScrollProgress, 
   initScrambleHover, 
   initLadderJourney, 
-  initJourneyRoad,
+  initHorizontalMuseum,
   initCounters, 
   initParallax 
 } from './modules/animations.js?v=2';
@@ -81,7 +81,7 @@ function initApp() {
   initAnimations();
   initScrambleHover();
   initLadderJourney();
-  initJourneyRoad();
+  initHorizontalMuseum();
   initCounters();
   initParallax();
   initTimecode();

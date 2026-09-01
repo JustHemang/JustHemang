@@ -232,7 +232,7 @@ export function initAnimations() {
 
   initHorizontalWork(gsap, ScrollTrigger, REDUCED, IS_MOBILE);
   initTrippy(gsap, REDUCED);
-  initJourneyRoad(gsap, ScrollTrigger, REDUCED);
+  initHorizontalMuseum();
   initGalleryParallax(REDUCED);
   initKineticAccordion();
 }
@@ -397,85 +397,49 @@ function initTrippy(gsap, REDUCED) {
   tl.to(frames, { scale: 1.25, rotate: '60deg', duration: 0.2, ease: 'none' }, 0.8);
 }
 
-export function initJourneyRoad() {
-  const section = document.querySelector('#journey3dSection');
-  const camera = document.querySelector('#journeyCamera');
-  const billboards = document.querySelectorAll('.billboard');
-  if (!section || !camera || billboards.length === 0) return;
+export function initHorizontalMuseum() {
+  const section = document.querySelector('#journeyMuseum');
+  const track = document.querySelector('#museumTrack');
+  const panels = document.querySelectorAll('.museum-panel');
+  if (!section || !track || panels.length === 0) return;
 
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (REDUCED) return;
+  if (REDUCED) {
+    track.style.flexDirection = 'column';
+    return;
+  }
 
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
 
-  // Set the furthest depth the camera needs to travel to
-  const maxDepth = 14000;
-
-  // Initialize all billboards to their static 3D positions
-  billboards.forEach(b => {
-    const initX = b.style.getPropertyValue('--x') || '0vw';
-    const initY = b.style.getPropertyValue('--y') || '0vh';
-    const initZ = b.style.getPropertyValue('--z') || '0';
-    const initRx = b.style.getPropertyValue('--rX') || '0deg';
-    const initRy = b.style.getPropertyValue('--rY') || '0deg';
-    const initRz = b.style.getPropertyValue('--rZ') || '0deg';
-
-    // Place statically in the 3D world
-    gsap.set(b, {
-      xPercent: -50,
-      yPercent: -50,
-      x: initX,
-      y: initY,
-      z: parseInt(initZ), 
-      rotationX: initRx,
-      rotationY: initRy,
-      rotationZ: initRz,
-      transformOrigin: "center center"
-    });
-
-    const content = b.querySelector('.billboard__content');
-    const photo = b.querySelector('.billboard__photo');
-    
-    // Hide text initially
-    gsap.set(content, { opacity: 0, y: 30 });
-    // Keep photo visible as part of the environment
-    gsap.set(photo, { opacity: 1, scale: 1 });
-  });
-
-  // Main scroll timeline
-  const tl = gsap.timeline({
+  // Horizontal scroll timeline
+  const scrollTween = gsap.to(track, {
+    x: () => -(track.scrollWidth - window.innerWidth) + "px",
+    ease: "none",
     scrollTrigger: {
       trigger: section,
-      start: 'top top',
-      end: '+=4000', // Scroll length
-      scrub: 1,
       pin: true,
-      anticipatePin: 1
+      scrub: 1,
+      end: () => "+=" + (track.scrollWidth - window.innerWidth)
     }
   });
 
-  // Fly the camera down the Z-axis
-  tl.to(camera, {
-    z: maxDepth,
-    ease: 'none',
-    duration: 1
-  });
-
-  // Add individual reveal/hide animations for each billboard's text based on camera proximity
-  billboards.forEach(b => {
-    const content = b.querySelector('.billboard__content');
-    const zPos = Math.abs(parseInt(b.style.getPropertyValue('--z') || '0'));
-    
-    // Calculate when the camera is approaching this billboard
-    // The camera travels from 0 to 14000.
-    const approachStart = (zPos - 1500) / maxDepth; // Start fading in text 1500px away
-    const approachEnd = zPos / maxDepth; // Fully visible when camera is right at it
-    const passEnd = (zPos + 500) / maxDepth; // Fade out quickly as camera passes
-
-    if (approachStart >= 0 && approachStart <= 1) {
-      tl.to(content, { opacity: 1, y: 0, duration: approachEnd - approachStart, ease: 'power2.out' }, approachStart);
-      tl.to(content, { opacity: 0, duration: passEnd - approachEnd, ease: 'power2.in' }, approachEnd);
+  // Fade in panel contents when they enter view
+  panels.forEach(panel => {
+    const content = panel.querySelector('.m-panel__content');
+    if (content) {
+      gsap.from(content, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: scrollTween,
+          start: 'left center',
+          toggleActions: 'play none none reverse'
+        }
+      });
     }
   });
 }
