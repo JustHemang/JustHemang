@@ -1411,6 +1411,75 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
   background: var(--ink);
   padding: 0 var(--pad);
 }
+.journey-3d-section {
+  position: relative;
+  background: var(--ink);
+  height: 200vh; /* We will let GSAP pin this */
+  overflow: hidden;
+}
+
+.journey-viewport {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  perspective: 1000px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 80%);
+}
+
+.journey-camera {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  /* We will animate the translateZ of this element via GSAP */
+}
+
+.road-grid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200vw;
+  height: 20000px; /* Super long road extending into Z space */
+  transform-origin: top center;
+  /* Rotate it to be a floor, push it down by 30vh, and pull it far back in Z */
+  transform: translate(-50%, -50%) rotateX(90deg) translateZ(-400px) translateY(-5000px);
+  background-image: 
+    linear-gradient(rgba(56, 189, 248, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.2) 1px, transparent 1px);
+  background-size: 100px 100px;
+  background-position: center bottom;
+  pointer-events: none;
+  /* Fade out in the distance */
+  mask-image: linear-gradient(to top, black 0%, transparent 80%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, transparent 80%);
+}
+
+.billboard-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.billboard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(280px, 30vw, 400px);
+  /* The item is placed natively using GSAP based on its inline CSS vars */
+  transform-style: preserve-3d;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
 .grid-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;

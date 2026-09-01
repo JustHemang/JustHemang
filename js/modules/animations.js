@@ -400,43 +400,23 @@ function initJourneyRoad(gsap, ScrollTrigger, REDUCED) {
   if (REDUCED) return;
   const container = document.querySelector('#journey3dSection');
   if (!container) return;
-  
+export function initJourneyRoad() {
+  const section = document.querySelector('#journey3dSection');
+  const camera = document.querySelector('#journeyCamera');
   const billboards = document.querySelectorAll('.billboard');
-  const roadGrid = document.querySelector('#roadGrid');
-  
-  // Total scroll distance depends on the number of items. 
-  // Let's give each item 3000px of scroll space for a very smooth sequence.
-  const endZ = billboards.length * 3000;
-  
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: container,
-      start: 'top top',
-      end: `+=${endZ}`,
-      scrub: 1,
-      pin: true,
-    }
-  });
+  if (!section || !camera || billboards.length === 0) return;
 
-  // Sequence each billboard
-  let time = 0;
-  
-  // Calculate exact total duration based on overlap math
-  // Each iteration increments time by 2.6, and the final item takes 2.8 to finish.
-  const totalDuration = ((billboards.length - 1) * 2.6) + 2.8;
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (REDUCED) return;
 
-  // Animate the road infinitely over the EXACT total duration of the sequence
-  tl.to(roadGrid, {
-    backgroundPositionY: `${endZ}px`,
-    ease: 'none',
-    duration: totalDuration
-  }, 0);
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
 
-  billboards.forEach((b, i) => {
-    const content = b.querySelector('.billboard__content');
-    const photo = b.querySelector('.billboard__photo');
-    
-    // Read HTML inline styles
+  // Set the furthest depth the camera needs to travel to
+  const maxDepth = 14000;
+
+  // Initialize all billboards to their static 3D positions
+  billboards.forEach(b => {
     const initX = b.style.getPropertyValue('--x') || '0vw';
     const initY = b.style.getPropertyValue('--y') || '0vh';
     const initZ = b.style.getPropertyValue('--z') || '0';
@@ -444,56 +424,62 @@ function initJourneyRoad(gsap, ScrollTrigger, REDUCED) {
     const initRy = b.style.getPropertyValue('--rY') || '0deg';
     const initRz = b.style.getPropertyValue('--rZ') || '0deg';
 
-    // Force GSAP to take over the transform natively, and start invisible
+    // Place statically in the 3D world
     gsap.set(b, {
       xPercent: -50,
       yPercent: -50,
       x: initX,
       y: initY,
-      z: -parseInt(initZ), 
+      z: parseInt(initZ), 
       rotationX: initRx,
       rotationY: initRy,
       rotationZ: initRz,
-      opacity: 0,
-      filter: 'blur(10px)'
+      transformOrigin: "center center"
     });
+
+    const content = b.querySelector('.billboard__content');
+    const photo = b.querySelector('.billboard__photo');
     
+    // Hide text initially
     gsap.set(content, { opacity: 0, y: 30 });
-    gsap.set(photo, { opacity: 0, scale: 0.8 });
+    // Keep photo visible as part of the environment
+    gsap.set(photo, { opacity: 1, scale: 1 });
+  });
+
+  // Main scroll timeline
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: '+=4000', // Scroll length
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+
+  // Fly the camera down the Z-axis
+  tl.to(camera, {
+    z: maxDepth,
+    ease: 'none',
+    duration: 1
+  });
+
+  // Add individual reveal/hide animations for each billboard's text based on camera proximity
+  billboards.forEach(b => {
+    const content = b.querySelector('.billboard__content');
+    const zPos = Math.abs(parseInt(b.style.getPropertyValue('--z') || '0'));
     
-    // 1. Pull to center & fade in photo
-    tl.to(b, {
-      x: '0vw',
-      y: '0vh',
-      z: 0,
-      rotationX: 0,
-      rotationY: 0,
-      rotationZ: 0,
-      opacity: 1,
-      filter: 'blur(0px)',
-      duration: 1,
-      ease: 'power2.out'
-    }, time);
-    
-    tl.to(photo, { opacity: 1, scale: 1, duration: 1, ease: 'power2.out' }, time);
-    
-    time += 0.8; 
-    
-    // 2. Fade in text
-    tl.to(content, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, time);
-    
-    time += 1.2; 
-    
-    // 3. Fade out everything and push out of the way
-    tl.to(b, {
-      opacity: 0,
-      z: 1000, 
-      filter: 'blur(20px)',
-      duration: 0.8,
-      ease: 'power2.in'
-    }, time);
-    
-    time += 0.6; // move to next
+    // Calculate when the camera is approaching this billboard
+    // The camera travels from 0 to 14000.
+    const approachStart = (zPos - 1500) / maxDepth; // Start fading in text 1500px away
+    const approachEnd = zPos / maxDepth; // Fully visible when camera is right at it
+    const passEnd = (zPos + 500) / maxDepth; // Fade out quickly as camera passes
+
+    if (approachStart >= 0 && approachStart <= 1) {
+      tl.to(content, { opacity: 1, y: 0, duration: approachEnd - approachStart, ease: 'power2.out' }, approachStart);
+      tl.to(content, { opacity: 0, duration: passEnd - approachEnd, ease: 'power2.in' }, approachEnd);
+    }
   });
 }
 
