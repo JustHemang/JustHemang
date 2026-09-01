@@ -622,3 +622,30 @@ export function initContactOrb() {
     });
   });
 }
+
+export function initHorizontalMuseum() {
+  const section = document.querySelector('.journey-museum');
+  if (!section) return;
+  
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  if (!gsap || !ScrollTrigger) return;
+  
+  const track = section.querySelector('.museum-track');
+  const panels = track.querySelectorAll('.museum-panel');
+  
+  // Calculate total scroll width
+  const totalWidth = Array.from(panels).reduce((acc, p) => acc + p.offsetWidth, 0);
+  
+  gsap.to(track, {
+    x: () => -(totalWidth - window.innerWidth),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      pin: true,
+      scrub: 1,
+      end: () => '+=' + (totalWidth - window.innerWidth),
+      invalidateOnRefresh: true
+    }
+  });
+}
