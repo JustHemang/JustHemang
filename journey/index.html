@@ -4,14 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Journey &mdash; Hertx</title>
-  <meta name="description" content="My Journey" />
+  <meta name="description" content="The chronological milestones of Hemang Luthra's creative journey." />
   <meta name="theme-color" content="#2a2520" />
   <link rel="icon" href="../Logo Transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body class="page-sub">
@@ -23,7 +21,6 @@
     <div class="pt-bar pt-bar--5" style="--i:4"></div>
   </div>
   <style>
-    /* Safety: if JS fails, force transition off after 1.5s */
     .pt-bar { animation: pt-fallback 0.6s ease forwards; animation-delay: calc(0.9s + var(--i) * 0.05s); }
     @keyframes pt-fallback { to { transform: translateX(100%); } }
     #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
@@ -36,8 +33,6 @@
     <div class="cursor__ring" id="cursorRing"></div>
     <div class="cursor__dot" id="cursorDot"></div>
   </div>
-
-  <!-- Nav -->
   <header class="nav" id="nav">
     <a class="nav__logo" href="/">
       <img class="nav__logo-img" src="../Logo Transparent.png" alt="Hertx" />
@@ -48,120 +43,125 @@
       <span>MENU</span>
     </button>
   </header>
-  <!-- Overlay Menu -->
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <nav class="menu-overlay__links" aria-label="Menu">
-        <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
-        <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
-        <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
-        <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
-        <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
-        <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
+      <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
+      <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
+      <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
+      <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
+      <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
+      <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
     </nav>
     <div class="menu-overlay__foot">
       <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/xhertxd/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@xHertx" target="_blank" rel="noopener">YouTube</a>
     </div>
   </div>
-  
+
   <main>
-    <section class="page-hero">
-      <p class="section__eyebrow mono anim-slide-left">The timeline</p>
-      <h1 class="page-hero__title tw-type">Journey</h1>
+    <section class="journey-hero">
+      <p class="mono section__eyebrow anim-slide-left">The Timeline</p>
+      <h1 class="tw-type journey-hero__title anim-slide-up">JOURNEY</h1>
       <div class="accent-line"></div>
     </section>
 
-    <section class="journey-museum" id="journeyMuseum">
-      <div class="museum-track" id="museumTrack">
-        
-        <!-- Intro Slide -->
-        <div class="museum-panel museum-panel--intro">
-          <h2 class="tw-type">THE START.</h2>
-          <p class="mono">Scroll to explore the chronological milestones.</p>
-        </div>
+    <section class="journey-timeline" id="journey">
+      <div class="timeline-line"></div>
 
-        <!-- Milestone 1 -->
-        <div class="museum-panel">
-          <div class="m-panel__img-wrap">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" alt="Joined OpCode" />
-          </div>
-          <div class="m-panel__content">
-            <span class="m-panel__date mono accent">APR 2025</span>
-            <h3 class="tw-type">OPCODE TECHNOCRAT</h3>
-            <p class="mono">Joined OPCODE, my school's prestigious tech club, taking my first steps into the community.</p>
+      <div class="tl-item anim-slide-up">
+        <div class="tl-marker">
+          <span class="tl-dot"></span>
+          <span class="tl-year mono">APR 2025</span>
+        </div>
+        <div class="tl-content">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=900&auto=format&fit=crop" alt="OpCode" class="tl-img" />
+          <div class="tl-text">
+            <h2 class="tw-type">OPCODE<br>TECHNOCRAT</h2>
+            <p class="mono">Joined OPCODE, my school's prestigious tech club — first steps into the community that would shape my leadership journey.</p>
           </div>
         </div>
+      </div>
 
-        <!-- Milestone 2 -->
-        <div class="museum-panel">
-          <div class="m-panel__img-wrap">
-            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1200&auto=format&fit=crop" alt="Lead Video Editor" />
-          </div>
-          <div class="m-panel__content">
-            <span class="m-panel__date mono accent">NOV 2025</span>
-            <h3 class="tw-type">LEAD VIDEO EDITOR</h3>
-            <p class="mono">Promoted to Lead Video Editor after successfully contributing to the Annual Day events.</p>
+      <div class="tl-item tl-item--right anim-slide-up">
+        <div class="tl-marker">
+          <span class="tl-dot"></span>
+          <span class="tl-year mono">NOV 2025</span>
+        </div>
+        <div class="tl-content">
+          <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=900&auto=format&fit=crop" alt="Lead Video Editor" class="tl-img" />
+          <div class="tl-text">
+            <h2 class="tw-type">LEAD VIDEO<br>EDITOR</h2>
+            <p class="mono">Promoted to Lead Video Editor after successfully producing content for Annual Day events. Precision in every cut.</p>
           </div>
         </div>
+      </div>
 
-        <!-- Milestone 3 -->
-        <div class="museum-panel">
-          <div class="m-panel__img-wrap">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" alt="Vice President" />
-          </div>
-          <div class="m-panel__content">
-            <span class="m-panel__date mono accent">APR 2026</span>
-            <h3 class="tw-type">VICE PRESIDENT</h3>
-            <p class="mono">Promoted to Vice President of OPCODE, taking on greater leadership and organizational responsibilities.</p>
+      <div class="tl-item anim-slide-up">
+        <div class="tl-marker">
+          <span class="tl-dot"></span>
+          <span class="tl-year mono">AGE 16</span>
+        </div>
+        <div class="tl-content">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=900&auto=format&fit=crop" alt="First Client" class="tl-img" />
+          <div class="tl-text">
+            <h2 class="tw-type">FIRST<br>CLIENT</h2>
+            <p class="mono">Got my first paying client at 16. The moment professional creative work became real — not just a hobby.</p>
           </div>
         </div>
+      </div>
 
-        <!-- Milestone 4 -->
-        <div class="museum-panel">
-          <div class="m-panel__img-wrap">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="President" />
-          </div>
-          <div class="m-panel__content">
-            <span class="m-panel__date mono accent">JUL 2026</span>
-            <h3 class="tw-type">PRESIDENT</h3>
-            <p class="mono">Promoted to President after my work co-hosting Xenium and judging the Film Making event.</p>
+      <div class="tl-item tl-item--right anim-slide-up">
+        <div class="tl-marker">
+          <span class="tl-dot"></span>
+          <span class="tl-year mono">APR 2026</span>
+        </div>
+        <div class="tl-content">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=900&auto=format&fit=crop" alt="Vice President" class="tl-img" />
+          <div class="tl-text">
+            <h2 class="tw-type">VICE<br>PRESIDENT</h2>
+            <p class="mono">Promoted to Vice President of OPCODE, taking on greater leadership, event management, and organizational responsibilities.</p>
           </div>
         </div>
+      </div>
 
-        <!-- Milestone 5 -->
-        <div class="museum-panel">
-          <div class="m-panel__img-wrap">
-            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop" alt="First Client" />
-          </div>
-          <div class="m-panel__content">
-            <span class="m-panel__date mono accent">AGE 16</span>
-            <h3 class="tw-type">FIRST CLIENT</h3>
-            <p class="mono">Got my first client at the age of 16, officially beginning my journey into professional creative work.</p>
+      <div class="tl-item anim-slide-up">
+        <div class="tl-marker">
+          <span class="tl-dot"></span>
+          <span class="tl-year mono">JUL 2026</span>
+        </div>
+        <div class="tl-content">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900&auto=format&fit=crop" alt="President" class="tl-img" />
+          <div class="tl-text">
+            <h2 class="tw-type">PRESIDENT<br>@ OPCODE</h2>
+            <p class="mono">Became President after co-hosting Xenium and judging the Film Making event. The top of a long climb.</p>
           </div>
         </div>
+      </div>
 
-        <!-- Milestone 6 -->
-        <div class="museum-panel">
-          <div class="m-panel__img-wrap">
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop" alt="Alumni" />
-          </div>
-          <div class="m-panel__content">
-            <span class="m-panel__date mono accent">MAR 2027</span>
-            <h3 class="tw-type">ALUMNI</h3>
-            <p class="mono">My OPCODE journey officially concludes, paving the way for new ventures.</p>
+      <div class="tl-item tl-item--right anim-slide-up">
+        <div class="tl-marker">
+          <span class="tl-dot"></span>
+          <span class="tl-year mono">MAR 2027</span>
+        </div>
+        <div class="tl-content">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=900&auto=format&fit=crop" alt="Alumni" class="tl-img" />
+          <div class="tl-text">
+            <h2 class="tw-type">ALUMNI<br>&amp; BEYOND</h2>
+            <p class="mono">OPCODE chapter concludes. Kaelor Media launches. The next era begins — bigger clients, bolder work.</p>
           </div>
         </div>
-        
-        <!-- Outro Slide -->
-        <div class="museum-panel museum-panel--outro">
-          <h2 class="tw-type">THE FUTURE.</h2>
-          <a class="cta__btn" href="/contact" style="margin-top: 2rem;">Let's build it</a>
-        </div>
+      </div>
 
+      <div class="tl-end">
+        <span class="tl-dot tl-dot--end"></span>
+        <h2 class="tw-type">THE FUTURE.</h2>
+        <a class="cta__btn" href="/contact" style="margin-top:2rem">Let's build it</a>
       </div>
     </section>
   </main>
-  
+
   <footer class="footer">
     <img class="footer__logo" src="../Logo Transparent.png" alt="Hertx" />
     <div class="footer__row">
@@ -179,6 +179,6 @@
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="../js/main.js" type="module"></script>
+  <script type="module" src="../js/main.js"></script>
 </body>
 </html>

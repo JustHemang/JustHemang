@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About &mdash; Hertx</title>
-  <meta name="description" content="About Hertx." />
+  <meta name="description" content="Hemang Luthra — Video Editor, Fullstack Developer, and Creative Director." />
   <meta name="theme-color" content="#2a2520" />
   <link rel="icon" href="../Logo Transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
-  <script defer src="/_vercel/insights/script.js"></script>
 </head>
-
 <body class="page-about page-sub">
   <div class="page-transition" id="pageTransition" aria-hidden="true" style="display:flex;">
     <div class="pt-bar pt-bar--1" style="--i:0"></div>
@@ -26,21 +21,21 @@
     <div class="pt-bar pt-bar--5" style="--i:4"></div>
   </div>
   <style>
-    /* Safety: if JS fails, force transition off after 1.5s */
     .pt-bar { animation: pt-fallback 0.6s ease forwards; animation-delay: calc(0.9s + var(--i) * 0.05s); }
     @keyframes pt-fallback { to { transform: translateX(100%); } }
     #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
     @keyframes pt-hide { to { display: none; pointer-events: none; opacity: 0; } }
   </style>
+  <div class="fx-grain" aria-hidden="true"></div>
+  <div class="fx-vignette" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="cursor" id="cursor" aria-hidden="true">
     <div class="cursor__ring" id="cursorRing"></div>
     <div class="cursor__dot" id="cursorDot"></div>
   </div>
-  <div class="fx-vignette" aria-hidden="true"></div>
   <header class="nav" id="nav">
     <a class="nav__logo" href="/">
-      <img class="nav__logo-img" src="../Logo Transparent.png" alt="JH" />
+      <img class="nav__logo-img" src="../Logo Transparent.png" alt="Hertx" />
       <span class="nav__logo-text">Hertx</span>
     </a>
     <button class="nav__menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
@@ -50,73 +45,101 @@
   </header>
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <nav class="menu-overlay__links" aria-label="Menu">
-        <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
-        <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
-        <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
-        <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
-        <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
-        <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
+      <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
+      <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
+      <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
+      <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
+      <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
+      <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
     </nav>
     <div class="menu-overlay__foot">
       <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://www.instagram.com/xhertxd" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://youtube.com/@JustHemang" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/xhertxd/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@xHertx" target="_blank" rel="noopener">YouTube</a>
     </div>
   </div>
+
   <main>
-        <section class="glitch-os" id="about">
-      <div class="fx-noise"></div>
-      <div class="glitch-container">
-        <div class="glitch-header anim-slide-up">
-          <h1 class="tw-type glitch-title" data-text="SYSTEM.CORE">SYSTEM.CORE</h1>
-          <p class="mono meta">Status: OFFLINE // Decrypting identity module...</p>
+    <section class="about-bento" id="about">
+      <!-- Row 1 -->
+      <div class="bento-grid">
+
+        <!-- Photo card — tall left -->
+        <div class="bento-card bento-photo anim-scale">
+          <img src="../hemang.png" alt="Hemang Luthra" />
+          <div class="bento-photo__label mono">HEMANG LUTHRA</div>
         </div>
-        
-        <!-- Two-column layout: Photo left, Bio right -->
-        <div class="about-split">
-          <div class="about-photo anim-scale">
-            <img src="../hemang.png" alt="Hemang Luthra" />
+
+        <!-- Name + tagline card -->
+        <div class="bento-card bento-hero anim-slide-up">
+          <p class="mono bento-eyebrow">Video Editor &bull; Developer &bull; Creative</p>
+          <h1 class="tw-type bento-name">HERTX</h1>
+          <p class="mono bento-tagline">Turning raw frames and blank screens into stories that move people. Based in Delhi, India.</p>
+          <a href="/contact/" class="bento-cta mono">Let's work &rarr;</a>
+        </div>
+
+        <!-- Stats card -->
+        <div class="bento-card bento-stats anim-slide-up" style="--delay:0.1s">
+          <div class="stat-item">
+            <span class="stat-num tw-type">120M+</span>
+            <span class="stat-label mono">Total Views</span>
           </div>
-          <div class="about-bio anim-slide-right">
-            <div class="mono about-commit">
-              <p class="commit-hash">commit 8c5fa23 (HEAD -> main)</p>
-              <p>Author: Hemang Luthra &lt;xhertxd@gmail.com&gt;</p>
-              <p>Date: &nbsp; 2021 - Present</p>
-              <br>
-              <p class="commit-msg">&nbsp;&nbsp;&nbsp;&nbsp;feat: Initialize creative engine</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;- Freelance video editor &amp; fullstack developer</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;- Creative director based in Delhi, India</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;- Bridging cinematic storytelling and code</p>
-            </div>
-            <div class="mono about-commit">
-              <p class="commit-hash">commit a77644c</p>
-              <p>Author: Hemang Luthra &lt;xhertxd@gmail.com&gt;</p>
-              <p>Date: &nbsp; 2023 - Present</p>
-              <br>
-              <p class="commit-msg">&nbsp;&nbsp;&nbsp;&nbsp;feat: Leadership roles initialized</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;- President @ OPCODE</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;- Founder @ Kaelor Media</p>
-            </div>
-            <div class="mono about-commit">
-              <p class="commit-hash">commit fb307e8</p>
-              <p>Author: Hemang Luthra &lt;xhertxd@gmail.com&gt;</p>
-              <p>Date: &nbsp; 2024 - Present</p>
-              <br>
-              <p class="commit-msg">&nbsp;&nbsp;&nbsp;&nbsp;feat: Scale metrics</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;- 120,000,000+ total views</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;- 300+ projects completed</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;- 20+ client networks</p>
-            </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num tw-type">300+</span>
+            <span class="stat-label mono">Projects</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num tw-type">20+</span>
+            <span class="stat-label mono">Clients</span>
           </div>
         </div>
+
+        <!-- Role card 1 -->
+        <div class="bento-card bento-role anim-slide-up" style="--delay:0.15s">
+          <span class="role-num mono">01</span>
+          <h3 class="tw-type">VIDEO<br>EDITOR</h3>
+          <p class="mono">DaVinci Resolve &bull; Premiere Pro &bull; After Effects</p>
+        </div>
+
+        <!-- Role card 2 -->
+        <div class="bento-card bento-role anim-slide-up" style="--delay:0.2s">
+          <span class="role-num mono">02</span>
+          <h3 class="tw-type">FULLSTACK<br>DEV</h3>
+          <p class="mono">React &bull; Next.js &bull; Node.js &bull; Python</p>
+        </div>
+
+        <!-- Role card 3 -->
+        <div class="bento-card bento-role anim-slide-up" style="--delay:0.25s">
+          <span class="role-num mono">03</span>
+          <h3 class="tw-type">CREATIVE<br>DIR.</h3>
+          <p class="mono">Figma &bull; Photoshop &bull; Brand Identity</p>
+        </div>
+
+        <!-- Leadership card -->
+        <div class="bento-card bento-leadership anim-slide-up" style="--delay:0.3s">
+          <span class="mono bento-eyebrow">Positions</span>
+          <div class="leadership-row">
+            <span class="tw-type leadership-title">PRESIDENT</span>
+            <span class="mono leadership-org">@ OPCODE</span>
+          </div>
+          <div class="leadership-row">
+            <span class="tw-type leadership-title">FOUNDER</span>
+            <span class="mono leadership-org">@ Kaelor Media</span>
+          </div>
+        </div>
+
       </div>
     </section>
+
     <section class="page-cta">
       <h2 class="tw-type">Have a project in mind?</h2>
       <a class="cta__btn" href="/contact">Get in touch</a>
     </section>
   </main>
+
   <div class="timecode" id="timecode" aria-hidden="true">
     <div class="timecode__dot"></div>
     <span id="timecodeValue">00:00:00:00</span>
@@ -124,14 +147,14 @@
   </div>
   <div class="live-clock mono" id="liveClock" aria-hidden="true"></div>
   <footer class="footer">
-    <img class="footer__logo" src="../Logo Transparent.png" alt="Hemang Luthra" />
+    <img class="footer__logo" src="../Logo Transparent.png" alt="Hertx" />
     <div class="footer__row">
       <div class="footer__links">
         <a href="mailto:xhertxd@gmail.com">Email</a>
         <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.instagram.com/xhertxd" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://youtube.com/@JustHemang" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://youtube.com/@xHertx" target="_blank" rel="noopener">YouTube</a>
         <a href="/terms/">Terms</a>
         <a href="/privacy/">Privacy</a>
       </div>
@@ -142,5 +165,4 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="module" src="../js/main.js"></script>
 </body>
-
 </html>

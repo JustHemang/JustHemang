@@ -3059,3 +3059,378 @@ p a:hover::after, .footer__links a:hover::after {
     max-width: 100%;
   }
 }
+
+/* ==========================================================================
+   ABOUT - BENTO GRID
+   ========================================================================== */
+.page-about {
+  background: var(--bg);
+}
+
+.about-bento {
+  padding: 15vh var(--pad) 10vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1.5rem;
+}
+
+.bento-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
+}
+
+.bento-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.bento-eyebrow {
+  font-size: 0.85rem;
+  color: var(--teal);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* Photo */
+.bento-photo {
+  grid-column: span 1;
+  grid-row: span 3;
+  padding: 0;
+  border: none;
+}
+.bento-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(80%) contrast(1.1);
+  transition: filter 0.5s ease, transform 0.8s ease;
+}
+.bento-photo:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+.bento-photo__label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: var(--paper);
+}
+
+/* Hero Intro */
+.bento-hero {
+  grid-column: span 3;
+  grid-row: span 2;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+}
+.bento-name {
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 1;
+  color: var(--paper);
+  margin-bottom: 1rem;
+}
+.bento-tagline {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--paper-2);
+  max-width: 80%;
+  line-height: 1.6;
+}
+.bento-cta {
+  margin-top: 2rem;
+  display: inline-block;
+  align-self: flex-start;
+  color: var(--teal);
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+.bento-cta:hover {
+  color: var(--teal-light);
+}
+
+/* Stats */
+.bento-stats {
+  grid-column: span 3;
+  grid-row: span 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1.5rem;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.stat-num {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  color: var(--paper);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--paper-2);
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.stat-divider {
+  width: 1px;
+  height: 60%;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Roles */
+.bento-role {
+  grid-column: span 1;
+  grid-row: span 1;
+  justify-content: space-between;
+}
+.role-num {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 1rem;
+}
+.bento-role h3 {
+  font-size: 1.8rem;
+  color: var(--paper);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.bento-role p {
+  font-size: 0.8rem;
+  color: var(--teal);
+  line-height: 1.4;
+}
+
+/* Leadership */
+.bento-leadership {
+  grid-column: span 1;
+  grid-row: span 1;
+  background: rgba(56, 189, 248, 0.05); /* very faint teal */
+}
+.leadership-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+.leadership-row:last-child {
+  margin-bottom: 0;
+}
+.leadership-title {
+  font-size: 1.5rem;
+  color: var(--paper);
+}
+.leadership-org {
+  font-size: 0.85rem;
+  color: var(--paper-2);
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-photo {
+    grid-column: span 2;
+    grid-row: span 2;
+    aspect-ratio: 16/9;
+  }
+  .bento-hero, .bento-stats {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+  .bento-card {
+    grid-column: span 1 !important;
+    grid-row: auto !important;
+  }
+  .bento-photo {
+    aspect-ratio: 4/5;
+  }
+  .bento-stats {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .stat-divider {
+    width: 60%;
+    height: 1px;
+  }
+}
+
+/* ==========================================================================
+   JOURNEY - VERTICAL TIMELINE
+   ========================================================================== */
+.journey-hero {
+  padding: 20vh var(--pad) 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.journey-hero__title {
+  font-size: clamp(4rem, 12vw, 10rem);
+  color: var(--paper);
+  line-height: 1;
+}
+
+.journey-timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5vh var(--pad) 15vh;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1) 10%, rgba(255,255,255,0.1) 90%, transparent);
+  transform: translateX(-50%);
+}
+
+.tl-item {
+  position: relative;
+  width: 50%;
+  padding-right: 5rem;
+  margin-bottom: 8rem;
+}
+.tl-item--right {
+  margin-left: auto;
+  padding-right: 0;
+  padding-left: 5rem;
+}
+
+.tl-marker {
+  position: absolute;
+  top: 0;
+  right: -0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transform: translateX(100%);
+  width: max-content;
+}
+.tl-item--right .tl-marker {
+  left: -0.5rem;
+  right: auto;
+  transform: translateX(-100%);
+  flex-direction: row-reverse;
+}
+
+.tl-dot {
+  width: 1rem;
+  height: 1rem;
+  background: var(--teal);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+.tl-year {
+  font-size: 1.2rem;
+  color: var(--paper);
+  letter-spacing: 2px;
+}
+
+.tl-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tl-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 8px;
+  filter: grayscale(80%);
+  transition: filter 0.5s;
+}
+.tl-item:hover .tl-img {
+  filter: grayscale(0%);
+}
+
+.tl-text h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--paper);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.tl-text p {
+  font-size: 1rem;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
+
+.tl-end {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
+  position: relative;
+  z-index: 1;
+}
+.tl-dot--end {
+  margin-bottom: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.tl-end h2 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: var(--paper);
+}
+
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 1rem;
+    transform: none;
+  }
+  .tl-item {
+    width: 100%;
+    padding-left: 4rem;
+    padding-right: 0;
+  }
+  .tl-item--right {
+    margin-left: 0;
+  }
+  .tl-marker {
+    left: 0.5rem;
+    right: auto;
+    transform: none;
+    flex-direction: row-reverse;
+  }
+  .tl-item--right .tl-marker {
+    left: 0.5rem;
+    transform: none;
+  }
+  .tl-year {
+    font-size: 1rem;
+  }
+}
