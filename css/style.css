@@ -3876,17 +3876,17 @@ p a:hover::after, .footer__links a:hover::after {
 }
 
 .dj-card {
-  height: 60vh;
+  height: 150vh; /* Make the scroll area for each card much taller */
   position: relative;
-  margin-bottom: -40vh; /* cards overlap heavily initially */
+  margin-bottom: -90vh; /* Cards still overlap visually */
 }
 .dj-card:last-child {
-  margin-bottom: 10vh;
+  margin-bottom: 20vh;
 }
 
 .dj-card-inner {
   width: 100%;
-  height: 100%;
+  height: 60vh; /* The actual visible card stays 60vh */
   background: #fff;
   border-radius: 24px;
   box-shadow: 0 -10px 30px rgba(0,0,0,0.08);
@@ -3939,4 +3939,121 @@ p a:hover::after, .footer__links a:hover::after {
   .dj-card-inner { flex-direction: column; }
   .dj-img { width: 100%; height: 40%; }
   .dj-text { padding: 1.5rem; }
+}
+
+/* ==========================================================================
+   GLOBAL UPDATES: HAMBURGER, HIGHLIGHT ANIMATION, WATERMARK
+   ========================================================================== */
+
+/* Better Hamburger Menu */
+.nav__menu-btn {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important; /* Make it a circle */
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.nav__menu-btn:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+  transform: scale(1.1);
+}
+
+.nav__menu-btn:hover .nav__bars i {
+  background: #111 !important; /* Invert icon color on hover */
+}
+
+/* Light theme overrides for better hamburger */
+.btn-dark {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+.btn-dark:hover {
+  background: #111 !important;
+  border-color: #111 !important;
+}
+.btn-dark:hover .nav__bars i {
+  background: #fff !important;
+}
+
+/* Text Highlight Animation globally */
+/* We'll apply this to .tw-type elements or specific headings on hover */
+.text-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.text-highlight::after,
+.tw-type:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: var(--teal);
+  z-index: -1;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.tw-type {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.tw-type:hover::after,
+.text-highlight:hover::after,
+.menu-overlay__link:hover::after {
+  transform: scaleX(1);
+}
+
+.menu-overlay__link {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-overlay__link::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: -5%;
+  width: 110%;
+  height: 40%;
+  background: var(--teal);
+  z-index: -1;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  mix-blend-mode: difference;
+}
+
+/* Global Watermark */
+body::before {
+  content: 'HERTX / SYSTEM.CORE // ' attr(data-time);
+  position: fixed;
+  bottom: -2vw;
+  right: -5vw;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15vw;
+  color: rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+  z-index: 0;
+  white-space: nowrap;
+  transform: rotate(-10deg);
+  mix-blend-mode: overlay;
+}
+
+/* Adjust watermark for light theme */
+.deck-theme::before {
+  color: rgba(0, 0, 0, 0.03);
 }

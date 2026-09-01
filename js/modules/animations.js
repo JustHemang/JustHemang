@@ -654,20 +654,36 @@ export function initDeckJourney() {
   const cards = section.querySelectorAll('.dj-card');
   
   cards.forEach((card, i) => {
+    // Skip the very last spacing card
+    if (card.classList.contains('dj-card-end')) return;
+    
     const inner = card.querySelector('.dj-card-inner');
     if (!inner) return;
     
-    gsap.to(inner, {
-      yPercent: -100,
-      scale: 0.9,
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: card,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: 1
-      }
+    // Pin each card so it stays on screen while the user scrolls past it
+    ScrollTrigger.create({
+      trigger: card,
+      start: 'top center',
+      end: 'bottom top',
+      pin: inner,
+      pinSpacing: false
     });
+
+    // Animate it fading/shrinking away when the NEXT card comes up
+    if (i < cards.length - 2) {
+      const nextCard = cards[i + 1];
+      gsap.to(inner, {
+        scale: 0.9,
+        opacity: 0,
+        filter: 'blur(10px)',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: nextCard,
+          start: 'top 60%',
+          end: 'top 20%',
+          scrub: 1
+        }
+      });
+    }
   });
 }
