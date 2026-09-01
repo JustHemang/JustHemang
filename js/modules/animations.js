@@ -396,10 +396,6 @@ function initTrippy(gsap, REDUCED) {
   tl.to(frames, { scale: 1.25, rotate: '60deg', duration: 0.2, ease: 'none' }, 0.8);
 }
 
-function initJourneyRoad(gsap, ScrollTrigger, REDUCED) {
-  if (REDUCED) return;
-  const container = document.querySelector('#journey3dSection');
-  if (!container) return;
 export function initJourneyRoad() {
   const section = document.querySelector('#journey3dSection');
   const camera = document.querySelector('#journeyCamera');
