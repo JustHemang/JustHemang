@@ -1719,3 +1719,50 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
   color: var(--paper-2);
   line-height: 1.5;
 }
+ / *   L e g a l   P a g e s   * / 
+ . l e g a l - c o n t e n t   { 
+     f o n t - f a m i l y :   v a r ( - - f o n t - d i s p l a y ) ; 
+     c o l o r :   v a r ( - - p a p e r - 2 ) ; 
+     l i n e - h e i g h t :   1 . 8 ; 
+     f o n t - s i z e :   1 . 1 r e m ; 
+ } 
+ . l e g a l - i n t r o   { 
+     f o n t - s i z e :   1 . 2 r e m ; 
+     c o l o r :   v a r ( - - t e a l - l i g h t ) ; 
+     m a r g i n - b o t t o m :   3 r e m ; 
+     f o n t - w e i g h t :   5 0 0 ; 
+ } 
+ . l e g a l - s e c t i o n   { 
+     m a r g i n - b o t t o m :   3 r e m ; 
+     p a d d i n g - b o t t o m :   2 r e m ; 
+     b o r d e r - b o t t o m :   1 p x   s o l i d   r g b a ( 2 5 5 ,   2 5 5 ,   2 5 5 ,   0 . 0 5 ) ; 
+ } 
+ . l e g a l - s e c t i o n : l a s t - c h i l d   { 
+     b o r d e r - b o t t o m :   n o n e ; 
+ } 
+ . l e g a l - h e a d i n g   { 
+     f o n t - f a m i l y :   v a r ( - - f o n t - m o n o ) ; 
+     f o n t - s i z e :   1 . 2 5 r e m ; 
+     c o l o r :   v a r ( - - p a p e r ) ; 
+     m a r g i n - b o t t o m :   1 r e m ; 
+     l e t t e r - s p a c i n g :   0 . 0 5 e m ; 
+ } 
+ . l e g a l - c o n t a c t   { 
+     m a r g i n - t o p :   4 r e m ; 
+     p a d d i n g :   2 r e m ; 
+     b a c k g r o u n d :   v a r ( - - d a r k - b l u e - c a r d ) ; 
+     b o r d e r :   1 p x   s o l i d   r g b a ( 5 6 ,   1 8 9 ,   2 4 8 ,   0 . 1 5 ) ; 
+     b o r d e r - r a d i u s :   v a r ( - - r a d i u s - s m ) ; 
+     t e x t - a l i g n :   c e n t e r ; 
+ } 
+ . t e x t - l i n k   { 
+     c o l o r :   v a r ( - - t e a l - l i g h t ) ; 
+     t e x t - d e c o r a t i o n :   u n d e r l i n e ; 
+     t e x t - u n d e r l i n e - o f f s e t :   4 p x ; 
+     t r a n s i t i o n :   c o l o r   0 . 3 s   e a s e ; 
+ } 
+ . t e x t - l i n k : h o v e r   { 
+     c o l o r :   v a r ( - - p a p e r ) ; 
+ } 
+  
+ 
