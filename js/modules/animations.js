@@ -687,3 +687,47 @@ export function initDeckJourney() {
     }
   });
 }
+
+export function initOrbitalTimeline() {
+  const section = document.querySelector('.orbital-section');
+  if (!section) return;
+  
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  if (!gsap || !ScrollTrigger) return;
+  
+  const timeline = document.getElementById('orbitalTimeline');
+  const lineProgress = timeline.querySelector('.orbital-line-progress');
+  const nodes = timeline.querySelectorAll('.orbital-node');
+  
+  // Animate the line filling up
+  gsap.to(lineProgress, {
+    height: '100%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: timeline,
+      start: 'top center',
+      end: 'bottom center',
+      scrub: true
+    }
+  });
+  
+  // Activate nodes as they cross the center of the screen
+  nodes.forEach(node => {
+    ScrollTrigger.create({
+      trigger: node,
+      start: 'top center',
+      end: 'bottom center',
+      onEnter: () => {
+        node.classList.add('active');
+        const orb = node.querySelector('.orb');
+        if (orb) orb.classList.add('active');
+      },
+      onLeaveBack: () => {
+        node.classList.remove('active');
+        const orb = node.querySelector('.orb');
+        if (orb) orb.classList.remove('active');
+      }
+    });
+  });
+}

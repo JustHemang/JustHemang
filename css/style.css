@@ -4057,3 +4057,154 @@ body::before {
 .deck-theme::before {
   color: rgba(0, 0, 0, 0.03);
 }
+
+/* ==========================================================================
+   JOURNEY: ORBITAL TIMELINE
+   ========================================================================== */
+.orbital-section {
+  padding: 20vh 5vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.orbital-header {
+  text-align: center;
+  margin-bottom: 20vh;
+}
+.orbital-header h1 {
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 0.9;
+  margin-bottom: 1rem;
+}
+
+.orbital-timeline {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15vh;
+  padding-bottom: 10vh;
+}
+
+/* The central line */
+.orbital-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.orbital-line-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--teal);
+  box-shadow: 0 0 15px var(--teal);
+}
+
+/* Individual nodes */
+.orbital-node {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.orb {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #111;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+.orb.active {
+  background: var(--teal);
+  border-color: var(--teal);
+  box-shadow: 0 0 20px var(--teal);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.orbital-content {
+  width: 40%;
+  padding: 2rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  opacity: 0.3; /* dim until active */
+  transition: all 0.5s ease;
+}
+
+.orbital-node.align-left .orbital-content {
+  margin-right: 50%;
+  text-align: right;
+  transform: translateX(-30px);
+}
+.orbital-node.align-right .orbital-content {
+  margin-left: 50%;
+  text-align: left;
+  transform: translateX(30px);
+}
+
+.orbital-node.active .orbital-content {
+  opacity: 1;
+  transform: translateX(0);
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.orbital-date {
+  color: var(--teal);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 1rem;
+}
+.orbital-content h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.orbital-content p {
+  font-family: 'Inter', sans-serif;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+/* Media Queries for Orbital */
+@media (max-width: 768px) {
+  .orbital-line {
+    left: 20px;
+  }
+  .orb {
+    left: 20px;
+  }
+  .orbital-node {
+    justify-content: flex-start;
+  }
+  .orbital-node.align-left .orbital-content,
+  .orbital-node.align-right .orbital-content {
+    margin-right: 0;
+    margin-left: 50px;
+    width: calc(100% - 50px);
+    text-align: left;
+    transform: translateX(20px);
+  }
+  .orbital-node.active .orbital-content {
+    transform: translateX(0);
+  }
+}

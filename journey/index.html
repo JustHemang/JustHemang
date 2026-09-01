@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Journey &mdash; Hertx</title>
   <meta name="description" content="The chronological milestones of Hemang Luthra's creative journey." />
-  <meta name="theme-color" content="#f0f0f0" />
+  <meta name="theme-color" content="#121212" />
   <link rel="icon" href="../Logo Transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
-<body class="page-journey page-sub deck-theme">
+<body class="page-journey page-sub">
   <div class="page-transition" id="pageTransition" aria-hidden="true" style="display:flex;">
     <div class="pt-bar pt-bar--1" style="--i:0"></div>
     <div class="pt-bar pt-bar--2" style="--i:1"></div>
@@ -26,14 +26,20 @@
     #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
     @keyframes pt-hide { to { display: none; pointer-events: none; opacity: 0; } }
   </style>
+  <div class="fx-grain" aria-hidden="true"></div>
+  
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
 
-  <header class="nav nav-dark" id="nav">
+  <header class="nav" id="nav">
     <a class="nav__logo" href="/">
-      <img class="nav__logo-img invert-logo" src="../Logo Transparent.png" alt="Hertx" />
+      <img class="nav__logo-img" src="../Logo Transparent.png" alt="Hertx" />
       <span class="nav__logo-text">Hertx</span>
     </a>
-    <button class="nav__menu-btn btn-dark" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-      <div class="nav__bars bars-dark"><i></i><i></i><i></i></div>
+    <button class="nav__menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <div class="nav__bars"><i></i><i></i><i></i></div>
     </button>
   </header>
   
@@ -49,90 +55,91 @@
   </div>
 
   <main>
-    <section class="deck-journey-section">
-      <div class="dj-header">
-        <h1 class="tw-type">THE TIMELINE</h1>
-        <p class="mono">Scroll to flip through the deck &darr;</p>
+    <section class="orbital-section">
+      <div class="orbital-header">
+        <h1 class="tw-type text-highlight anim-slide-up">THE JOURNEY</h1>
+        <p class="mono meta anim-slide-up" style="--delay: 0.1s">A chronological log of creative milestones.</p>
       </div>
 
-      <div class="dj-stack" id="djStack">
-        
-        <div class="dj-card">
-          <div class="dj-card-inner">
-            <div class="dj-img">
-              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop" />
-            </div>
-            <div class="dj-text">
-              <span class="mono dj-date">APR 2025</span>
-              <h2 class="tw-type">OPCODE<br>TECHNOCRAT</h2>
-              <p>Joined my school's prestigious tech club. The first step.</p>
-            </div>
+      <div class="orbital-timeline" id="orbitalTimeline">
+        <div class="orbital-line">
+          <div class="orbital-line-progress"></div>
+        </div>
+
+        <!-- Node 1 -->
+        <div class="orbital-node align-left">
+          <div class="orb"></div>
+          <div class="orbital-content">
+            <span class="mono orbital-date">2021 &mdash; PRESENT</span>
+            <h2 class="tw-type text-highlight">FREELANCE<br>EDITOR</h2>
+            <p>Started as a curious kid making edits for fun. Evolved into professional video editing across YouTube, reels, short films, and client projects worldwide.</p>
           </div>
         </div>
 
-        <div class="dj-card">
-          <div class="dj-card-inner">
-            <div class="dj-img">
-              <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=800&auto=format&fit=crop" />
-            </div>
-            <div class="dj-text">
-              <span class="mono dj-date">NOV 2025</span>
-              <h2 class="tw-type">LEAD<br>EDITOR</h2>
-              <p>Promoted to Lead Video Editor for major productions.</p>
-            </div>
+        <!-- Node 2 -->
+        <div class="orbital-node align-right">
+          <div class="orb"></div>
+          <div class="orbital-content">
+            <span class="mono orbital-date">2020 &mdash; PRESENT</span>
+            <h2 class="tw-type text-highlight">FULLSTACK<br>DEVELOPER</h2>
+            <p>Building immersive web experiences. 6+ years of fullstack development, turning designs into performant, interactive applications.</p>
           </div>
         </div>
 
-        <div class="dj-card">
-          <div class="dj-card-inner">
-            <div class="dj-img">
-              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" />
-            </div>
-            <div class="dj-text">
-              <span class="mono dj-date">AGE 16</span>
-              <h2 class="tw-type">FIRST<br>CLIENT</h2>
-              <p>Secured my first paying client. Going professional.</p>
-            </div>
+        <!-- Node 3 -->
+        <div class="orbital-node align-left">
+          <div class="orb"></div>
+          <div class="orbital-content">
+            <span class="mono orbital-date">LEADERSHIP</span>
+            <h2 class="tw-type text-highlight">PRESIDENT<br>OPCODE</h2>
+            <p>Stepped up to lead my school's prestigious tech club, managing teams, organizing events, and pushing the boundaries of what students can build.</p>
           </div>
         </div>
 
-        <div class="dj-card">
-          <div class="dj-card-inner">
-            <div class="dj-img">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" />
-            </div>
-            <div class="dj-text">
-              <span class="mono dj-date">APR 2026</span>
-              <h2 class="tw-type">VICE<br>PRESIDENT</h2>
-              <p>Managing teams and leading events at OPCODE.</p>
-            </div>
+        <!-- Node 4 -->
+        <div class="orbital-node align-right">
+          <div class="orb"></div>
+          <div class="orbital-content">
+            <span class="mono orbital-date">EVENT HOST</span>
+            <h2 class="tw-type text-highlight">CO-HOST &amp; JUDGE<br>XENIUM</h2>
+            <p>Co-hosted and judged our annual tech fest, evaluating projects and fostering a culture of innovation among peers.</p>
           </div>
         </div>
 
-        <div class="dj-card">
-          <div class="dj-card-inner">
-            <div class="dj-img">
-              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" />
-            </div>
-            <div class="dj-text">
-              <span class="mono dj-date">JUL 2026</span>
-              <h2 class="tw-type">PRESIDENT<br>OPCODE</h2>
-              <p>The pinnacle of my school journey.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Blank card for spacing at the end -->
-        <div class="dj-card dj-card-end">
-          <div class="dj-card-inner" style="justify-content:center; align-items:center; text-align:center;">
-             <h2 class="tw-type" style="font-size:4rem; color:var(--ink)">TO BE<br>CONTINUED</h2>
-             <a href="/contact" class="dj-btn mono" style="margin-top:2rem">Let's work together</a>
+        <!-- Node 5 -->
+        <div class="orbital-node align-left">
+          <div class="orb"></div>
+          <div class="orbital-content">
+            <span class="mono orbital-date">THE AGENCY</span>
+            <h2 class="tw-type text-highlight">FOUNDER<br>KAELOR MEDIA</h2>
+            <p>Founded Kaelor Media, an agency bringing together video production and digital design under one roof to deliver high-retention content and branding.</p>
           </div>
         </div>
 
       </div>
     </section>
+
+    <section class="page-cta">
+      <h2 class="tw-type">Have a project in mind?</h2>
+      <a class="cta__btn" href="/contact">Get in touch</a>
+    </section>
   </main>
+
+  <footer class="footer">
+    <img class="footer__logo" src="../Logo Transparent.png" alt="Hertx" />
+    <div class="footer__row">
+      <div class="footer__links">
+        <a href="mailto:xhertxd@gmail.com">Email</a>
+        <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/xhertxd" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://youtube.com/@xHertx" target="_blank" rel="noopener">YouTube</a>
+        <a href="/terms/">Terms</a>
+        <a href="/privacy/">Privacy</a>
+      </div>
+    </div>
+    <p class="footer__copy mono">&copy; 2026 Hertx. All rights reserved.</p>
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
