@@ -27,10 +27,29 @@
   </div>
   <style>
     /* Safety: if JS fails, force transition off after 1.5s */
-    .pt-bar { animation: pt-fallback 0.6s ease forwards; animation-delay: calc(0.9s + var(--i) * 0.05s); }
-    @keyframes pt-fallback { to { transform: translateX(100%); } }
-    #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
-    @keyframes pt-hide { to { display: none; pointer-events: none; opacity: 0; } }
+    .pt-bar {
+      animation: pt-fallback 0.6s ease forwards;
+      animation-delay: calc(0.9s + var(--i) * 0.05s);
+    }
+
+    @keyframes pt-fallback {
+      to {
+        transform: translateX(100%);
+      }
+    }
+
+    #pageTransition {
+      animation: pt-hide 0.1s step-end forwards;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes pt-hide {
+      to {
+        display: none;
+        pointer-events: none;
+        opacity: 0;
+      }
+    }
   </style>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="cursor" id="cursor" aria-hidden="true">
@@ -50,12 +69,12 @@
   </header>
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <nav class="menu-overlay__links" aria-label="Menu">
-        <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
-        <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
-        <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
-        <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
-        <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
-        <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
+      <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
+      <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
+      <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
+      <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
+      <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
+      <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
     </nav>
     <div class="menu-overlay__foot">
       <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
@@ -87,8 +106,9 @@
     </section>
     <section class="masonry-gallery" id="work">
       <div class="masonry-container">
-        
-        <a href="https://www.youtube.com/watch?v=G9xF0Fgpao0" target="_blank" rel="noopener" class="masonry-item anim-slide-up" style="--m-w: 60%; --m-offset: 5%;">
+
+        <a href="https://www.youtube.com/watch?v=G9xF0Fgpao0" target="_blank" rel="noopener"
+          class="masonry-item anim-slide-up" style="--m-w: 60%; --m-offset: 5%;">
           <div class="masonry-item__bg">
             <img src="https://img.youtube.com/vi/G9xF0Fgpao0/maxresdefault.jpg" alt="Movie Safar Preview">
           </div>
@@ -99,7 +119,8 @@
           </div>
         </a>
 
-        <a href="https://www.youtube.com/watch?v=JajV1uIEpBI" target="_blank" rel="noopener" class="masonry-item anim-slide-up" style="--m-w: 45%; --m-offset: 45%; margin-top: -10%;">
+        <a href="https://www.youtube.com/watch?v=JajV1uIEpBI" target="_blank" rel="noopener"
+          class="masonry-item anim-slide-up" style="--m-w: 45%; --m-offset: 45%; margin-top: -10%;">
           <div class="masonry-item__bg">
             <img src="https://img.youtube.com/vi/JajV1uIEpBI/maxresdefault.jpg" alt="Documentary Preview">
           </div>
@@ -121,7 +142,8 @@
           </div>
         </a>
 
-        <a href="https://www.youtube.com/watch?v=EE7GuD6dMXU" target="_blank" rel="noopener" class="masonry-item anim-slide-up" style="--m-w: 40%; --m-offset: 55%; margin-top: -15%;">
+        <a href="https://www.youtube.com/watch?v=EE7GuD6dMXU" target="_blank" rel="noopener"
+          class="masonry-item anim-slide-up" style="--m-w: 40%; --m-offset: 55%; margin-top: -15%;">
           <div class="masonry-item__bg">
             <img src="https://img.youtube.com/vi/EE7GuD6dMXU/maxresdefault.jpg" alt="P POP Culture Preview">
           </div>
@@ -132,7 +154,8 @@
           </div>
         </a>
 
-        <a href="https://www.youtube.com/watch?v=A_k_uB4CWYg" target="_blank" rel="noopener" class="masonry-item anim-slide-up" style="--m-w: 70%; --m-offset: 15%; margin-top: 10%;">
+        <a href="https://www.youtube.com/watch?v=A_k_uB4CWYg" target="_blank" rel="noopener"
+          class="masonry-item anim-slide-up" style="--m-w: 70%; --m-offset: 15%; margin-top: 10%;">
           <div class="masonry-item__bg">
             <img src="https://img.youtube.com/vi/A_k_uB4CWYg/maxresdefault.jpg" alt="For A Reason Preview">
           </div>
