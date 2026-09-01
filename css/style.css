@@ -1834,3 +1834,112 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .text-link:hover {
   color: var(--paper);
 }
+
+/* Interrogation Room - Contact Page */
+body.page-contact {
+  background: #050505; /* Super dark, stark background */
+}
+.interrogation-room {
+  padding: var(--section-gap) var(--pad);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.interrogation-title {
+  font-size: clamp(3rem, 12vw, 8rem);
+  color: var(--paper);
+  opacity: 0.9;
+  letter-spacing: -0.05em;
+  margin-bottom: 4rem;
+  line-height: 0.9;
+}
+.conversational-form {
+  max-width: 900px;
+}
+.conversational-text {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--paper-3);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.conv-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  padding: 0.2rem 0.5rem;
+  width: auto;
+  min-width: 200px;
+  max-width: 100%;
+}
+.conv-input:focus {
+  outline: none;
+  border-bottom-color: var(--paper);
+  color: var(--paper);
+}
+.conv-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+.conv-textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  padding: 1.5rem;
+  min-height: 150px;
+  resize: vertical;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+.conv-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.conv-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  color: #050505;
+  background: var(--accent);
+  padding: 1rem 3rem;
+  border-radius: 100px;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.conv-submit:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+.conv-submit .arrow {
+  transition: transform 0.3s ease;
+}
+.conv-submit:hover .arrow {
+  transform: translateX(10px);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 4rem;
+}
+.contact-grid .contact-card {
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+.contact-grid .contact-card__label {
+  color: var(--accent);
+}
