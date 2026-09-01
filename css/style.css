@@ -466,12 +466,12 @@ body.has-cursor .cursor { display: block; }
 .cta__btn{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.8rem;border:1px solid var(--teal);color:var(--teal);transition:background .25s ease,color .25s ease,box-shadow .3s}
 .cta__btn:hover{background:var(--teal);color:var(--paper);box-shadow:0 0 20px rgba(42,122,122,.35)}
 .cta__btn:active{transform:scale(.97)}
-.footer{padding:clamp(2.5rem,5vh,4rem) var(--pad);border-top:1px solid var(--teal-dim);background:var(--paper-2)}
+.footer{padding:clamp(4rem,8vh,6rem) var(--pad);border-top:1px solid var(--teal-dim);background:var(--paper-2)}
 .footer__row{display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap}
 .footer__links{display:flex;gap:1.5rem}
-.footer__links a{font-family:var(--font-mono);font-size:.68rem;font-weight:500;letter-spacing:.1em;color:var(--ink-2);transition:color .2s ease}
+.footer__links a{font-family:var(--font-mono);font-size:.85rem;font-weight:500;letter-spacing:.1em;color:var(--ink-2);transition:color .2s ease}
 .footer__links a:hover{color:var(--teal)}
-.footer__copy{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;color:var(--ink-3);opacity:.5;width:100%;text-align:center;margin-top:2.5rem}
+.footer__copy{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;color:var(--ink-3);opacity:.5;width:100%;text-align:center;margin-top:2.5rem}
 .footer__logo{display:block;width:42px;height:42px;margin:0 auto 1.2rem;object-fit:contain;opacity:.2;filter:invert(1);transition:opacity .3s}
 .footer__logo:hover{opacity:.7}
 body.page-sub .footer { background: transparent; border-top-color: rgba(255, 255, 255, 0.05); }

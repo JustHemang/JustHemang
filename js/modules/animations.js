@@ -418,50 +418,76 @@ function initJourneyRoad(gsap, ScrollTrigger, REDUCED) {
     }
   });
 
-  // Animate the road infinitely over the total duration of the sequence
-  // Each item takes exactly 4.9 seconds of timeline time.
-  const totalDuration = billboards.length * 4.9;
+  // Sequence each billboard
+  let time = 0;
+  
+  // Calculate exact total duration based on overlap math
+  // Each iteration increments time by 2.6, and the final item takes 2.8 to finish.
+  const totalDuration = ((billboards.length - 1) * 2.6) + 2.8;
+
+  // Animate the road infinitely over the EXACT total duration of the sequence
   tl.to(roadGrid, {
     backgroundPositionY: `${endZ}px`,
     ease: 'none',
     duration: totalDuration
   }, 0);
-  
-  // Sequence each billboard
-  let time = 0;
+
   billboards.forEach((b, i) => {
     const content = b.querySelector('.billboard__content');
     const photo = b.querySelector('.billboard__photo');
     
-    // Hide content initially via JS just in case
+    // Read HTML inline styles
+    const initX = b.style.getPropertyValue('--x') || '0vw';
+    const initY = b.style.getPropertyValue('--y') || '0vh';
+    const initZ = b.style.getPropertyValue('--z') || '0';
+    const initRx = b.style.getPropertyValue('--rX') || '0deg';
+    const initRy = b.style.getPropertyValue('--rY') || '0deg';
+    const initRz = b.style.getPropertyValue('--rZ') || '0deg';
+
+    // Force GSAP to take over the transform natively, and start invisible
+    gsap.set(b, {
+      xPercent: -50,
+      yPercent: -50,
+      x: initX,
+      y: initY,
+      z: -parseInt(initZ), 
+      rotationX: initRx,
+      rotationY: initRy,
+      rotationZ: initRz,
+      opacity: 0,
+      filter: 'blur(10px)'
+    });
+    
     gsap.set(content, { opacity: 0, y: 30 });
     gsap.set(photo, { opacity: 0, scale: 0.8 });
     
     // 1. Pull to center & fade in photo
     tl.to(b, {
-      '--x': '0vw',
-      '--y': '0vh',
-      '--z': '0',
-      '--rX': '0deg',
-      '--rY': '0deg',
-      '--rZ': '0deg',
+      x: '0vw',
+      y: '0vh',
+      z: 0,
+      rotationX: 0,
+      rotationY: 0,
+      rotationZ: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
       duration: 1,
       ease: 'power2.out'
     }, time);
     
     tl.to(photo, { opacity: 1, scale: 1, duration: 1, ease: 'power2.out' }, time);
     
-    time += 0.8; // overlap slightly
+    time += 0.8; 
     
     // 2. Fade in text
     tl.to(content, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, time);
     
-    time += 1.2; // hold for reading
+    time += 1.2; 
     
     // 3. Fade out everything and push out of the way
     tl.to(b, {
       opacity: 0,
-      '--z': '-1000', // push past camera
+      z: 1000, 
       filter: 'blur(20px)',
       duration: 0.8,
       ease: 'power2.in'
