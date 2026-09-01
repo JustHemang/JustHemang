@@ -4398,8 +4398,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Ensure header and menu are ALWAYS on top */
 .nav {
   position: fixed !important;
-  top: 0; left: 0; width: 100%;
   z-index: 9999 !important;
+  box-sizing: border-box !important;
 }
 .nav__menu-btn {
   position: relative !important;
