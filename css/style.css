@@ -2523,3 +2523,29 @@ p a:hover::after, .footer__links a:hover::after {
   transform: scale(1.1);
   filter: grayscale(0%);
 }
+
+
+/* --- CONTACT HOVER ANIMATIONS --- */
+.monolithic-glass {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass Orb Hover Follow/Pulse */
+.glass-container:hover ~ .glass-orb,
+.monolithic-glass:hover .glass-orb {
+  transform: translate(-50%, -50%) scale(1.5);
+  filter: blur(100px) hue-rotate(45deg);
+  transition: transform 2s cubic-bezier(0.2, 0, 0.2, 1), filter 2s ease;
+}
+
+/* Squishy Text */
+.squishy-text {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1.2), color 0.4s ease;
+}
+.squishy-text:hover {
+  transform: scale(1.1, 0.85);
+  color: var(--ink);
+  -webkit-text-stroke: 1px var(--paper);
+}

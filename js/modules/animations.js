@@ -595,3 +595,30 @@ export function initInteractiveCanvas() {
     });
   });
 }
+
+
+export function initContactOrb() {
+  const section = document.querySelector('.monolithic-glass');
+  const orb = document.querySelector('.glass-orb');
+  if (!section || !orb) return;
+
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (REDUCED) return;
+
+  const gsap = window.gsap;
+  
+  let mx = 0, my = 0;
+  section.addEventListener('mousemove', (e) => {
+    const rect = section.getBoundingClientRect();
+    // Calculate mouse position relative to the section center
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    gsap.to(orb, {
+      left: x,
+      top: y,
+      duration: 1.5,
+      ease: 'power2.out'
+    });
+  });
+}
