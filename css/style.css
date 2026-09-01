@@ -863,8 +863,8 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .exp-card {
   position: relative;
   text-align: left;
-  border: var(--bw) solid var(--paper);
-  background: var(--ink-2);
+  border: var(--bw) solid #333;
+  background: #242424;
   padding: clamp(1.4rem, 3vw, 2.4rem);
   box-shadow: 8px 8px 0 rgba(242, 238, 227, 0.12);
   transition: box-shadow 0.25s, border-color 0.25s, background 0.25s, transform 0.25s;
@@ -900,9 +900,9 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
   letter-spacing: 0.03em;
 }
 .exp-card__role { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; color: var(--acid); margin-bottom: 0.9rem; }
-.exp-card__desc { max-width: 56ch; color: var(--paper-2); font-size: 0.98rem; }
+.exp-card__desc { max-width: 56ch; color: #ccc; font-size: 0.98rem; }
 .exp-card__tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.1rem; }
-.exp-card__tags span { border-color: var(--paper-3); color: var(--paper-2); }
+.exp-card__tags span { border-color: #444; color: #ccc; }
 .exp-card__tags span:hover { background: var(--bg); color: var(--text); }
 .exp-card--now { border-style: dashed; }
 .exp-card--now .exp-card__company { color: var(--acid); }
@@ -1027,8 +1027,8 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .exp__list { display: flex; flex-direction: column; gap: clamp(2rem, 5vh, 3.5rem); padding-bottom: 12vh; }
 .exp-card {
   position: relative;
-  border: var(--bw) solid var(--paper);
-  background: var(--ink-2);
+  border: var(--bw) solid #333;
+  background: #242424;
   padding: clamp(1.4rem, 3vw, 2.4rem);
   box-shadow: 8px 8px 0 rgba(242, 238, 227, 0.12);
   transition: box-shadow 0.25s, border-color 0.25s, background 0.25s, transform 0.25s;
@@ -1057,9 +1057,9 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
   margin: 0.35em 0 0.18em;
 }
 .exp-card__role { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; color: var(--acid); margin-bottom: 0.9rem; }
-.exp-card__desc { max-width: 56ch; color: var(--paper-2); font-size: 0.98rem; }
+.exp-card__desc { max-width: 56ch; color: #ccc; font-size: 0.98rem; }
 .exp-card__tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.1rem; }
-.exp-card__tags span { border-color: var(--paper-3); color: var(--paper-2); }
+.exp-card__tags span { border-color: #444; color: #ccc; }
 .exp-card__tags span:hover { background: var(--bg); color: var(--text); }
 .exp-card--now { border-style: dashed; }
 .exp-card--now .exp-card__company { color: var(--acid); }
@@ -1791,14 +1791,14 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 }
 .billboard__desc {
   font-size: 0.95rem;
-  color: var(--paper-2);
+  color: #ccc;
   line-height: 1.5;
 }
 
 /* Legal Pages */
 .legal-content {
   font-family: var(--font-display);
-  color: var(--paper-2);
+  color: #ccc;
   line-height: 1.8;
   font-size: 1.1rem;
 }
@@ -1890,7 +1890,7 @@ body.page-contact {
 }
 .glass-subtitle {
   font-size: 1.2rem;
-  color: var(--paper-2);
+  color: #ccc;
   margin-bottom: 3rem;
 }
 .glass-form {
@@ -1958,7 +1958,7 @@ body.page-contact {
   padding-top: 2rem;
 }
 .glass-links a {
-  color: var(--paper-2);
+  color: #ccc;
   font-family: var(--font-mono);
   text-decoration: none;
   transition: color 0.3s ease;
@@ -2040,7 +2040,7 @@ body.page-work {
 }
 .masonry-desc {
   font-size: 0.85rem;
-  color: var(--paper-2);
+  color: #ccc;
   opacity: 0.7;
 }
 /* Magnetic Repulsion effect managed via CSS siblings */
@@ -2267,7 +2267,7 @@ body.page-services {
   padding-bottom: 2rem;
 }
 .k-item__content p {
-  color: var(--paper-2);
+  color: #ccc;
   font-size: 1.2rem;
   max-width: 600px;
   margin-bottom: 1.5rem;
@@ -2328,7 +2328,7 @@ body.page-services {
 }
 .museum-panel--intro p {
   font-size: 1.5rem;
-  color: var(--paper-2);
+  color: #ccc;
   margin-top: 2rem;
 }
 .m-panel__img-wrap {
@@ -2368,7 +2368,7 @@ body.page-services {
 }
 .m-panel__content p {
   font-size: 1.2rem;
-  color: var(--paper-2);
+  color: #ccc;
   line-height: 1.6;
 }
 
@@ -2412,7 +2412,7 @@ body.page-services {
 }
 .canvas-text {
   font-size: clamp(1.5rem, 3vw, 3rem);
-  color: var(--paper-2);
+  color: #ccc;
   line-height: 1.4;
   margin-bottom: 2rem;
 }
@@ -2601,7 +2601,7 @@ p a:hover::after, .footer__links a:hover::after {
 .dot.green { background: #27c93f; }
 
 .term-title {
-  color: var(--paper-2);
+  color: #ccc;
   font-size: 0.9rem;
   opacity: 0.7;
 }
@@ -2930,7 +2930,7 @@ p a:hover::after, .footer__links a:hover::after {
   color: var(--text);
 }
 .museum-panel--intro p {
-  color: var(--paper-2);
+  color: #ccc;
   margin-top: 1rem;
 }
 
@@ -2967,7 +2967,7 @@ p a:hover::after, .footer__links a:hover::after {
   color: var(--text);
 }
 .m-panel__content p {
-  color: var(--paper-2);
+  color: #ccc;
   font-size: 0.9rem;
   line-height: 1.6;
   max-width: 400px;
@@ -3035,7 +3035,7 @@ p a:hover::after, .footer__links a:hover::after {
   border-radius: 8px;
   font-size: 0.85rem;
   line-height: 1.5;
-  color: var(--paper-2);
+  color: #ccc;
   transition: border-color 0.3s, background 0.3s;
 }
 .about-commit:hover {
@@ -3154,7 +3154,7 @@ p a:hover::after, .footer__links a:hover::after {
 }
 .bento-tagline {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--paper-2);
+  color: #ccc;
   max-width: 80%;
   line-height: 1.6;
 }
@@ -3194,7 +3194,7 @@ p a:hover::after, .footer__links a:hover::after {
 }
 .stat-label {
   font-size: 0.85rem;
-  color: var(--paper-2);
+  color: #ccc;
   margin-top: 0.5rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -3248,7 +3248,7 @@ p a:hover::after, .footer__links a:hover::after {
 }
 .leadership-org {
   font-size: 0.85rem;
-  color: var(--paper-2);
+  color: #ccc;
   margin-top: 0.2rem;
 }
 
@@ -3388,7 +3388,7 @@ p a:hover::after, .footer__links a:hover::after {
 }
 .tl-text p {
   font-size: 1rem;
-  color: var(--paper-2);
+  color: #ccc;
   line-height: 1.6;
 }
 
