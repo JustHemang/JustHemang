@@ -140,9 +140,6 @@ body.has-cursor .cursor { display: block; }
 
 
 
-.nav__menu-btn.open 
-.nav__menu-btn.open 
-
 .menu-overlay{
   --menu-link-fs: clamp(1.2rem, min(6vw, calc((100svh - 13rem) / 6)), 4.5rem);
   position:fixed;inset:0;z-index:var(--z-menu);
