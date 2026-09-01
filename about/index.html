@@ -58,48 +58,44 @@
     </div>
   </div>
   <main>
-    <section class="interactive-canvas" id="about">
-      <div class="canvas-bg tw-type">
-        <span>HERTX</span><span>HERTX</span><span>HERTX</span>
-      </div>
-
-      <div class="canvas-content">
-        <h1 class="tw-type anim-slide-up">THE VISION</h1>
+        <section class="glitch-os" id="about">
+      <div class="fx-noise"></div>
+      <div class="glitch-container">
+        <div class="glitch-header anim-slide-up">
+          <h1 class="tw-type glitch-title" data-text="SYSTEM.CORE">SYSTEM.CORE</h1>
+          <p class="mono meta">Status: OFFLINE // Decrypting identity module...</p>
+        </div>
         
-        <p class="canvas-text mono anim-slide-up" style="animation-delay: 0.1s;">
-          I am a freelance 
-          <span class="hover-reveal" data-img="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop">video editor</span>, 
-          fullstack 
-          <span class="hover-reveal" data-img="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop">developer</span>, 
-          and creative director from Delhi.
-        </p>
-
-        <p class="canvas-text mono anim-slide-up" style="animation-delay: 0.2s;">
-          Currently serving as the President of 
-          <span class="hover-reveal" data-img="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop">OPCODE</span> 
-          and Founder of 
-          <span class="hover-reveal" data-img="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop">Kaelor Media</span>.
-        </p>
-
-        <div class="canvas-stats anim-slide-up" style="animation-delay: 0.3s;">
-          <div class="c-stat" data-target="120">
-            <h3 class="tw-type"><span class="counter-val">0</span>M+</h3>
-            <p class="mono">VIEWS</p>
+        <div class="glitch-grid">
+          <div class="g-col g-bio anim-slide-right" style="transition-delay: 0.1s;">
+            <h2 class="mono">[WHOAMI]</h2>
+            <p class="mono glitched-p">
+              Hemang Luthra. Freelance video editor, fullstack developer, and creative director based in Delhi. 
+              Bridging the gap between cinematic storytelling and interactive code.
+            </p>
+            <p class="mono glitched-p mt-2">
+              President @ OPCODE. Founder @ Kaelor Media.
+            </p>
           </div>
-          <div class="c-stat" data-target="300">
-            <h3 class="tw-type"><span class="counter-val">0</span>+</h3>
-            <p class="mono">PROJECTS</p>
+
+          <div class="g-col g-img anim-scale" style="transition-delay: 0.2s;">
+            <div class="glitch-img-wrapper">
+              <!-- Using the unsplash portrait from original about page -->
+              <img src="https://images.unsplash.com/photo-1540304473527-df2f17f461ce?q=80&w=1000&auto=format&fit=crop" alt="Hemang Luthra" class="g-base-img" />
+              <div class="glitch-img-layer layer-1"></div>
+              <div class="glitch-img-layer layer-2"></div>
+            </div>
           </div>
-          <div class="c-stat" data-target="20">
-            <h3 class="tw-type"><span class="counter-val">0</span>+</h3>
-            <p class="mono">CLIENTS</p>
+
+          <div class="g-col g-stats anim-slide-left" style="transition-delay: 0.3s;">
+            <h2 class="mono">[DATA_DUMP]</h2>
+            <ul class="mono glitch-list">
+              <li>> VIEWS_TOTAL = 120,000,000+</li>
+              <li>> PROJECTS_COMPLETED > 300</li>
+              <li>> CLIENT_NETWORKS >= 20</li>
+            </ul>
           </div>
         </div>
-      </div>
-      
-      <!-- Floating Hover Image Container -->
-      <div class="hover-image-container" id="hoverImageContainer" aria-hidden="true">
-        <img src="" alt="" class="hover-image-display" id="hoverImageDisplay">
       </div>
     </section>
     <section class="page-cta">

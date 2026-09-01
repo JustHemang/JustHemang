@@ -58,40 +58,42 @@
     </div>
   </div>
   <main>
-    <section class="monolithic-glass" id="contact">
-      
-      <!-- Abstract Background Orb -->
-      <div class="glass-orb"></div>
-
-      <div class="glass-container anim-scale">
-        <h2 class="glass-title tw-type squishy-text">Let's Talk</h2>
-        <p class="glass-subtitle mono squishy-text" style="display: block; margin-top: 1rem;">Ready to elevate your brand?</p>
-
-        <form class="glass-form" onsubmit="
-          const n = document.getElementById('g_name').value;
-          const e = document.getElementById('g_email').value;
-          const m = document.getElementById('g_msg').value;
-          const body = 'Name: ' + n + '%0D%0AEmail: ' + e + '%0D%0A%0D%0A' + encodeURIComponent(m);
-          window.location.href = 'mailto:xhertxd@gmail.com?subject=Inquiry from ' + encodeURIComponent(n) + '&body=' + body;
-          return false;
-        ">
-          <div class="glass-input-group">
-            <input type="text" id="g_name" class="glass-input" placeholder="Name" required autocomplete="off">
+        <section class="git-terminal" id="contact">
+      <div class="terminal-window anim-scale">
+        <div class="terminal-header">
+          <div class="mac-dots">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
           </div>
-          <div class="glass-input-group">
-            <input type="email" id="g_email" class="glass-input" placeholder="Email Address" required autocomplete="off">
-          </div>
-          <div class="glass-input-group">
-            <textarea id="g_msg" class="glass-textarea" placeholder="Tell me about your project..." required></textarea>
-          </div>
+          <span class="term-title mono">bash -- xhertx@local: ~/contact</span>
+        </div>
+        <div class="terminal-body mono">
+          <p class="sys-msg">Connected to hertx.dev... Initialize commit.</p>
           
-          <button type="submit" class="glass-submit">Send Message <span class="arrow">→</span></button>
-        </form>
+          <div class="cmd-line">
+            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span> 
+            <span class="cmd-text">git config user.name "</span><input type="text" id="g_name" class="term-input" placeholder="Your Name" autocomplete="off" /><span class="cmd-text">"</span>
+          </div>
 
-        <div class="glass-links">
-          <a href="mailto:xhertxd@gmail.com">xhertxd@gmail.com</a>
-          <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">LinkedIn</a>
+          <div class="cmd-line">
+            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span> 
+            <span class="cmd-text">git config user.email "</span><input type="email" id="g_email" class="term-input" placeholder="you@domain.com" autocomplete="off" /><span class="cmd-text">"</span>
+          </div>
+
+          <div class="cmd-line">
+            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span> 
+            <span class="cmd-text">git commit -m "</span><input type="text" id="g_msg" class="term-input" placeholder="Project details..." autocomplete="off" /><span class="cmd-text">"</span>
+          </div>
+
+          <div class="cmd-line mt-4">
+            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span> 
+            <button class="term-btn" onclick="
+              const n = document.getElementById('g_name').value || 'Visitor';
+              const e = document.getElementById('g_email').value || 'unknown@email.com';
+              const m = document.getElementById('g_msg').value || 'Hello!';
+              const body = 'Name: ' + n + '%0D%0AEmail: ' + e + '%0D%0A%0D%0A' + encodeURIComponent(m);
+              window.location.href = 'mailto:xhertxd@gmail.com?subject=git commit: Inquiry from ' + encodeURIComponent(n) + '&body=' + body;
+            ">git push origin main<span class="term-cursor"></span></button>
+          </div>
         </div>
       </div>
     </section>
