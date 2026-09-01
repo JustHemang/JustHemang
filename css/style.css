@@ -1602,6 +1602,7 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .watermark { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-family: var(--font-hero); font-size: 8rem; font-weight: 700; color: var(--paper); opacity: 0.03; pointer-events: none; z-index: 1000; user-select: none; }
 
 .journey-3d-section {
+  height: 100vh;
   position: relative;
 }
 .journey-3d-container {
