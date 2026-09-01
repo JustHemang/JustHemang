@@ -418,11 +418,13 @@ function initJourneyRoad(gsap, ScrollTrigger, REDUCED) {
     }
   });
 
-  // Animate the road infinitely
+  // Animate the road infinitely over the total duration of the sequence
+  // Each item takes exactly 4.9 seconds of timeline time.
+  const totalDuration = billboards.length * 4.9;
   tl.to(roadGrid, {
     backgroundPositionY: `${endZ}px`,
     ease: 'none',
-    duration: billboards.length
+    duration: totalDuration
   }, 0);
   
   // Sequence each billboard
