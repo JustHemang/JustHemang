@@ -11,7 +11,9 @@ import {
   initHorizontalMuseum,
   initContactOrb,
   initCounters, 
-  initParallax 
+  initParallax,
+  initDeckAbout,
+  initDeckJourney
 } from './modules/animations.js?v=2';
 import { 
   initTimecode, 
@@ -84,6 +86,8 @@ function initApp() {
   initLadderJourney();
   initHorizontalMuseum();
   initContactOrb();
+  initDeckAbout();
+  initDeckJourney();
   initCounters();
   initParallax();
   initTimecode();

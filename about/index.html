@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About &mdash; Hertx</title>
   <meta name="description" content="Hemang Luthra — Video Editor, Fullstack Developer, and Creative Director." />
-  <meta name="theme-color" content="#121212" />
+  <meta name="theme-color" content="#f0f0f0" />
   <link rel="icon" href="../Logo Transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
-<body class="page-about page-sub cinematic-theme">
+<body class="page-about page-sub deck-theme">
   <div class="page-transition" id="pageTransition" aria-hidden="true" style="display:flex;">
     <div class="pt-bar pt-bar--1" style="--i:0"></div>
     <div class="pt-bar pt-bar--2" style="--i:1"></div>
@@ -26,16 +26,14 @@
     #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
     @keyframes pt-hide { to { display: none; pointer-events: none; opacity: 0; } }
   </style>
-  <div class="fx-grain" aria-hidden="true"></div>
-  <div class="fx-vignette" aria-hidden="true" style="opacity: 0.8;"></div>
-  
-  <header class="nav" id="nav">
+
+  <header class="nav nav-dark" id="nav">
     <a class="nav__logo" href="/">
-      <img class="nav__logo-img" src="../Logo Transparent.png" alt="Hertx" />
+      <img class="nav__logo-img invert-logo" src="../Logo Transparent.png" alt="Hertx" />
       <span class="nav__logo-text">Hertx</span>
     </a>
-    <button class="nav__menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-      <div class="nav__bars"><i></i><i></i><i></i></div>
+    <button class="nav__menu-btn btn-dark" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <div class="nav__bars bars-dark"><i></i><i></i><i></i></div>
     </button>
   </header>
   
@@ -50,58 +48,62 @@
     </nav>
   </div>
 
-  <main class="cinematic-main">
-    <section class="cine-hero">
-      <div class="cine-text-wrap">
-        <h1 class="tw-type cine-title anim-slide-up">HEMANG<br>LUTHRA</h1>
-        <p class="mono cine-subtitle anim-slide-up" style="--delay: 0.1s">Director / Editor / Developer</p>
-      </div>
-      <div class="cine-img-wrap anim-scale">
-        <img src="../hemang.png" alt="Hemang Luthra" class="cine-img" data-speed="0.8" />
-        <div class="cine-img-overlay"></div>
-      </div>
-    </section>
-
-    <section class="cine-bio">
-      <div class="cine-bio-grid">
-        <div class="cine-bio-left">
-          <h2 class="tw-type cine-section-title anim-slide-right">THE VISION</h2>
-          <div class="cine-stats anim-slide-right" style="--delay: 0.1s">
-            <div class="cine-stat">
-              <span class="cine-stat-num tw-type">120M+</span>
-              <span class="cine-stat-label mono">Views</span>
+  <main>
+    <section class="deck-about-section">
+      <div class="deck-sticky-container">
+        
+        <!-- Base Card (Bottom Layer) -->
+        <div class="deck-card deck-card-3" id="deckCard3">
+          <div class="dc-content">
+            <h3 class="tw-type dc-title">THE METRICS</h3>
+            <div class="dc-stats">
+              <div>
+                <span class="tw-type">120M+</span>
+                <p class="mono">Total Views</p>
+              </div>
+              <div>
+                <span class="tw-type">300+</span>
+                <p class="mono">Projects Delivered</p>
+              </div>
+              <div>
+                <span class="tw-type">20+</span>
+                <p class="mono">Client Networks</p>
+              </div>
             </div>
-            <div class="cine-stat">
-              <span class="cine-stat-num tw-type">300+</span>
-              <span class="cine-stat-label mono">Projects</span>
+            <a href="/contact" class="dc-btn mono">Start a project &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Middle Card -->
+        <div class="deck-card deck-card-2" id="deckCard2">
+          <div class="dc-content dc-split">
+            <div class="dc-left">
+              <h3 class="tw-type dc-title">THE ARCHITECT</h3>
+              <p class="dc-body">I don't just write code or edit footage. I design digital experiences. From high-retention YouTube edits to full-scale web applications, I bring a multidisciplinary approach to every project.</p>
+            </div>
+            <div class="dc-right">
+              <ul class="dc-list mono">
+                <li>01 // Video Post-Production</li>
+                <li>02 // Frontend Development</li>
+                <li>03 // UI/UX Design</li>
+                <li>04 // Creative Direction</li>
+              </ul>
             </div>
           </div>
         </div>
-        <div class="cine-bio-right">
-          <p class="cine-body anim-slide-left">Based in Delhi, India, I bridge the gap between cinematic storytelling and interactive code. I don't just edit videos or write software; I architect experiences that captivate and convert.</p>
-          <p class="cine-body anim-slide-left" style="--delay: 0.1s">Currently leading creative initiatives as President at OPCODE and Founder of Kaelor Media, pushing the boundaries of digital media production.</p>
-          
-          <div class="cine-roles anim-slide-up" style="--delay: 0.2s">
-            <div class="cine-role">
-              <span class="mono">01.</span>
-              <h3 class="tw-type">POST-PRODUCTION</h3>
-            </div>
-            <div class="cine-role">
-              <span class="mono">02.</span>
-              <h3 class="tw-type">WEB DEVELOPMENT</h3>
-            </div>
-            <div class="cine-role">
-              <span class="mono">03.</span>
-              <h3 class="tw-type">CREATIVE DIRECTION</h3>
-            </div>
+
+        <!-- Top Card -->
+        <div class="deck-card deck-card-1" id="deckCard1">
+          <div class="dc-hero-img">
+            <img src="../hemang.png" alt="Hemang" />
+          </div>
+          <div class="dc-hero-text">
+            <h1 class="tw-type">HEMANG<br>LUTHRA</h1>
+            <p class="mono">Scroll to unfold &darr;</p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="page-cta cine-cta">
-      <h2 class="tw-type">ROLL CREDITS. OR START A NEW SCENE.</h2>
-      <a class="cta__btn" href="/contact">Let's talk</a>
+      </div>
     </section>
   </main>
 

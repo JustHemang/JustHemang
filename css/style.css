@@ -3707,3 +3707,236 @@ p a:hover::after, .footer__links a:hover::after {
     height: 50vh;
   }
 }
+
+/* ==========================================================================
+   OPTION 3: THE INTERACTIVE DECK (ABOUT + JOURNEY)
+   ========================================================================== */
+.deck-theme {
+  background: #f0f0f0; /* Light theme for a clean app feel */
+  color: #121212;
+}
+
+/* Nav Overrides for Light Theme */
+.nav-dark .nav__logo-text, .nav-dark .nav__menu-btn span { color: #121212 !important; }
+.btn-dark { background: rgba(255,255,255,0.7) !important; border: 1px solid rgba(0,0,0,0.12) !important; }
+.bars-dark i { background: #121212 !important; }
+.invert-logo { filter: invert(1); }
+
+/* --- DECK ABOUT --- */
+.deck-about-section {
+  position: relative;
+  width: 100%;
+  height: 300vh; /* space for scrolling */
+  padding-top: 15vh;
+}
+
+.deck-sticky-container {
+  position: sticky;
+  top: 15vh;
+  width: 90%;
+  max-width: 1000px;
+  height: 70vh;
+  margin: 0 auto;
+}
+
+.deck-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  transform-origin: bottom center;
+  will-change: transform, opacity;
+}
+
+/* Card 3: Bottom Layer (Metrics) */
+.deck-card-3 {
+  background: #111;
+  color: #fff;
+  z-index: 1;
+}
+.dc-content {
+  padding: 4rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dc-title {
+  font-size: 2rem;
+  color: var(--teal);
+  margin-bottom: 3rem;
+}
+.dc-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+.dc-stats span {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 1;
+  display: block;
+}
+.dc-stats p {
+  color: #888;
+  margin-top: 1rem;
+}
+.dc-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--teal);
+  color: #111;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  align-self: flex-start;
+  transition: transform 0.3s;
+}
+.dc-btn:hover { transform: scale(1.05); }
+
+/* Card 2: Middle Layer (Bio) */
+.deck-card-2 {
+  background: #e0e0e0;
+  color: #111;
+  z-index: 2;
+}
+.dc-split {
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.dc-left { flex: 1; }
+.dc-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; }
+.dc-body {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  line-height: 1.5;
+  color: #333;
+}
+.dc-list {
+  list-style: none;
+  padding: 0;
+}
+.dc-list li {
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Card 1: Top Layer (Hero) */
+.deck-card-1 {
+  background: #fff;
+  z-index: 3;
+  display: flex;
+}
+.dc-hero-img {
+  width: 45%;
+  height: 100%;
+}
+.dc-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+.dc-hero-text {
+  flex: 1;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dc-hero-text h1 {
+  font-size: clamp(4rem, 8vw, 8rem);
+  line-height: 0.9;
+  margin-bottom: 2rem;
+}
+
+/* --- DECK JOURNEY --- */
+.deck-journey-section {
+  padding: 15vh 0;
+}
+
+.dj-header {
+  text-align: center;
+  margin-bottom: 10vh;
+}
+.dj-header h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+}
+
+.dj-stack {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.dj-card {
+  height: 60vh;
+  position: relative;
+  margin-bottom: -40vh; /* cards overlap heavily initially */
+}
+.dj-card:last-child {
+  margin-bottom: 10vh;
+}
+
+.dj-card-inner {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  overflow: hidden;
+  will-change: transform;
+}
+.dj-img {
+  width: 40%;
+  height: 100%;
+}
+.dj-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dj-text {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dj-date {
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+.dj-text h2 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.dj-text p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .dc-split { flex-direction: column; }
+  .dc-right { justify-content: flex-start; }
+  .deck-card-1 { flex-direction: column; }
+  .dc-hero-img { width: 100%; height: 50%; }
+  .dc-hero-text { padding: 2rem; height: 50%; }
+  .dc-stats { flex-direction: column; gap: 2rem; }
+  .dc-content { padding: 2rem; }
+  
+  .dj-card-inner { flex-direction: column; }
+  .dj-img { width: 100%; height: 40%; }
+  .dj-text { padding: 1.5rem; }
+}

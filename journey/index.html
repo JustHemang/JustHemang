@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Journey &mdash; Hertx</title>
   <meta name="description" content="The chronological milestones of Hemang Luthra's creative journey." />
-  <meta name="theme-color" content="#121212" />
+  <meta name="theme-color" content="#f0f0f0" />
   <link rel="icon" href="../Logo Transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
-<body class="page-journey page-sub cinematic-theme" style="overflow-x: hidden;">
+<body class="page-journey page-sub deck-theme">
   <div class="page-transition" id="pageTransition" aria-hidden="true" style="display:flex;">
     <div class="pt-bar pt-bar--1" style="--i:0"></div>
     <div class="pt-bar pt-bar--2" style="--i:1"></div>
@@ -26,16 +26,14 @@
     #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
     @keyframes pt-hide { to { display: none; pointer-events: none; opacity: 0; } }
   </style>
-  <div class="fx-grain" aria-hidden="true"></div>
-  <div class="fx-vignette" aria-hidden="true" style="opacity: 0.8;"></div>
-  
-  <header class="nav" id="nav">
+
+  <header class="nav nav-dark" id="nav">
     <a class="nav__logo" href="/">
-      <img class="nav__logo-img" src="../Logo Transparent.png" alt="Hertx" />
+      <img class="nav__logo-img invert-logo" src="../Logo Transparent.png" alt="Hertx" />
       <span class="nav__logo-text">Hertx</span>
     </a>
-    <button class="nav__menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-      <div class="nav__bars"><i></i><i></i><i></i></div>
+    <button class="nav__menu-btn btn-dark" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <div class="nav__bars bars-dark"><i></i><i></i><i></i></div>
     </button>
   </header>
   
@@ -51,89 +49,84 @@
   </div>
 
   <main>
-    <section class="film-strip-section" id="filmStripSection">
-      <div class="film-strip-track">
+    <section class="deck-journey-section">
+      <div class="dj-header">
+        <h1 class="tw-type">THE TIMELINE</h1>
+        <p class="mono">Scroll to flip through the deck &darr;</p>
+      </div>
+
+      <div class="dj-stack" id="djStack">
         
-        <!-- Frame 1: Title -->
-        <div class="film-frame frame-intro">
-          <div class="frame-content">
-            <p class="mono frame-meta">SCENE 01 / ORIGIN</p>
-            <h1 class="tw-type frame-title">THE<br>JOURNEY</h1>
-            <p class="frame-desc">Scroll to roll the film &rarr;</p>
+        <div class="dj-card">
+          <div class="dj-card-inner">
+            <div class="dj-img">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop" />
+            </div>
+            <div class="dj-text">
+              <span class="mono dj-date">APR 2025</span>
+              <h2 class="tw-type">OPCODE<br>TECHNOCRAT</h2>
+              <p>Joined my school's prestigious tech club. The first step.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Frame 2 -->
-        <div class="film-frame">
-          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" class="frame-bg" />
-          <div class="frame-overlay"></div>
-          <div class="frame-content">
-            <p class="mono frame-meta">APR 2025</p>
-            <h2 class="tw-type frame-title">OPCODE<br>TECHNOCRAT</h2>
-            <p class="frame-desc">Joined my school's prestigious tech club. The catalyst for everything that followed.</p>
+        <div class="dj-card">
+          <div class="dj-card-inner">
+            <div class="dj-img">
+              <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=800&auto=format&fit=crop" />
+            </div>
+            <div class="dj-text">
+              <span class="mono dj-date">NOV 2025</span>
+              <h2 class="tw-type">LEAD<br>EDITOR</h2>
+              <p>Promoted to Lead Video Editor for major productions.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Frame 3 -->
-        <div class="film-frame">
-          <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1200&auto=format&fit=crop" class="frame-bg" />
-          <div class="frame-overlay"></div>
-          <div class="frame-content">
-            <p class="mono frame-meta">NOV 2025</p>
-            <h2 class="tw-type frame-title">LEAD<br>EDITOR</h2>
-            <p class="frame-desc">Promoted to Lead Video Editor. Taking charge of major Annual Day productions.</p>
+        <div class="dj-card">
+          <div class="dj-card-inner">
+            <div class="dj-img">
+              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" />
+            </div>
+            <div class="dj-text">
+              <span class="mono dj-date">AGE 16</span>
+              <h2 class="tw-type">FIRST<br>CLIENT</h2>
+              <p>Secured my first paying client. Going professional.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Frame 4 -->
-        <div class="film-frame">
-          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop" class="frame-bg" />
-          <div class="frame-overlay"></div>
-          <div class="frame-content">
-            <p class="mono frame-meta">AGE 16</p>
-            <h2 class="tw-type frame-title">FIRST<br>CLIENT</h2>
-            <p class="frame-desc">Secured my first paying client. Transitioning from passion project to professional pursuit.</p>
+        <div class="dj-card">
+          <div class="dj-card-inner">
+            <div class="dj-img">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" />
+            </div>
+            <div class="dj-text">
+              <span class="mono dj-date">APR 2026</span>
+              <h2 class="tw-type">VICE<br>PRESIDENT</h2>
+              <p>Managing teams and leading events at OPCODE.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Frame 5 -->
-        <div class="film-frame">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" class="frame-bg" />
-          <div class="frame-overlay"></div>
-          <div class="frame-content">
-            <p class="mono frame-meta">APR 2026</p>
-            <h2 class="tw-type frame-title">VICE<br>PRESIDENT</h2>
-            <p class="frame-desc">Stepping up into senior leadership at OPCODE. Managing teams and events.</p>
+        <div class="dj-card">
+          <div class="dj-card-inner">
+            <div class="dj-img">
+              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" />
+            </div>
+            <div class="dj-text">
+              <span class="mono dj-date">JUL 2026</span>
+              <h2 class="tw-type">PRESIDENT<br>OPCODE</h2>
+              <p>The pinnacle of my school journey.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Frame 6 -->
-        <div class="film-frame">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" class="frame-bg" />
-          <div class="frame-overlay"></div>
-          <div class="frame-content">
-            <p class="mono frame-meta">JUL 2026</p>
-            <h2 class="tw-type frame-title">PRESIDENT<br>OPCODE</h2>
-            <p class="frame-desc">The pinnacle of my school journey. Leading the entire organization and co-hosting major events.</p>
-          </div>
-        </div>
-
-        <!-- Frame 7 -->
-        <div class="film-frame">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop" class="frame-bg" />
-          <div class="frame-overlay"></div>
-          <div class="frame-content">
-            <p class="mono frame-meta">MAR 2027</p>
-            <h2 class="tw-type frame-title">THE<br>NEXT ERA</h2>
-            <p class="frame-desc">Graduation. Kaelor Media scales. The canvas gets bigger.</p>
-          </div>
-        </div>
-
-        <!-- Frame 8: Outro -->
-        <div class="film-frame frame-outro">
-          <div class="frame-content">
-            <h2 class="tw-type frame-title">TO BE<br>CONTINUED</h2>
-            <a class="cta__btn" href="/contact" style="margin-top:2rem">Book me for the sequel</a>
+        <!-- Blank card for spacing at the end -->
+        <div class="dj-card dj-card-end">
+          <div class="dj-card-inner" style="justify-content:center; align-items:center; text-align:center;">
+             <h2 class="tw-type" style="font-size:4rem; color:var(--ink)">TO BE<br>CONTINUED</h2>
+             <a href="/contact" class="dj-btn mono" style="margin-top:2rem">Let's work together</a>
           </div>
         </div>
 

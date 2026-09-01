@@ -605,3 +605,69 @@ export function initContactOrb() {
     });
   });
 }
+
+export function initDeckAbout() {
+  const section = document.querySelector('.deck-about-section');
+  if (!section) return;
+  
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  if (!gsap || !ScrollTrigger) return;
+  
+  const card1 = section.querySelector('.deck-card-1');
+  const card2 = section.querySelector('.deck-card-2');
+  
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 1
+    }
+  });
+  
+  // Peel away top card
+  tl.to(card1, {
+    y: '-100%',
+    scale: 0.9,
+    opacity: 0,
+    ease: 'power2.inOut'
+  });
+  
+  // Peel away middle card
+  tl.to(card2, {
+    y: '-100%',
+    scale: 0.9,
+    opacity: 0,
+    ease: 'power2.inOut'
+  });
+}
+
+export function initDeckJourney() {
+  const section = document.querySelector('.deck-journey-section');
+  if (!section) return;
+  
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  if (!gsap || !ScrollTrigger) return;
+  
+  const cards = section.querySelectorAll('.dj-card');
+  
+  cards.forEach((card, i) => {
+    const inner = card.querySelector('.dj-card-inner');
+    if (!inner) return;
+    
+    gsap.to(inner, {
+      yPercent: -100,
+      scale: 0.9,
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top center',
+        end: 'bottom center',
+        scrub: 1
+      }
+    });
+  });
+}
