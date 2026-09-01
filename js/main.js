@@ -67,7 +67,7 @@ function initLenis() {
   }
   requestAnimationFrame(loop);
 }
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   setTimeout(() => {
     document.body.classList.add('is-page-entering');
   }, 100);
@@ -98,4 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.ScrollTrigger !== 'undefined') {
     setTimeout(() => { window.ScrollTrigger.refresh(); }, 400);
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
