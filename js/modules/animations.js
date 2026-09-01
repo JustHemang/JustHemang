@@ -478,6 +478,7 @@ function initGalleryParallax(REDUCED) {
         bg.style.transform = '';
       }, 400); // allow transition to finish
     });
+  });
 }
 
 function initKineticAccordion() {
