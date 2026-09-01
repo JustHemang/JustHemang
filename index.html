@@ -45,10 +45,12 @@
   </header>
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <nav class="menu-overlay__links" aria-label="Menu">
-      <a class="menu-overlay__link" href="/about" data-i="01">About</a>
-      <a class="menu-overlay__link" href="/work" data-i="02">Work</a>
-      <a class="menu-overlay__link" href="/services" data-i="03">Services</a>
-      <a class="menu-overlay__link" href="/contact" data-i="04">Contact</a>
+      <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
+      <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
+      <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
+      <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
+      <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
+      <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
     </nav>
     <div class="menu-overlay__foot">
       <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
@@ -89,7 +91,7 @@
     </section>
     <section class="section exp" id="experience">
       <div class="sec-head reveal">
-        <h2 class="section__heading tw-type"><span class="scroll-highlight">Experience</span></h2>
+        <h2 class="section__heading tw-type"><span class="highlight">Experience</span></h2>
       </div>
       <div class="exp__grid" id="expGrid">
         <div class="exp__rail">
@@ -138,21 +140,13 @@
               <span>PREMIERE</span><span>AFTER&nbsp;EFFECTS</span><span>MOTION&nbsp;DESIGN</span>
             </div>
           </article>
-          <article class="exp-card reveal" data-year="2025" style="cursor: pointer;" onclick="const j = this.querySelector('.exp-card__journey'); j.style.display = j.style.display === 'none' ? 'block' : 'none';">
+          <article class="exp-card reveal" data-year="2025" style="cursor: pointer;" onclick="window.location.href='/journey/'">
             <span class="exp-card__ghost" aria-hidden="true">03</span>
             <div class="exp-card__date mono">APR 2025 &mdash; MAR 2027</div>
             <h3 class="exp-card__company">OPCODE &amp; XENIUM</h3>
             <p class="exp-card__role mono">PRESIDENT &amp; CO-HOST</p>
-            <p class="exp-card__desc">President of OPCODE, my school's tech club. Co-hosted and judged our annual tech fest XENIUM. <span style="opacity:0.5; font-size:0.8em;">(Click to view journey)</span></p>
+            <p class="exp-card__desc">President of OPCODE, my school's tech club. Co-hosted and judged our annual tech fest XENIUM. <span style="opacity:0.5; font-size:0.8em; text-decoration:underline;">(Click to view full journey)</span></p>
             <div class="exp-card__tags mono"><span>LEADERSHIP</span><span>EVENT&nbsp;MANAGEMENT</span></div>
-            <div class="exp-card__journey" style="display: none; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-              <ul style="list-style: none; padding-left: 0; margin: 0; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6; color: var(--paper-2);">
-                <li style="margin-bottom: 0.8rem;"><strong>Apr 2025:</strong> Joined as Technocrat</li>
-                <li style="margin-bottom: 0.8rem;"><strong>Nov 2025:</strong> Promoted to Lead Video Editor after Annual Day</li>
-                <li style="margin-bottom: 0.8rem;"><strong>Apr 2026:</strong> Promoted to Vice President</li>
-                <li style="margin-bottom: 0;"><strong>Jul 2026:</strong> Promoted to President after co-hosting Xenium and judging the Film Making event</li>
-              </ul>
-            </div>
           </article>
           <article class="exp-card exp-card--now reveal" data-year="NOW">
             <span class="exp-card__ghost" aria-hidden="true">04</span>
