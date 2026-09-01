@@ -3434,3 +3434,276 @@ p a:hover::after, .footer__links a:hover::after {
     font-size: 1rem;
   }
 }
+
+/* ==========================================================================
+   OPTION 1: CINEMATIC EDITORIAL (ABOUT + JOURNEY)
+   ========================================================================== */
+.cinematic-theme {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* --- CINEMATIC ABOUT --- */
+.cinematic-main {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Hero Section */
+.cine-hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--pad);
+  position: relative;
+}
+
+.cine-text-wrap {
+  flex: 1;
+  z-index: 2;
+}
+
+.cine-title {
+  font-size: clamp(5rem, 15vw, 12rem);
+  line-height: 0.85;
+  margin-bottom: 2rem;
+  letter-spacing: -2px;
+}
+
+.cine-subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: var(--teal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cine-img-wrap {
+  position: absolute;
+  right: var(--pad);
+  width: 45%;
+  height: 70vh;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.cine-img {
+  width: 100%;
+  height: 120%; /* for parallax */
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+.cine-img-wrap:hover .cine-img {
+  filter: grayscale(0%);
+}
+
+.cine-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #0a0a0a 0%, transparent 50%);
+}
+
+/* Bio Section */
+.cine-bio {
+  padding: 15vh var(--pad);
+}
+
+.cine-bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.cine-section-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 4rem;
+}
+
+.cine-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cine-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.cine-stat-num {
+  font-size: clamp(3rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.cine-stat-label {
+  color: var(--teal);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cine-body {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  line-height: 1.4;
+  color: #ddd;
+  margin-bottom: 2rem;
+}
+
+.cine-roles {
+  margin-top: 6rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.cine-role {
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: color 0.3s, padding-left 0.3s;
+}
+
+.cine-role:hover {
+  color: var(--teal);
+  padding-left: 2rem;
+}
+
+.cine-role span {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.3);
+}
+
+.cine-role h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* CTA */
+.cine-cta {
+  padding: 10vh var(--pad) 20vh;
+  text-align: center;
+}
+
+/* --- CINEMATIC JOURNEY (FILM STRIP) --- */
+.film-strip-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.film-strip-track {
+  display: flex;
+  height: 100%;
+  padding: 0 10vw; /* initial padding */
+  align-items: center;
+}
+
+.film-frame {
+  position: relative;
+  width: 60vw;
+  height: 60vh;
+  flex-shrink: 0;
+  margin-right: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.frame-intro, .frame-outro {
+  border: none;
+  width: 40vw;
+}
+
+.frame-bg {
+  position: absolute;
+  inset: -10%; /* for parallax padding */
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  filter: grayscale(100%) brightness(0.4);
+  transition: filter 0.8s ease;
+}
+
+.film-frame:hover .frame-bg {
+  filter: grayscale(0%) brightness(0.7);
+}
+
+.frame-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+}
+
+.frame-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+.frame-meta {
+  color: var(--teal);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.frame-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.frame-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  color: #ccc;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .cine-img-wrap {
+    position: relative;
+    right: auto;
+    width: 100%;
+    height: 50vh;
+    margin-top: 4rem;
+  }
+  .cine-hero {
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    padding-top: 15vh;
+  }
+  .cine-bio-grid {
+    grid-template-columns: 1fr;
+  }
+  .film-frame {
+    width: 80vw;
+  }
+}
+@media (max-width: 768px) {
+  .cine-img-wrap {
+    height: 40vh;
+  }
+  .cine-role {
+    gap: 1rem;
+    padding: 1.5rem 0;
+  }
+  .cine-role:hover {
+    padding-left: 1rem;
+  }
+  .film-frame {
+    width: 90vw;
+    height: 50vh;
+  }
+}

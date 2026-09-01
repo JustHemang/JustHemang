@@ -398,48 +398,31 @@ function initTrippy(gsap, REDUCED) {
 }
 
 export function initHorizontalMuseum() {
-  const section = document.querySelector('#journeyMuseum');
-  const track = document.querySelector('#museumTrack');
-  const panels = document.querySelectorAll('.museum-panel');
-  if (!section || !track || panels.length === 0) return;
-
-  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (REDUCED) {
-    track.style.flexDirection = 'column';
-    return;
-  }
-
+  const section = document.querySelector('.film-strip-section');
+  if (!section) return;
+  
   const gsap = window.gsap;
   const ScrollTrigger = window.ScrollTrigger;
-
-  // Horizontal scroll timeline
-  const scrollTween = gsap.to(track, {
-    x: () => -(track.scrollWidth - window.innerWidth) + "px",
-    ease: "none",
+  if (!gsap || !ScrollTrigger) return;
+  
+  const track = section.querySelector('.film-strip-track');
+  const frames = track.querySelectorAll('.film-frame');
+  
+  // Calculate total scroll width
+  let totalWidth = 0;
+  frames.forEach(f => {
+    totalWidth += f.offsetWidth + parseFloat(window.getComputedStyle(f).marginRight || 0);
+  });
+  
+  gsap.to(track, {
+    x: () => -(totalWidth - window.innerWidth + (window.innerWidth * 0.1)),
+    ease: 'none',
     scrollTrigger: {
       trigger: section,
       pin: true,
       scrub: 1,
-      end: () => "+=" + (track.scrollWidth - window.innerWidth)
-    }
-  });
-
-  // Fade in panel contents when they enter view
-  panels.forEach(panel => {
-    const content = panel.querySelector('.m-panel__content');
-    if (content) {
-      gsap.from(content, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: panel,
-          containerAnimation: scrollTween,
-          start: 'left center',
-          toggleActions: 'play none none reverse'
-        }
-      });
+      end: () => '+=' + totalWidth,
+      invalidateOnRefresh: true
     }
   });
 }
