@@ -4394,3 +4394,15 @@ h1, h2, h3, h4, h5, h6 {
 .nav__menu-btn:hover .nav__bars i {
   background: var(--teal) !important;
 }
+
+/* Ensure header and menu are ALWAYS on top */
+.nav {
+  position: fixed !important;
+  top: 0; left: 0; width: 100%;
+  z-index: 9999 !important;
+}
+.nav__menu-btn {
+  position: relative !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
