@@ -507,3 +507,91 @@ function initKineticAccordion() {
     if (firstBg) firstBg.classList.add('active');
   }
 }
+
+export function initInteractiveCanvas() {
+  const canvas = document.querySelector('#about.interactive-canvas');
+  if (!canvas) return;
+
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (REDUCED) return;
+
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+
+  // Kinetic Background text shifting on mouse move
+  const bgText = canvas.querySelector('.canvas-bg');
+  if (bgText) {
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 50;
+      const y = (e.clientY / window.innerHeight - 0.5) * 50;
+      gsap.to(bgText, {
+        x: x,
+        y: y,
+        duration: 1,
+        ease: 'power2.out'
+      });
+    });
+  }
+
+  // Hover Image Reveal
+  const reveals = document.querySelectorAll('.hover-reveal');
+  const imgContainer = document.getElementById('hoverImageContainer');
+  const imgDisplay = document.getElementById('hoverImageDisplay');
+
+  if (reveals.length && imgContainer && imgDisplay) {
+    // Make container follow mouse
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (imgContainer.classList.contains('is-visible')) {
+        gsap.to(imgContainer, {
+          left: mouseX,
+          top: mouseY,
+          duration: 0.6,
+          ease: 'power3.out'
+        });
+      }
+    });
+
+    reveals.forEach(rev => {
+      rev.addEventListener('mouseenter', () => {
+        const imgSrc = rev.getAttribute('data-img');
+        if (imgSrc) {
+          imgDisplay.src = imgSrc;
+          imgContainer.classList.add('is-visible');
+          // Instantly snap to current mouse pos when appearing
+          gsap.set(imgContainer, { left: mouseX, top: mouseY });
+        }
+      });
+      rev.addEventListener('mouseleave', () => {
+        imgContainer.classList.remove('is-visible');
+      });
+    });
+  }
+
+  // Number Counter Stats
+  const stats = document.querySelectorAll('.c-stat');
+  stats.forEach(stat => {
+    const valSpan = stat.querySelector('.counter-val');
+    const target = parseInt(stat.getAttribute('data-target') || '0', 10);
+    if (!valSpan) return;
+
+    ScrollTrigger.create({
+      trigger: stat,
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        gsap.to(valSpan, {
+          innerHTML: target,
+          duration: 2,
+          ease: 'power3.out',
+          snap: { innerHTML: 1 },
+          onUpdate: function() {
+            valSpan.innerHTML = Math.ceil(valSpan.innerHTML);
+          }
+        });
+      }
+    });
+  });
+}

@@ -9,6 +9,7 @@ import {
   initScrambleHover, 
   initLadderJourney, 
   initHorizontalMuseum,
+  initInteractiveCanvas,
   initCounters, 
   initParallax 
 } from './modules/animations.js?v=2';
@@ -82,6 +83,7 @@ function initApp() {
   initScrambleHover();
   initLadderJourney();
   initHorizontalMuseum();
+  initInteractiveCanvas();
   initCounters();
   initParallax();
   initTimecode();
@@ -106,4 +108,4 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {
   initApp();
-}
+}

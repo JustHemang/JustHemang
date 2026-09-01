@@ -2365,3 +2365,161 @@ body.page-services {
   color: var(--paper-2);
   line-height: 1.6;
 }
+
+
+/* --- THE INTERACTIVE CANVAS (ABOUT) --- */
+.interactive-canvas {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg);
+  padding: var(--pad);
+}
+.canvas-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150vw;
+  display: flex;
+  flex-direction: column;
+  opacity: 0.03;
+  pointer-events: none;
+  font-size: clamp(10rem, 30vw, 35rem);
+  line-height: 0.8;
+  white-space: nowrap;
+  color: var(--paper);
+}
+.canvas-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  text-align: center;
+}
+.canvas-content h1 {
+  font-size: clamp(3rem, 8vw, 8rem);
+  margin-bottom: 4rem;
+  color: var(--paper);
+}
+.canvas-text {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  color: var(--paper-2);
+  line-height: 1.4;
+  margin-bottom: 2rem;
+}
+.hover-reveal {
+  color: var(--paper);
+  cursor: crosshair;
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s;
+}
+.hover-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+.hover-reveal:hover {
+  color: var(--ink);
+  -webkit-text-stroke: 1px var(--paper);
+}
+.hover-reveal:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Floating Hover Image */
+.hover-image-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 400px;
+  height: 500px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.hover-image-container.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.hover-image-display {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.2);
+  transition: transform 0.4s ease;
+}
+.hover-image-container.is-visible .hover-image-display {
+  transform: scale(1);
+}
+
+.canvas-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 3rem;
+}
+.c-stat h3 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--paper);
+}
+
+/* --- GLOBAL HOVER ENHANCEMENTS --- */
+a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+p a, .footer__links a {
+  position: relative;
+  display: inline-block;
+}
+p a::after, .footer__links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+}
+p a:hover::after, .footer__links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Cursor Enhancements */
+.cursor__ring.is-active {
+  transform: scale(2.5) !important;
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+  mix-blend-mode: difference;
+}
+
+/* Global Image Hover (for masonry & standard images) */
+.masonry-item__bg img, .work__item-bg img {
+  transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1), filter 0.8s ease;
+  filter: grayscale(80%);
+}
+.masonry-item:hover .masonry-item__bg img, .work__item:hover .work__item-bg img {
+  transform: scale(1.1);
+  filter: grayscale(0%);
+}
