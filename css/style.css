@@ -4253,3 +4253,113 @@ h1, h2, h3, h4, h5, h6 {
 .nav__bars i { display: block; width: 100%; height: 2px; background: var(--text) !important; border-radius: 1px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center; }
 .nav__menu-btn.open .nav__bars i:nth-child(1) { transform: translateY(4px) rotate(45deg); }
 .nav__menu-btn.open .nav__bars i:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+
+/* === ROAD TIMELINE === */
+.road-section {
+  padding: 15vh 0;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.road-header {
+  text-align: center;
+  margin-bottom: 25vh;
+}
+
+.road-header h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+}
+
+.road-container {
+  display: flex;
+  flex-direction: column;
+  gap: 80vh; /* large gap for the road scrolling effect */
+  padding-bottom: 40vh;
+}
+
+.road-node {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  perspective: 1200px;
+}
+
+.road-photo {
+  width: 45vw;
+  max-width: 700px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+  border: 1px solid #333;
+  z-index: 2;
+  opacity: 0; /* GSAP will animate */
+  will-change: transform, opacity;
+}
+
+.road-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(80%) contrast(1.2);
+  transition: filter 0.5s ease;
+}
+
+.road-photo:hover img {
+  filter: grayscale(0%) contrast(1);
+}
+
+.road-text {
+  position: absolute;
+  width: 400px;
+  z-index: 3;
+  padding: 2.5rem;
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  opacity: 0; /* GSAP will animate */
+  will-change: transform, opacity;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.road-date {
+  color: var(--teal);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.road-text h2 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+
+.road-text p {
+  color: #ccc;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .road-photo { width: 85vw; }
+  .road-text { 
+    width: 90vw; 
+    position: relative; 
+    margin-top: -10vh; /* overlap */
+  }
+  .road-node {
+    flex-direction: column;
+  }
+}

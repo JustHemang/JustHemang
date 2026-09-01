@@ -14,7 +14,8 @@ import {
   initParallax,
   initDeckAbout,
   initDeckJourney,
-  initOrbitalTimeline
+  initOrbitalTimeline,
+  initRoadTimeline
 } from './modules/animations.js?v=2';
 import { 
   initTimecode, 
@@ -89,7 +90,8 @@ function initApp() {
   initContactOrb();
   initDeckAbout();
   initDeckJourney();
-  initOrbitalTimeline();
+  initOrbitalTimeline,
+  initRoadTimeline();
   initCounters();
   initParallax();
   initTimecode();

@@ -731,3 +731,62 @@ export function initOrbitalTimeline() {
     });
   });
 }
+
+
+export function initRoadTimeline() {
+  const nodes = document.querySelectorAll('.road-node');
+  if (!nodes.length) return;
+
+  nodes.forEach((node, index) => {
+    const photo = node.querySelector('.road-photo');
+    const text = node.querySelector('.road-text');
+    
+    // Determine alternating side for the text (desktop only)
+    const isMobile = window.innerWidth <= 900;
+    
+    // Desktop: Even goes left, Odd goes right
+    const finalX = isMobile ? 0 : (index % 2 === 0 ? -200 : 200);
+    const startX = isMobile ? 0 : (index % 2 === 0 ? -400 : 400);
+
+    // Photo animation: fades in, scales up, moves up
+    gsap.fromTo(photo, 
+      { opacity: 0, scale: 0.8, y: 150, rotationX: 10 },
+      { 
+        opacity: 1, scale: 1, y: 0, rotationX: 0,
+        scrollTrigger: {
+          trigger: node,
+          start: 'top 85%',
+          end: 'center 50%',
+          scrub: 1
+        }
+      }
+    );
+
+    // Text animation: fades in, slides in from side
+    gsap.fromTo(text,
+      { opacity: 0, x: startX, y: 50 },
+      {
+        opacity: 1, x: finalX, y: 0,
+        scrollTrigger: {
+          trigger: node,
+          start: 'top 75%',
+          end: 'center 50%',
+          scrub: 1.5
+        }
+      }
+    );
+    
+    // Fade out everything when passing it
+    gsap.to([photo, text], {
+      opacity: 0.2,
+      y: -100,
+      scale: 0.9,
+      scrollTrigger: {
+        trigger: node,
+        start: 'center 20%',
+        end: 'bottom top',
+        scrub: 1
+      }
+    });
+  });
+}
