@@ -4406,3 +4406,34 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 10000 !important;
   pointer-events: auto !important;
 }
+
+
+/* The actual Visual Road Graphic */
+.road-container {
+  position: relative;
+}
+.road-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(150px, 30vw); 
+  background: #111; 
+  border-left: 2px solid var(--teal-dim);
+  border-right: 2px solid var(--teal-dim);
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+  z-index: 0;
+}
+.road-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.4) 0, rgba(255,255,255,0.4) 40px, transparent 40px, transparent 80px);
+  z-index: 1;
+}
