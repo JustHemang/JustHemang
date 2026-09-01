@@ -221,8 +221,19 @@ export function initAnimations() {
       onUpdate: (self) => { progress.style.boxShadow = self.progress > 0.95 ? '0 0 16px 3px rgba(42, 122, 122, 0.6)' : 'none'; }
     });
   }
+  const aboutMask = document.querySelector('#aboutCinematicMask');
+  if (aboutMask && !REDUCED) {
+    ScrollTrigger.create({
+      trigger: aboutMask,
+      start: 'top 75%',
+      onEnter: () => aboutMask.classList.add('is-revealed')
+    });
+  }
+
   initHorizontalWork(gsap, ScrollTrigger, REDUCED, IS_MOBILE);
   initTrippy(gsap, REDUCED);
+  initJourneyRoad(gsap, ScrollTrigger, REDUCED);
+  initGalleryParallax(REDUCED);
 }
 export function initSmartNav() {
   const nav = document.querySelector('#nav');
@@ -383,4 +394,101 @@ function initTrippy(gsap, REDUCED) {
   tl.to(frames, { scale: 1, rotate: '0deg', duration: 0.25, ease: 'none' }, 0);
   tl.to(frames, { scale: 0.9, rotate: '30deg', duration: 0.55, ease: 'none' }, 0.25);
   tl.to(frames, { scale: 1.25, rotate: '60deg', duration: 0.2, ease: 'none' }, 0.8);
+}
+
+function initJourneyRoad(gsap, ScrollTrigger, REDUCED) {
+  if (REDUCED) return;
+  const container = document.querySelector('#journey3dSection');
+  if (!container) return;
+  
+  const billboardContainer = document.querySelector('#billboardContainer');
+  const billboards = document.querySelectorAll('.billboard');
+  const roadGrid = document.querySelector('#roadGrid');
+  
+  let maxZ = 0;
+  billboards.forEach(b => {
+    const z = parseInt(b.style.getPropertyValue('--z') || 0);
+    if (z > maxZ) maxZ = z;
+  });
+  
+  const endZ = maxZ + 2000;
+  
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: container,
+      start: 'top top',
+      end: '+=8000',
+      scrub: 1,
+      pin: true,
+      onUpdate: (self) => {
+        const cameraZ = self.progress * endZ;
+        billboards.forEach(b => {
+          const itemZ = parseInt(b.style.getPropertyValue('--z') || 0);
+          const dist = itemZ - cameraZ;
+          let opacity = 0;
+          if (dist < 3500 && dist > 0) {
+            opacity = 1 - (dist / 3500);
+          } else if (dist <= 0 && dist > -1500) {
+            opacity = 1 - Math.abs(dist / 1500);
+          }
+          b.style.opacity = Math.pow(Math.max(0, opacity), 1.5).toString();
+          
+          if (dist > 1500) {
+             b.style.filter = `blur(${(dist - 1500)/100}px)`;
+          } else if (dist < 0) {
+             b.style.filter = `blur(${Math.abs(dist)/20}px)`;
+          } else {
+             b.style.filter = `none`;
+          }
+        });
+      }
+    }
+  });
+
+  tl.to(billboardContainer, {
+    z: endZ,
+    ease: 'none'
+  }, 0);
+  
+  tl.to(roadGrid, {
+    backgroundPositionY: '3000px',
+    ease: 'none'
+  }, 0);
+}
+
+function initGalleryParallax(REDUCED) {
+  if (REDUCED) return;
+  const cards = document.querySelectorAll('.work__item');
+  if (!cards.length) return;
+  
+  cards.forEach(card => {
+    const bg = card.querySelector('.work__item-bg img');
+    if (!bg) return;
+    
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      const xPct = x / (rect.width / 2);
+      const yPct = y / (rect.height / 2);
+      
+      // Tilt card
+      card.style.transform = `perspective(1000px) rotateY(${xPct * 8}deg) rotateX(${yPct * -8}deg) scale3d(1.02, 1.02, 1.02)`;
+      card.style.zIndex = '10';
+      
+      // Pan image
+      bg.style.transform = `scale(1.15) translate3d(${xPct * -15}px, ${yPct * -15}px, 0)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)`;
+      card.style.zIndex = '1';
+      bg.style.transform = `scale(1) translate3d(0, 0, 0)`;
+      setTimeout(() => {
+        card.style.transform = '';
+        bg.style.transform = '';
+      }, 400); // allow transition to finish
+    });
+  });
 }
