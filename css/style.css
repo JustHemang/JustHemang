@@ -2534,6 +2534,7 @@ p a:hover::after, .footer__links a:hover::after {
 /* Glass Orb Hover Follow/Pulse */
 .glass-container:hover ~ .glass-orb,
 .monolithic-glass:hover .glass-orb {
+  animation: none;
   transform: translate(-50%, -50%) scale(1.5);
   filter: blur(100px) hue-rotate(45deg);
   transition: transform 2s cubic-bezier(0.2, 0, 0.2, 1), filter 2s ease;
