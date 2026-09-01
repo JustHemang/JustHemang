@@ -61,7 +61,15 @@ body.has-cursor,body.has-cursor *{cursor:none!important}
   will-change:transform;
 }
 .pt-bar--1{background:linear-gradient(135deg,#050a12,#091122);z-index:5}
-.pt-bar--2{background:linear-gradient(135deg,#07101f,#0f1c36);z-index:4}
+.nav__logo-text {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 2.5rem !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase;
+}
+.nav__logo {
+  gap: 1rem !important;
+}.pt-bar--2{background:linear-gradient(135deg,#07101f,#0f1c36);z-index:4}
 .pt-bar--3{background:linear-gradient(135deg,#0c1932,#015280);z-index:3}
 .pt-bar--4{background:linear-gradient(135deg,#0278b3,#0284c7);z-index:2}
 .pt-bar--5{background:linear-gradient(135deg,#0284c7,#38bdf8);z-index:1}
