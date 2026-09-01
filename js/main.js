@@ -9,6 +9,7 @@ import {
   initScrambleHover, 
   initLadderJourney, 
   initHorizontalMuseum,
+  initContactOrb,
   initCounters, 
   initParallax 
 } from './modules/animations.js?v=2';
@@ -82,6 +83,7 @@ function initApp() {
   initScrambleHover();
   initLadderJourney();
   initHorizontalMuseum();
+  initContactOrb();
   initCounters();
   initParallax();
   initTimecode();

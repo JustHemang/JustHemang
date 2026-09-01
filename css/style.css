@@ -2832,3 +2832,34 @@ p a:hover::after, .footer__links a:hover::after {
   font-size: 0.9rem;
   opacity: 0.8;
 }
+
+/* --- RESTORED COLORED BLOB --- */
+.monolithic-glass {
+  position: relative;
+  overflow: hidden;
+}
+.glass-orb {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,100,50,0.8), rgba(100,50,255,0.4), transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  animation: orb-float 15s ease-in-out infinite alternate;
+}
+@keyframes orb-float {
+  0% { transform: translate(-10%, -10%) scale(1); }
+  50% { transform: translate(10%, 10%) scale(1.1); }
+  100% { transform: translate(-10%, 20%) scale(0.9); }
+}
+
+/* Glass Orb Hover Follow/Pulse */
+.git-terminal:hover .glass-orb {
+  animation: none;
+  transform: translate(-50%, -50%) scale(1.5);
+  filter: blur(100px) hue-rotate(45deg);
+  transition: transform 2s cubic-bezier(0.2, 0, 0.2, 1), filter 2s ease;
+}
