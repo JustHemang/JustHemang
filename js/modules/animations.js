@@ -68,7 +68,7 @@ export function initAnimations() {
       opacity: 0, x: -30, duration: 0.7, ease: 'power3.out',
     });
   });
-  document.querySelectorAll('.section__heading, .statement__heading, .cta__heading').forEach(el => {
+  document.querySelectorAll('.section__heading, .statement__heading, .cta__heading, .page-hero__title').forEach(el => {
     if (!el.querySelector('.char-reveal')) {
       function wrapTextNodes(node) {
         if (node.nodeType === 3) { 

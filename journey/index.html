@@ -15,6 +15,21 @@
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body class="page-sub">
+  <div class="page-transition" id="pageTransition" aria-hidden="true" style="display:flex;">
+    <div class="pt-bar pt-bar--1" style="--i:0"></div>
+    <div class="pt-bar pt-bar--2" style="--i:1"></div>
+    <div class="pt-bar pt-bar--3" style="--i:2"></div>
+    <div class="pt-bar pt-bar--4" style="--i:3"></div>
+    <div class="pt-bar pt-bar--5" style="--i:4"></div>
+  </div>
+  <div class="fx-grain" aria-hidden="true"></div>
+  <div class="fx-vignette" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+
   <!-- Nav -->
   <header class="nav" id="nav">
     <a class="nav__logo" href="/">
@@ -28,16 +43,18 @@
   </header>
   <!-- Overlay Menu -->
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
-    <nav class="menu-overlay__nav">
-      <ul class="menu-overlay__list">
+    <nav class="menu-overlay__links" aria-label="Menu">
         <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
         <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
         <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
         <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
         <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
         <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
-      </ul>
     </nav>
+    <div class="menu-overlay__foot">
+      <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </div>
   
   <main>
@@ -47,58 +64,82 @@
       <div class="accent-line"></div>
     </section>
 
-    <section class="section exp" style="padding-top:2rem;">
-      <div class="container" style="max-width:800px; margin: 0 auto; padding: 0 2rem;">
+    <section class="section" style="padding-top:2rem;">
+      <div class="container" style="max-width:1000px; margin: 0 auto; padding: 0 2rem;">
         
-        <div class="exp__list">
+        <div class="journey-timeline">
           
-          <article class="exp-card reveal" data-year="APR 2025">
-            <span class="exp-card__ghost" aria-hidden="true">01</span>
-            <div class="exp-card__date mono">APR 2025</div>
-            <h3 class="exp-card__company">OPCODE</h3>
-            <p class="exp-card__role mono">TECHNOCRAT</p>
-            <p class="exp-card__desc">Joined OPCODE, my school's prestigious tech club, taking my first steps into the community.</p>
-          </article>
+          <div class="journey-timeline__item reveal">
+            <div class="journey-timeline__photo">
+              <!-- Insert image source below -->
+              <img src="" alt="Joined OpCode" />
+            </div>
+            <div class="journey-timeline__content">
+              <div class="journey-timeline__date">APR 2025</div>
+              <h3 class="journey-timeline__title">OPCODE TECHNOCRAT</h3>
+              <p class="journey-timeline__desc">Joined OPCODE, my school's prestigious tech club, taking my first steps into the community.</p>
+            </div>
+          </div>
           
-          <article class="exp-card reveal" data-year="NOV 2025">
-            <span class="exp-card__ghost" aria-hidden="true">02</span>
-            <div class="exp-card__date mono">NOV 2025</div>
-            <h3 class="exp-card__company">OPCODE</h3>
-            <p class="exp-card__role mono">LEAD VIDEO EDITOR</p>
-            <p class="exp-card__desc">Promoted to Lead Video Editor after successfully contributing to the Annual Day events.</p>
-          </article>
+          <div class="journey-timeline__item reveal">
+            <div class="journey-timeline__photo">
+              <!-- Insert image source below -->
+              <img src="" alt="Lead Video Editor" />
+            </div>
+            <div class="journey-timeline__content">
+              <div class="journey-timeline__date">NOV 2025</div>
+              <h3 class="journey-timeline__title">LEAD VIDEO EDITOR</h3>
+              <p class="journey-timeline__desc">Promoted to Lead Video Editor after successfully contributing to the Annual Day events.</p>
+            </div>
+          </div>
           
-          <article class="exp-card reveal" data-year="APR 2026">
-            <span class="exp-card__ghost" aria-hidden="true">03</span>
-            <div class="exp-card__date mono">APR 2026</div>
-            <h3 class="exp-card__company">OPCODE</h3>
-            <p class="exp-card__role mono">VICE PRESIDENT</p>
-            <p class="exp-card__desc">Promoted to Vice President of OPCODE, taking on greater leadership and organizational responsibilities.</p>
-          </article>
+          <div class="journey-timeline__item reveal">
+            <div class="journey-timeline__photo">
+              <!-- Insert image source below -->
+              <img src="" alt="Vice President" />
+            </div>
+            <div class="journey-timeline__content">
+              <div class="journey-timeline__date">APR 2026</div>
+              <h3 class="journey-timeline__title">VICE PRESIDENT</h3>
+              <p class="journey-timeline__desc">Promoted to Vice President of OPCODE, taking on greater leadership and organizational responsibilities.</p>
+            </div>
+          </div>
           
-          <article class="exp-card reveal" data-year="JUL 2026">
-            <span class="exp-card__ghost" aria-hidden="true">04</span>
-            <div class="exp-card__date mono">JUL 2026</div>
-            <h3 class="exp-card__company">OPCODE &amp; XENIUM</h3>
-            <p class="exp-card__role mono">PRESIDENT</p>
-            <p class="exp-card__desc">Promoted to President after my work co-hosting Xenium and judging the Film Making event.</p>
-          </article>
+          <div class="journey-timeline__item reveal">
+            <div class="journey-timeline__photo">
+              <!-- Insert image source below -->
+              <img src="" alt="President" />
+            </div>
+            <div class="journey-timeline__content">
+              <div class="journey-timeline__date">JUL 2026</div>
+              <h3 class="journey-timeline__title">PRESIDENT</h3>
+              <p class="journey-timeline__desc">Promoted to President after my work co-hosting Xenium and judging the Film Making event.</p>
+            </div>
+          </div>
+          
+          <div class="journey-timeline__item reveal">
+            <div class="journey-timeline__photo">
+              <!-- Insert image source below -->
+              <img src="" alt="First Client" />
+            </div>
+            <div class="journey-timeline__content">
+              <div class="journey-timeline__date">AGE 16</div>
+              <h3 class="journey-timeline__title">FIRST CLIENT</h3>
+              <p class="journey-timeline__desc">Got my first client at the age of 16, officially beginning my journey into professional creative work.</p>
+            </div>
+          </div>
 
-          <article class="exp-card exp-card--now reveal" data-year="AGE 16">
-            <span class="exp-card__ghost" aria-hidden="true">05</span>
-            <div class="exp-card__date mono">AGE 16</div>
-            <h3 class="exp-card__company">FIRST CLIENT</h3>
-            <p class="exp-card__role mono">FREELANCE START</p>
-            <p class="exp-card__desc">Got my first client at the age of 16, officially beginning my journey into professional creative work.</p>
-          </article>
-          
-          <article class="exp-card reveal" data-year="MAR 2027">
-            <span class="exp-card__ghost" aria-hidden="true">06</span>
-            <div class="exp-card__date mono">MAR 2027</div>
-            <h3 class="exp-card__company">OPCODE</h3>
-            <p class="exp-card__role mono">ALUMNI</p>
-            <p class="exp-card__desc">My OPCODE journey officially concludes, paving the way for new ventures.</p>
-          </article>
+          <div class="journey-timeline__item reveal">
+            <div class="journey-timeline__photo">
+              <!-- Insert image source below -->
+              <img src="" alt="Alumni" />
+            </div>
+            <div class="journey-timeline__content">
+              <div class="journey-timeline__date">MAR 2027</div>
+              <h3 class="journey-timeline__title">ALUMNI</h3>
+              <p class="journey-timeline__desc">My OPCODE journey officially concludes, paving the way for new ventures.</p>
+            </div>
+          </div>
           
         </div>
         

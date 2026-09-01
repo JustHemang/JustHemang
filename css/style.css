@@ -1551,6 +1551,93 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 @media(max-width: 480px) {
   .stats { grid-template-columns: 1fr; }
 }
+
+.watermark { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-family: var(--font-hero); font-size: 8rem; font-weight: 700; color: var(--paper); opacity: 0.03; pointer-events: none; z-index: 1000; user-select: none; }
+
+/* Journey Timeline */
+.journey-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem 0;
+}
+.journey-timeline__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+@media(min-width: 768px) {
+  .journey-timeline__item {
+    flex-direction: row;
+    gap: 4rem;
+  }
+  .journey-timeline__item:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+  .journey-timeline__item:nth-child(even) .journey-timeline__content {
+    text-align: right;
+  }
+}
+.journey-timeline__photo {
+  flex: 1;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--ink);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+.journey-timeline__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.journey-timeline__photo:hover img {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+.journey-timeline__photo::after {
+  content: 'Photo Placeholder';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  color: rgba(255,255,255,0.3);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+.journey-timeline__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.journey-timeline__date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--teal);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+.journey-timeline__title {
+  font-family: var(--font-head);
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+.journey-timeline__desc {
+  font-size: 1rem;
+  color: var(--paper-2);
+  line-height: 1.6;
+}
 . w a t e r m a r k   {   p o s i t i o n :   f i x e d ;   b o t t o m :   1 . 5 r e m ;   l e f t :   5 0 % ;   t r a n s f o r m :   t r a n s l a t e X ( - 5 0 % ) ;   f o n t - f a m i l y :   v a r ( - - f o n t - h e r o ) ;   f o n t - s i z e :   8 r e m ;   f o n t - w e i g h t :   7 0 0 ;   c o l o r :   v a r ( - - p a p e r ) ;   o p a c i t y :   0 . 0 3 ;   p o i n t e r - e v e n t s :   n o n e ;   z - i n d e x :   1 0 0 0 ;   u s e r - s e l e c t :   n o n e ;   } 
  
  
