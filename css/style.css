@@ -2566,15 +2566,16 @@ p a:hover::after, .footer__links a:hover::after {
 .terminal-window {
   width: 100%;
   max-width: 800px;
-  background: rgba(10, 10, 12, 0.9);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(10, 10, 12, 0.25);
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 12px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
   overflow: hidden;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 }
 .terminal-header {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.02);
   padding: 12px 20px;
   display: flex;
   align-items: center;
