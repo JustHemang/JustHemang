@@ -26,6 +26,13 @@
     <div class="pt-bar pt-bar--4" style="--i:3"></div>
     <div class="pt-bar pt-bar--5" style="--i:4"></div>
   </div>
+  <style>
+    /* Safety: if JS fails, force transition off after 1.5s */
+    .pt-bar { animation: pt-fallback 0.6s ease forwards; animation-delay: calc(0.9s + var(--i) * 0.05s); }
+    @keyframes pt-fallback { to { transform: translateX(100%); } }
+    #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
+    @keyframes pt-hide { to { display: none; pointer-events: none; opacity: 0; } }
+  </style>
   <div class="fx-grain" aria-hidden="true"></div>
   <div class="fx-vignette" aria-hidden="true"></div>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
