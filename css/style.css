@@ -3957,30 +3957,7 @@ p a:hover::after, .footer__links a:hover::after {
    GLOBAL UPDATES: HAMBURGER, HIGHLIGHT ANIMATION, WATERMARK
    ========================================================================== */
 
-/* Better Hamburger Menu */
-.nav__menu-btn {
-  width: 50px !important;
-  height: 50px !important;
-  border-radius: 50% !important; /* Make it a circle */
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  position: relative;
-}
 
-.nav__menu-btn:hover {
-  background: var(--teal);
-  border-color: var(--teal);
-  transform: scale(1.1);
-}
-
-.nav__menu-btn:hover .nav__bars i {
-  background: #111 !important; /* Invert icon color on hover */
-}
 
 /* Light theme overrides for better hamburger */
 .btn-dark {
@@ -4249,10 +4226,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
 }
 
-.nav__bars { display: flex; flex-direction: column; justify-content: space-between; height: 10px; width: 28px; }
-.nav__bars i { display: block; width: 100%; height: 2px; background: var(--text) !important; border-radius: 1px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center; }
-.nav__menu-btn.open .nav__bars i:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-.nav__menu-btn.open .nav__bars i:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
 
 
 /* === ROAD TIMELINE === */
@@ -4362,4 +4336,61 @@ h1, h2, h3, h4, h5, h6 {
   .road-node {
     flex-direction: column;
   }
+}
+
+/* === BARE HAMBURGER (NO CIRCLE, BIG LINES, CROSS) === */
+.nav__menu-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 10px !important;
+  width: auto !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nav__menu-btn:hover {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  transform: scale(1.1);
+}
+
+.nav__menu-btn span {
+  display: none !important; /* hide the MENU text if it exists */
+}
+
+/* The Lines (Bigger) */
+.nav__bars { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  height: 16px; /* distance between top and bottom */
+  width: 44px;  /* length of lines */
+}
+.nav__bars i { 
+  display: block; 
+  width: 100%; 
+  height: 4px; /* thickness */
+  background: var(--text) !important; 
+  border-radius: 2px; 
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease; 
+  transform-origin: center; 
+}
+
+/* Form the Cross (X) */
+.nav__menu-btn.open .nav__bars i:nth-child(1) { 
+  transform: translateY(6px) rotate(45deg); 
+}
+.nav__menu-btn.open .nav__bars i:nth-child(2) { 
+  transform: translateY(-6px) rotate(-45deg); 
+}
+
+/* Hover effect */
+.nav__menu-btn:hover .nav__bars i {
+  background: var(--teal) !important;
 }
