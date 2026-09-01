@@ -10,7 +10,7 @@
 <a href="https://instagram.com/xhertxd"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white"/></a>
 <a href="https://linkedin.com/in/hemang-luthra-328a65303"><img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
 <a href="https://youtube.com/@justhemang"><img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white"/></a>
-<a href="https://github.com/xhertxd"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/></a>
+<a href="https://github.com/xhertx"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/></a>
 <a href="mailto:xhertxd@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
 
 </div>
@@ -74,16 +74,16 @@ portfolio: https://justhemang.vercel.app
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=justhemang&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" width="49%"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=justhemang&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact" width="42.5%"/>
+<img src="https://github-readme-stats.vercel.app/api?username=xhertx&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true" width="49%"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=xhertx&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact" width="42.5%"/>
 
 <br/><br/>
 
-<img src="https://streak-stats.demolab.com/?user=justhemang&theme=tokyonight&hide_border=true" width="100%"/>
+<img src="https://streak-stats.demolab.com/?user=xhertx&theme=tokyonight&hide_border=true" width="100%"/>
 
 <br/><br/>
 
-<img src="https://raw.githubusercontent.com/justhemang/justhemang/output/profile-3d-contrib/profile-night-rainbow.svg" width="100%"/>
+<img src="https://raw.githubusercontent.com/xhertx/xhertx/output/profile-3d-contrib/profile-night-rainbow.svg" width="100%"/>
 
 </div>
 
@@ -95,7 +95,7 @@ portfolio: https://justhemang.vercel.app
 
 <div align="center">
 
-<img src="https://github-profile-trophy.vercel.app/?username=justhemang&theme=tokyonight&no-frame=true&row=1&column=7&margin-w=8" width="100%"/>
+<img src="https://github-profile-trophy.vercel.app/?username=xhertx&theme=tokyonight&no-frame=true&row=1&column=7&margin-w=8" width="100%"/>
 
 </div>
 
@@ -123,7 +123,7 @@ I'm always open to collaborating on video productions, web applications, or crea
 
 <br/>
 
-![Profile Views](https://komarev.com/ghpvc/?username=justhemang&icon=2&color=38BDF8&style=for-the-badge&label=Profile+Views)
+![Profile Views](https://komarev.com/ghpvc/?username=xhertx&icon=2&color=38BDF8&style=for-the-badge&label=Profile+Views)
 
 <br/><br/>
 
