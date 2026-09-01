@@ -34,7 +34,7 @@
   <header class="nav" id="nav">
     <a class="nav__logo" href="/">
       <img class="nav__logo-img" src="../Logo Transparent.png" alt="JH" />
-      <span class="nav__logo-text">hertx</span>
+      <span class="nav__logo-text">Hertx</span>
     </a>
     <button class="nav__menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
       <div class="nav__bars"><i></i><i></i><i></i></div>
@@ -57,202 +57,51 @@
     </div>
   </div>
   <main>
-    <section class="services-hero">
+    <section class="page-hero">
       <p class="section__eyebrow mono anim-slide-left">What I do</p>
-      <h1 class="section__heading tw-type">Services</h1>
+      <h1 class="page-hero__title tw-type">Services</h1>
       <div class="accent-line"></div>
+      <p class="page-hero__desc mono">Creative direction, video production, and fullstack web experiences.</p>
     </section>
-    <section class="services-tabs">
-      <div class="services-tabs__nav">
-        <button class="services-tabs__btn active" data-tab="creative">Creative</button>
-        <button class="services-tabs__btn" data-tab="dev">Development</button>
-        <button class="services-tabs__btn" data-tab="photo">Photography</button>
-      </div>
-      <div class="services-tabs__panels">
-        <div class="services-tabs__panel active" id="tab-creative">
-          <div class="service-item">
-            <h2 class="service-name">Video Editing</h2>
-            <div>
-              <p class="service-detail">High-impact commercial video editing and post-production. Every frame is
-                intentional, every cut deliberate.</p>
-              <div class="service-tags"><span class="service-tag">Premiere Pro</span><span class="service-tag">DaVinci
-                  Resolve</span><span class="service-tag">Final Cut Pro</span></div>
-            </div>
+    
+    <section class="section" style="padding-top:4rem;">
+      <div class="services-grid">
+        <div class="services-grid__card">
+          <span class="services-grid__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal)"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </span>
+          <h3 class="services-grid__name">Video Production</h3>
+          <p class="services-grid__desc">High-impact commercial video editing and post-production. Every frame is intentional, every cut deliberate.</p>
+          <div class="services-grid__tags">
+            <span class="service-tag">Editing</span><span class="service-tag">Color Grading</span><span class="service-tag">Motion</span>
           </div>
-          <div class="service-item">
-            <h2 class="service-name">Graphic Design</h2>
-            <div>
-              <p class="service-detail">Brand identity, visual systems, and print design. Visual languages that are
-                instantly recognizable.</p>
-              <div class="service-tags"><span class="service-tag">Photoshop</span><span
-                  class="service-tag">Illustrator</span><span class="service-tag">Figma</span></div>
-            </div>
-          </div>
-          <div class="service-item">
-            <h2 class="service-name">Motion Graphics</h2>
-            <div>
-              <p class="service-detail">Kinetic typography, logo animations, and dynamic transitions. Bringing static
-                designs to life.</p>
-              <div class="service-tags"><span class="service-tag">After Effects</span><span class="service-tag">Cinema
-                  4D</span><span class="service-tag">Blender</span></div>
-            </div>
-          </div>
-          <div class="service-item">
-            <h2 class="service-name">Color Grading</h2>
-            <div>
-              <p class="service-detail">Professional color correction and creative grading. Cinematic quality for your
-                footage.</p>
-              <div class="service-tags"><span class="service-tag">DaVinci Resolve</span><span
-                  class="service-tag">LUTs</span><span class="service-tag">Cinematic</span></div>
-            </div>
-          </div>
-          <div class="service-item">
-            <h2 class="service-name">Creative Direction</h2>
-            <div>
-              <p class="service-detail">End-to-end creative strategy for campaigns, brand launches, and content series.
-              </p>
-              <div class="service-tags"><span class="service-tag">Strategy</span><span class="service-tag">Art
-                  Direction</span><span class="service-tag">Production</span></div>
-            </div>
-          </div>
+          <a class="cta__btn" style="margin-top:2rem; width:100%; text-align:center; padding:0.8rem; display:block;" href="mailto:xhertxd@gmail.com?subject=Inquiry:%20Video%20Production">Inquire</a>
         </div>
-        <div class="services-tabs__panel" id="tab-dev">
-          <div class="service-item">
-            <h2 class="service-name">Frontend Development</h2>
-            <div>
-              <p class="service-detail">Responsive, interactive UIs with modern frameworks. Pixel-perfect
-                implementations.</p>
-              <div class="service-tags"><span class="service-tag">HTML / CSS</span><span
-                  class="service-tag">JavaScript</span><span class="service-tag">React</span><span
-                  class="service-tag">Next.js</span></div>
-            </div>
+        <div class="services-grid__card">
+          <span class="services-grid__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal)"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </span>
+          <h3 class="services-grid__name">Web Development</h3>
+          <p class="services-grid__desc">Responsive, interactive UIs with modern frameworks and robust scalable backend architectures.</p>
+          <div class="services-grid__tags">
+            <span class="service-tag">React / Next.js</span><span class="service-tag">UI / UX</span><span class="service-tag">Node.js</span>
           </div>
-          <div class="service-item">
-            <h2 class="service-name">Backend Development</h2>
-            <div>
-              <p class="service-detail">Scalable APIs, databases, and server architecture. Secure and performant.</p>
-              <div class="service-tags"><span class="service-tag">Node.js</span><span
-                  class="service-tag">Express</span><span class="service-tag">MongoDB</span><span
-                  class="service-tag">REST APIs</span></div>
-            </div>
-          </div>
-          <div class="service-item">
-            <h2 class="service-name">Full Stack Applications</h2>
-            <div>
-              <p class="service-detail">End-to-end web applications. From database to deployment.</p>
-              <div class="service-tags"><span class="service-tag">React</span><span
-                  class="service-tag">Node.js</span><span class="service-tag">Three.js</span><span
-                  class="service-tag">Cloud</span></div>
-            </div>
-          </div>
+          <a class="cta__btn" style="margin-top:2rem; width:100%; text-align:center; padding:0.8rem; display:block;" href="mailto:xhertxd@gmail.com?subject=Inquiry:%20Web%20Development">Inquire</a>
         </div>
-        <div class="services-tabs__panel" id="tab-photo">
-          <div class="service-item">
-            <h2 class="service-name">Photography</h2>
-            <div>
-              <p class="service-detail">Professional shoots, product photography, and creative direction for visual
-                content.</p>
-              <div class="service-tags"><span class="service-tag">Lightroom</span><span
-                  class="service-tag">Photoshop</span><span class="service-tag">Composition</span></div>
-            </div>
+        <div class="services-grid__card">
+          <span class="services-grid__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--teal)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+          </span>
+          <h3 class="services-grid__name">Creative Direction</h3>
+          <p class="services-grid__desc">End-to-end creative strategy for campaigns, brand launches, and visual identity systems.</p>
+          <div class="services-grid__tags">
+            <span class="service-tag">Brand Strategy</span><span class="service-tag">Design</span><span class="service-tag">Typography</span>
           </div>
-          <div class="service-item">
-            <h2 class="service-name">Photo Editing</h2>
-            <div>
-              <p class="service-detail">Retouching, color correction, and creative grading for raw footage and stills.
-              </p>
-              <div class="service-tags"><span class="service-tag">Lightroom</span><span
-                  class="service-tag">Photoshop</span><span class="service-tag">Color Grade</span></div>
-            </div>
-          </div>
+          <a class="cta__btn" style="margin-top:2rem; width:100%; text-align:center; padding:0.8rem; display:block;" href="mailto:xhertxd@gmail.com?subject=Inquiry:%20Creative%20Direction">Inquire</a>
         </div>
       </div>
     </section>
-    <section class="pricing">
-      <h2 class="pricing__heading tw-type">Video &amp; Creative</h2>
-      <div class="pricing__grid">
-        <div class="pricing__card">
-          <p class="pricing__tier mono">Basic</p>
-          <p class="pricing__price">&#8377;3k<span class="mono" style="font-size:0.5em;opacity:0.5">/min</span></p>
-          <ul class="pricing__features">
-            <li>Standard video editing</li>
-            <li>Basic color correction</li>
-            <li>Up to 2 revision rounds</li>
-          </ul><a class="pricing__btn cta__btn"
-            href="mailto:xhertxd@gmail.com?subject=Pricing%20Inquiry%20%E2%80%94%20Basic%20(Video)&body=Hi%20Hemang%2C%0A%0AI%27m%20interested%20in%20the%20Basic%20video%20plan%20(Rs.3k/min).%0A%0APlease%20include%3A%0A%E2%80%A2%20Standard%20video%20editing%0A%E2%80%A2%20Basic%20color%20correction%0A%E2%80%A2%20Up%20to%202%20revision%20rounds%0A%0ALooking%20forward%20to%20hearing%20from%20you!">Choose
-            Basic</a>
-        </div>
-        <div class="pricing__card popular">
-          <p class="pricing__tier mono">Pro</p>
-          <p class="pricing__price">&#8377;5k<span class="mono" style="font-size:0.5em;opacity:0.5">/min</span></p>
-          <ul class="pricing__features">
-            <li>Advanced editing &amp; transitions</li>
-            <li>Creative color grading</li>
-            <li>Motion graphics included</li>
-            <li>Unlimited revisions</li>
-          </ul><a class="pricing__btn cta__btn"
-            href="mailto:xhertxd@gmail.com?subject=Pricing%20Inquiry%20%E2%80%94%20Pro%20(Video)&body=Hi%20Hemang%2C%0A%0AI%27m%20interested%20in%20the%20Pro%20video%20plan%20(Rs.5k/min).%0A%0APlease%20include%3A%0A%E2%80%A2%20Advanced%20editing%20%26%20transitions%0A%E2%80%A2%20Creative%20color%20grading%0A%E2%80%A2%20Motion%20graphics%20included%0A%E2%80%A2%20Unlimited%20revisions%0A%0ALooking%20forward%20to%20hearing%20from%20you!">Choose
-            Pro</a>
-        </div>
-        <div class="pricing__card">
-          <p class="pricing__tier mono">Custom</p>
-          <p class="pricing__price">Custom</p>
-          <ul class="pricing__features">
-            <li>Full creative direction</li>
-            <li>End-to-end production</li>
-            <li>Dedicated project management</li>
-            <li>Priority support</li>
-            <li>Flexible timeline</li>
-          </ul><a class="pricing__btn cta__btn"
-            href="mailto:xhertxd@gmail.com?subject=Pricing%20Inquiry%20%E2%80%94%20Custom%20(Video)&body=Hi%20Hemang%2C%0A%0AI%27m%20interested%20in%20a%20Custom%20video%20package.%0A%0APlease%20include%3A%0A%E2%80%A2%20Full%20creative%20direction%0A%E2%80%A2%20End-to-end%20production%0A%E2%80%A2%20Dedicated%20project%20management%0A%E2%80%A2%20Priority%20support%0A%E2%80%A2%20Flexible%20timeline%0A%0ALooking%20forward%20to%20hearing%20from%20you!">Choose
-            Custom</a>
-        </div>
-      </div>
-    </section>
-    <section class="pricing">
-      <h2 class="pricing__heading tw-type">Web Development</h2>
-      <div class="pricing__grid">
-        <div class="pricing__card">
-          <p class="pricing__tier mono">Frontend</p>
-          <p class="pricing__price">&#8377;10k</p>
-          <ul class="pricing__features">
-            <li>Responsive landing pages</li>
-            <li>Interactive UI &amp; animations</li>
-            <li>HTML, CSS, JavaScript</li>
-            <li>React / Next.js</li>
-            <li>SEO optimized</li>
-          </ul><a class="pricing__btn cta__btn"
-            href="mailto:xhertxd@gmail.com?subject=Pricing%20Inquiry%20%E2%80%94%20Frontend&body=Hi%20Hemang%2C%0A%0AI%27m%20interested%20in%20the%20Frontend%20web%20dev%20plan%20(Rs.10k).%0A%0APlease%20include%3A%0A%E2%80%A2%20Responsive%20landing%20page%0A%E2%80%A2%20Interactive%20UI%20%26%20animations%0A%E2%80%A2%20HTML%2C%20CSS%2C%20JavaScript%0A%E2%80%A2%20React%20/%20Next.js%0A%20SEO%20optimized%0A%0ALooking%20forward%20to%20hearing%20from%20you!">Choose
-            Frontend</a>
-        </div>
-        <div class="pricing__card">
-          <p class="pricing__tier mono">Backend</p>
-          <p class="pricing__price">&#8377;20k</p>
-          <ul class="pricing__features">
-            <li>API development &amp; integration</li>
-            <li>Database design &amp; management</li>
-            <li>Authentication &amp; security</li>
-            <li>Node.js / Express</li>
-            <li>Cloud deployment</li>
-          </ul><a class="pricing__btn cta__btn"
-            href="mailto:xhertxd@gmail.com?subject=Pricing%20Inquiry%20%E2%80%94%20Backend&body=Hi%20Hemang%2C%0A%0AI%27m%20interested%20in%20the%20Backend%20web%20dev%20plan%20(Rs.20k).%0A%0APlease%20include%3A%0A%E2%80%A2%20API%20development%20%26%20integration%0A%E2%80%A2%20Database%20design%20%26%20management%0A%E2%80%A2%20Authentication%20%26%20security%0A%E2%80%A2%20Node.js%20/%20Express%0A%E2%80%A2%20Cloud%20deployment%0A%0ALooking%20forward%20to%20hearing%20from%20you!">Choose
-            Backend</a>
-        </div>
-        <div class="pricing__card popular">
-          <p class="pricing__tier mono">Full Stack</p>
-          <p class="pricing__price">&#8377;30k</p>
-          <ul class="pricing__features">
-            <li>Frontend + Backend combined</li>
-            <li>Full-stack web application</li>
-            <li>Database, API &amp; UI</li>
-            <li>Deployment &amp; hosting setup</li>
-            <li>Priority support &amp; revisions</li>
-          </ul><a class="pricing__btn cta__btn"
-            href="mailto:xhertxd@gmail.com?subject=Pricing%20Inquiry%20%E2%80%94%20Full%20Stack&body=Hi%20Hemang%2C%0A%0AI%27m%20interested%20in%20the%20Full%20Stack%20web%20dev%20plan%20(Rs.30k).%0A%0APlease%20include%3A%0A%E2%80%A2%20Frontend%20%2B%20Backend%20combined%0A%E2%80%A2%20Full-stack%20web%20application%0A%E2%80%A2%20Database%2C%20API%20%26%20UI%0A%E2%80%A2%20Deployment%20%26%20hosting%20setup%0A%E2%80%A2%20Priority%20support%20%26%20revisions%0A%0ALooking%20forward%20to%20hearing%20from%20you!">Choose
-            Full Stack</a>
-        </div>
-      </div>
-    </section>
+    
     <section class="process">
       <h2 class="process__heading tw-type">Process</h2>
       <div class="process__steps">
