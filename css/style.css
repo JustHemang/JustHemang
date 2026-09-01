@@ -4039,18 +4039,18 @@ p a:hover::after, .footer__links a:hover::after {
 
 /* Global Watermark */
 body::before {
-  content: 'HERTX / SYSTEM.CORE // ' attr(data-time);
+  content: 'Hx';
   position: fixed;
-  bottom: -2vw;
-  right: -5vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 15vw;
+  font-size: 80vw; /* Massive size */
+  line-height: 1;
   color: rgba(255, 255, 255, 0.02);
   pointer-events: none;
-  z-index: 0;
+  z-index: -10;
   white-space: nowrap;
-  transform: rotate(-10deg);
-  mix-blend-mode: overlay;
 }
 
 /* Adjust watermark for light theme */
