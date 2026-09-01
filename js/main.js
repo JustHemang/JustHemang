@@ -16,7 +16,7 @@ import {
   initDeckJourney,
   initOrbitalTimeline,
   initRoadTimeline
-} from './modules/animations.js?v=2';
+} from './modules/animations.js?v=3';
 import { 
   initTimecode, 
   initFilmstrip, 
