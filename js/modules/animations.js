@@ -401,59 +401,72 @@ function initJourneyRoad(gsap, ScrollTrigger, REDUCED) {
   const container = document.querySelector('#journey3dSection');
   if (!container) return;
   
-  const billboardContainer = document.querySelector('#billboardContainer');
   const billboards = document.querySelectorAll('.billboard');
   const roadGrid = document.querySelector('#roadGrid');
   
-  let maxZ = 0;
-  billboards.forEach(b => {
-    const z = parseInt(b.style.getPropertyValue('--z') || 0);
-    if (z > maxZ) maxZ = z;
-  });
-  
-  const endZ = maxZ + 2000;
+  // Total scroll distance depends on the number of items. 
+  // Let's give each item 3000px of scroll space for a very smooth sequence.
+  const endZ = billboards.length * 3000;
   
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: container,
       start: 'top top',
-      end: '+=8000',
+      end: `+=${endZ}`,
       scrub: 1,
       pin: true,
-      onUpdate: (self) => {
-        const cameraZ = self.progress * endZ;
-        billboards.forEach(b => {
-          const itemZ = parseInt(b.style.getPropertyValue('--z') || 0);
-          const dist = itemZ - cameraZ;
-          let opacity = 0;
-          if (dist < 3500 && dist > 0) {
-            opacity = 1 - (dist / 3500);
-          } else if (dist <= 0 && dist > -1500) {
-            opacity = 1 - Math.abs(dist / 1500);
-          }
-          b.style.opacity = Math.pow(Math.max(0, opacity), 1.5).toString();
-          
-          if (dist > 1500) {
-             b.style.filter = `blur(${(dist - 1500)/100}px)`;
-          } else if (dist < 0) {
-             b.style.filter = `blur(${Math.abs(dist)/20}px)`;
-          } else {
-             b.style.filter = `none`;
-          }
-        });
-      }
     }
   });
 
-  tl.to(billboardContainer, {
-    z: endZ,
-    ease: 'none'
+  // Animate the road infinitely
+  tl.to(roadGrid, {
+    backgroundPositionY: `${endZ}px`,
+    ease: 'none',
+    duration: billboards.length
   }, 0);
   
-  tl.to(roadGrid, {
-    backgroundPositionY: '3000px',
-    ease: 'none'
-  }, 0);
+  // Sequence each billboard
+  let time = 0;
+  billboards.forEach((b, i) => {
+    const content = b.querySelector('.billboard__content');
+    const photo = b.querySelector('.billboard__photo');
+    
+    // Hide content initially via JS just in case
+    gsap.set(content, { opacity: 0, y: 30 });
+    gsap.set(photo, { opacity: 0, scale: 0.8 });
+    
+    // 1. Pull to center & fade in photo
+    tl.to(b, {
+      '--x': '0vw',
+      '--y': '0vh',
+      '--z': '0',
+      '--rX': '0deg',
+      '--rY': '0deg',
+      '--rZ': '0deg',
+      duration: 1,
+      ease: 'power2.out'
+    }, time);
+    
+    tl.to(photo, { opacity: 1, scale: 1, duration: 1, ease: 'power2.out' }, time);
+    
+    time += 0.8; // overlap slightly
+    
+    // 2. Fade in text
+    tl.to(content, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, time);
+    
+    time += 1.2; // hold for reading
+    
+    // 3. Fade out everything and push out of the way
+    tl.to(b, {
+      opacity: 0,
+      '--z': '-1000', // push past camera
+      filter: 'blur(20px)',
+      duration: 0.8,
+      ease: 'power2.in'
+    }, time);
+    
+    time += 0.6; // move to next
+  });
 }
 
 function initGalleryParallax(REDUCED) {
