@@ -4436,3 +4436,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .menu-overlay__item, .menu-overlay li, li { list-style: none !important; }
+
+
+/* Header Improvements */
+.nav {
+  background: rgba(26, 26, 26, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Fix page-cta layout so it stacks nicely */
+.page-cta {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1.5rem !important;
+}
+.page-cta h2 {
+  margin-bottom: 0 !important;
+}
