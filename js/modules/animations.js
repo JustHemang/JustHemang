@@ -797,7 +797,7 @@ export function initHeroAnimation() {
   // Cinematic Hx -> Hertx reveal
   setTimeout(() => {
     // Reset to natural width to measure
-    window.gsap.set(mid, { width: 'auto', opacity: 1, clearProps: 'transform' });
+    window.gsap.set(mid, { width: 'auto', opacity: 1, display: 'inline-flex', clearProps: 'transform' });
     const midWidth = mid.offsetWidth || 150; // fallback just in case
     
     // Initial state: outer letters pushed in, mid invisible

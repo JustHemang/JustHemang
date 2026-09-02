@@ -1,7 +1,7 @@
 import { initCursor, initMagneticButtons } from './modules/cursor.js';
 import { initWebGLHero } from './modules/webgl-hero.js';
 import { initHeroGrid } from './modules/hero.js';
-import { initMenu, initPageTransition } from './modules/navigation.js';
+import { initMenu, initPageTransition } from './modules/navigation.js?v=2';
 import { 
   initAnimations, 
   initSmartNav, 

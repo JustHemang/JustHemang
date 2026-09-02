@@ -72,10 +72,12 @@ export function initPageTransition() {
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (REDUCED) { 
     overlay.style.display = 'none'; 
+    document.body.classList.add('is-page-entering');
     return; 
   }
   const bars = overlay.querySelectorAll('.pt-bar');
   const circle = overlay.querySelector('.pt-circle');
+  document.body.classList.add('is-page-entering');
   if (typeof window.gsap === 'undefined') {
     setTimeout(() => { overlay.style.display = 'none'; }, 500);
   } else {
@@ -83,7 +85,7 @@ export function initPageTransition() {
     if (circle) window.gsap.set(circle, { scale: 0 });
     window.gsap.to(bars, { xPercent: 100, stagger: 0.05, duration: 0.6, ease: 'power3.inOut', delay: 0.1 });
     if (circle) window.gsap.to(circle, { scale: 80, duration: 0.4, ease: 'power2.in', delay: 0.1 });
-    setTimeout(() => { overlay.style.display = 'none'; }, 900);
+    setTimeout(() => { overlay.style.display = 'none'; overlay.style.pointerEvents = 'none'; }, 900);
   }
   document.querySelectorAll('a[href]').forEach((link) => {
     const href = link.getAttribute('href');
