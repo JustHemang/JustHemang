@@ -794,56 +794,83 @@ export function initHeroAnimation() {
   const hxX = document.querySelector('.hx-x');
   const mid = document.querySelector('.hx-mid');
   if (!heroText1 || !mid || typeof window.gsap === 'undefined') return;
-  
-  // Apple-Style Cinematic Lens Blur Reveal
+
+  // ── "SIGNAL LOCK" ──────────────────────────────────────────────────────
+  // Letters scatter in from random 3D positions, then snap into perfect
+  // alignment with a shockwave ripple. Cinematic, sexy, premium.
+  // ──────────────────────────────────────────────────────────────────────
   setTimeout(() => {
-    // 1. Setup
-    // Remove the display:none and width:0 from mid so it can be animated
-    window.gsap.set(mid, { width: 'auto', opacity: 1, display: 'inline-flex', clearProps: 'transform' });
-    
-    // Split ERT into spans for elegant stagger
-    mid.innerHTML = `<span class="e" style="display:inline-block;">E</span><span class="r" style="display:inline-block;">R</span><span class="t" style="display:inline-block;">T</span>`;
-    const e = mid.querySelector('.e');
-    const r = mid.querySelector('.r');
-    const t = mid.querySelector('.t');
-    
-    // Calculate space needed
-    const midWidth = mid.offsetWidth || 300; 
-    
-    // Push H and X together to form HX
-    window.gsap.set(hxH, { x: midWidth / 2 });
-    window.gsap.set(hxX, { x: -(midWidth / 2) });
-    
-    // Hide ERT initially (heavy lens blur, slightly smaller)
-    window.gsap.set([e, r, t], { opacity: 0, scale: 0.9, filter: 'blur(30px)' });
-    
-    const tl = window.gsap.timeline({ delay: 0.4 });
-    
-    // 2. Gracefully slide H and X apart
-    tl.to([hxH, hxX], { 
-      x: 0, 
-      duration: 2.2, 
-      ease: 'expo.inOut' 
-    })
-    
-    // 3. Elegant staggered blur reveal for ERT
-    .to([e, r, t], {
-      opacity: 1,
-      scale: 1,
-      filter: 'blur(0px)',
-      duration: 1.8,
+    const gsap = window.gsap;
+
+    // 1. SETUP ─────────────────────────────────────────────────────────────
+    // Reveal mid span so layout is stable before we measure
+    gsap.set(mid, { width: 'auto', display: 'inline-flex', opacity: 1 });
+
+    // Split ERT into individual animatable chars
+    mid.innerHTML = `<span class="hl-e" style="display:inline-block;">E</span><span class="hl-r" style="display:inline-block;">R</span><span class="hl-t" style="display:inline-block;">T</span>`;
+    const E = mid.querySelector('.hl-e');
+    const R = mid.querySelector('.hl-r');
+    const T = mid.querySelector('.hl-t');
+
+    // Measure the space ERT occupies so H & X start perfectly kissing
+    const midW = mid.offsetWidth || 280;
+
+    // 2. INITIAL STATE ─────────────────────────────────────────────────────
+    // H & X: locked together over the hidden ERT gap, slightly lifted
+    gsap.set(hxH, { x: midW / 2, y: 0, opacity: 0, scale: 1.15, filter: 'blur(12px)' });
+    gsap.set(hxX, { x: -(midW / 2), y: 0, opacity: 0, scale: 1.15, filter: 'blur(12px)' });
+
+    // E, R, T: scattered from extreme off-screen positions + blurred + rotated
+    gsap.set(E, { opacity: 0, y: -160, x: -40, rotation: -18, filter: 'blur(16px)', scale: 0.6 });
+    gsap.set(R, { opacity: 0, y: 200, x: 0, rotation: 12, filter: 'blur(16px)', scale: 0.6 });
+    gsap.set(T, { opacity: 0, y: -120, x: 50, rotation: -8, filter: 'blur(16px)', scale: 0.6 });
+
+    // 3. TIMELINE ──────────────────────────────────────────────────────────
+    const tl = gsap.timeline({ delay: 0.3 });
+
+    // Phase A — H & X materialise from the mist (0.3s in)
+    tl.to([hxH, hxX], {
+      opacity: 1, scale: 1, filter: 'blur(0px)',
+      duration: 1.0,
       ease: 'power3.out',
-      stagger: 0.15
-    }, "<0.6") // Start revealing just as H and X begin opening
-    
-    // 4. Soft, cinematic glow on completion
-    .fromTo('.hero-big-text', 
-      { textShadow: "0 0 60px rgba(255,255,255,0.8), 0 0 20px rgba(56, 189, 248, 0.4)" },
-      { textShadow: "0 0 40px rgba(56, 189, 248, 0.04)", duration: 2.5, ease: 'power2.out' },
-      "<0.8"
+      stagger: 0.08
+    })
+
+    // Phase B — ERT chars fly in from their scattered positions and LOCK
+    .to([E, R, T], {
+      opacity: 1, y: 0, x: 0, rotation: 0, scale: 1, filter: 'blur(0px)',
+      duration: 0.9,
+      ease: 'expo.out',
+      stagger: { each: 0.07, from: 'center' }   // lock from center outward
+    }, '+=0.05')
+
+    // Phase C — H & X simultaneously slide outward to give ERT room
+    .to([hxH, hxX], {
+      x: 0,
+      duration: 0.85,
+      ease: 'expo.out'
+    }, '<')                                       // exact same moment as phase B
+
+    // Phase D — shockwave: the whole word micro-scales then settles
+    .to(heroText1, {
+      scale: 1.035,
+      duration: 0.14,
+      ease: 'power2.in'
+    })
+    .to(heroText1, {
+      scale: 1,
+      duration: 0.55,
+      ease: 'elastic.out(1.1, 0.5)'
+    })
+
+    // Phase E — luminous glow fades in then out (cinematic signature)
+    .fromTo(heroText1,
+      { textShadow: '0 0 120px rgba(255,255,255,0.95), 0 0 60px rgba(56,189,248,0.7)' },
+      { textShadow: '0 0 40px rgba(56,189,248,0.05)', duration: 2.2, ease: 'power2.out' },
+      '<-0.15'
     );
 
-  }, 100);
+  }, 80);
 }
 
 export function initContactHover() {
