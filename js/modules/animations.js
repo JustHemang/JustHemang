@@ -797,7 +797,7 @@ export function initHeroAnimation() {
   gsap.registerPlugin(window.ScrollTrigger);
 
   gsap.to(heroText1, {
-    opacity: 0, scale: 0.88, filter: 'blur(10px)',
+    opacity: 0, scale: 0.88,
     ease: 'power2.inOut',
     scrollTrigger: {
       trigger: '#hero', start: 'top top', end: '45% top', scrub: 1.5
@@ -805,9 +805,9 @@ export function initHeroAnimation() {
   });
 
   gsap.fromTo(heroText2,
-    { opacity: 0, y: 60, filter: 'blur(8px)' },
+    { opacity: 0, y: 60 },
     {
-      opacity: 1, y: 0, filter: 'blur(0px)', ease: 'power2.out',
+      opacity: 1, y: 0, ease: 'power2.out',
       scrollTrigger: {
         trigger: '#hero', start: '30% top', end: '70% top', scrub: 1.5
       }
