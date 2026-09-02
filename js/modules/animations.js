@@ -789,11 +789,38 @@ export function initRoadTimeline() {
 
 
 export function initHeroAnimation() {
+  const hxH = document.querySelector('.hx-h');
+  const hxX = document.querySelector('.hx-x');
   const mid = document.querySelector('.hx-mid');
   if (!mid || typeof window.gsap === 'undefined') return;
   
   // Cinematic Hx -> Hertx reveal
-  const tl = window.gsap.timeline({ delay: 0.5 });
+  // First, let layout settle
+  setTimeout(() => {
+    // Reset to natural width to measure
+    window.gsap.set(mid, { width: 'auto', opacity: 1, clearProps: 'transform' });
+    const midWidth = mid.offsetWidth || 150; // fallback just in case
+    
+    // Initial state: outer letters pushed in, mid invisible
+    window.gsap.set(hxH, { x: midWidth / 2 });
+    window.gsap.set(hxX, { x: -(midWidth / 2) });
+    window.gsap.set(mid, { opacity: 0, scaleX: 0, transformOrigin: 'center' });
+    
+    // Animate
+    const tl = window.gsap.timeline({ delay: 0.2 });
+    tl.to([hxH, hxX], {
+      x: 0,
+      duration: 1.8,
+      ease: "power3.inOut"
+    })
+    .to(mid, {
+      scaleX: 1,
+      opacity: 1,
+      duration: 1.8,
+      ease: "power3.inOut"
+    }, "<");
+  }, 100);
+});
   
   // Temporarily set width to auto to measure it
   window.gsap.set(mid, { width: 'auto', opacity: 1 });
