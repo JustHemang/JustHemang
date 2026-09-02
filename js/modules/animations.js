@@ -795,13 +795,13 @@ export function initHeroAnimation() {
   const mid = document.querySelector('.hx-mid');
   if (!heroText1 || !mid || typeof window.gsap === 'undefined') return;
   
-  // Option 3: Kinetic Impact (fast, aggressive, motion-blur, camera shake)
+  // Apple-Style Cinematic Lens Blur Reveal
   setTimeout(() => {
     // 1. Setup
     // Remove the display:none and width:0 from mid so it can be animated
     window.gsap.set(mid, { width: 'auto', opacity: 1, display: 'inline-flex', clearProps: 'transform' });
     
-    // Split ERT into spans for extra impact
+    // Split ERT into spans for elegant stagger
     mid.innerHTML = `<span class="e" style="display:inline-block;">E</span><span class="r" style="display:inline-block;">R</span><span class="t" style="display:inline-block;">T</span>`;
     const e = mid.querySelector('.e');
     const r = mid.querySelector('.r');
@@ -814,75 +814,33 @@ export function initHeroAnimation() {
     window.gsap.set(hxH, { x: midWidth / 2 });
     window.gsap.set(hxX, { x: -(midWidth / 2) });
     
-    // Hide ERT initially (pushing it far into the camera with heavy blur)
-    window.gsap.set([e, r, t], { opacity: 0, scale: 5, z: 500, filter: 'blur(20px)' });
+    // Hide ERT initially (heavy lens blur, slightly smaller)
+    window.gsap.set([e, r, t], { opacity: 0, scale: 0.9, filter: 'blur(30px)' });
     
-    const tl = window.gsap.timeline({ delay: 0.2 });
+    const tl = window.gsap.timeline({ delay: 0.4 });
     
-    // 2. Anticipation (Camera pulls back, HX squeezes slightly)
+    // 2. Gracefully slide H and X apart
     tl.to([hxH, hxX], { 
-      scale: 0.85, 
-      rotationX: 15, 
-      filter: 'blur(2px)', 
-      duration: 0.4, 
-      ease: 'power2.in' 
+      x: 0, 
+      duration: 2.2, 
+      ease: 'expo.inOut' 
     })
     
-    // 3. The Impact (Explode H and X outward)
-    .to(hxH, { 
-      x: 0, 
-      scale: 1, 
-      rotationX: 0, 
-      rotationZ: -4, // Slight tilt from impact
-      filter: 'blur(0px)', 
-      duration: 0.5, 
-      ease: 'back.out(2)' 
-    }, ">")
-    .to(hxX, { 
-      x: 0, 
-      scale: 1, 
-      rotationX: 0, 
-      rotationZ: 4, 
-      filter: 'blur(0px)', 
-      duration: 0.5, 
-      ease: 'back.out(2)' 
-    }, "<")
-    
-    // 4. ERT slams in stagger from the camera
+    // 3. Elegant staggered blur reveal for ERT
     .to([e, r, t], {
       opacity: 1,
       scale: 1,
-      z: 0,
       filter: 'blur(0px)',
-      duration: 0.3,
-      ease: 'power4.out',
-      stagger: 0.05
-    }, "<0.1")
+      duration: 1.8,
+      ease: 'power3.out',
+      stagger: 0.15
+    }, "<0.6") // Start revealing just as H and X begin opening
     
-    // 5. Camera Shake on the whole container
-    .to(heroText1, {
-      x: () => 10 - Math.random() * 20,
-      y: () => 10 - Math.random() * 20,
-      rotationZ: () => 1 - Math.random() * 2,
-      duration: 0.05,
-      repeat: 8,
-      yoyo: true,
-      ease: 'none',
-      clearProps: 'transform' // restores normal position instantly when done
-    }, "<0.1")
-    
-    // 6. Settle the tilt on H and X
-    .to([hxH, hxX], {
-      rotationZ: 0,
-      duration: 0.4,
-      ease: 'elastic.out(1, 0.3)'
-    }, "<0.3")
-    
-    // 7. Flash Bang
+    // 4. Soft, cinematic glow on completion
     .fromTo('.hero-big-text', 
-      { textShadow: "0 0 150px rgba(255,255,255,1), 0 0 80px rgba(56, 189, 248, 1)" },
-      { textShadow: "0 0 80px rgba(56, 189, 248, 0.06)", duration: 1, ease: 'power2.out' },
-      "<0.1"
+      { textShadow: "0 0 60px rgba(255,255,255,0.8), 0 0 20px rgba(56, 189, 248, 0.4)" },
+      { textShadow: "0 0 40px rgba(56, 189, 248, 0.04)", duration: 2.5, ease: 'power2.out' },
+      "<0.8"
     );
 
   }, 100);
