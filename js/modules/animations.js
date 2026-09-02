@@ -794,30 +794,86 @@ export function initHeroAnimation() {
   const mid = document.querySelector('.hx-mid');
   if (!mid || typeof window.gsap === 'undefined') return;
   
-  // Cinematic Hx -> Hertx reveal
+  const finalWord = "ERT";
+  const chars = "!<>-_\/[]{}—=+*^?#________";
+  
+  // A helper function to scramble text
+  function scrambleText(element, finalString, duration) {
+    const proxy = { progress: 0 };
+    window.gsap.to(proxy, {
+      progress: 1,
+      duration: duration,
+      ease: "power2.inOut",
+      onUpdate: () => {
+        if (proxy.progress >= 0.95) {
+          element.textContent = finalString;
+          return;
+        }
+        let result = "";
+        for (let i = 0; i < finalString.length; i++) {
+          if (Math.random() < proxy.progress) {
+            result += finalString[i];
+          } else {
+            result += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        element.textContent = result;
+      }
+    });
+  }
+
+  // Cinematic Cyber-Decryption Hx -> Hertx reveal
   setTimeout(() => {
     // Reset to natural width to measure
     window.gsap.set(mid, { width: 'auto', opacity: 1, display: 'inline-flex', clearProps: 'transform' });
-    const midWidth = mid.offsetWidth || 150; // fallback just in case
+    mid.textContent = finalWord;
+    const midWidth = mid.offsetWidth || 150; 
     
     // Initial state: outer letters pushed in, mid invisible
     window.gsap.set(hxH, { x: midWidth / 2 });
     window.gsap.set(hxX, { x: -(midWidth / 2) });
     window.gsap.set(mid, { opacity: 0, scaleX: 0, transformOrigin: 'center' });
     
-    // Animate
-    const tl = window.gsap.timeline({ delay: 0.2 });
-    tl.to([hxH, hxX], {
-      x: 0,
-      duration: 1.8,
-      ease: "power3.inOut"
+    const tl = window.gsap.timeline({ delay: 0.4 });
+    
+    // 1. Initial Glitch flash
+    tl.to('.hero-big-text', {
+      textShadow: "15px 0 0 red, -15px 0 0 cyan",
+      duration: 0.1,
+      yoyo: true,
+      repeat: 3,
+      ease: "steps(1)"
     })
+    // 2. Violent explode outwards
+    .to([hxH, hxX], {
+      x: 0,
+      duration: 1.2,
+      ease: "power4.out"
+    }, "<0.1")
+    // 3. Mid letter appears and scrambles
     .to(mid, {
       scaleX: 1,
       opacity: 1,
-      duration: 1.8,
-      ease: "power3.inOut"
-    }, "<");
+      duration: 1.2,
+      ease: "power4.out",
+      onStart: () => {
+        scrambleText(mid, finalWord, 1.8);
+      }
+    }, "<")
+    // 4. Reset shadow immediately before final flash
+    .set('.hero-big-text', { textShadow: "0 0 80px rgba(56, 189, 248, 0.06)" }, "+=0.3")
+    // 5. Lock-in flash
+    .to('.hero-big-text', {
+      textShadow: "0 0 60px rgba(255, 255, 255, 0.8), 0 0 100px rgba(56, 189, 248, 1)",
+      duration: 0.1,
+      ease: "power4.out"
+    })
+    .to('.hero-big-text', {
+      textShadow: "0 0 80px rgba(56, 189, 248, 0.06)",
+      duration: 1.5,
+      ease: "power2.out"
+    });
+
   }, 100);
 }
 
