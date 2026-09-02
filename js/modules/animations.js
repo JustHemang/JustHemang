@@ -786,3 +786,98 @@ export function initRoadTimeline() {
     });
   });
 }
+
+
+export function initHeroAnimation() {
+  const mid = document.querySelector('.hx-mid');
+  if (!mid || typeof window.gsap === 'undefined') return;
+  
+  // Cinematic Hx -> Hertx reveal
+  const tl = window.gsap.timeline({ delay: 0.5 });
+  
+  // Temporarily set width to auto to measure it
+  window.gsap.set(mid, { width: 'auto', opacity: 1 });
+  const targetWidth = mid.offsetWidth;
+  // Reset for animation
+  window.gsap.set(mid, { width: 0, opacity: 0 });
+  
+  tl.to(mid, {
+    width: targetWidth,
+    duration: 1.5,
+    ease: "expo.inOut"
+  })
+  .to(mid, {
+    opacity: 1,
+    duration: 1,
+    ease: "power2.out"
+  }, "-=0.8");
+}
+
+
+export function initContactHover() {
+  const links = document.querySelectorAll('.contact-link');
+  const overlay = document.querySelector('.contact-bg-overlay');
+  if (!links.length || !overlay) return;
+
+  links.forEach(link => {
+    link.addEventListener('mouseenter', (e) => {
+      const color = link.getAttribute('data-color');
+      overlay.style.backgroundColor = color;
+      
+      // Calculate mouse position relative to window for clip-path center
+      const rect = link.getBoundingClientRect();
+      const x = ((rect.left + rect.width / 2) / window.innerWidth) * 100;
+      const y = ((rect.top + rect.height / 2) / window.innerHeight) * 100;
+      
+      overlay.style.clipPath = `circle(150% at ${x}% ${y}%)`;
+    });
+    
+    link.addEventListener('mouseleave', () => {
+      overlay.style.clipPath = `circle(0% at 50% 50%)`;
+    });
+  });
+}
+
+
+export function initWorkFilters() {
+  const btns = document.querySelectorAll('.filter-btn');
+  const container = document.querySelector('.masonry-container');
+  const items = document.querySelectorAll('.masonry-item');
+  if (!btns.length || !container) return;
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active state
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      
+      // Animate out
+      window.gsap.to(items, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.4,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          // Toggle layout mode
+          if (filter === 'all') {
+            container.classList.remove('is-filtered');
+          } else {
+            container.classList.add('is-filtered');
+          }
+
+          // Hide/Show items
+          items.forEach(item => {
+            if (filter === 'all' || item.dataset.category === filter) {
+              item.style.display = 'block';
+              window.gsap.to(item, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out', delay: 0.1 });
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+  });
+}

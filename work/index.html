@@ -105,10 +105,18 @@
       </div>
     </section>
     <section class="masonry-gallery" id="work">
+      
+    <div class="work-filters mono" style="display: flex; justify-content: center; gap: 2rem; margin: 4rem 0 2rem;">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="video">VIDEOS</button>
+      <button class="filter-btn" data-filter="graphics">GRAPHICS</button>
+      <button class="filter-btn" data-filter="photo">PHOTOGRAPHY</button>
+    </div>
+
       <div class="masonry-container">
 
         <a href="https://www.youtube.com/watch?v=G9xF0Fgpao0" target="_blank" rel="noopener"
-          class="masonry-item anim-slide-up" style="--m-w: 60%; --m-offset: 5%;">
+          class="masonry-item anim-slide-up" data-category="video" style="--m-w: 60%; --m-offset: 5%;">
           <div class="masonry-item__bg">
             <img src="https://img.youtube.com/vi/G9xF0Fgpao0/maxresdefault.jpg" alt="Movie Safar Preview">
           </div>
@@ -120,7 +128,7 @@
         </a>
 
         <a href="https://www.youtube.com/watch?v=JajV1uIEpBI" target="_blank" rel="noopener"
-          class="masonry-item anim-slide-up" style="--m-w: 45%; --m-offset: 45%; margin-top: -10%;">
+          class="masonry-item anim-slide-up" data-category="video" style="--m-w: 45%; --m-offset: 45%; margin-top: -10%;">
           <div class="masonry-item__bg">
             <img src="https://img.youtube.com/vi/JajV1uIEpBI/maxresdefault.jpg" alt="Documentary Preview">
           </div>
@@ -131,7 +139,7 @@
           </div>
         </a>
 
-        <a href="#" class="masonry-item anim-slide-up" style="--m-w: 55%; --m-offset: 10%; margin-top: 5%;">
+        <a href="#" class="masonry-item anim-slide-up" data-category="video" style="--m-w: 55%; --m-offset: 10%; margin-top: 5%;">
           <div class="masonry-item__bg">
             <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=800&auto=format&fit=crop"
               alt="Delhi Preview">
@@ -144,7 +152,7 @@
         </a>
 
         <a href="https://www.youtube.com/watch?v=UTXU8Ag1_wY" target="_blank" rel="noopener"
-          class="masonry-item anim-slide-up" style="--m-w: 40%; --m-offset: 55%; margin-top: -15%;">
+          class="masonry-item anim-slide-up" data-category="video" style="--m-w: 40%; --m-offset: 55%; margin-top: -15%;">
           <div class="masonry-item__bg">
             <img src="https://img.youtube.com/vi/UTXU8Ag1_wY/maxresdefault.jpg" alt="LOW FADEE Preview">
           </div>
@@ -156,7 +164,7 @@
         </a>
 
         <a href="https://www.instagram.com/p/DTYaeEmja1_/" target="_blank" rel="noopener"
-          class="masonry-item anim-slide-up" style="--m-w: 70%; --m-offset: 15%; margin-top: 10%;">
+          class="masonry-item anim-slide-up" data-category="graphics" style="--m-w: 70%; --m-offset: 15%; margin-top: 10%;">
           <div class="masonry-item__bg">
             <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop"
               alt="Instagram Reel Preview">
@@ -165,6 +173,28 @@
             <span class="masonry-num mono">05</span>
             <h3 class="masonry-title tw-type">Let yourself Bloom in Time</h3>
             <p class="masonry-desc mono">Graphic Design &mdash; Hemang Luthra</p>
+          </div>
+        </a>
+
+
+        <a href="#" class="masonry-item anim-slide-up" data-category="photo" style="--m-w: 40%; --m-offset: 5%; margin-top: 5%;">
+          <div class="masonry-item__bg">
+            <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop" alt="Photography Preview">
+          </div>
+          <div class="masonry-item__content">
+            <span class="masonry-num mono">06</span>
+            <h3 class="masonry-title tw-type">Studio Portraits</h3>
+            <p class="masonry-desc mono">Photography &mdash; Personal Project</p>
+          </div>
+        </a>
+        <a href="#" class="masonry-item anim-slide-up" data-category="photo" style="--m-w: 50%; --m-offset: 45%; margin-top: -10%;">
+          <div class="masonry-item__bg">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop" alt="Photography Preview">
+          </div>
+          <div class="masonry-item__content">
+            <span class="masonry-num mono">07</span>
+            <h3 class="masonry-title tw-type">Street Visuals</h3>
+            <p class="masonry-desc mono">Photography &mdash; Hemang Luthra</p>
           </div>
         </a>
 

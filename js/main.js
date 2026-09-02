@@ -93,6 +93,9 @@ function initApp() {
   initOrbitalTimeline,
   initRoadTimeline();
   initCounters();
+    initHeroAnimation();
+    initContactHover();
+    initWorkFilters();
   initParallax();
   initTimecode();
   initFilmstrip();
