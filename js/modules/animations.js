@@ -790,108 +790,94 @@ export function initRoadTimeline() {
 
 export function initHeroAnimation() {
   const heroText1 = document.querySelector('#heroText1');
-  const hxH = document.querySelector('.hx-h');
-  const hxX = document.querySelector('.hx-x');
-  const mid = document.querySelector('.hx-mid');
-  if (!heroText1 || !mid || typeof window.gsap === 'undefined') return;
+  if (!heroText1 || typeof window.gsap === 'undefined') return;
   
-  // Cinematic Slice Hx -> Hertx reveal
+  // Save original structure to restore later
+  const originalHTML = heroText1.innerHTML;
+  
+  // Create solid foolproof structure
+  heroText1.innerHTML = `
+    <div class="slice-container" style="position: relative; display: inline-flex; justify-content: center; align-items: center; width: 100%;">
+      
+      <!-- The real final text (starts hidden) -->
+      <div class="slice-real" style="opacity: 0; display: flex; justify-content: center; letter-spacing: normal;">
+        <span class="h">H</span><span class="ert">ERT</span><span class="x">X</span>
+      </div>
+      
+      <!-- The top slice (shows H and X, hides ERT) -->
+      <div class="slice-top" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; clip-path: inset(0 0 50% 0); display: flex; justify-content: center; align-items: center; letter-spacing: normal;">
+        <span class="h">H</span><span class="ert" style="opacity: 0;">ERT</span><span class="x">X</span>
+      </div>
+      
+      <!-- The bottom slice (shows H and X, hides ERT) -->
+      <div class="slice-bot" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; clip-path: inset(50% 0 0 0); display: flex; justify-content: center; align-items: center; letter-spacing: normal;">
+        <span class="h">H</span><span class="ert" style="opacity: 0;">ERT</span><span class="x">X</span>
+      </div>
+      
+      <!-- The Laser -->
+      <div class="slice-laser" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0%; height: 4px; background: #38bdf8; box-shadow: 0 0 20px #38bdf8, 0 0 40px #fff; border-radius: 50%; z-index: 10;"></div>
+      
+    </div>
+  `;
+  
   setTimeout(() => {
-    // Reveal text but hide mid to measure
-    window.gsap.set(mid, { width: 'auto', opacity: 1, display: 'inline-flex', clearProps: 'transform' });
-    mid.textContent = "ERT";
-    const midWidth = mid.offsetWidth || 150; 
+    const real = heroText1.querySelector('.slice-real');
+    const realErt = real.querySelector('.ert');
+    const topSlice = heroText1.querySelector('.slice-top');
+    const botSlice = heroText1.querySelector('.slice-bot');
+    const laser = heroText1.querySelector('.slice-laser');
     
-    // Initial state of original: H and X pushed together
-    window.gsap.set(hxH, { x: midWidth / 2 });
-    window.gsap.set(hxX, { x: -(midWidth / 2) });
-    window.gsap.set(mid, { opacity: 0, scale: 0.5, filter: 'blur(10px)' });
+    // Push the H and X together initially inside the slices
+    const ertWidth = realErt.offsetWidth || 150;
     
-    // Create clones for the top and bottom halves
-    const heroTop = heroText1.cloneNode(true);
-    const heroBottom = heroText1.cloneNode(true);
-    heroTop.id = 'heroTopClone'; 
-    heroBottom.id = 'heroBottomClone';
+    const topH = topSlice.querySelector('.h');
+    const topX = topSlice.querySelector('.x');
+    const botH = botSlice.querySelector('.h');
+    const botX = botSlice.querySelector('.x');
     
-    // Setup Clones
-    heroTop.style.clipPath = 'polygon(0 0, 100% 0, 100% 50%, 0 50%)';
-    heroBottom.style.clipPath = 'polygon(0 50%, 100% 50%, 100% 100%, 0 100%)';
+    // Initial state: H and X are pushed together over the hidden ERT
+    window.gsap.set([topH, botH], { x: ertWidth / 2 });
+    window.gsap.set([topX, botX], { x: -(ertWidth / 2) });
     
-    heroTop.style.zIndex = '3';
-    heroBottom.style.zIndex = '3';
-    heroText1.style.zIndex = '1';
+    // Real ERT starts hidden and small in the void
+    window.gsap.set(realErt, { opacity: 0, scale: 0.5, filter: 'blur(10px)' });
     
-    heroText1.parentNode.appendChild(heroTop);
-    heroText1.parentNode.appendChild(heroBottom);
-    
-    // Safely center clones using GSAP instead of relying on inherited inline transforms
-    window.gsap.set([heroTop, heroBottom], { 
-      position: 'absolute', top: '50%', left: '50%', 
-      xPercent: -50, yPercent: -50, 
-      clearProps: 'transform' // removes the inline translate(-50%, -50%)
-    });
-    window.gsap.set([heroTop, heroBottom], { xPercent: -50, yPercent: -50 });
-    
-    // Hide H and X in the original completely, so they don't peek out during slice
-    window.gsap.set([hxH, hxX], { opacity: 0 });
-    
-    // The clones have their own H, X, and mid
-    const topH = heroTop.querySelector('.hx-h');
-    const topX = heroTop.querySelector('.hx-x');
-    const topMid = heroTop.querySelector('.hx-mid');
-    
-    const botH = heroBottom.querySelector('.hx-h');
-    const botX = heroBottom.querySelector('.hx-x');
-    const botMid = heroBottom.querySelector('.hx-mid');
-    
-    // Mid word never shows in the clones (it's in the void)
-    window.gsap.set([topMid, botMid], { opacity: 0 });
-    
-    // Create Laser Line
-    const laser = document.createElement('div');
-    laser.style.position = 'absolute';
-    laser.style.top = '50%';
-    laser.style.left = '50%';
-    laser.style.transform = 'translate(-50%, -50%)';
-    laser.style.width = '0vw';
-    laser.style.height = '4px';
-    laser.style.background = '#38bdf8';
-    laser.style.boxShadow = '0 0 20px #38bdf8, 0 0 40px white';
-    laser.style.zIndex = '4';
-    laser.style.borderRadius = '50%';
-    heroText1.parentNode.appendChild(laser);
-    
-    const tl = window.gsap.timeline({ delay: 0.5 });
+    const tl = window.gsap.timeline({ delay: 0.3 });
     
     // 1. Laser shoots across
-    tl.to(laser, { width: '100vw', duration: 0.4, ease: 'power4.out' })
+    tl.to(laser, { width: '150%', duration: 0.4, ease: 'power4.out' })
     // 2. Slice opens vertically
-    .to(heroTop, { yPercent: -80, duration: 0.9, ease: 'power3.inOut' }, "+=0.1")
-    .to(heroBottom, { yPercent: -20, duration: 0.9, ease: 'power3.inOut' }, "<")
-    // 3. H and X push apart horizontally (inside the clones)
+    .to(topSlice, { y: -50, duration: 0.8, ease: 'power3.inOut' }, "+=0.1")
+    .to(botSlice, { y: 50, duration: 0.8, ease: 'power3.inOut' }, "<")
+    // 3. H and X push apart horizontally
     .to([topH, botH, topX, botX], { x: 0, duration: 1.2, ease: 'power3.inOut' }, "<")
-    // 4. Middle word (in original) emerges glowing from the void
-    .to(mid, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' }, "<0.2")
+    // 4. Real ERT emerges from void
+    .to(real, { opacity: 1, duration: 0.1 }, "<") // show real container
+    .to(realErt, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' }, "<0.2")
     // 5. Laser fades out
-    .to(laser, { opacity: 0, height: 0, duration: 0.3 }, "<0.5")
-    // 6. Halves slam back together
-    .to(heroTop, { yPercent: -50, duration: 0.4, ease: 'power4.in' }, "+=0.3")
-    .to(heroBottom, { yPercent: -50, duration: 0.4, ease: 'power4.in' }, "<")
-    // 7. On Impact: restore original H/X, remove clones, flash
-    .set([hxH, hxX], { opacity: 1, x: 0 }, "<0.4") // restore immediately at impact
-    .set([heroTop, heroBottom, laser], { display: 'none' }, "<")
-    .fromTo('.hero-big-text', 
-      { textShadow: "0 0 100px rgba(56,189,248,1), 0 0 50px white" },
-      { textShadow: "0 0 80px rgba(56, 189, 248, 0.06)", duration: 1.5, ease: 'power2.out' },
-      "<"
-    )
+    .to(laser, { opacity: 0, height: 0, duration: 0.3 }, "<0.4")
+    // 6. Slices slam back together
+    .to(topSlice, { y: 0, duration: 0.4, ease: 'power4.in' }, "+=0.2")
+    .to(botSlice, { y: 0, duration: 0.4, ease: 'power4.in' }, "<")
+    // 7. On impact
     .add(() => {
-      // Cleanup DOM
-      if(heroTop.parentNode) heroTop.parentNode.removeChild(heroTop);
-      if(heroBottom.parentNode) heroBottom.parentNode.removeChild(heroBottom);
-      if(laser.parentNode) laser.parentNode.removeChild(laser);
+      // Restore original HTML perfectly to prevent any flexbox/layout bugs forever
+      heroText1.innerHTML = originalHTML;
+      const hxH = heroText1.querySelector('.hx-h');
+      const hxX = heroText1.querySelector('.hx-x');
+      const mid = heroText1.querySelector('.hx-mid');
+      
+      // Ensure it is visible and normal
+      window.gsap.set(mid, { opacity: 1, display: 'inline-flex', width: 'auto', clearProps: 'transform,filter,scale' });
+      window.gsap.set([hxH, hxX], { x: 0, opacity: 1, clearProps: 'transform' });
+      
+      // Flash the actual container
+      window.gsap.fromTo('.hero-big-text', 
+        { textShadow: "0 0 100px rgba(56,189,248,1), 0 0 50px white" },
+        { textShadow: "0 0 80px rgba(56, 189, 248, 0.06)", duration: 1.5, ease: 'power2.out' }
+      );
     });
-
+    
   }, 100);
 }
 
