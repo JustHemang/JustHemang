@@ -795,7 +795,6 @@ export function initHeroAnimation() {
   if (!mid || typeof window.gsap === 'undefined') return;
   
   // Cinematic Hx -> Hertx reveal
-  // First, let layout settle
   setTimeout(() => {
     // Reset to natural width to measure
     window.gsap.set(mid, { width: 'auto', opacity: 1, clearProps: 'transform' });
@@ -820,26 +819,7 @@ export function initHeroAnimation() {
       ease: "power3.inOut"
     }, "<");
   }, 100);
-});
-  
-  // Temporarily set width to auto to measure it
-  window.gsap.set(mid, { width: 'auto', opacity: 1 });
-  const targetWidth = mid.offsetWidth;
-  // Reset for animation
-  window.gsap.set(mid, { width: 0, opacity: 0 });
-  
-  tl.to(mid, {
-    width: targetWidth,
-    duration: 1.5,
-    ease: "expo.inOut"
-  })
-  .to(mid, {
-    opacity: 1,
-    duration: 1,
-    ease: "power2.out"
-  }, "-=0.8");
 }
-
 
 export function initContactHover() {
   const links = document.querySelectorAll('.contact-link');
