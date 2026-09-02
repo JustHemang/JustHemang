@@ -788,7 +788,7 @@ export function initRoadTimeline() {
 }
 
 
-export function initHeroAnimation() {
+export function initHeroAnimation() { if(!document.getElementById('heroText1')) return;
   const heroText1 = document.querySelector('#heroText1');
   const heroText2 = document.querySelector('#heroText2');
   const hxH       = document.querySelector('.hx-h');
