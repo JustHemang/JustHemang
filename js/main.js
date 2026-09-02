@@ -18,7 +18,8 @@ import {
   initRoadTimeline,
   initHeroAnimation,
   initContactHover,
-  initWorkFilters
+  initWorkFilters,
+  initWorkModal
 } from './modules/animations.js?v=11';
 import { 
   initTimecode, 
@@ -93,12 +94,13 @@ function initApp() {
   initContactOrb();
   initDeckAbout();
   initDeckJourney();
-  initOrbitalTimeline,
+  initOrbitalTimeline();
   initRoadTimeline();
   initCounters();
     initHeroAnimation();
     initContactHover();
     initWorkFilters();
+    initWorkModal();
   initParallax();
   initTimecode();
   initFilmstrip();

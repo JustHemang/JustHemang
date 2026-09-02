@@ -977,3 +977,72 @@ export function initWorkFilters() {
     });
   });
 }
+
+export function initWorkModal() {
+  const modal = document.getElementById('workModal');
+  if (!modal) return;
+  const overlay = document.getElementById('workModalOverlay');
+  const closeBtn = document.getElementById('workModalClose');
+  const mediaContainer = document.getElementById('workModalMedia');
+  const numEl = document.getElementById('workModalNum');
+  const titleEl = document.getElementById('workModalTitle');
+  const descEl = document.getElementById('workModalDesc');
+  const linkEl = document.getElementById('workModalLink');
+
+  function openModal(e) {
+    e.preventDefault();
+    const item = e.currentTarget;
+    const href = item.getAttribute('href');
+    const bgImg = item.querySelector('.masonry-item__bg img')?.src;
+    const num = item.querySelector('.masonry-num')?.innerText || '';
+    const title = item.querySelector('.masonry-title')?.innerText || '';
+    const desc = item.querySelector('.masonry-desc')?.innerText || '';
+
+    numEl.innerText = num;
+    titleEl.innerText = title;
+    descEl.innerText = desc;
+    
+    if (href && href !== '#') {
+      linkEl.href = href;
+      linkEl.style.display = 'inline-block';
+    } else {
+      linkEl.style.display = 'none';
+    }
+
+    // Determine media type
+    mediaContainer.innerHTML = '';
+    if (href && href.includes('youtube.com/watch')) {
+      const videoId = new URL(href).searchParams.get('v');
+      mediaContainer.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+    } else if (href && href.includes('instagram.com/p/')) {
+      // For Instagram, we can try to use embed url, but it often blocks due to x-frame-options unless using blockquote script. We will just show thumbnail instead.
+      if(bgImg) mediaContainer.innerHTML = '<img src="' + bgImg + '" alt="' + title + '" />';
+    } else {
+      if(bgImg) mediaContainer.innerHTML = '<img src="' + bgImg + '" alt="' + title + '" />';
+    }
+
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      mediaContainer.innerHTML = ''; // Stop video playback
+    }, 400);
+  }
+
+  const items = document.querySelectorAll('.masonry-item');
+  items.forEach(item => {
+    item.addEventListener('click', openModal);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+      closeModal();
+    }
+  });
+}
