@@ -4583,3 +4583,97 @@ h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
   color: #fff;
   transform: translateX(20px);
 }
+
+/* --- PREMIUM FOOTER OVERRIDES --- */
+.footer {
+  background: var(--bg);
+  padding: clamp(4rem, 8vh, 8rem) var(--pad) 2rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  clip-path: none;
+  text-align: left;
+}
+.footer__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: clamp(3rem, 6vh, 6rem);
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+.footer__massive {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 16vw, 15rem);
+  font-weight: 900;
+  line-height: 0.75;
+  letter-spacing: -0.04em;
+  color: #fff;
+  margin: 0;
+  margin-left: -0.04em;
+}
+.footer__nav {
+  display: flex;
+  gap: clamp(2rem, 5vw, 5rem);
+  flex-wrap: wrap;
+}
+.footer__nav-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.footer__nav-col span {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.footer__nav-col a {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.3s, transform 0.3s;
+}
+.footer__nav-col a:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer__logo {
+  width: 32px;
+  height: 32px;
+  filter: invert(1);
+  opacity: 0.8;
+  margin: 0;
+}
+.footer__copy, .footer__back-to-top {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer__back-to-top:hover {
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .footer__top { flex-direction: column; align-items: flex-start; }
+  .footer__nav { width: 100%; justify-content: flex-start; gap: 3rem; }
+}
+@media (max-width: 600px) {
+  .footer__bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .footer__nav-col { min-width: 40%; }
+}
