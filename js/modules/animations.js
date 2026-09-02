@@ -789,89 +789,107 @@ export function initRoadTimeline() {
 
 
 export function initHeroAnimation() {
+  const heroText1 = document.querySelector('#heroText1');
   const hxH = document.querySelector('.hx-h');
   const hxX = document.querySelector('.hx-x');
   const mid = document.querySelector('.hx-mid');
-  if (!mid || typeof window.gsap === 'undefined') return;
+  if (!heroText1 || !mid || typeof window.gsap === 'undefined') return;
   
-  const finalWord = "ERT";
-  const chars = "!<>-_\/[]{}—=+*^?#________";
-  
-  // A helper function to scramble text
-  function scrambleText(element, finalString, duration) {
-    const proxy = { progress: 0 };
-    window.gsap.to(proxy, {
-      progress: 1,
-      duration: duration,
-      ease: "power2.inOut",
-      onUpdate: () => {
-        if (proxy.progress >= 0.95) {
-          element.textContent = finalString;
-          return;
-        }
-        let result = "";
-        for (let i = 0; i < finalString.length; i++) {
-          if (Math.random() < proxy.progress) {
-            result += finalString[i];
-          } else {
-            result += chars[Math.floor(Math.random() * chars.length)];
-          }
-        }
-        element.textContent = result;
-      }
-    });
-  }
-
-  // Cinematic Cyber-Decryption Hx -> Hertx reveal
+  // Cinematic Slice Hx -> Hertx reveal
   setTimeout(() => {
-    // Reset to natural width to measure
+    // Reveal text but hide mid to measure
     window.gsap.set(mid, { width: 'auto', opacity: 1, display: 'inline-flex', clearProps: 'transform' });
-    mid.textContent = finalWord;
+    mid.textContent = "ERT";
     const midWidth = mid.offsetWidth || 150; 
     
-    // Initial state: outer letters pushed in, mid invisible
+    // Initial state of original: H and X pushed together
     window.gsap.set(hxH, { x: midWidth / 2 });
     window.gsap.set(hxX, { x: -(midWidth / 2) });
-    window.gsap.set(mid, { opacity: 0, scaleX: 0, transformOrigin: 'center' });
+    window.gsap.set(mid, { opacity: 0, scale: 0.5, filter: 'blur(10px)' });
     
-    const tl = window.gsap.timeline({ delay: 0.4 });
+    // Create clones for the top and bottom halves
+    const heroTop = heroText1.cloneNode(true);
+    const heroBottom = heroText1.cloneNode(true);
+    heroTop.id = 'heroTopClone'; 
+    heroBottom.id = 'heroBottomClone';
     
-    // 1. Initial Glitch flash
-    tl.to('.hero-big-text', {
-      textShadow: "15px 0 0 red, -15px 0 0 cyan",
-      duration: 0.1,
-      yoyo: true,
-      repeat: 3,
-      ease: "steps(1)"
-    })
-    // 2. Violent explode outwards
-    .to([hxH, hxX], {
-      x: 0,
-      duration: 1.2,
-      ease: "power4.out"
-    }, "<0.1")
-    // 3. Mid letter appears and scrambles
-    .to(mid, {
-      scaleX: 1,
-      opacity: 1,
-      duration: 1.2,
-      ease: "power4.out",
-      onStart: () => {
-        scrambleText(mid, finalWord, 1.8);
-      }
-    }, "<")
-    // 4. Reset shadow immediately before final flash
-    .set('.hero-big-text', { textShadow: "0 0 80px rgba(56, 189, 248, 0.06)" }, "+=0.3")
-    // 5. Lock-in flash
-    .to('.hero-big-text', {
-      textShadow: "0 0 60px rgba(255, 255, 255, 0.8), 0 0 100px rgba(56, 189, 248, 1)",
-      duration: 0.1,
-      ease: "power4.out"
-    })
-    .to('.hero-big-text', {
-      textShadow: "0 0 80px rgba(56, 189, 248, 0.06)",
-      duration: 1.5,
-      ease: "power2.out"
+    // Setup Clones
+    heroTop.style.clipPath = 'polygon(0 0, 100% 0, 100% 50%, 0 50%)';
+    heroBottom.style.clipPath = 'polygon(0 50%, 100% 50%, 100% 100%, 0 100%)';
+    
+    heroTop.style.zIndex = '3';
+    heroBottom.style.zIndex = '3';
+    heroText1.style.zIndex = '1';
+    
+    heroText1.parentNode.appendChild(heroTop);
+    heroText1.parentNode.appendChild(heroBottom);
+    
+    // Safely center clones using GSAP instead of relying on inherited inline transforms
+    window.gsap.set([heroTop, heroBottom], { 
+      position: 'absolute', top: '50%', left: '50%', 
+      xPercent: -50, yPercent: -50, 
+      clearProps: 'transform' // removes the inline translate(-50%, -50%)
+    });
+    window.gsap.set([heroTop, heroBottom], { xPercent: -50, yPercent: -50 });
+    
+    // Hide H and X in the original completely, so they don't peek out during slice
+    window.gsap.set([hxH, hxX], { opacity: 0 });
+    
+    // The clones have their own H, X, and mid
+    const topH = heroTop.querySelector('.hx-h');
+    const topX = heroTop.querySelector('.hx-x');
+    const topMid = heroTop.querySelector('.hx-mid');
+    
+    const botH = heroBottom.querySelector('.hx-h');
+    const botX = heroBottom.querySelector('.hx-x');
+    const botMid = heroBottom.querySelector('.hx-mid');
+    
+    // Mid word never shows in the clones (it's in the void)
+    window.gsap.set([topMid, botMid], { opacity: 0 });
+    
+    // Create Laser Line
+    const laser = document.createElement('div');
+    laser.style.position = 'absolute';
+    laser.style.top = '50%';
+    laser.style.left = '50%';
+    laser.style.transform = 'translate(-50%, -50%)';
+    laser.style.width = '0vw';
+    laser.style.height = '4px';
+    laser.style.background = '#38bdf8';
+    laser.style.boxShadow = '0 0 20px #38bdf8, 0 0 40px white';
+    laser.style.zIndex = '4';
+    laser.style.borderRadius = '50%';
+    heroText1.parentNode.appendChild(laser);
+    
+    const tl = window.gsap.timeline({ delay: 0.5 });
+    
+    // 1. Laser shoots across
+    tl.to(laser, { width: '100vw', duration: 0.4, ease: 'power4.out' })
+    // 2. Slice opens vertically
+    .to(heroTop, { yPercent: -80, duration: 0.9, ease: 'power3.inOut' }, "+=0.1")
+    .to(heroBottom, { yPercent: -20, duration: 0.9, ease: 'power3.inOut' }, "<")
+    // 3. H and X push apart horizontally (inside the clones)
+    .to([topH, botH, topX, botX], { x: 0, duration: 1.2, ease: 'power3.inOut' }, "<")
+    // 4. Middle word (in original) emerges glowing from the void
+    .to(mid, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' }, "<0.2")
+    // 5. Laser fades out
+    .to(laser, { opacity: 0, height: 0, duration: 0.3 }, "<0.5")
+    // 6. Halves slam back together
+    .to(heroTop, { yPercent: -50, duration: 0.4, ease: 'power4.in' }, "+=0.3")
+    .to(heroBottom, { yPercent: -50, duration: 0.4, ease: 'power4.in' }, "<")
+    // 7. On Impact: restore original H/X, remove clones, flash
+    .set([hxH, hxX], { opacity: 1, x: 0 }, "<0.4") // restore immediately at impact
+    .set([heroTop, heroBottom, laser], { display: 'none' }, "<")
+    .fromTo('.hero-big-text', 
+      { textShadow: "0 0 100px rgba(56,189,248,1), 0 0 50px white" },
+      { textShadow: "0 0 80px rgba(56, 189, 248, 0.06)", duration: 1.5, ease: 'power2.out' },
+      "<"
+    )
+    .add(() => {
+      // Cleanup DOM
+      if(heroTop.parentNode) heroTop.parentNode.removeChild(heroTop);
+      if(heroBottom.parentNode) heroBottom.parentNode.removeChild(heroBottom);
+      if(laser.parentNode) laser.parentNode.removeChild(laser);
     });
 
   }, 100);
