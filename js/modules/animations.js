@@ -788,127 +788,32 @@ export function initRoadTimeline() {
 }
 
 
-export function initHeroAnimation() { if(!document.getElementById('heroText1')) return;
-  const heroText1 = document.querySelector('#heroText1');
-  const heroText2 = document.querySelector('#heroText2');
-  const hxH       = document.querySelector('.hx-h');
-  const hxX       = document.querySelector('.hx-x');
-  const mid        = document.querySelector('.hx-mid');
-  if (!heroText1 || !mid || typeof window.gsap === 'undefined') return;
+export function initHeroAnimation() {
+  const heroText1 = document.getElementById('heroText1');
+  const heroText2 = document.getElementById('heroText2');
+  if (!heroText1 || !heroText2 || typeof window.gsap === 'undefined' || !window.ScrollTrigger) return;
 
   const gsap = window.gsap;
+  gsap.registerPlugin(window.ScrollTrigger);
 
-  // ══════════════════════════════════════════════════════════════════════
-  //  SETUP — unlock mid, split ERT, measure, clamp HX together
-  // ══════════════════════════════════════════════════════════════════════
-  gsap.set(mid, { width: 'auto', display: 'inline-flex', opacity: 1 });
+  gsap.to(heroText1, {
+    opacity: 0, scale: 0.88, filter: 'blur(10px)',
+    ease: 'power2.inOut',
+    scrollTrigger: {
+      trigger: '#hero', start: 'top top', end: '45% top', scrub: 1.5
+    }
+  });
 
-  mid.innerHTML = [
-    '<span class="hl-e" style="display:inline-block">E</span>',
-    '<span class="hl-r" style="display:inline-block">R</span>',
-    '<span class="hl-t" style="display:inline-block">T</span>'
-  ].join('');
-  const E = mid.querySelector('.hl-e');
-  const R = mid.querySelector('.hl-r');
-  const T = mid.querySelector('.hl-t');
-
-  // Measure real ERT width so H & X start perfectly butted together as "HX"
-  const midW = mid.offsetWidth || 280;
-
-  // ── ACT 0 — Initial visible state: clean "HX" ─────────────────────────
-  gsap.set(hxH, { x: midW / 2 });
-  gsap.set(hxX, { x: -(midW / 2) });
-  gsap.set([E, R, T], { opacity: 0, scale: 0, transformOrigin: 'center center' });
-
-  // ══════════════════════════════════════════════════════════════════════
-  //  SCROLL — HERTX ➜ "Hemang Luthra" (scrub-driven)
-  // ══════════════════════════════════════════════════════════════════════
-  if (heroText2 && window.ScrollTrigger) {
-    gsap.registerPlugin(window.ScrollTrigger);
-
-    gsap.to(heroText1, {
-      opacity: 0, scale: 0.88, filter: 'blur(10px)',
-      ease: 'power2.inOut',
+  gsap.fromTo(heroText2,
+    { opacity: 0, y: 60, filter: 'blur(8px)' },
+    {
+      opacity: 1, y: 0, filter: 'blur(0px)', ease: 'power2.out',
       scrollTrigger: {
-        trigger: '#hero', start: 'top top', end: '45% top', scrub: 1.5
+        trigger: '#hero', start: '30% top', end: '70% top', scrub: 1.5
       }
-    });
-
-    gsap.fromTo(heroText2,
-      { opacity: 0, y: 60, filter: 'blur(8px)' },
-      {
-        opacity: 1, y: 0, filter: 'blur(0px)', ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#hero', start: '30% top', end: '70% top', scrub: 1.5
-        }
-      }
-    );
-  }
-
-  // ══════════════════════════════════════════════════════════════════════
-  //  ACT 1 — HOLD (0.8 s): user sees "HX" crisply
-  //  ACT 2 — AFTER EFFECTS TRANSFORM: HX ➜ HERTX
-  // ══════════════════════════════════════════════════════════════════════
-  setTimeout(() => {
-    const tl = gsap.timeline({ delay: 0.8 });
-
-    // 2a. COMPRESSION — H & X rush toward each other
-    tl.to([hxH, hxX], {
-      x: (i) => i === 0 ? midW * 0.15 : -(midW * 0.15),
-      scale: 1.12,
-      duration: 0.35,
-      ease: 'power3.in'
-    })
-
-    // 2b. CHROMATIC PRE-FLASH — red/blue channel split
-    .to(heroText1, {
-      keyframes: [
-        { textShadow: '6px 0 0 rgba(255,0,60,.9), -6px 0 0 rgba(0,200,255,.9)', duration: 0.05 },
-        { textShadow: '-5px 0 0 rgba(255,0,60,.9), 5px 0 0 rgba(0,200,255,.9)', duration: 0.05 },
-        { textShadow: '2px 0 0 rgba(255,0,60,.5), -2px 0 0 rgba(0,200,255,.5)', duration: 0.04 },
-        { textShadow: 'none', duration: 0.02 }
-      ]
-    }, '<0.2')
-
-    // 2c. EXPLOSION — ERT detonates from scale 6 down to 1
-    .fromTo([E, R, T],
-      { scale: 6, opacity: 0, filter: 'blur(28px)' },
-      {
-        scale: 1, opacity: 1, filter: 'blur(0px)',
-        duration: 0.7, ease: 'expo.out',
-        stagger: { each: 0.05, from: 'center' }
-      }, '<0.05'
-    )
-
-    // 2d. SLAM — H & X rocket to final positions
-    .to([hxH, hxX], {
-      x: 0, scale: 1,
-      duration: 0.65, ease: 'expo.out'
-    }, '<')
-
-    // 2e. IMPACT SHOCKWAVE on whole word
-    .to(heroText1, { scale: 1.06, duration: 0.12, ease: 'power4.in' })
-    .to(heroText1, { scale: 1,    duration: 0.70, ease: 'elastic.out(1.2, 0.45)' })
-
-    // 2f. CHROMATIC POST-FLASH
-    .to(heroText1, {
-      keyframes: [
-        { textShadow: '-4px 0 0 rgba(255,0,60,.7), 4px 0 0 rgba(0,200,255,.7)', x: -2, duration: 0.04 },
-        { textShadow: '4px 0 0 rgba(255,0,60,.7), -4px 0 0 rgba(0,200,255,.7)',  x:  2, duration: 0.04 },
-        { textShadow: 'none', x: 0, duration: 0.03 }
-      ]
-    }, '<0.05')
-
-    // 2g. CINEMATIC GLOW — blooms then fades to almost nothing
-    .fromTo(heroText1,
-      { textShadow: '0 0 140px rgba(255,255,255,1), 0 0 70px rgba(56,189,248,.8)' },
-      { textShadow: '0 0 40px rgba(56,189,248,.04)', duration: 2.8, ease: 'power2.out' },
-      '<-0.05'
-    );
-
-  }, 80);
+    }
+  );
 }
-
 
 export function initContactHover() {
   const links = document.querySelectorAll('.contact-link');
