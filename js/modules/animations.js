@@ -288,11 +288,7 @@ export function initScrambleHover() {
     let timer = null;
     el.addEventListener('mouseenter', () => { clearTimeout(timer); scrambleText(el, orig, 0); });
   });
-  document.querySelectorAll('.work__client').forEach(el => {
-    const orig = el.dataset.scrambleOrig || el.textContent.trim();
-    el.dataset.scrambleOrig = orig;
-    el.addEventListener('mouseenter', () => scrambleText(el, orig, 0));
-  });
+
 }
 export function initLadderJourney() {
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

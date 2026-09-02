@@ -31,7 +31,7 @@
   --radius: 24px;
   --radius-sm: 12px;
   --z-fx: 900;
-  --z-cursor: 1200;
+  --z-cursor: 99999;
   --z-menu-btn: 1150;
   --z-menu: 1100;
   --section-bg: var(--paper);
@@ -792,7 +792,7 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .stack-item .x { color: var(--hot); }
 .exp { background: var(--bg); color: var(--text); }
 .exp__grid {
-  display: grid; grid-template-columns: 220px minmax(0, 1fr);
+  display: grid; grid-template-columns: 1fr;
   gap: clamp(1.5rem, 4vw, 4rem);
 }
 .exp__rail { position: relative; }
@@ -968,7 +968,7 @@ body.menu-open .nav{background:transparent;backdrop-filter:none;-webkit-backdrop
 .stack-item .x { color: var(--hot); }
 .exp { background: var(--bg); color: var(--text); }
 .exp__grid {
-  display: grid; grid-template-columns: 220px minmax(0, 1fr);
+  display: grid; grid-template-columns: 1fr;
   gap: clamp(1.5rem, 4vw, 4rem);
 }
 .exp__rail { position: relative; }
@@ -4456,4 +4456,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 .page-cta h2 {
   margin-bottom: 0 !important;
+}
+
+/* Override hover underlines to be actual thin underlines */
+.text-highlight::after,
+.tw-type:hover::after,
+.tw-type::after {
+  height: 2px !important;
+  bottom: -4px !important;
+  background: var(--teal) !important;
+  mix-blend-mode: normal !important;
+  z-index: 1 !important;
+}
+
+/* Make global headings also use the thin underline if they have it */
+h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
+  height: 2px !important;
+  bottom: -4px !important;
+  background: var(--teal) !important;
+  mix-blend-mode: normal !important;
+}
+
+/* Sleeker Hamburger Improvements */
+.nav__bars {
+  height: 12px !important;
+  width: 32px !important;
+  justify-content: space-between !important;
+}
+.nav__bars i {
+  height: 2px !important;
+  border-radius: 1px !important;
+  background: var(--text) !important;
+}
+.nav__menu-btn:hover .nav__bars i {
+  background: var(--teal) !important;
+}
+.nav__menu-btn.open .nav__bars i:nth-child(1) {
+  transform: translateY(5px) rotate(45deg) !important;
+}
+.nav__menu-btn.open .nav__bars i:nth-child(2) {
+  transform: translateY(-5px) rotate(-45deg) !important;
 }
