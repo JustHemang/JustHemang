@@ -19,7 +19,7 @@ import {
   initHeroAnimation,
   initContactHover,
   initWorkFilters
-} from './modules/animations.js?v=10';
+} from './modules/animations.js?v=11';
 import { 
   initTimecode, 
   initFilmstrip, 

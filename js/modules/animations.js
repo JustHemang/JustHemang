@@ -790,88 +790,125 @@ export function initRoadTimeline() {
 
 export function initHeroAnimation() {
   const heroText1 = document.querySelector('#heroText1');
-  const hxH = document.querySelector('.hx-h');
-  const hxX = document.querySelector('.hx-x');
-  const mid = document.querySelector('.hx-mid');
+  const heroText2 = document.querySelector('#heroText2');
+  const hxH       = document.querySelector('.hx-h');
+  const hxX       = document.querySelector('.hx-x');
+  const mid        = document.querySelector('.hx-mid');
   if (!heroText1 || !mid || typeof window.gsap === 'undefined') return;
 
-  // ── "SIGNAL LOCK" ──────────────────────────────────────────────────────
-  // Letters scatter in from random 3D positions, then snap into perfect
-  // alignment with a shockwave ripple. Cinematic, sexy, premium.
-  // ──────────────────────────────────────────────────────────────────────
+  const gsap = window.gsap;
+
+  // ══════════════════════════════════════════════════════════════════════
+  //  SETUP — unlock mid, split ERT, measure, clamp HX together
+  // ══════════════════════════════════════════════════════════════════════
+  gsap.set(mid, { width: 'auto', display: 'inline-flex', opacity: 1 });
+
+  mid.innerHTML = [
+    '<span class="hl-e" style="display:inline-block">E</span>',
+    '<span class="hl-r" style="display:inline-block">R</span>',
+    '<span class="hl-t" style="display:inline-block">T</span>'
+  ].join('');
+  const E = mid.querySelector('.hl-e');
+  const R = mid.querySelector('.hl-r');
+  const T = mid.querySelector('.hl-t');
+
+  // Measure real ERT width so H & X start perfectly butted together as "HX"
+  const midW = mid.offsetWidth || 280;
+
+  // ── ACT 0 — Initial visible state: clean "HX" ─────────────────────────
+  gsap.set(hxH, { x: midW / 2 });
+  gsap.set(hxX, { x: -(midW / 2) });
+  gsap.set([E, R, T], { opacity: 0, scale: 0, transformOrigin: 'center center' });
+
+  // ══════════════════════════════════════════════════════════════════════
+  //  SCROLL — HERTX ➜ "Hemang Luthra" (scrub-driven)
+  // ══════════════════════════════════════════════════════════════════════
+  if (heroText2 && window.ScrollTrigger) {
+    gsap.registerPlugin(window.ScrollTrigger);
+
+    gsap.to(heroText1, {
+      opacity: 0, scale: 0.88, filter: 'blur(10px)',
+      ease: 'power2.inOut',
+      scrollTrigger: {
+        trigger: '#hero', start: 'top top', end: '45% top', scrub: 1.5
+      }
+    });
+
+    gsap.fromTo(heroText2,
+      { opacity: 0, y: 60, filter: 'blur(8px)' },
+      {
+        opacity: 1, y: 0, filter: 'blur(0px)', ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#hero', start: '30% top', end: '70% top', scrub: 1.5
+        }
+      }
+    );
+  }
+
+  // ══════════════════════════════════════════════════════════════════════
+  //  ACT 1 — HOLD (0.8 s): user sees "HX" crisply
+  //  ACT 2 — AFTER EFFECTS TRANSFORM: HX ➜ HERTX
+  // ══════════════════════════════════════════════════════════════════════
   setTimeout(() => {
-    const gsap = window.gsap;
+    const tl = gsap.timeline({ delay: 0.8 });
 
-    // 1. SETUP ─────────────────────────────────────────────────────────────
-    // Reveal mid span so layout is stable before we measure
-    gsap.set(mid, { width: 'auto', display: 'inline-flex', opacity: 1 });
-
-    // Split ERT into individual animatable chars
-    mid.innerHTML = `<span class="hl-e" style="display:inline-block;">E</span><span class="hl-r" style="display:inline-block;">R</span><span class="hl-t" style="display:inline-block;">T</span>`;
-    const E = mid.querySelector('.hl-e');
-    const R = mid.querySelector('.hl-r');
-    const T = mid.querySelector('.hl-t');
-
-    // Measure the space ERT occupies so H & X start perfectly kissing
-    const midW = mid.offsetWidth || 280;
-
-    // 2. INITIAL STATE ─────────────────────────────────────────────────────
-    // H & X: locked together over the hidden ERT gap, slightly lifted
-    gsap.set(hxH, { x: midW / 2, y: 0, opacity: 0, scale: 1.15, filter: 'blur(12px)' });
-    gsap.set(hxX, { x: -(midW / 2), y: 0, opacity: 0, scale: 1.15, filter: 'blur(12px)' });
-
-    // E, R, T: scattered from extreme off-screen positions + blurred + rotated
-    gsap.set(E, { opacity: 0, y: -160, x: -40, rotation: -18, filter: 'blur(16px)', scale: 0.6 });
-    gsap.set(R, { opacity: 0, y: 200, x: 0, rotation: 12, filter: 'blur(16px)', scale: 0.6 });
-    gsap.set(T, { opacity: 0, y: -120, x: 50, rotation: -8, filter: 'blur(16px)', scale: 0.6 });
-
-    // 3. TIMELINE ──────────────────────────────────────────────────────────
-    const tl = gsap.timeline({ delay: 0.3 });
-
-    // Phase A — H & X materialise from the mist (0.3s in)
+    // 2a. COMPRESSION — H & X rush toward each other
     tl.to([hxH, hxX], {
-      opacity: 1, scale: 1, filter: 'blur(0px)',
-      duration: 1.0,
-      ease: 'power3.out',
-      stagger: 0.08
+      x: (i) => i === 0 ? midW * 0.15 : -(midW * 0.15),
+      scale: 1.12,
+      duration: 0.35,
+      ease: 'power3.in'
     })
 
-    // Phase B — ERT chars fly in from their scattered positions and LOCK
-    .to([E, R, T], {
-      opacity: 1, y: 0, x: 0, rotation: 0, scale: 1, filter: 'blur(0px)',
-      duration: 0.9,
-      ease: 'expo.out',
-      stagger: { each: 0.07, from: 'center' }   // lock from center outward
-    }, '+=0.05')
+    // 2b. CHROMATIC PRE-FLASH — red/blue channel split
+    .to(heroText1, {
+      keyframes: [
+        { textShadow: '6px 0 0 rgba(255,0,60,.9), -6px 0 0 rgba(0,200,255,.9)', duration: 0.05 },
+        { textShadow: '-5px 0 0 rgba(255,0,60,.9), 5px 0 0 rgba(0,200,255,.9)', duration: 0.05 },
+        { textShadow: '2px 0 0 rgba(255,0,60,.5), -2px 0 0 rgba(0,200,255,.5)', duration: 0.04 },
+        { textShadow: 'none', duration: 0.02 }
+      ]
+    }, '<0.2')
 
-    // Phase C — H & X simultaneously slide outward to give ERT room
+    // 2c. EXPLOSION — ERT detonates from scale 6 down to 1
+    .fromTo([E, R, T],
+      { scale: 6, opacity: 0, filter: 'blur(28px)' },
+      {
+        scale: 1, opacity: 1, filter: 'blur(0px)',
+        duration: 0.7, ease: 'expo.out',
+        stagger: { each: 0.05, from: 'center' }
+      }, '<0.05'
+    )
+
+    // 2d. SLAM — H & X rocket to final positions
     .to([hxH, hxX], {
-      x: 0,
-      duration: 0.85,
-      ease: 'expo.out'
-    }, '<')                                       // exact same moment as phase B
+      x: 0, scale: 1,
+      duration: 0.65, ease: 'expo.out'
+    }, '<')
 
-    // Phase D — shockwave: the whole word micro-scales then settles
-    .to(heroText1, {
-      scale: 1.035,
-      duration: 0.14,
-      ease: 'power2.in'
-    })
-    .to(heroText1, {
-      scale: 1,
-      duration: 0.55,
-      ease: 'elastic.out(1.1, 0.5)'
-    })
+    // 2e. IMPACT SHOCKWAVE on whole word
+    .to(heroText1, { scale: 1.06, duration: 0.12, ease: 'power4.in' })
+    .to(heroText1, { scale: 1,    duration: 0.70, ease: 'elastic.out(1.2, 0.45)' })
 
-    // Phase E — luminous glow fades in then out (cinematic signature)
+    // 2f. CHROMATIC POST-FLASH
+    .to(heroText1, {
+      keyframes: [
+        { textShadow: '-4px 0 0 rgba(255,0,60,.7), 4px 0 0 rgba(0,200,255,.7)', x: -2, duration: 0.04 },
+        { textShadow: '4px 0 0 rgba(255,0,60,.7), -4px 0 0 rgba(0,200,255,.7)',  x:  2, duration: 0.04 },
+        { textShadow: 'none', x: 0, duration: 0.03 }
+      ]
+    }, '<0.05')
+
+    // 2g. CINEMATIC GLOW — blooms then fades to almost nothing
     .fromTo(heroText1,
-      { textShadow: '0 0 120px rgba(255,255,255,0.95), 0 0 60px rgba(56,189,248,0.7)' },
-      { textShadow: '0 0 40px rgba(56,189,248,0.05)', duration: 2.2, ease: 'power2.out' },
-      '<-0.15'
+      { textShadow: '0 0 140px rgba(255,255,255,1), 0 0 70px rgba(56,189,248,.8)' },
+      { textShadow: '0 0 40px rgba(56,189,248,.04)', duration: 2.8, ease: 'power2.out' },
+      '<-0.05'
     );
 
   }, 80);
 }
+
 
 export function initContactHover() {
   const links = document.querySelectorAll('.contact-link');
