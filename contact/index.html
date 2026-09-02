@@ -1,22 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact &mdash; Hertx</title>
   <meta name="description" content="Get in touch with Hertx." />
-  <meta name="theme-color" content="#2a2520" />
+  <meta name="theme-color" content="#0e0e0f" />
   <link rel="icon" href="../Logo Transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <script defer src="/_vercel/insights/script.js"></script>
+  <style>
+    .ct-wrap {
+      position: relative; width: 100%; height: 100vh; min-height: 600px;
+      display: flex; flex-direction: column; overflow: hidden;
+      background: #0e0e0f;
+      transition: background 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .ct-headline {
+      position: absolute; top: 7rem; right: 0;
+      line-height: 0.92; pointer-events: none; user-select: none;
+    }
+    .ct-headline__say {
+      display: block;
+      font-family: Montserrat, sans-serif; font-weight: 900;
+      font-size: clamp(5rem,11vw,11rem); color: #f0ece3;
+      letter-spacing: -0.03em;
+    }
+    .ct-headline__hello {
+      display: block;
+      font-family: Montserrat, sans-serif; font-weight: 900;
+      font-size: clamp(5rem,11vw,11rem); color: transparent;
+      -webkit-text-stroke: 2px rgba(240,236,227,0.18);
+      letter-spacing: -0.03em;
+    }
+    .ct-tagline {
+      position: absolute; bottom: 4.5rem;
+      left: clamp(1.5rem,5vw,5rem); max-width: 340px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(0.95rem,1.4vw,1.15rem); font-weight: 400;
+      color: rgba(240,236,227,0.55); line-height: 1.6;
+    }
+    .ct-deck {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-46%);
+      width: min(540px,88vw); height: 260px;
+    }
+    .ct-card {
+      position: absolute; inset: 0; border-radius: 22px;
+      background: #111113; border: 1px solid rgba(255,255,255,0.07);
+      padding: 2rem 2.4rem;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      cursor: pointer; text-decoration: none;
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1),
+                  opacity 0.45s ease, box-shadow 0.45s ease;
+      will-change: transform, opacity;
+    }
+    .ct-card[data-pos="1"]  { transform: translate(38px,-14px) scale(0.93); opacity: 0.55; z-index: 1; }
+    .ct-card[data-pos="2"]  { transform: translate(66px,-24px) scale(0.86); opacity: 0.30; z-index: 0; }
+    .ct-card[data-pos="-1"] { transform: translate(-38px,-14px) scale(0.93); opacity: 0.55; z-index: 1; }
+    .ct-card[data-pos="-2"] { transform: translate(-66px,-24px) scale(0.86); opacity: 0.30; z-index: 0; }
+    .ct-card[data-pos="0"]  {
+      transform: translate(0,0) scale(1); opacity: 1; z-index: 10;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .ct-card[data-pos="0"]:hover {
+      box-shadow: 0 40px 100px rgba(0,0,0,0.65), 0 4px 20px rgba(0,0,0,0.35);
+    }
+    .ct-card__arrow {
+      position: absolute; top: 1.6rem; right: 1.6rem; font-size: 1.2rem;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.3s, transform 0.3s;
+    }
+    .ct-card[data-pos="0"]:hover .ct-card__arrow { color: #fff; transform: translate(3px,-3px); }
+    .ct-card__label {
+      font-family: Montserrat, sans-serif;
+      font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800;
+      color: #fff; letter-spacing: -0.02em;
+    }
+    .ct-card__sub {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem;
+      color: rgba(255,255,255,0.35); margin-top: 0.3rem; letter-spacing: 0.08em;
+    }
+    .ct-nav {
+      position: absolute; bottom: 4rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 1rem; z-index: 20;
+    }
+    .ct-nav__btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid rgba(240,236,227,0.22);
+      background: transparent; color: rgba(240,236,227,0.7);
+      font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
+    }
+    .ct-nav__btn:hover {
+      background: rgba(240,236,227,0.1);
+      border-color: rgba(240,236,227,0.5); color: #f0ece3; transform: scale(1.08);
+    }
+    .ct-nav__btn:active { transform: scale(0.96); }
+  </style>
 </head>
-
 <body class="page-sub">
   <div class="page-transition" id="pageTransition" aria-hidden="true" style="display:flex;">
     <div class="pt-bar pt-bar--1" style="--i:0"></div>
@@ -26,7 +112,6 @@
     <div class="pt-bar pt-bar--5" style="--i:4"></div>
   </div>
   <style>
-    /* Safety: if JS fails, force transition off after 1.5s */
     .pt-bar { animation: pt-fallback 0.6s ease forwards; animation-delay: calc(0.9s + var(--i) * 0.05s); }
     @keyframes pt-fallback { to { transform: translateX(100%); } }
     #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
@@ -50,12 +135,12 @@
   </header>
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <nav class="menu-overlay__links" aria-label="Menu">
-        <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
-        <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
-        <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
-        <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
-        <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
-        <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
+      <li class="menu-overlay__item"><a href="/" class="menu-overlay__link tw-type">HOME</a></li>
+      <li class="menu-overlay__item"><a href="/work/" class="menu-overlay__link tw-type">WORK</a></li>
+      <li class="menu-overlay__item"><a href="/services/" class="menu-overlay__link tw-type">SERVICES</a></li>
+      <li class="menu-overlay__item"><a href="/about/" class="menu-overlay__link tw-type">ABOUT</a></li>
+      <li class="menu-overlay__item"><a href="/journey/" class="menu-overlay__link tw-type">JOURNEY</a></li>
+      <li class="menu-overlay__item"><a href="/contact/" class="menu-overlay__link tw-type">CONTACT</a></li>
     </nav>
     <div class="menu-overlay__foot">
       <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
@@ -64,33 +149,23 @@
       <a href="https://youtube.com/@xHertx" target="_blank" rel="noopener">YouTube</a>
     </div>
   </div>
-  
-    <main id="top" style="position: relative; z-index: 2;">
-    <!-- Large Hover Links Section -->
-        <section class="contact-hero section" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative;">
-      <!-- The Overlay inside the section -->
-      <div class="contact-bg-overlay" aria-hidden="true"></div>
-      
-      <!-- Content Wrapper -->
-      <div class="contact-content" style="position: relative; z-index: 10; width: 100%;">
-        <p class="section__eyebrow mono anim-slide-down">Socials</p>
-        <h1 class="hero__title tw-type" style="margin-bottom: 4rem;">LET'S TALK</h1>
-        
-        <div class="contact-huge-links">
-          <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener" class="contact-link tw-type" data-color="#0a66c2">LinkedIn</a>
-          <a href="mailto:xhertxd@gmail.com" class="contact-link tw-type" data-color="#0ea5e9">Email</a>
-          <a href="https://www.instagram.com/xhertxd/" target="_blank" rel="noopener" class="contact-link tw-type" data-color="#e1306c">Instagram</a>
-          <a href="https://github.com/xHertx" target="_blank" rel="noopener" class="contact-link tw-type" data-color="#18181b">GitHub</a>
-        </div>
+
+  <main id="top">
+    <section class="ct-wrap" id="ctWrap" aria-label="Contact">
+      <div class="ct-headline container">
+        <span class="ct-headline__say">Let's</span>
+        <span class="ct-headline__hello">Talk.</span>
+      </div>
+      <p class="ct-tagline">Working on something interesting,<br>or just want to say hi?<br>Pick your channel below.</p>
+      <div class="ct-deck" id="ctDeck" role="region" aria-label="Contact channels"></div>
+      <div class="ct-nav" aria-label="Cycle cards">
+        <button class="ct-nav__btn" id="ctPrev" aria-label="Previous">&#8592;</button>
+        <button class="ct-nav__btn" id="ctNext" aria-label="Next">&#8594;</button>
       </div>
     </section>
 
-    <!-- Original Terminal Block (Moved to bottom) -->
     <section class="git-terminal monolithic-glass" id="contact" style="min-height: auto; padding: 10vh 0 20vh;">
-
-      <!-- Abstract Background Orb restored per user request -->
       <div class="glass-orb"></div>
-      
       <div class="terminal-window anim-scale" style="position: relative; z-index: 2;">
         <div class="terminal-header">
           <div class="mac-dots">
@@ -100,38 +175,27 @@
         </div>
         <div class="terminal-body mono">
           <p class="sys-msg">Connected to hertx.dev... Initialize commit.</p>
-          
           <div class="cmd-line">
-            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span> 
+            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span>
             <span class="cmd-text">git config user.name "</span><input type="text" id="g_name" class="term-input" placeholder="Your Name" autocomplete="off" /><span class="cmd-text">"</span>
           </div>
-
           <div class="cmd-line">
-            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span> 
+            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span>
             <span class="cmd-text">git config user.email "</span><input type="email" id="g_email" class="term-input" placeholder="you@domain.com" autocomplete="off" /><span class="cmd-text">"</span>
           </div>
-
           <div class="cmd-line">
-            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span> 
+            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span>
             <span class="cmd-text">git commit -m "</span><input type="text" id="g_msg" class="term-input" placeholder="Project details..." autocomplete="off" /><span class="cmd-text">"</span>
           </div>
-
           <div class="cmd-line mt-4">
-            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span> 
-            <button class="term-btn" onclick="
-              const n = document.getElementById('g_name').value || 'Visitor';
-              const e = document.getElementById('g_email').value || 'unknown@email.com';
-              const m = document.getElementById('g_msg').value || 'Hello!';
-              const body = 'Name: ' + n + '%0D%0AEmail: ' + e + '%0D%0A%0D%0A' + encodeURIComponent(m);
-              window.location.href = 'mailto:xhertxd@gmail.com?subject=git commit: Inquiry from ' + encodeURIComponent(n) + '&body=' + body;
-            ">git push origin main<span class="term-cursor"></span></button>
+            <span class="prompt"><span class="user">xhertx@local</span>:<span class="path">~/contact</span>$</span>
+            <button class="term-btn" id="sendBtn">git push origin main<span class="term-cursor"></span></button>
           </div>
         </div>
       </div>
     </section>
   </main>
-  
-  
+
   <footer class="footer">
     <img class="footer__logo" src="../Logo Transparent.png" alt="Hemang Luthra" />
     <div class="footer__row">
@@ -147,9 +211,110 @@
     </div>
     <p class="footer__copy mono">&copy; 2026 Hertx. All rights reserved.</p>
   </footer>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="module" src="../js/main.js"></script>
-</body>
+  <script>
+    // Terminal send button
+    document.getElementById('sendBtn').addEventListener('click', function() {
+      const n = document.getElementById('g_name').value || 'Visitor';
+      const e = document.getElementById('g_email').value || 'unknown@email.com';
+      const m = document.getElementById('g_msg').value || 'Hello!';
+      const body = 'Name: ' + n + '%0D%0AEmail: ' + e + '%0D%0A%0D%0A' + encodeURIComponent(m);
+      window.location.href = 'mailto:xhertxd@gmail.com?subject=git commit: Inquiry from ' + encodeURIComponent(n) + '&body=' + body;
+    });
 
+    // Rolodex
+    const CHANNELS = [
+      { label: 'Email',     sub: 'xhertxd@gmail.com',             href: 'mailto:xhertxd@gmail.com',                              bg: '#1a0e2e' },
+      { label: 'LinkedIn',  sub: '/in/hemang-luthra',             href: 'https://www.linkedin.com/in/hemang-luthra-328a65303/', bg: '#0a1f3d' },
+      { label: 'GitHub',    sub: 'github.com/xHertx',            href: 'https://github.com/xHertx',                            bg: '#0d0d0d' },
+      { label: 'Instagram', sub: '@xhertxd',                     href: 'https://www.instagram.com/xhertxd/',                  bg: '#2a0e1f' },
+      { label: 'YouTube',   sub: '@xHertx',                      href: 'https://youtube.com/@xHertx',                         bg: '#1f0808' }
+    ];
+    const deck = document.getElementById('ctDeck');
+    const wrap = document.getElementById('ctWrap');
+    const btnP = document.getElementById('ctPrev');
+    const btnN = document.getElementById('ctNext');
+    let current = 0, animating = false;
+
+    function posFor(i) {
+      const total = CHANNELS.length;
+      let rel = ((i - current) % total + total) % total;
+      if (rel > total / 2) rel -= total;
+      return Math.max(-2, Math.min(2, rel));
+    }
+
+    function buildCards() {
+      deck.innerHTML = '';
+      CHANNELS.forEach(function(ch, i) {
+        const pos = posFor(i);
+        if (Math.abs(pos) > 2) return;
+        const card = document.createElement('a');
+        card.href = pos === 0 ? ch.href : '#';
+        if (pos === 0) { card.target = '_blank'; card.rel = 'noopener'; }
+        card.className = 'ct-card';
+        card.dataset.pos = pos;
+        card.dataset.index = i;
+        card.innerHTML = '<span class="ct-card__arrow">↗</span><div><div class="ct-card__label">' + ch.label + '</div><div class="ct-card__sub">' + ch.sub + '</div></div>';
+        if (pos !== 0) {
+          card.addEventListener('click', (function(idx) {
+            return function(e) { e.preventDefault(); goTo(idx); };
+          })(i));
+        }
+        deck.appendChild(card);
+      });
+      wrap.style.background = CHANNELS[current].bg;
+    }
+
+    function goTo(targetIndex) {
+      if (animating) return;
+      animating = true;
+      current = ((targetIndex % CHANNELS.length) + CHANNELS.length) % CHANNELS.length;
+      const oldCards = deck.querySelectorAll('.ct-card');
+      oldCards.forEach(function(c) {
+        c.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease';
+        c.style.opacity = '0';
+        c.style.transform = parseInt(c.dataset.pos) > 0
+          ? 'translate(80px,-20px) scale(0.8)'
+          : 'translate(-80px,-20px) scale(0.8)';
+      });
+      setTimeout(function() {
+        buildCards();
+        const active = deck.querySelector('.ct-card[data-pos="0"]');
+        if (active) {
+          active.style.transition = 'none';
+          active.style.transform = 'translate(0,30px) scale(0.9)';
+          active.style.opacity = '0';
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              active.style.transition = 'transform 0.55s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s ease';
+              active.style.transform = 'translate(0,0) scale(1)';
+              active.style.opacity = '1';
+            });
+          });
+        }
+        animating = false;
+      }, 360);
+    }
+
+    btnP.addEventListener('click', function() { goTo(current - 1); });
+    btnN.addEventListener('click', function() { goTo(current + 1); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+    var tx = null;
+    deck.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+    deck.addEventListener('touchend', function(e) {
+      if (tx === null) return;
+      var dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+      tx = null;
+    }, { passive: true });
+
+    buildCards();
+  </script>
+</body>
 </html>
