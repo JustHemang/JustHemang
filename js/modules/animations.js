@@ -790,94 +790,101 @@ export function initRoadTimeline() {
 
 export function initHeroAnimation() {
   const heroText1 = document.querySelector('#heroText1');
-  if (!heroText1 || typeof window.gsap === 'undefined') return;
+  const hxH = document.querySelector('.hx-h');
+  const hxX = document.querySelector('.hx-x');
+  const mid = document.querySelector('.hx-mid');
+  if (!heroText1 || !mid || typeof window.gsap === 'undefined') return;
   
-  // Save original structure to restore later
-  const originalHTML = heroText1.innerHTML;
-  
-  // Create solid foolproof structure
-  heroText1.innerHTML = `
-    <div class="slice-container" style="position: relative; display: inline-flex; justify-content: center; align-items: center; width: 100%;">
-      
-      <!-- The real final text (starts hidden) -->
-      <div class="slice-real" style="opacity: 0; display: flex; justify-content: center; letter-spacing: normal;">
-        <span class="h">H</span><span class="ert">ERT</span><span class="x">X</span>
-      </div>
-      
-      <!-- The top slice (shows H and X, hides ERT) -->
-      <div class="slice-top" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; clip-path: inset(0 0 50% 0); display: flex; justify-content: center; align-items: center; letter-spacing: normal;">
-        <span class="h">H</span><span class="ert" style="opacity: 0;">ERT</span><span class="x">X</span>
-      </div>
-      
-      <!-- The bottom slice (shows H and X, hides ERT) -->
-      <div class="slice-bot" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; clip-path: inset(50% 0 0 0); display: flex; justify-content: center; align-items: center; letter-spacing: normal;">
-        <span class="h">H</span><span class="ert" style="opacity: 0;">ERT</span><span class="x">X</span>
-      </div>
-      
-      <!-- The Laser -->
-      <div class="slice-laser" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 0%; height: 4px; background: #38bdf8; box-shadow: 0 0 20px #38bdf8, 0 0 40px #fff; border-radius: 50%; z-index: 10;"></div>
-      
-    </div>
-  `;
-  
+  // Option 3: Kinetic Impact (fast, aggressive, motion-blur, camera shake)
   setTimeout(() => {
-    const real = heroText1.querySelector('.slice-real');
-    const realErt = real.querySelector('.ert');
-    const topSlice = heroText1.querySelector('.slice-top');
-    const botSlice = heroText1.querySelector('.slice-bot');
-    const laser = heroText1.querySelector('.slice-laser');
+    // 1. Setup
+    // Remove the display:none and width:0 from mid so it can be animated
+    window.gsap.set(mid, { width: 'auto', opacity: 1, display: 'inline-flex', clearProps: 'transform' });
     
-    // Push the H and X together initially inside the slices
-    const ertWidth = realErt.offsetWidth || 150;
+    // Split ERT into spans for extra impact
+    mid.innerHTML = `<span class="e" style="display:inline-block;">E</span><span class="r" style="display:inline-block;">R</span><span class="t" style="display:inline-block;">T</span>`;
+    const e = mid.querySelector('.e');
+    const r = mid.querySelector('.r');
+    const t = mid.querySelector('.t');
     
-    const topH = topSlice.querySelector('.h');
-    const topX = topSlice.querySelector('.x');
-    const botH = botSlice.querySelector('.h');
-    const botX = botSlice.querySelector('.x');
+    // Calculate space needed
+    const midWidth = mid.offsetWidth || 300; 
     
-    // Initial state: H and X are pushed together over the hidden ERT
-    window.gsap.set([topH, botH], { x: ertWidth / 2 });
-    window.gsap.set([topX, botX], { x: -(ertWidth / 2) });
+    // Push H and X together to form HX
+    window.gsap.set(hxH, { x: midWidth / 2 });
+    window.gsap.set(hxX, { x: -(midWidth / 2) });
     
-    // Real ERT starts hidden and small in the void
-    window.gsap.set(realErt, { opacity: 0, scale: 0.5, filter: 'blur(10px)' });
+    // Hide ERT initially (pushing it far into the camera with heavy blur)
+    window.gsap.set([e, r, t], { opacity: 0, scale: 5, z: 500, filter: 'blur(20px)' });
     
-    const tl = window.gsap.timeline({ delay: 0.3 });
+    const tl = window.gsap.timeline({ delay: 0.2 });
     
-    // 1. Laser shoots across
-    tl.to(laser, { width: '150%', duration: 0.4, ease: 'power4.out' })
-    // 2. Slice opens vertically
-    .to(topSlice, { y: -50, duration: 0.8, ease: 'power3.inOut' }, "+=0.1")
-    .to(botSlice, { y: 50, duration: 0.8, ease: 'power3.inOut' }, "<")
-    // 3. H and X push apart horizontally
-    .to([topH, botH, topX, botX], { x: 0, duration: 1.2, ease: 'power3.inOut' }, "<")
-    // 4. Real ERT emerges from void
-    .to(real, { opacity: 1, duration: 0.1 }, "<") // show real container
-    .to(realErt, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' }, "<0.2")
-    // 5. Laser fades out
-    .to(laser, { opacity: 0, height: 0, duration: 0.3 }, "<0.4")
-    // 6. Slices slam back together
-    .to(topSlice, { y: 0, duration: 0.4, ease: 'power4.in' }, "+=0.2")
-    .to(botSlice, { y: 0, duration: 0.4, ease: 'power4.in' }, "<")
-    // 7. On impact
-    .add(() => {
-      // Restore original HTML perfectly to prevent any flexbox/layout bugs forever
-      heroText1.innerHTML = originalHTML;
-      const hxH = heroText1.querySelector('.hx-h');
-      const hxX = heroText1.querySelector('.hx-x');
-      const mid = heroText1.querySelector('.hx-mid');
-      
-      // Ensure it is visible and normal
-      window.gsap.set(mid, { opacity: 1, display: 'inline-flex', width: 'auto', clearProps: 'transform,filter,scale' });
-      window.gsap.set([hxH, hxX], { x: 0, opacity: 1, clearProps: 'transform' });
-      
-      // Flash the actual container
-      window.gsap.fromTo('.hero-big-text', 
-        { textShadow: "0 0 100px rgba(56,189,248,1), 0 0 50px white" },
-        { textShadow: "0 0 80px rgba(56, 189, 248, 0.06)", duration: 1.5, ease: 'power2.out' }
-      );
-    });
+    // 2. Anticipation (Camera pulls back, HX squeezes slightly)
+    tl.to([hxH, hxX], { 
+      scale: 0.85, 
+      rotationX: 15, 
+      filter: 'blur(2px)', 
+      duration: 0.4, 
+      ease: 'power2.in' 
+    })
     
+    // 3. The Impact (Explode H and X outward)
+    .to(hxH, { 
+      x: 0, 
+      scale: 1, 
+      rotationX: 0, 
+      rotationZ: -4, // Slight tilt from impact
+      filter: 'blur(0px)', 
+      duration: 0.5, 
+      ease: 'back.out(2)' 
+    }, ">")
+    .to(hxX, { 
+      x: 0, 
+      scale: 1, 
+      rotationX: 0, 
+      rotationZ: 4, 
+      filter: 'blur(0px)', 
+      duration: 0.5, 
+      ease: 'back.out(2)' 
+    }, "<")
+    
+    // 4. ERT slams in stagger from the camera
+    .to([e, r, t], {
+      opacity: 1,
+      scale: 1,
+      z: 0,
+      filter: 'blur(0px)',
+      duration: 0.3,
+      ease: 'power4.out',
+      stagger: 0.05
+    }, "<0.1")
+    
+    // 5. Camera Shake on the whole container
+    .to(heroText1, {
+      x: () => 10 - Math.random() * 20,
+      y: () => 10 - Math.random() * 20,
+      rotationZ: () => 1 - Math.random() * 2,
+      duration: 0.05,
+      repeat: 8,
+      yoyo: true,
+      ease: 'none',
+      clearProps: 'transform' // restores normal position instantly when done
+    }, "<0.1")
+    
+    // 6. Settle the tilt on H and X
+    .to([hxH, hxX], {
+      rotationZ: 0,
+      duration: 0.4,
+      ease: 'elastic.out(1, 0.3)'
+    }, "<0.3")
+    
+    // 7. Flash Bang
+    .fromTo('.hero-big-text', 
+      { textShadow: "0 0 150px rgba(255,255,255,1), 0 0 80px rgba(56, 189, 248, 1)" },
+      { textShadow: "0 0 80px rgba(56, 189, 248, 0.06)", duration: 1, ease: 'power2.out' },
+      "<0.1"
+    );
+
   }, 100);
 }
 
