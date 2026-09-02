@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy &mdash; Hertx</title>
-  <meta name="description" content="Privacy Policy" />
-  <meta name="theme-color" content="#2a2520" />
+  <meta name="description" content="Privacy Policy for Hertx." />
+  <meta name="theme-color" content="#0e0e0f" />
   <link rel="icon" href="../Logo Transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;700&family=Montserrat:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
 <body class="page-sub">
@@ -25,7 +25,6 @@
     <div class="pt-bar pt-bar--5" style="--i:4"></div>
   </div>
   <style>
-    /* Safety: if JS fails, force transition off after 1.5s */
     .pt-bar { animation: pt-fallback 0.6s ease forwards; animation-delay: calc(0.9s + var(--i) * 0.05s); }
     @keyframes pt-fallback { to { transform: translateX(100%); } }
     #pageTransition { animation: pt-hide 0.1s step-end forwards; animation-delay: 1.5s; }
@@ -39,7 +38,7 @@
     <div class="cursor__dot" id="cursorDot"></div>
   </div>
   <header class="nav" id="nav">
-    <a class="nav__logo" href="../index.html">
+    <a class="nav__logo" href="/">
       <img class="nav__logo-img" src="../Logo Transparent.png" alt="JH" />
       <span class="nav__logo-text">Hertx</span>
     </a>
@@ -65,7 +64,6 @@
     </div>
   </div>
 
-  <!-- Content -->
   <main>
     <section class="section page-hero" data-section-color="dark" style="padding-top:150px; padding-bottom: 2rem;">
       <div class="container" style="max-width:800px; margin: 0 auto; text-align: left;">
@@ -79,14 +77,14 @@
       <div class="container" style="max-width:800px; margin: 0 auto; text-align: left;">
         <div class="legal-content">
           <p class="legal-intro">At Hertx, we respect your privacy and are committed to protecting any personal data you may provide to us.</p>
-          
+
           <div class="legal-section">
             <h2 class="legal-heading">1. Information Collection</h2>
             <p>We do not collect any personal information unless you explicitly provide it through a contact form, email, or direct correspondence. Any information collected is used solely for the purpose of communicating with you regarding your inquiries or projects.</p>
           </div>
 
           <div class="legal-section">
-            <h2 class="legal-heading">2. Analytics & Cookies</h2>
+            <h2 class="legal-heading">2. Analytics &amp; Cookies</h2>
             <p>This website may use basic analytics tools to track website traffic, page views, and user interactions. This data is fully anonymized and is used solely to improve the design and performance of the website. We do not use third-party tracking cookies for targeted advertising.</p>
           </div>
 
@@ -99,26 +97,37 @@
             <h2 class="legal-heading">4. Third-Party Links</h2>
             <p>Our website may contain links to external sites (such as GitHub, LinkedIn, or YouTube). We are not responsible for the privacy practices or the content of these external websites.</p>
           </div>
-          
+
           <div class="legal-contact">
             <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:xhertxd@gmail.com" class="text-link">xhertxd@gmail.com</a></p>
           </div>
         </div>
       </div>
     </section>
-  
+
     <section class="page-cta">
       <h2>Want to work together?</h2>
-      <a class="cta__btn" href="/contact">Get in touch</a>
+      <a class="cta__btn" href="/contact/">Get in touch</a>
     </section>
   </main>
 
   <footer class="footer">
-    <p class="footer__copy mono">&copy; 2026 Hertx. All rights reserved. | <a href="/terms/" style="text-decoration:underline;">Terms</a> | <a href="/privacy/" style="text-decoration:underline;">Privacy</a></p>
+    <img class="footer__logo" src="../Logo Transparent.png" alt="Hemang Luthra" />
+    <div class="footer__row">
+      <div class="footer__links">
+        <a href="mailto:xhertxd@gmail.com">Email</a>
+        <a href="https://github.com/xHertx" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/hemang-luthra-328a65303/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.instagram.com/xhertxd" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://youtube.com/@JustHemang" target="_blank" rel="noopener">YouTube</a>
+        <a href="/terms/">Terms</a>
+        <a href="/privacy/">Privacy</a>
+      </div>
+    </div>
+    <p class="footer__copy mono">&copy; 2026 Hertx. All rights reserved.</p>
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script type="module" src="../js/main.js"></script>
 </body>
-
 </html>
