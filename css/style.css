@@ -4677,3 +4677,21 @@ h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
   .footer__bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
   .footer__nav-col { min-width: 40%; }
 }
+/* --- LEGAL PAGES ALIGNMENT OVERRIDE --- */
+body.page-legal .section,
+body.page-legal .page-hero,
+body.page-legal .container,
+body.page-legal .section__eyebrow,
+body.page-legal h1,
+body.page-legal .legal-content,
+body.page-legal .legal-section,
+body.page-legal .legal-section p,
+body.page-legal .legal-heading {
+  text-align: left !important;
+}
+body.page-legal .accent-line {
+  margin-left: 0 !important;
+}
+body.page-legal .page-hero {
+  align-items: flex-start !important;
+}
