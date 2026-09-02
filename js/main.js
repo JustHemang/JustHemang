@@ -15,7 +15,10 @@ import {
   initDeckAbout,
   initDeckJourney,
   initOrbitalTimeline,
-  initRoadTimeline
+  initRoadTimeline,
+  initHeroAnimation,
+  initContactHover,
+  initWorkFilters
 } from './modules/animations.js?v=3';
 import { 
   initTimecode, 
