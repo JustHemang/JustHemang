@@ -81,14 +81,7 @@ async function fetchWorks() {
   
   workList.innerHTML = '';
   if(data.length === 0) {
-    workList.innerHTML = '<p style="color:#666;">No works found. Add one above or seed the database!</p>';
-    
-    // Add a temporary seed button if empty
-    const seedBtn = document.createElement('button');
-    seedBtn.className = 'cta__btn';
-    seedBtn.innerText = 'Seed Initial Data';
-    seedBtn.onclick = seedData;
-    workList.appendChild(seedBtn);
+    workList.innerHTML = '<p style="color:#666;">No works found. Add one above!</p>';
     return;
   }
   
@@ -161,21 +154,4 @@ window.deleteWork = async (id) => {
   }
 };
 
-// Seed Data
-async function seedData() {
-  addMsg.innerText = 'Seeding data...';
-  const response = await fetch('/works_migration.json');
-  const worksData = await response.json();
-  
-  const { error } = await supabase
-    .from('works')
-    .insert(worksData);
-    
-  if(error) {
-    addMsg.innerText = 'Error seeding: ' + error.message;
-    addMsg.style.color = '#ff3366';
-  } else {
-    addMsg.innerText = 'Seed successful!';
-    fetchWorks();
-  }
-}
+
