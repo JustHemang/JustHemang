@@ -20,7 +20,7 @@ jobs:
         uses: Platane/snk/svg-only@v3
         id: snake-gif
         with:
-          github_user_name: justhemang
+          github_user_name: xHertx
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
@@ -31,7 +31,7 @@ jobs:
         uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USERNAME: justhemang
+          USERNAME: xHertx
 
       - name: Merge outputs into one folder
         run: |
