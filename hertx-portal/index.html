@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hertx Portal - Admin Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body { background: #0a0a0a; color: #fff; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 2rem; }
+    .portal-container { width: 100%; max-width: 900px; }
+    
+    /* Login Screen */
+    #loginScreen { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh; }
+    .portal-box { background: #111; border: 1px solid rgba(255,255,255,0.1); padding: 3rem; border-radius: 20px; text-align: center; width: 100%; max-width: 400px; }
+    .portal-input { width: 100%; padding: 1rem; margin-bottom: 1rem; background: #000; border: 1px solid #333; color: #fff; border-radius: 8px; font-family: 'Inter'; box-sizing: border-box;}
+    
+    /* Dashboard Screen */
+    #dashboardScreen { display: none; flex-direction: column; gap: 2rem; }
+    .dash-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; }
+    
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .full-width { grid-column: span 2; }
+    
+    .work-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .work-row { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+    .work-info h4 { margin: 0 0 0.5rem 0; font-family: var(--font-hero); font-size: 1.5rem;}
+    .work-info p { margin: 0; color: #888; font-size: 0.9rem;}
+    
+    .btn-danger { background: rgba(255, 0, 60, 0.2); border: 1px solid rgba(255, 0, 60, 0.5); color: #ff3366; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+    .btn-danger:hover { background: rgba(255, 0, 60, 0.4); }
+  </style>
+</head>
+<body>
+
+  <div class="portal-container">
+    
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen">
+      <div class="portal-box">
+        <h2 class="tw-type" style="margin-top: 0;">Hertx Portal</h2>
+        <p class="mono" style="color: #666; margin-bottom: 2rem;">Authorized Personnel Only</p>
+        <input type="email" id="emailInput" class="portal-input" placeholder="Email Address">
+        <input type="password" id="passwordInput" class="portal-input" placeholder="Password">
+        <button id="loginBtn" class="cta__btn" style="width: 100%; justify-content: center;">LOGIN</button>
+        <div id="loginMsg" style="color: #ff3366; margin-top: 1rem; font-size: 0.9rem;"></div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD SCREEN -->
+    <div id="dashboardScreen">
+      <div class="dash-header">
+        <h2 class="tw-type" style="margin: 0;">Portal Dashboard</h2>
+        <button id="logoutBtn" class="cta__btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">LOGOUT</button>
+      </div>
+
+      <div class="portal-box" style="max-width: 100%; text-align: left; padding: 2rem;">
+        <h3 class="tw-type" style="margin-top: 0;">Add New Work</h3>
+        <div class="form-grid">
+          <input type="text" id="workTitle" class="portal-input" placeholder="Title (e.g., Movie Safar)">
+          <select id="workCategory" class="portal-input">
+            <option value="video">Video</option>
+            <option value="graphics">Graphic Design</option>
+            <option value="photo">Photography</option>
+          </select>
+          <input type="text" id="workDesc" class="portal-input full-width" placeholder="Description (e.g., Short Film - Edited by Hemang)">
+          <input type="text" id="workImg" class="portal-input full-width" placeholder="Image URL (e.g., https://images.unsplash.com/...)">
+          <input type="text" id="workUrl" class="portal-input full-width" placeholder="Media/Project URL (Optional, e.g., YouTube link)">
+          <select id="workSize" class="portal-input full-width">
+            <option value="col-span-1 row-span-1">Small Square (1x1)</option>
+            <option value="col-span-1 row-span-2">Tall Portrait (1x2)</option>
+            <option value="col-span-2 row-span-1">Wide Landscape (2x1)</option>
+            <option value="col-span-2 row-span-2">Massive Feature (2x2)</option>
+          </select>
+        </div>
+        <button id="addWorkBtn" class="cta__btn">Add to Portfolio</button>
+        <div id="addMsg" style="color: var(--teal); margin-top: 1rem; font-size: 0.9rem;"></div>
+      </div>
+
+      <div>
+        <h3 class="tw-type" style="margin-bottom: 0;">Manage Works</h3>
+        <div id="workList" class="work-list">
+          <!-- Works rendered here -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="portal.js"></script>
+
+</body>
+</html>
