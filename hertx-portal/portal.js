@@ -164,7 +164,7 @@ window.deleteWork = async (id) => {
 // Seed Data
 async function seedData() {
   addMsg.innerText = 'Seeding data...';
-  const response = await fetch('../works_migration.json');
+  const response = await fetch('/works_migration.json');
   const worksData = await response.json();
   
   const { error } = await supabase
