@@ -31,7 +31,7 @@
 
 ```yaml
 name: Hemang Luthra
-alias: Just Hemang
+alias: Hertx
 roles:
   - Video Editor & Motion Graphics Specialist
   - Full-Stack Web Developer
@@ -39,8 +39,8 @@ roles:
   - Founder @ Kaelor Media
 location: India 🇮🇳
 focus: [Commercial Video Editing, Full-Stack Web Apps, Motion Graphics, Automation]
-reach_me: justhemang@gmail.com
-portfolio: https://justhemang.vercel.app
+reach_me: xhertxd@gmail.com
+portfolio: https://hertx.vercel.app
 ```
 
 - 🎬 **Video Editing & Motion Graphics**: Commercial cuts, DaVinci Resolve color grading, Premiere Pro & After Effects visual FX.
