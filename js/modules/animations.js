@@ -842,8 +842,8 @@ export function initContactHover() {
 
 export function initWorkFilters() {
   const btns = document.querySelectorAll('.filter-btn');
-  const container = document.querySelector('.masonry-container');
-  const items = document.querySelectorAll('.masonry-item');
+  const container = document.querySelector('.bento-container');
+  const items = document.querySelectorAll('.bento-item');
   if (!btns.length || !container) return;
 
   btns.forEach(btn => {
@@ -898,10 +898,10 @@ export function initWorkModal() {
     e.preventDefault();
     const item = e.currentTarget;
     const href = item.getAttribute('href');
-    const bgImg = item.querySelector('.masonry-item__bg img')?.src;
-    const num = item.querySelector('.masonry-num')?.innerText || '';
-    const title = item.querySelector('.masonry-title')?.innerText || '';
-    const desc = item.querySelector('.masonry-desc')?.innerText || '';
+    const bgImg = item.querySelector('.bento-item__bg img')?.src;
+    const num = item.querySelector('.bento-num')?.innerText || '';
+    const title = item.querySelector('.bento-title')?.innerText || '';
+    const desc = item.querySelector('.bento-desc')?.innerText || '';
 
     numEl.innerText = num;
     titleEl.innerText = title;
@@ -938,7 +938,7 @@ export function initWorkModal() {
     }, 400);
   }
 
-  const items = document.querySelectorAll('.masonry-item');
+  const items = document.querySelectorAll('.bento-item');
   items.forEach(item => {
     item.addEventListener('click', openModal);
   });
